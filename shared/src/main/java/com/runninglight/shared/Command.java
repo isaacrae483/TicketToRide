@@ -1,4 +1,4 @@
-package com.runninglight.server;
+package com.runninglight.shared;
 
 import com.google.gson.Gson;
 
