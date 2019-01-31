@@ -5,7 +5,7 @@ public class IGameList_Presenter {
 
     void createGame(){}
     void joinGame(){}
-    
+
     void updateGameListView(){}
 
 }
