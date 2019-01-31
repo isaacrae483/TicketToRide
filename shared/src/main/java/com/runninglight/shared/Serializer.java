@@ -1,5 +1,6 @@
 package com.runninglight.shared;
 
+
 import com.google.gson.Gson;
 
 public class Serializer
@@ -14,5 +15,10 @@ public class Serializer
     public String serialize(Object object)
     {
         return gson.toJson(object);
+    }
+
+    public Results deserializeResults(String json)
+    {
+        return gson.fromJson(json, Results.class);
     }
 }

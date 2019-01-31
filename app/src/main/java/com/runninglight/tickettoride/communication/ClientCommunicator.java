@@ -2,6 +2,8 @@ package com.runninglight.tickettoride.communication;
 
 import android.net.UrlQuerySanitizer;
 
+import com.runninglight.shared.Command;
+import com.runninglight.shared.Results;
 import com.runninglight.shared.Serializer;
 
 import java.io.BufferedReader;
@@ -33,9 +35,9 @@ public class ClientCommunicator
         serializer = new Serializer();
     }
 
-    // Will take a Command object and return a Results object when they're added
-    public void send(Object command)
+    public Results send(Command command)
     {
+        Results results = null;
         try
         {
             String urlString = "http://" + domain + ":" + port + "/command";
@@ -58,10 +60,12 @@ public class ClientCommunicator
             while((inputLine = reader.readLine()) != null) stringBuilder.append(inputLine);
             reader.close();
             streamReader.close();
+
+            results = serializer.deserializeResults(stringBuilder.toString());
         } catch (Exception e)
         {
             e.printStackTrace();
         }
-        return; // Once the Results object is added, it will return here
+        return results;
     }
 }
