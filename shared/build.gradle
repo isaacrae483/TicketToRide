@@ -2,7 +2,7 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/gson-2.8.5.jar')
+    implementation files('libs/gson-2.8.2.jar')
 }
 
 sourceCompatibility = "7"
