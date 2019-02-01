@@ -1,13 +1,10 @@
 package com.runninglight.tickettoride.communication;
 
-import android.net.UrlQuerySanitizer;
-
 import com.runninglight.shared.Command;
 import com.runninglight.shared.Results;
 import com.runninglight.shared.Serializer;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -15,11 +12,20 @@ import java.net.URL;
 
 public class ClientCommunicator
 {
+    private static final String PATH_COMMAND = "/command";
+    private static final String METHOD_POST = "POST";
+
     private static ClientCommunicator instance;
 
     private Serializer serializer;
     private String domain;
     private int port;
+
+    // Strictly for testing purposes
+    public static void main(String[] args)
+    {
+        ClientCommunicator.getInstance().init("127.0.0.1", 8000);
+    }
 
     public static ClientCommunicator getInstance()
     {
@@ -40,10 +46,10 @@ public class ClientCommunicator
         Results results = null;
         try
         {
-            String urlString = "http://" + domain + ":" + port + "/command";
+            String urlString = "http://" + domain + ":" + port + PATH_COMMAND;
             URL url = new URL(urlString);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setRequestMethod(METHOD_POST);
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
             httpURLConnection.connect();
