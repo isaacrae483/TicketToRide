@@ -1,4 +1,4 @@
-package com.runninglight.tickettoride.Presenter.View.Interfaces;
+package com.runninglight.tickettoride.IPresenter;
 
 import java.util.Observable;
 
