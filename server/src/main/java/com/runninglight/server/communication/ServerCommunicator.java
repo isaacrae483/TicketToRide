@@ -9,16 +9,23 @@ public class ServerCommunicator
 {
     private static final String PATH_COMMAND = "/command";
 
+    private static ServerCommunicator instance;
+
     private HttpServer httpServer;
+
+    public static ServerCommunicator getInstance()
+    {
+        if (instance == null) instance = new ServerCommunicator();
+        return instance;
+    }
 
     // Strictly for Server testing purposes
     public static void main(String[] args)
     {
-        ServerCommunicator server = new ServerCommunicator();
-        server.startServer(8000);
+        ServerCommunicator.getInstance().startServer(8000);
     }
 
-    private void startServer(int port)
+    public void startServer(int port)
     {
         try
         {
