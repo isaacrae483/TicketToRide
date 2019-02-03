@@ -9,4 +9,12 @@ public class ClientModel {
     private ArrayList<Game> gameList;
 
     private ArrayList<User> userList;
+
+    public ArrayList<Game> getGameList() {
+        return gameList;
+    }
+
+    public ArrayList<User> getUserList() {
+        return userList;
+    }
 }
