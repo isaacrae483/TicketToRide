@@ -4,8 +4,9 @@ import com.runninglight.shared.Game;
 import com.runninglight.shared.User;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class ClientModel {
+public class ClientModel extends Observable {
     private ArrayList<Game> gameList;
 
     private ArrayList<User> userList;
