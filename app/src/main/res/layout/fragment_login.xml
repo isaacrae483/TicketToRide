@@ -2,22 +2,23 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Space
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="411dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/login_table"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/top_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/login_table"/>
 
     <TableLayout
         android:id="@+id/login_table"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/bottom_spacer"
+        app:layout_constraintTop_toBottomOf="@id/top_spacer">
 
         <TableRow
             android:id="@+id/port_row"
@@ -42,40 +43,43 @@
         <TableRow
             android:id="@+id/host_row"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/host_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Host:" />
+            <TextView
+                android:id="@+id/host_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/host" />
 
-        <EditText
-            android:id="@+id/host_editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="host" />
+            <EditText
+                android:id="@+id/host_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="@string/host_name" />
+        </TableRow>
 
         <TableRow
             android:id="@+id/user_row"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/userName_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Username:" />
+            <TextView
+                android:id="@+id/userName_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username" />
 
-        <EditText
-            android:id="@+id/userName_editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="username" />
+            <EditText
+                android:id="@+id/userName_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="@string/username_default" />
+
+        </TableRow>
 
         <TableRow
             android:id="@+id/password_row"
@@ -117,12 +121,10 @@
     </TableLayout>
 
     <Space
-        android:layout_width="0dp"
+        android:id="@+id/bottom_spacer"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginEnd="411dp"
-        android:layout_marginBottom="731dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_table" />
+        app:layout_constraintTop_toBottomOf="@id/login_table"
+        tools:layout_editor_absoluteX="411dp" />
 </android.support.constraint.ConstraintLayout>

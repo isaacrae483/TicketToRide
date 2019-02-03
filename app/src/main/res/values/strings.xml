@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">TicketToRide</string>
     <string name="port">Port:</string>
-    <string name="port_number">Port Number</string>
+    <string name="port_number">8080</string>
     <string name="password">Password</string>
     <string name="hint">password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="host">Host:</string>
+    <string name="host_name">localhost</string>
+    <string name="username">Username:</string>
+    <string name="username_default">username</string>
+    <string name="GameListTitle">The Following Games are Joinable</string>
+    <string name="createButton_title">Create</string>
 </resources>

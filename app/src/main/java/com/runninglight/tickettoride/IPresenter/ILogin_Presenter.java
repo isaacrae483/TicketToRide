@@ -1,13 +1,16 @@
 package com.runninglight.tickettoride.IPresenter;
 
+import com.runninglight.shared.LoginInfo;
+import com.runninglight.shared.User;
+
 import java.util.Observable;
+import java.util.Observer;
 
-public class ILogin_Presenter extends Observable {
+public interface ILogin_Presenter extends Observer {
 
-    public ILogin_Presenter(){}
 
-    private void login(){}
-    private void register(){}
+     void login(LoginInfo loginInfo);
+     void register(LoginInfo loginInfo);
 
-    private void loginSuccess(){}
+     void loginSuccess(User user);
 }

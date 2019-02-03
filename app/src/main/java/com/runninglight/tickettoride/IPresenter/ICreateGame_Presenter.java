@@ -1,13 +1,15 @@
 package com.runninglight.tickettoride.IPresenter;
 
+import com.runninglight.shared.GameInfo;
+
 import java.util.Observable;
+import java.util.Observer;
 
-public class ICreateGame_Presenter extends Observable {
-    public ICreateGame_Presenter(){}
+public interface ICreateGame_Presenter extends Observer {
 
-    private void createGame(){}
-    private void joinGame(){}
-    private void cancel(){}
+     void createGame(GameInfo gameInfo);
+     void joinGame(GameInfo gameInfo);
+     void cancel();
 
-    private void gameCreated(){}
+     void gameCreated();
 }
