@@ -7,7 +7,7 @@ import com.runninglight.shared.User;
 public class ClientFacade implements IClient {
     @Override
     public void addPlayer(User u) {
-        
+
     }
 
     @Override
