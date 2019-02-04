@@ -23,7 +23,7 @@ public class ServerProxy implements IServer {
     }
 
     @Override
-    public void register(LoginInfo loginInfo) {
+    public boolean register(LoginInfo loginInfo) {
         Results results = communicator.send(new Command(
                 SERVER_FACADE,
                 "register",
@@ -31,14 +31,16 @@ public class ServerProxy implements IServer {
                 new Object[]{loginInfo}));
         if(results.isSuccess()){
             System.out.println("Register succeeded");
+            return true;
         }
         else{
             System.out.println(results.getErrorInfo());
+            return false;
         }
     }
 
     @Override
-    public void login(LoginInfo loginInfo) {
+    public boolean login(LoginInfo loginInfo) {
         Results results = communicator.send(new Command(
                 SERVER_FACADE,
                 "login",
@@ -47,19 +49,21 @@ public class ServerProxy implements IServer {
         if(results.isSuccess()){
             System.out.println("Login succeeded");
             model.setCurrentUser(new User(loginInfo.getUserName(), loginInfo.getPassword()));
+            return true;
         }
         else{
             System.out.println(results.getErrorInfo());
+            return false;
         }
     }
 
     @Override
-    public void createGame(GameInfo gameInfo) {
-
+    public boolean createGame(GameInfo gameInfo) {
+        return false;
     }
 
     @Override
-    public void joinGame(User user) {
-
+    public boolean joinGame(User user) {
+        return false;
     }
 }

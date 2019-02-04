@@ -1,11 +1,11 @@
 package com.runninglight.shared;
 
 public interface IServer {
-    void login(LoginInfo loginInfo);
+    boolean login(LoginInfo loginInfo);
 
-    void register(LoginInfo loginInfo);
+    boolean register(LoginInfo loginInfo);
 
-    void createGame(GameInfo gameInfo);
+    boolean createGame(GameInfo gameInfo);
 
-    void joinGame(User user);
+    boolean joinGame(User user);
 }
