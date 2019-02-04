@@ -18,7 +18,6 @@ public class ServerFacade implements IServer {
         }
         else{
             throw new IllegalArgumentException("Login failed.");
-            return false;
         }
     }
 
@@ -32,17 +31,16 @@ public class ServerFacade implements IServer {
         }
         else{
             throw new IllegalArgumentException("Register failed.");
-            return false;
         }
     }
 
     @Override
-    public void createGame(GameInfo gameInfo) {
-
+    public boolean createGame(GameInfo gameInfo) {
+        return false;
     }
 
     @Override
-    public void joinGame(User user) {
-
+    public boolean joinGame(User user) {
+        return false;
     }
 }
