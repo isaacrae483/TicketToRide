@@ -10,9 +10,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.runninglight.shared.LoginInfo;
+import com.runninglight.tickettoride.IPresenter.ILogin_Presenter;
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.communication.ServerInfo;
+import com.runninglight.tickettoride.presenter.Login_Presenter;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment  {
+
+    private ILogin_Presenter presenter;
 
 private EditText portNumber_ET;
 private EditText hostName_ET;
@@ -31,6 +37,9 @@ private Button register_BTN;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
+
+        presenter = new Login_Presenter(this);
+
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
         portNumber_ET = v.findViewById(R.id.port_editText);
@@ -46,10 +55,10 @@ private Button register_BTN;
             public void onClick(View v) {
                 //TODO: add presenter and use presenter to act.
 
-                portNumber_ET.getText();
-                hostName_ET.getText();
-                userName_ET.getText();
-                password_ET.getText();
+
+
+
+                presenter.login(new LoginInfo(userName_ET.getText().toString(), password_ET.getText().toString()), new ServerInfo(hostName_ET.getText().toString(),Integer.valueOf( portNumber_ET.getText().toString())));
             }
         });
         register_BTN.setOnClickListener(new View.OnClickListener() {
@@ -57,16 +66,16 @@ private Button register_BTN;
             public void onClick(View v) {
                 //TODO: add presenter and use presenter to act.
 
-                portNumber_ET.getText();
-                hostName_ET.getText();
-                userName_ET.getText();
-                password_ET.getText();
+
+                presenter.register(new LoginInfo(userName_ET.getText().toString(), password_ET.getText().toString()), new ServerInfo(hostName_ET.getText().toString(),Integer.valueOf( portNumber_ET.getText().toString())));
+
             }
         });
 
 
         return v;
     }
+
 
 
 }
