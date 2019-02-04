@@ -14,6 +14,8 @@ public class ServerMain
         else
         {
             System.out.println("No post argument specified");
+            ServerCommunicator.getInstance().startServer(8000);
+            System.out.println("Server started on port: 8000");
         }
     }
 }

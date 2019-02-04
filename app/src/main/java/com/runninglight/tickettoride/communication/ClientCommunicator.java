@@ -33,6 +33,11 @@ public class ClientCommunicator
         return instance;
     }
 
+    // For testing
+    private ClientCommunicator(){
+        init("localhost", 8000);
+    }
+
     // Call this function before using any other method
     public void init(String domain, int port)
     {

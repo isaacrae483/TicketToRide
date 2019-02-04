@@ -26,7 +26,16 @@ public class CommandHandler implements HttpHandler
     {
         InputStream reqBody = httpExchange.getRequestBody();
         Command command = new Command(new InputStreamReader(reqBody));
-        Results results = (Results) command.execute();
+        Results results;
+        Object response = command.execute();
+
+        if(response instanceof Exception) {
+            results = new Results(false, null, ((Exception)response).getMessage());
+        }
+        else {
+            results = new Results(true, response,
+                    null);
+        }
         String json = serializer.serialize(results);
 
         httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);

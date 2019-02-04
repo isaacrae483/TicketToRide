@@ -3,6 +3,7 @@ package com.runninglight.shared;
 import com.google.gson.Gson;
 
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 
@@ -96,6 +97,9 @@ public class Command {
         }
         catch (Exception e) {
             e.printStackTrace();
+            if(e instanceof InvocationTargetException){
+                return ((InvocationTargetException) e).getTargetException();
+            }
             return e;
         }
     }

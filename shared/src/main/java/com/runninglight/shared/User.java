@@ -58,6 +58,19 @@ public class User {
         return longID.substring(0, ID_END);
     }
 
+    @Override
+    public boolean equals(Object other){
+        if(other == null){
+            return false;
+        }
+        if(this.getClass() != other.getClass()){
+            return false;
+        }
+        User otherUser = (User)other;
+        return this.userName.equals(otherUser.getUserName()) &&
+                this.password.equals(otherUser.getPassword());
+    }
+
     public String getUserName() {
         return userName;
     }
