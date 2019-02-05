@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.runninglight.shared.LoginInfo;
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.communication.ServerInfo;
+import com.runninglight.tickettoride.presenter.Login_Presenter;
 
 public class LoginFragment extends Fragment {
 
@@ -46,10 +49,16 @@ private Button register_BTN;
             public void onClick(View v) {
                 //TODO: add presenter and use presenter to act.
 
-                portNumber_ET.getText();
-                hostName_ET.getText();
-                userName_ET.getText();
-                password_ET.getText();
+                int port = Integer.parseInt(portNumber_ET.getText().toString());
+                String host = hostName_ET.getText().toString();
+                String userName = userName_ET.getText().toString();
+                String password = password_ET.getText().toString();
+
+                ServerInfo serverInfo = new ServerInfo(host, port);
+                LoginInfo loginInfo = new LoginInfo(userName, password);
+
+                Login_Presenter login_presenter = new Login_Presenter();
+                login_presenter.login(loginInfo, serverInfo);
             }
         });
         register_BTN.setOnClickListener(new View.OnClickListener() {
@@ -57,10 +66,16 @@ private Button register_BTN;
             public void onClick(View v) {
                 //TODO: add presenter and use presenter to act.
 
-                portNumber_ET.getText();
-                hostName_ET.getText();
-                userName_ET.getText();
-                password_ET.getText();
+                int port = Integer.parseInt(portNumber_ET.getText().toString());
+                String host = hostName_ET.getText().toString();
+                String userName = userName_ET.getText().toString();
+                String password = password_ET.getText().toString();
+
+                ServerInfo serverInfo = new ServerInfo(host, port);
+                LoginInfo loginInfo = new LoginInfo(userName, password);
+
+                Login_Presenter login_presenter = new Login_Presenter();
+                login_presenter.register(loginInfo, serverInfo);
             }
         });
 
