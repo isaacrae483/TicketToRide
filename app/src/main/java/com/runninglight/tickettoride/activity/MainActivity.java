@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.runninglight.tickettoride.R;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements LoginFragment.LoginContext
 {
 
     private LoginFragment loginFragment;
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
 
         loginFragment = (LoginFragment) fm.findFragmentById(R.id.currentFragment_View);
         if(loginFragment==null){
-            loginFragment= new LoginFragment();
+            loginFragment= new LoginFragment(this);
             fm.beginTransaction()
                     .add(R.id.currentFragment_View,loginFragment)
                     .commit();
@@ -30,4 +30,16 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
+
+   public void loginSuccessful(){
+
+       gameListFragment = new GameListFragment();
+       android.support.v4.app.FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+       t.replace(R.id.currentFragment_View, gameListFragment);
+       t.commit();
+
+   }
+
+   public void loginFailed(){}
 }

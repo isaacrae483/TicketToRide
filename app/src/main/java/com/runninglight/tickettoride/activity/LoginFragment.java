@@ -18,14 +18,24 @@ import com.runninglight.tickettoride.presenter.Login_Presenter;
 
 public class LoginFragment extends Fragment  {
 
+    public interface LoginContext{
+        void loginSuccessful();
+        void loginFailed();
+
+    }
+
+    public LoginFragment(LoginContext c){ context = c;}
+    public LoginFragment(){}
+
+    private LoginContext context;
     private ILogin_Presenter presenter;
 
-private EditText portNumber_ET;
-private EditText hostName_ET;
-private EditText userName_ET;
-private EditText password_ET;
-private Button login_BTN;
-private Button register_BTN;
+    private EditText portNumber_ET;
+    private EditText hostName_ET;
+    private EditText userName_ET;
+    private EditText password_ET;
+    private Button login_BTN;
+    private Button register_BTN;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,10 +63,6 @@ private Button register_BTN;
         login_BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: add presenter and use presenter to act.
-
-
-
 
                 presenter.login(new LoginInfo(userName_ET.getText().toString(), password_ET.getText().toString()), new ServerInfo(hostName_ET.getText().toString(),Integer.valueOf( portNumber_ET.getText().toString())));
             }
@@ -64,8 +70,6 @@ private Button register_BTN;
         register_BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: add presenter and use presenter to act.
-
 
                 presenter.register(new LoginInfo(userName_ET.getText().toString(), password_ET.getText().toString()), new ServerInfo(hostName_ET.getText().toString(),Integer.valueOf( portNumber_ET.getText().toString())));
 
@@ -77,5 +81,11 @@ private Button register_BTN;
     }
 
 
+    void loginSuccessful(){
+        context.loginSuccessful();
+    }
+    void loginFailed(){
+        context.loginFailed();
+    }
 
 }
