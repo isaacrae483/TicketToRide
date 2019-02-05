@@ -11,18 +11,21 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.runninglight.shared.LoginInfo;
+import com.runninglight.tickettoride.IPresenter.ILogin_Presenter;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.communication.ServerInfo;
 import com.runninglight.tickettoride.presenter.Login_Presenter;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment  {
 
-    private EditText portNumber_ET;
-    private EditText hostName_ET;
-    private EditText userName_ET;
-    private EditText password_ET;
-    private Button login_BTN;
-    private Button register_BTN;
+    private ILogin_Presenter presenter;
+
+private EditText portNumber_ET;
+private EditText hostName_ET;
+private EditText userName_ET;
+private EditText password_ET;
+private Button login_BTN;
+private Button register_BTN;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +36,9 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+
+
+        presenter = new Login_Presenter(this);
 
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
@@ -49,16 +55,10 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 //TODO: add presenter and use presenter to act.
 
-                int port = Integer.parseInt(portNumber_ET.getText().toString());
-                String host = hostName_ET.getText().toString();
-                String userName = userName_ET.getText().toString();
-                String password = password_ET.getText().toString();
 
-                ServerInfo serverInfo = new ServerInfo(host, port);
-                LoginInfo loginInfo = new LoginInfo(userName, password);
 
-                Login_Presenter login_presenter = new Login_Presenter();
-                login_presenter.login(loginInfo, serverInfo);
+
+                presenter.login(new LoginInfo(userName_ET.getText().toString(), password_ET.getText().toString()), new ServerInfo(hostName_ET.getText().toString(),Integer.valueOf( portNumber_ET.getText().toString())));
             }
         });
         register_BTN.setOnClickListener(new View.OnClickListener() {
@@ -66,22 +66,16 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 //TODO: add presenter and use presenter to act.
 
-                int port = Integer.parseInt(portNumber_ET.getText().toString());
-                String host = hostName_ET.getText().toString();
-                String userName = userName_ET.getText().toString();
-                String password = password_ET.getText().toString();
 
-                ServerInfo serverInfo = new ServerInfo(host, port);
-                LoginInfo loginInfo = new LoginInfo(userName, password);
+                presenter.register(new LoginInfo(userName_ET.getText().toString(), password_ET.getText().toString()), new ServerInfo(hostName_ET.getText().toString(),Integer.valueOf( portNumber_ET.getText().toString())));
 
-                Login_Presenter login_presenter = new Login_Presenter();
-                login_presenter.register(loginInfo, serverInfo);
             }
         });
 
 
         return v;
     }
+
 
 
 }

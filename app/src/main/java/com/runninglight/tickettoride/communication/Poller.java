@@ -35,7 +35,10 @@ public class Poller
                 try
                 {
                     Command command = new GetCommandRequest().execute(url).get();
-                } catch (Exception e)
+                } catch (ExecutionException e)
+                {
+                    e.printStackTrace();
+                } catch (InterruptedException e)
                 {
                     e.printStackTrace();
                 }
@@ -61,10 +64,13 @@ public class Poller
         protected Command doInBackground(URL... args)
         {
             Serializer serializer = new Serializer();
+            URL commandUrl = args[0];
+
+            Results results = null;
             try
             {
                 HttpURLConnection httpURLConnection = (HttpURLConnection) serverUrl.openConnection();
-                httpURLConnection.setRequestMethod(ClientCommunicator.METHOD_POST);
+                httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
                 httpURLConnection.connect();
@@ -73,6 +79,7 @@ public class Poller
                 outputStreamWriter.write(serializer.serialize(userId));
                 outputStreamWriter.close();
 
+                String inputLine;
                 InputStreamReader streamReader = new InputStreamReader(httpURLConnection.getInputStream());
                 Command command = new Command(streamReader);
                 System.out.println("command recieved for " + userId  + ": " + command.getClassName());

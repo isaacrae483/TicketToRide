@@ -13,10 +13,9 @@ public class ServerMain
         }
         else
         {
-            // Default port unless specified is 8080
-            System.out.println("No port argument specified");
-            ServerCommunicator.getInstance().startServer(8080);
-            System.out.println("Server started on port: 8080");
+            System.out.println("No post argument specified");
+            ServerCommunicator.getInstance().startServer(8000);
+            System.out.println("Server started on port: 8000");
         }
     }
 }

@@ -30,13 +30,12 @@ public class CommandHandler implements HttpHandler
         Results results;
         Object response = command.execute();
 
-        if (response instanceof Exception)
-        {
+        if (response instanceof Exception) {
             results = new Results(false, null, ((Exception)response).getMessage());
         }
-        else
-        {
-            results = new Results(true, response, null);
+        else {
+            results = new Results(true, response,
+                    null);
         }
 
         String json = serializer.serialize(results);

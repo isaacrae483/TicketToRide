@@ -1,7 +1,5 @@
 package com.runninglight.tickettoride.communication;
 
-import android.util.Log;
-
 import com.runninglight.shared.Command;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.shared.IServer;
@@ -26,7 +24,6 @@ public class ServerProxy implements IServer {
 
     @Override
     public boolean register(LoginInfo loginInfo) {
-        Log.d("TicketToRide","Registering user: " + loginInfo.getUserName());
         Results results = communicator.send(new Command(
                 SERVER_FACADE,
                 "register",

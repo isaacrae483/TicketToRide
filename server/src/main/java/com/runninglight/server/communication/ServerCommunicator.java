@@ -22,6 +22,12 @@ public class ServerCommunicator
         return instance;
     }
 
+    // Strictly for Server testing purposes
+    public static void main(String[] args)
+    {
+        ServerCommunicator.getInstance().startServer(8000);
+    }
+
     public void startServer(int port)
     {
         try
@@ -32,7 +38,6 @@ public class ServerCommunicator
             httpServer.setExecutor(null);
 
             httpServer.createContext(PATH_COMMAND, new CommandHandler());
-            httpServer.createContext(PATH_POLL, new PollHandler());
 
             httpServer.start();
         }

@@ -18,13 +18,21 @@ public class ClientCommunicator
 {
     public static final String PATH_COMMAND = "/command";
     public static final String PATH_POLL = "/poll";
-    public static final String METHOD_POST = "POST";
+    private static final String METHOD_POST = "POST";
 
     private static ClientCommunicator instance;
 
     private Poller poller;
     private Serializer serializer;
-    private URL serverUrl;
+    private String domain;
+    private int port;
+
+    // Strictly for testing purposes
+    public static void main(String[] args)
+    {
+        ClientCommunicator.getInstance().init("127.0.0.1", 8000);
+        ClientCommunicator.getInstance().startPoller("test");
+    }
 
     public static ClientCommunicator getInstance()
     {
@@ -35,11 +43,13 @@ public class ClientCommunicator
     // Call this function before using any other method
     public void init(String domain, int port)
     {
+        this.domain = domain;
+        this.port = port;
         serializer = new Serializer();
         try
         {
-            serverUrl = new URL("http://" + domain + ":" + port);
-            poller = new Poller(serverUrl);
+            URL url = new URL("http://" + domain + ":" + port);
+            poller = new Poller(url);
         } catch (MalformedURLException e)
         {
             e.printStackTrace();
@@ -81,7 +91,8 @@ public class ClientCommunicator
             Results results = null;
             try
             {
-                URL url = new URL(serverUrl.toString() + PATH_COMMAND);
+                String urlString = "http://" + domain + ":" + port + PATH_COMMAND;
+                URL url = new URL(urlString);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod(METHOD_POST);
                 httpURLConnection.setDoOutput(true);
