@@ -34,12 +34,4 @@ public class ClientModel extends Observable {
     public ArrayList<User> getUserList() {
         return userList;
     }
-
-    public void addUser(User u) {
-        userList.add(u);
-    }
-
-    public void addGame(Game g) {
-        gameList.add(g);
-    }
 }
