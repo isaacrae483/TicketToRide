@@ -14,9 +14,10 @@ import com.runninglight.shared.LoginInfo;
 import com.runninglight.tickettoride.IPresenter.ILogin_Presenter;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.communication.ServerInfo;
+import com.runninglight.tickettoride.iview.ILogin_View;
 import com.runninglight.tickettoride.presenter.Login_Presenter;
 
-public class LoginFragment extends Fragment  {
+public class LoginFragment extends Fragment implements ILogin_View {
 
     public interface LoginContext{
         void loginSuccessful();
@@ -80,11 +81,10 @@ public class LoginFragment extends Fragment  {
         return v;
     }
 
-
-    void loginSuccessful(){
+    public void loginSuccessful(){
         context.loginSuccessful();
     }
-    void loginFailed(){
+    public void loginFailed(){
         context.loginFailed();
     }
 

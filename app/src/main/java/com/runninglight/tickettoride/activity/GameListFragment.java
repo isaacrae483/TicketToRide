@@ -11,8 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.iview.IGameList_View;
 
-public class GameListFragment extends Fragment {
+public class GameListFragment extends Fragment implements IGameList_View {
 
     private RecyclerView gameList_RV;
     private Button create_BTN;
@@ -46,4 +47,18 @@ public class GameListFragment extends Fragment {
     return v;
     }
 
+    @Override
+    public void joinGame() {
+        
+    }
+
+    @Override
+    public void createGame() {
+
+    }
+
+    @Override
+    public void joinGameSuccessful() {
+
+    }
 }
