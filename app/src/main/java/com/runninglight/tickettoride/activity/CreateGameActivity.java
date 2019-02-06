@@ -73,6 +73,6 @@ public class CreateGameActivity extends AppCompatActivity implements ICreateGame
 
     @Override
     public void onCreateSuccessful() {
-
+        finish();
     }
 }

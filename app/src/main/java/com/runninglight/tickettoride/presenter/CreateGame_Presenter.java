@@ -19,7 +19,15 @@ public class CreateGame_Presenter implements ICreateGame_Presenter {
     @Override
     public void createGame(GameInfo gameInfo) {
 
-        ServerProxy.getInstance().createGame(gameInfo);
+        boolean gameCreated = ServerProxy.getInstance().createGame(gameInfo);
+        if (gameCreated)
+        {
+            view.onCreateSuccessful();
+        }
+        else
+        {
+            // Notify user the game was unable to be created and why
+        }
 
     }
 
