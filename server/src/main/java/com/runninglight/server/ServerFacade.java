@@ -42,7 +42,7 @@ public class ServerFacade implements IServer {
             return false;
         }
         else if (model.doesGameExist(gameInfo.getGameName())) {
-            System.out.println("Game already exists");
+            System.out.println("Game name already exists");
             return false;
         }
         Game game = new Game(gameInfo.getGameName(), gameInfo.getMaxPlayerNumber());
