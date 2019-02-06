@@ -16,4 +16,10 @@
     <string name="lobby_message_waiting">waiting for players…</string>
     <string name="lobby_message_starting">lobby full starting game…</string>
     <string name="player_max">0/5</string>
+    <string name="create_game_button">Create Game</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="player_num_default">2</string>
+    <string name="number_of_players_title">Number of Players (2-5):</string>
+    <string name="game_name_default">myGame</string>
+    <string name="game_name_title">Game Name:</string>
 </resources>
