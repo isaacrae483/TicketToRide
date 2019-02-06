@@ -3,10 +3,15 @@ package com.runninglight.server.communication;
 import com.runninglight.shared.Command;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class CommandManager
 {
-    private HashMap<String, Command> commandMap;
+    private HashMap<String, LinkedList<Command>> commandMap;
 
     public CommandManager()
     {
@@ -15,14 +20,15 @@ public class CommandManager
 
     public void setCommand(String userId, Command command)
     {
-        commandMap.put(userId, command);
+        if (!commandMap.containsKey(userId)) commandMap.put(userId, new LinkedList<Command>());
+        commandMap.get(userId).add(command);
     }
 
     public Command getCommand(String userId)
     {
         if (!commandMap.containsKey(userId)) return null;
-        Command command = commandMap.get(userId);
-        commandMap.put(userId, null);
+        if (commandMap.get(userId).size() == 0) return null;
+        Command command = commandMap.get(userId).pop();
         return command;
     }
 }
