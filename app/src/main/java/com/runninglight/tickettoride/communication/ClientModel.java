@@ -27,6 +27,8 @@ public class ClientModel extends Observable {
         this.currentUser = currentUser;
     }
 
+    public User getCurrentUser() { return currentUser; }
+
     public ArrayList<Game> getGameList() {
         return gameList;
     }

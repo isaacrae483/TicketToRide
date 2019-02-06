@@ -5,6 +5,7 @@ import com.runninglight.shared.User;
 import com.runninglight.tickettoride.IPresenter.ILogin_Presenter;
 import com.runninglight.tickettoride.activity.LoginFragment;
 import com.runninglight.tickettoride.communication.ClientCommunicator;
+import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.communication.ServerInfo;
 import com.runninglight.tickettoride.communication.ServerProxy;
 import com.runninglight.tickettoride.iview.ILogin_View;
@@ -21,17 +22,36 @@ public class Login_Presenter implements ILogin_Presenter{
     public void login(LoginInfo loginInfo,ServerInfo serverInfo) {
 
         ClientCommunicator.getInstance().init(serverInfo.getDomain(),serverInfo.getPort());
-        ServerProxy.getInstance().login(loginInfo);
-
-
+        boolean loginSuccessful = ServerProxy.getInstance().login(loginInfo);
+        if (loginSuccessful)
+        {
+            User user = new User(loginInfo.getUserName(), loginInfo.getPassword());
+            ClientModel.getInstance().setCurrentUser(user);
+        }
+        else
+        {
+            // Maybe we could show a Toast or something here on a failure?
+        }
 
     }
 
     @Override
     public void register(LoginInfo loginInfo,ServerInfo serverInfo) {
         ClientCommunicator.getInstance().init(serverInfo.getDomain(),serverInfo.getPort());
-        ServerProxy.getInstance().register(loginInfo);
-        ServerProxy.getInstance().login(loginInfo);
+        boolean registerSuccessful = ServerProxy.getInstance().register(loginInfo);
+        if (registerSuccessful)
+        {
+            boolean loginSuccessful = ServerProxy.getInstance().login(loginInfo);
+            if (loginSuccessful)
+            {
+                User user = new User(loginInfo.getUserName(), loginInfo.getPassword());
+                ClientModel.getInstance().setCurrentUser(user);
+            }
+            else
+            {
+                // Inform the user they're a failure here
+            }
+        }
     }
 
     @Override
@@ -43,6 +63,4 @@ public class Login_Presenter implements ILogin_Presenter{
     public void update(Observable o, Object arg) {
 
     }
-
-
 }
