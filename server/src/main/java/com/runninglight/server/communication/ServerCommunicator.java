@@ -38,6 +38,7 @@ public class ServerCommunicator
             httpServer.setExecutor(null);
 
             httpServer.createContext(PATH_COMMAND, new CommandHandler());
+            httpServer.createContext(PATH_POLL, new PollHandler());
 
             httpServer.start();
         }

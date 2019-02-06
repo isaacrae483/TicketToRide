@@ -21,6 +21,8 @@ public class CommandManager
     public Command getCommand(String userId)
     {
         if (!commandMap.containsKey(userId)) return null;
-        return commandMap.get(userId);
+        Command command = commandMap.get(userId);
+        commandMap.put(userId, null);
+        return command;
     }
 }
