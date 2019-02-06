@@ -17,6 +17,8 @@
         android:id="@+id/login_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_spacer"
         app:layout_constraintTop_toBottomOf="@id/top_spacer">
 

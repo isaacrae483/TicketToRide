@@ -17,29 +17,34 @@ public class CreateGameActivity extends AppCompatActivity implements ICreateGame
 
     private EditText gameName;
     private EditText playerNum;
+    private Button create_BTN;
+    private Button cancel_BTN;
 
     private ICreateGame_Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gamelobby);
+        setContentView(R.layout.activity_creategame);
 
         presenter = new CreateGame_Presenter(this);
 
         gameName = findViewById(R.id.gameName_editText);
         playerNum = findViewById(R.id.playerNumber_editText);
 
-        Button create_BTN = findViewById(R.id.create_Button_create);
-        Button cancel_BTN = findViewById(R.id.cancel_Button_create);
+        create_BTN = findViewById(R.id.create_Button_create);
+        cancel_BTN = findViewById(R.id.cancel_Button_create);
+
 
         create_BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GameInfo gameInfo = new GameInfo(gameName.getText().toString(),Integer.valueOf(playerNum.getText().toString()));
+
                 presenter.createGame(gameInfo);
             }
         });
+
 
         cancel_BTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +52,8 @@ public class CreateGameActivity extends AppCompatActivity implements ICreateGame
                 //TODO: return to previous activity... essentially the back button
             }
         });
+
+
 
     }
 
