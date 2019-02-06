@@ -1,5 +1,6 @@
 package com.runninglight.server;
 
+import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.shared.IServer;
 import com.runninglight.shared.LoginInfo;
@@ -36,11 +37,23 @@ public class ServerFacade implements IServer {
 
     @Override
     public boolean createGame(GameInfo gameInfo) {
-        return false;
+        if (gameInfo.getMaxPlayerNumber() <= 2 || gameInfo.getMaxPlayerNumber() > 5) {
+            System.out.println("Invalid player number");
+            return false;
+        }
+        else if (model.doesGameExist(gameInfo.getGameName())) {
+            System.out.println("Game name already exists");
+            return false;
+        }
+        Game game = new Game(gameInfo.getGameName(), gameInfo.getMaxPlayerNumber());
+        ClientProxy clientProxy = new ClientProxy();
+        clientProxy.addGame(game);
+        return true;
     }
 
     @Override
     public boolean joinGame(User user) {
+        //need game name?
         return false;
     }
 }

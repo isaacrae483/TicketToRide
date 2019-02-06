@@ -27,7 +27,16 @@ public class ServerModel {
     }
 
     public void addGame(Game game) {
-        
+        gameList.add(game);
+    }
+
+    public  boolean doesGameExist(String gameName) {
+        for(Game g : gameList) {
+            if(g.getGameName().equals(gameName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public User findByUserName(User user){
