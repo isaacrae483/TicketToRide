@@ -29,9 +29,9 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHo
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View gameList = inflater.inflate(R.layout.recyclerview_row_gamelist,viewGroup,false);
-        ViewHolder viewHolder = new ViewHolder(gameList);
 
-        return viewHolder;
+
+        return new ViewHolder(gameList);
     }
 
     @Override
