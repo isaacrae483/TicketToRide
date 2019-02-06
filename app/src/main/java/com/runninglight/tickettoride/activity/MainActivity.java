@@ -1,5 +1,6 @@
 package com.runninglight.tickettoride.activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
        android.support.v4.app.FragmentTransaction t = getSupportFragmentManager().beginTransaction();
        t.replace(R.id.currentFragment_View, gameListFragment);
        t.commit();
-
    }
 
    public void loginFailed(){}

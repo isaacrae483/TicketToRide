@@ -1,9 +1,10 @@
 package com.runninglight.tickettoride.iview;
 
+import com.runninglight.shared.GameInfo;
+
 public interface IGameList_View {
 
-    void joinGame();
     void createGame();
 
-    void joinGameSuccessful();
+    void joinGameSuccessful(GameInfo gameInfo);
 }

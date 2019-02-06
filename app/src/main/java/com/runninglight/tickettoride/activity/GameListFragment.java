@@ -1,5 +1,6 @@
 package com.runninglight.tickettoride.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,13 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.runninglight.shared.GameInfo;
+import com.runninglight.tickettoride.IPresenter.IGameList_Presenter;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.iview.IGameList_View;
+import com.runninglight.tickettoride.presenter.GameList_Presenter;
 
 public class GameListFragment extends Fragment implements IGameList_View {
 
     private RecyclerView gameList_RV;
-    private Button create_BTN;
+    private IGameList_Presenter presenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,16 +34,18 @@ public class GameListFragment extends Fragment implements IGameList_View {
 
         View v = inflater.inflate(R.layout.fragment_gamelist, container, false);
 
+        presenter = new GameList_Presenter(this);
+
         gameList_RV = v.findViewById(R.id.gameList_RecyclerView);
 
-        create_BTN = v.findViewById(R.id.create_button_gameList);
+        Button create_BTN = v.findViewById(R.id.create_button_gameList);
 
 
 
         create_BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: add presenter and launch new createGame Activity
+                presenter.createGame();
             }
         });
 
@@ -47,18 +53,21 @@ public class GameListFragment extends Fragment implements IGameList_View {
     return v;
     }
 
-    @Override
-    public void joinGame() {
 
-    }
 
     @Override
     public void createGame() {
 
+        Intent intent = new Intent(getContext(),CreateGameActivity.class);
+        startActivity(intent);
+
     }
 
     @Override
-    public void joinGameSuccessful() {
+    public void joinGameSuccessful(GameInfo gameInfo) {
+
+        Intent intent = new Intent(getContext(),GameLobbyActivity.class);
+        startActivity(intent);
 
     }
 }

@@ -7,7 +7,7 @@ import java.util.Observer;
 
 public interface IGameList_Presenter extends Observer {
 
-     void createGame(GameInfo gameInfo);
+     void createGame();
      void joinGame(GameInfo gameInfo);
 
      void updateGameListView();
