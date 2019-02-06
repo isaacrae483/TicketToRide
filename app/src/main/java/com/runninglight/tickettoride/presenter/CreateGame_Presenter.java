@@ -2,6 +2,7 @@ package com.runninglight.tickettoride.presenter;
 
 import com.runninglight.shared.GameInfo;
 import com.runninglight.tickettoride.IPresenter.ICreateGame_Presenter;
+import com.runninglight.tickettoride.communication.ServerProxy;
 import com.runninglight.tickettoride.iview.ICreateGame_View;
 
 import java.util.Observable;
@@ -18,11 +19,14 @@ public class CreateGame_Presenter implements ICreateGame_Presenter {
     @Override
     public void createGame(GameInfo gameInfo) {
 
+        ServerProxy.getInstance().createGame(gameInfo);
+
     }
 
     @Override
     public void joinGame(GameInfo gameInfo) {
 
+        view.joinGame(gameInfo);
     }
 
     @Override
