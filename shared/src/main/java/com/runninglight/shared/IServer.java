@@ -1,5 +1,7 @@
 package com.runninglight.shared;
 
+import java.util.ArrayList;
+
 public interface IServer {
     boolean login(LoginInfo loginInfo);
 
@@ -8,4 +10,6 @@ public interface IServer {
     boolean createGame(GameInfo gameInfo);
 
     boolean joinGame(User user);
+
+    ArrayList<Game> getGameList();
 }

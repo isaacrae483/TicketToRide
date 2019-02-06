@@ -1,11 +1,14 @@
 package com.runninglight.tickettoride.communication;
 
 import com.runninglight.shared.Command;
+import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.shared.IServer;
 import com.runninglight.shared.LoginInfo;
 import com.runninglight.shared.Results;
 import com.runninglight.shared.User;
+
+import java.util.ArrayList;
 
 public class ServerProxy implements IServer {
     private static ServerProxy instance = null;
@@ -65,5 +68,10 @@ public class ServerProxy implements IServer {
     @Override
     public boolean joinGame(User user) {
         return false;
+    }
+
+    @Override
+    public ArrayList<Game> getGameList(){
+        return new ArrayList<Game>();
     }
 }

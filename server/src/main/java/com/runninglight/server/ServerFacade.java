@@ -6,6 +6,8 @@ import com.runninglight.shared.IServer;
 import com.runninglight.shared.LoginInfo;
 import com.runninglight.shared.User;
 
+import java.util.ArrayList;
+
 
 public class ServerFacade implements IServer {
    private ServerModel model = ServerModel.getInstance();
@@ -55,5 +57,10 @@ public class ServerFacade implements IServer {
     public boolean joinGame(User user) {
         //need game name?
         return false;
+    }
+
+    @Override
+    public ArrayList<Game> getGameList(){
+        return new ArrayList<Game>();
     }
 }
