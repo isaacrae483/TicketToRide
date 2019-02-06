@@ -50,6 +50,7 @@ public class Game {
     public void addPlayer(User user){
         if(user != null) {
             playerList.add(user);
+            ++numPlayers;
         }
     }
 
