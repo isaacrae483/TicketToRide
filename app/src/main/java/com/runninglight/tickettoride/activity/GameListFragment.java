@@ -49,7 +49,7 @@ public class GameListFragment extends Fragment implements IGameList_View {
 
     @Override
     public void joinGame() {
-        
+
     }
 
     @Override
