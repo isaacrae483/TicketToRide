@@ -9,7 +9,7 @@ public interface IServer {
 
     boolean createGame(GameInfo gameInfo);
 
-    boolean joinGame(User user);
+    boolean joinGame(User user, Game game);
 
     ArrayList<Game> getGameList();
 }

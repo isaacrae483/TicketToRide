@@ -80,7 +80,7 @@ public class ServerProxy implements IServer {
     }
 
     @Override
-    public boolean joinGame(User user) {
+    public boolean joinGame(User user, Game game) {
         Results results = communicator.send(new Command(
                 SERVER_FACADE,
                 "createGame",

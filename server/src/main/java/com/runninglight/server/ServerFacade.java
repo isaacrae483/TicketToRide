@@ -53,9 +53,13 @@ public class ServerFacade implements IServer {
     }
 
     @Override
-    public boolean joinGame(User user) {
-        //need game name?
-        return false;
+    public boolean joinGame(User user, Game game) {
+        if (game.getNumPlayers() == game.getMaxPlayerNumber()) {
+            System.out.println("Game full. Choose another game");
+            return false;
+        }
+        game.addPlayer(user);
+        return true;
     }
 
     @Override
