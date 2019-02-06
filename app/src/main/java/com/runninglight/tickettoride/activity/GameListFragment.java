@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,6 @@ import com.runninglight.tickettoride.presenter.GameList_Presenter;
 
 public class GameListFragment extends Fragment implements IGameList_View {
 
-    private RecyclerView gameList_RV;
     private IGameList_Presenter presenter;
 
     @Override
@@ -36,9 +36,16 @@ public class GameListFragment extends Fragment implements IGameList_View {
 
         presenter = new GameList_Presenter(this);
 
-        gameList_RV = v.findViewById(R.id.gameList_RecyclerView);
+        RecyclerView gameList_RV = v.findViewById(R.id.gameList_RecyclerView);
 
         Button create_BTN = v.findViewById(R.id.create_button_gameList);
+
+        //TODO: pass game list in from the model
+        //how to pass the game list down from the model without storing it?
+        GameListAdapter adapter = new GameListAdapter(null);
+
+        gameList_RV.setAdapter(adapter);
+        gameList_RV.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
 
@@ -67,6 +74,8 @@ public class GameListFragment extends Fragment implements IGameList_View {
     public void joinGameSuccessful(GameInfo gameInfo) {
 
         Intent intent = new Intent(getContext(),GameLobbyActivity.class);
+
+        //TODO: add game info to the intent bundle
         startActivity(intent);
 
     }

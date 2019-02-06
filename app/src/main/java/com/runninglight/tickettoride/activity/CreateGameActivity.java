@@ -55,6 +55,7 @@ public class CreateGameActivity extends AppCompatActivity implements ICreateGame
     @Override
     public void joinGame(GameInfo gameInfo) {
         Intent intent = new Intent(getApplicationContext(),GameLobbyActivity.class);
+        //TODO: add game info to intent bundle
         startActivity(intent);
     }
 
