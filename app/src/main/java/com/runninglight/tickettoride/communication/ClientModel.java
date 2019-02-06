@@ -26,6 +26,8 @@ public class ClientModel extends Observable {
     public void initGamesList(ArrayList<Game> games)
     {
         this.gameList = games;
+        setChanged();
+        notifyObservers();
     }
 
     public void setCurrentUser(User currentUser) {

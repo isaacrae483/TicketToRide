@@ -1,5 +1,8 @@
 package com.runninglight.tickettoride.presenter;
 
+import android.util.Log;
+
+import com.runninglight.shared.Game;
 import com.runninglight.shared.LoginInfo;
 import com.runninglight.shared.User;
 import com.runninglight.tickettoride.IPresenter.ILogin_Presenter;
@@ -10,13 +13,18 @@ import com.runninglight.tickettoride.communication.ServerInfo;
 import com.runninglight.tickettoride.communication.ServerProxy;
 import com.runninglight.tickettoride.iview.ILogin_View;
 
+import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
-public class Login_Presenter implements ILogin_Presenter{
+public class Login_Presenter implements ILogin_Presenter, Observer {
 
     private ILogin_View loginFragment;
 
-    public  Login_Presenter(ILogin_View fragment){loginFragment = fragment;}
+    public  Login_Presenter(ILogin_View fragment) {
+        loginFragment = fragment;
+        ClientModel.getInstance().addObserver(this);
+    }
 
     @Override
     public void login(LoginInfo loginInfo,ServerInfo serverInfo) {
@@ -27,7 +35,7 @@ public class Login_Presenter implements ILogin_Presenter{
         {
             User user = new User(loginInfo.getUserName(), loginInfo.getPassword());
             ClientModel.getInstance().setCurrentUser(user);
-            loginFragment.loginSuccessful(ClientModel.getInstance().getGameList());
+            loginSuccess(ClientModel.getInstance().getCurrentUser());
         }
         else
         {
@@ -47,7 +55,7 @@ public class Login_Presenter implements ILogin_Presenter{
             {
                 User user = new User(loginInfo.getUserName(), loginInfo.getPassword());
                 ClientModel.getInstance().setCurrentUser(user);
-                loginFragment.loginSuccessful(ClientModel.getInstance().getGameList());
+                loginSuccess(ClientModel.getInstance().getCurrentUser());
             }
             else
             {
@@ -58,11 +66,12 @@ public class Login_Presenter implements ILogin_Presenter{
 
     @Override
     public void loginSuccess(User user) {
-
+        ServerProxy.getInstance().getGameList();
     }
 
     @Override
     public void update(Observable o, Object arg) {
-
+        ArrayList<Game> gameList = ((ClientModel) o).getGameList();
+        loginFragment.loginSuccessful(gameList);
     }
 }
