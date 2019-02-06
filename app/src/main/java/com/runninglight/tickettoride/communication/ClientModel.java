@@ -23,6 +23,11 @@ public class ClientModel extends Observable {
         return instance;
     }
 
+    public void initGamesList(ArrayList<Game> games)
+    {
+        this.gameList = games;
+    }
+
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }

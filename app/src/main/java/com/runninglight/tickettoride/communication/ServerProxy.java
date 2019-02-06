@@ -17,6 +17,8 @@ public class ServerProxy implements IServer {
 
     private static final String SERVER_FACADE = "com.runninglight.server.ServerFacade";
     private static final String LOGIN_INFO = "com.runninglight.shared.LoginInfo";
+    private static final String GAME_INFO = "com.runninglight.shared.GameInfo";
+    private static final String USER = "com.runninglight.shared.USER";
 
     public static ServerProxy getInstance(){
         if(instance == null){
@@ -62,12 +64,36 @@ public class ServerProxy implements IServer {
 
     @Override
     public boolean createGame(GameInfo gameInfo) {
-        return false;
+        Results results = communicator.send(new Command(
+                SERVER_FACADE,
+                "createGame",
+                new String[]{GAME_INFO},
+                new Object[]{gameInfo}));
+        if(results.isSuccess()){
+            System.out.println("Game Created Successfully");
+            return true;
+        }
+        else{
+            System.out.println(results.getErrorInfo());
+            return false;
+        }
     }
 
     @Override
     public boolean joinGame(User user) {
-        return false;
+        Results results = communicator.send(new Command(
+                SERVER_FACADE,
+                "createGame",
+                new String[]{USER},
+                new Object[]{user}));
+        if(results.isSuccess()){
+            System.out.println("Game Joined Successfully");
+            return true;
+        }
+        else{
+            System.out.println(results.getErrorInfo());
+            return false;
+        }
     }
 
     @Override
