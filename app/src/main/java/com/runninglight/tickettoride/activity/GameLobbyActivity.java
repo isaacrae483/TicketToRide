@@ -26,7 +26,9 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
 
         lobbyTitle_TV = findViewById(R.id.lobbyTitle_textView);
         lobbyMessage_TV = findViewById(R.id.lobbyMessage_textView);
-        playerCount_TV = findViewById(R.id.playerCount_textView);
+        playerCount_TV = findViewById(R.id.playerCurrent_textView);
+
+
 
     }
 
@@ -38,7 +40,10 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
     }
 
     @Override
-    public void addPlayer() {
+    public void addPlayer(int playerNum) {
+        playerCount_TV = findViewById(R.id.playerCurrent_textView);
+
+        playerCount_TV.append(String.valueOf(playerNum),0,1);
 
     }
 }

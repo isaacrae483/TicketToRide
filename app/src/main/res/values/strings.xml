@@ -15,7 +15,5 @@
     <string name="lobby_title">Lobby Title</string>
     <string name="lobby_message_waiting">waiting for players…</string>
     <string name="lobby_message_starting">lobby full starting game…</string>
-
-    <string name="player_max">/</string>
-    <string name="zero">0</string>
+    <string name="player_max">0/5</string>
 </resources>

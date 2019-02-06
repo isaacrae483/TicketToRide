@@ -20,11 +20,12 @@ public class GameLobby_Presenter implements IGameLobby_Presenter {
     }
 
     @Override
-    public void addPlayer() {
+    public void addPlayer(int playerNum) {
 
-        view.addPlayer();
+        view.addPlayer(playerNum);
 
     }
+
 
     @Override
     public void update(Observable o, Object arg) {
