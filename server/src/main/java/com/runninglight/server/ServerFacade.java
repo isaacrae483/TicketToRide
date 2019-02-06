@@ -39,7 +39,7 @@ public class ServerFacade implements IServer {
 
     @Override
     public boolean createGame(GameInfo gameInfo) {
-        if (gameInfo.getMaxPlayerNumber() <= 2 || gameInfo.getMaxPlayerNumber() > 5) {
+        if (gameInfo.getMaxPlayerNumber() < 2 || gameInfo.getMaxPlayerNumber() > 5) {
             System.out.println("Invalid player number");
             return false;
         }
@@ -48,8 +48,7 @@ public class ServerFacade implements IServer {
             return false;
         }
         Game game = new Game(gameInfo.getGameName(), gameInfo.getMaxPlayerNumber());
-        ClientProxy clientProxy = new ClientProxy();
-        clientProxy.addGame(game);
+        model.addGame(game);
         return true;
     }
 
