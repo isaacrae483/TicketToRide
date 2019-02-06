@@ -46,6 +46,7 @@ public class Login_Presenter implements ILogin_Presenter{
             {
                 User user = new User(loginInfo.getUserName(), loginInfo.getPassword());
                 ClientModel.getInstance().setCurrentUser(user);
+                loginFragment.loginSuccessful();
             }
             else
             {
@@ -56,6 +57,7 @@ public class Login_Presenter implements ILogin_Presenter{
 
     @Override
     public void loginSuccess(User user) {
+        loginFragment.loginSuccessful();
 
     }
 
