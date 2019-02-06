@@ -37,7 +37,7 @@ public class ServerFacade implements IServer {
 
     @Override
     public boolean createGame(GameInfo gameInfo) {
-        if (gameInfo.getMaxPlayerNumber() <= 0 || gameInfo.getMaxPlayerNumber() > 5) {
+        if (gameInfo.getMaxPlayerNumber() <= 2 || gameInfo.getMaxPlayerNumber() > 5) {
             System.out.println("Invalid player number");
             return false;
         }
