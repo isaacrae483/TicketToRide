@@ -26,7 +26,6 @@ public class LoginFragment extends Fragment implements ILogin_View {
     }
 
     public LoginFragment(LoginContext c){ context = c;}
-    public LoginFragment(){}
 
     private LoginContext context;
     private ILogin_Presenter presenter;

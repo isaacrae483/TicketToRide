@@ -17,6 +17,11 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHo
 
     public GameListAdapter(ArrayList<Game> games){
         myGames = games;
+
+        Game game  = new Game("MyGame",3);
+        ArrayList<Game> test = new ArrayList<>();
+        test.add(game);
+        myGames = test;
     }
 
     private ArrayList<Game> myGames;

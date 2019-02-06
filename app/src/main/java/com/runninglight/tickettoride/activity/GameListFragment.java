@@ -42,6 +42,7 @@ public class GameListFragment extends Fragment implements IGameList_View {
 
         //TODO: pass game list in from the model
         //how to pass the game list down from the model without storing it?
+
         GameListAdapter adapter = new GameListAdapter(null);
 
         gameList_RV.setAdapter(adapter);

@@ -27,6 +27,7 @@ public class Login_Presenter implements ILogin_Presenter{
         {
             User user = new User(loginInfo.getUserName(), loginInfo.getPassword());
             ClientModel.getInstance().setCurrentUser(user);
+            loginFragment.loginSuccessful();
         }
         else
         {
