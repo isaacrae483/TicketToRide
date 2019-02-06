@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.runninglight.shared.Game;
 import com.runninglight.shared.LoginInfo;
 import com.runninglight.tickettoride.IPresenter.ILogin_Presenter;
 import com.runninglight.tickettoride.R;
@@ -17,10 +18,12 @@ import com.runninglight.tickettoride.communication.ServerInfo;
 import com.runninglight.tickettoride.iview.ILogin_View;
 import com.runninglight.tickettoride.presenter.Login_Presenter;
 
+import java.util.ArrayList;
+
 public class LoginFragment extends Fragment implements ILogin_View {
 
     public interface LoginContext{
-        void loginSuccessful();
+        void loginSuccessful(ArrayList<Game> games);
         void loginFailed();
 
     }
@@ -80,8 +83,8 @@ public class LoginFragment extends Fragment implements ILogin_View {
         return v;
     }
 
-    public void loginSuccessful(){
-        context.loginSuccessful();
+    public void loginSuccessful(ArrayList<Game> games){
+        context.loginSuccessful(games);
     }
     public void loginFailed(){
         context.loginFailed();
