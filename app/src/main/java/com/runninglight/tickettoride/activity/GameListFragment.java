@@ -12,14 +12,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.tickettoride.IPresenter.IGameList_Presenter;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.iview.IGameList_View;
 import com.runninglight.tickettoride.presenter.GameList_Presenter;
 
+import java.util.ArrayList;
+
 public class GameListFragment extends Fragment implements IGameList_View {
 
+    public GameListFragment(ArrayList<Game> games){
+        adapter = new GameListAdapter(games);
+    }
+
+    private GameListAdapter adapter;
     private IGameList_Presenter presenter;
 
     @Override
@@ -43,7 +51,6 @@ public class GameListFragment extends Fragment implements IGameList_View {
         //TODO: pass game list in from the model
         //how to pass the game list down from the model without storing it?
 
-        GameListAdapter adapter = new GameListAdapter(null);
 
         gameList_RV.setAdapter(adapter);
         gameList_RV.setLayoutManager(new LinearLayoutManager(getContext()));
