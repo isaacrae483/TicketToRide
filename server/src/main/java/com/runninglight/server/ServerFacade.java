@@ -53,7 +53,7 @@ public class ServerFacade implements IServer {
     }
 
     @Override
-    public boolean joinGame(User user) {
+    public boolean joinGame(User user, Game game) {
         //need game name?
         return false;
     }
