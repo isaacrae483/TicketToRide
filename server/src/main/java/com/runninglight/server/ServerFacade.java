@@ -61,6 +61,6 @@ public class ServerFacade implements IServer {
 
     @Override
     public ArrayList<Game> getGameList(){
-        return new ArrayList<Game>();
+        return ServerModel.getInstance().getGameList();
     }
 }

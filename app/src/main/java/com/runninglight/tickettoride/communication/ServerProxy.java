@@ -98,6 +98,19 @@ public class ServerProxy implements IServer {
 
     @Override
     public ArrayList<Game> getGameList(){
-        return new ArrayList<Game>();
+        Results results = communicator.send(new Command(
+                SERVER_FACADE,
+                "getGameList",
+                new String[]{},
+                new Object[]{}));
+        if(results.isSuccess()){
+            System.out.println("Game list retrieved Successfully");
+            model.initGamesList( (ArrayList<Game>) results.getData());
+            return (ArrayList<Game>) results.getData();
+        }
+        else{
+            System.out.println(results.getErrorInfo());
+            return null;
+        }
     }
 }
