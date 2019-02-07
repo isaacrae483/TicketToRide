@@ -72,5 +72,4 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHo
         }
     }
 
-
 }
