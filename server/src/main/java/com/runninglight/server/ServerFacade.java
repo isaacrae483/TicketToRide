@@ -63,7 +63,10 @@ public class ServerFacade implements IServer {
     }
 
     @Override
-    public ArrayList<Game> getGameList(){
-        return ServerModel.getInstance().getGameList();
+    public Game[] getGameList() {
+        ArrayList<Game> gamesList = model.getGameList();
+        Game[] gamesArray = gamesList.toArray(new Game[gamesList.size()]);
+        System.out.println(gamesArray);
+        return gamesArray;
     }
 }

@@ -11,5 +11,5 @@ public interface IServer {
 
     boolean joinGame(User user, Game game);
 
-    ArrayList<Game> getGameList();
+    Game[] getGameList();
 }

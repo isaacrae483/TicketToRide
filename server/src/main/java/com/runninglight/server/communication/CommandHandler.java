@@ -12,8 +12,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
+import sun.rmi.runtime.Log;
+
 public class CommandHandler implements HttpHandler
 {
+    private static final String TAG = "TicketToRide.CommandHandler";
+
     private Serializer serializer;
 
     public CommandHandler()
@@ -30,13 +34,16 @@ public class CommandHandler implements HttpHandler
         Results results;
         Object response = command.execute();
 
-        if (response instanceof Exception) {
-            results = new Results(false, null, ((Exception)response).getMessage());
+        if (response instanceof Exception)
+        {
+            results = new Results(false, null, ((Exception) response).getMessage());
         }
-        else {
-            results = new Results(true, response,
-                    null);
+        else
+        {
+            results = new Results(true, response, null);
         }
+
+        System.out.println(TAG + ": " + results.getData());
 
         String json = serializer.serialize(results);
 

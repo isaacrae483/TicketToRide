@@ -1,10 +1,13 @@
 package com.runninglight.server.communication;
 
 import com.runninglight.shared.Command;
+import com.runninglight.shared.Game;
+import com.runninglight.shared.Serializer;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
 
 public class ServerCommunicator
 {
@@ -22,10 +25,20 @@ public class ServerCommunicator
         return instance;
     }
 
-    // Strictly for Server testing purposes
     public static void main(String[] args)
     {
-        ServerCommunicator.getInstance().startServer(8000);
+        Game game1 = new Game("game1", 2);
+        Game game2 = new Game("game2", 2);
+        //Game[] games = { game1, game2 };
+        ArrayList<Game> games = new ArrayList<>();
+        games.add(game1);
+        games.add(game2);
+        String json = new Serializer().serialize(games);
+        System.out.println(json);
+        ArrayList<Game> gamesDeserialized = (ArrayList<Game>) new Serializer().deserializeObject(json, games.getClass().getName());
+        //Game[] gamesDeserialized = (Game[]) new Serializer().deserializeObject(json, games.getClass().getName());
+        for (Game game : gamesDeserialized) System.out.println(game.getGameName());
+
     }
 
     public void startServer(int port)
@@ -37,6 +50,7 @@ public class ServerCommunicator
             httpServer = HttpServer.create(address, 10);
             httpServer.setExecutor(null);
 
+            // Handler declaration
             httpServer.createContext(PATH_COMMAND, new CommandHandler());
             httpServer.createContext(PATH_POLL, new PollHandler());
 
