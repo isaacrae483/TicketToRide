@@ -73,6 +73,9 @@ public class CreateGameActivity extends AppCompatActivity implements ICreateGame
 
     @Override
     public void onCreateSuccessful() {
+
+
         finish();
+        //TODO: join the newly created game
     }
 }
