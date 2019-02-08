@@ -10,13 +10,15 @@ import android.widget.TextView;
 
 import com.runninglight.shared.Game;
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.communication.ClientModel;
 
 import java.util.ArrayList;
 
 public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHolder>  {
 
-    public GameListAdapter(ArrayList<Game> games){
-        myGames = games;
+    public GameListAdapter() {
+        myGames = ClientModel.getInstance().getGameList();
+        //myGames = games;
 /*
         Game game  = new Game("MyGame",3);
         ArrayList<Game> test = new ArrayList<>();
@@ -71,5 +73,4 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHo
             currentPlayerNum = itemView.findViewById(R.id.currentPlayerNum_textView_recyclerRow);
         }
     }
-
 }

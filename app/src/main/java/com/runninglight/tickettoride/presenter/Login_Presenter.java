@@ -71,7 +71,10 @@ public class Login_Presenter implements ILogin_Presenter, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        ArrayList<Game> gameList = ((ClientModel) o).getGameList();
-        loginFragment.loginSuccessful(gameList);
+        if (arg instanceof ArrayList)
+        {
+            ArrayList<Game> gameList = ((ClientModel) o).getGameList();
+            loginFragment.loginSuccessful(gameList);
+        }
     }
 }
