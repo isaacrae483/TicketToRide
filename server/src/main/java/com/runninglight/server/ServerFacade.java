@@ -30,12 +30,21 @@ public class ServerFacade implements IServer {
     public boolean register(LoginInfo loginInfo) {
         User user = new User(loginInfo.getUserName(), loginInfo.getPassword());
         if(model.findByUserName(user) == null){
-            System.out.println("User doesn't exist yet. Register successful.");
-            model.addUser(user);
-            return true;
+            // userName must be alphanumeric with no spaces, neither userName nor password can be blank
+            if(!user.getUserName().matches("^.*[^a-zA-Z0-9 ].*$") &&
+                    !user.getUserName().contains(" ") &&
+                    !user.getUserName().equals("") &&
+                    !user.getPassword().equals("")){
+                System.out.println("User doesn't exist yet. Register successful.");
+                model.addUser(user);
+                return true;
+            }
+            else{
+                throw new IllegalArgumentException("Invalid input");
+            }
         }
         else{
-            throw new IllegalArgumentException("Register failed.");
+            throw new IllegalArgumentException("User already exists");
         }
     }
 
