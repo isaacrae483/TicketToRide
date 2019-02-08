@@ -22,6 +22,7 @@ public class ServerProxy implements IServer {
     private static final String LOGIN_INFO = "com.runninglight.shared.LoginInfo";
     private static final String GAME_INFO = "com.runninglight.shared.GameInfo";
     private static final String USER = "com.runninglight.shared.USER";
+    private static final String GAME = "com.runninglight.shared.GAME";
 
     public static ServerProxy getInstance(){
         if(instance == null){
@@ -137,8 +138,8 @@ public class ServerProxy implements IServer {
         return new Command(
                 SERVER_FACADE,
                 "createGame",
-                new String[] {USER},
-                new Object[] {user} );
+                new String[] {USER, GAME},
+                new Object[] {user, game} );
     }
 
     private Command getGameListCommand()
