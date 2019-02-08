@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.runninglight.shared.Game;
 import com.runninglight.shared.LoginInfo;
@@ -88,6 +89,9 @@ public class LoginFragment extends Fragment implements ILogin_View {
     }
     public void loginFailed(){
         context.loginFailed();
+    }
+    public void showToast(String message){
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
 }

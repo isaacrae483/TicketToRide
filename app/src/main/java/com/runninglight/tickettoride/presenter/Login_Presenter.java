@@ -35,11 +35,12 @@ public class Login_Presenter implements ILogin_Presenter, Observer {
         {
             User user = new User(loginInfo.getUserName(), loginInfo.getPassword());
             ClientModel.getInstance().setCurrentUser(user);
+            loginFragment.showToast("Welcome, " + user.getUserName());
             loginSuccess(ClientModel.getInstance().getCurrentUser());
         }
         else
         {
-            // Maybe we could show a Toast or something here on a failure?
+            loginFragment.showToast("Login failed");
         }
 
     }
@@ -55,12 +56,13 @@ public class Login_Presenter implements ILogin_Presenter, Observer {
             {
                 User user = new User(loginInfo.getUserName(), loginInfo.getPassword());
                 ClientModel.getInstance().setCurrentUser(user);
+                loginFragment.showToast("Welcome, " + user.getUserName());
                 loginSuccess(ClientModel.getInstance().getCurrentUser());
             }
-            else
-            {
-                // Inform the user they're a failure here
-            }
+        }
+        else
+        {
+            loginFragment.showToast("Failed to register the user");
         }
     }
 

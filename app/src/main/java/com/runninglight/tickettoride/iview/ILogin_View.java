@@ -8,5 +8,5 @@ public interface  ILogin_View {
 
     void loginSuccessful(ArrayList<Game> games);
     void loginFailed();
-
+    void showToast(String message);
 }
