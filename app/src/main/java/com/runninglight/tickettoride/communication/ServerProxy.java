@@ -138,7 +138,7 @@ public class ServerProxy implements IServer {
     {
         return new Command(
                 SERVER_FACADE,
-                "createGame",
+                "joinGame",
                 new String[] {USER, GAME},
                 new Object[] {user, game} );
     }
