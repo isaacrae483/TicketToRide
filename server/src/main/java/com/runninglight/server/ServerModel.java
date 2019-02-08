@@ -32,6 +32,15 @@ public class ServerModel {
         System.out.println("Game added, current number of games: " + gameList.size());
     }
 
+    public void addUserToGame(User u, Game g) {
+        for (Game game : gameList) {
+            if (game.getGameName().equals(g.getGameName())) {
+                game.addPlayer(u);
+                System.out.println("Player added to Game " + game.getGameName() + " successfully");
+            }
+        }
+    }
+
     public  boolean doesGameExist(String gameName) {
         for(Game g : gameList) {
             if(g.getGameName().equals(gameName)) {

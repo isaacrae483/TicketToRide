@@ -70,7 +70,7 @@ public class ServerFacade implements IServer {
             System.out.println("Game full. Choose another game");
             return false;
         }
-        game.addPlayer(user);
+        model.addUserToGame(user, game);
         return true;
     }
 
