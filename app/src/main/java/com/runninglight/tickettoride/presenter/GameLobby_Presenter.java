@@ -19,12 +19,7 @@ public class GameLobby_Presenter implements IGameLobby_Presenter {
         view.startGame();
     }
 
-    @Override
-    public void addPlayer(int playerNum) {
 
-        view.addPlayer(playerNum);
-
-    }
 
 
     @Override

@@ -42,6 +42,15 @@ public class ClientModel extends Observable {
         this.currentGame = currentGame;
     }
 
+    public Game getGame(String gameName) {
+        for (Game game : gameList) {
+            if (gameName.equals(game.getGameName())) {
+                return game;
+            }
+        }
+        return null;
+    }
+
     public User getCurrentUser() { return currentUser; }
 
     public Game getCurrentGame() {
