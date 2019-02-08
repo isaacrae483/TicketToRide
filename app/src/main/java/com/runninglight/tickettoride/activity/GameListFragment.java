@@ -2,11 +2,13 @@ package com.runninglight.tickettoride.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,23 +18,38 @@ import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.tickettoride.IPresenter.IGameList_Presenter;
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.iview.IGameList_View;
 import com.runninglight.tickettoride.presenter.GameList_Presenter;
 
-import java.util.ArrayList;
-
-public class GameListFragment extends Fragment implements IGameList_View {
-
-    public GameListFragment(ArrayList<Game> games){
-        adapter = new GameListAdapter(games);
-    }
+public class GameListFragment extends Fragment implements IGameList_View
+{
 
     private GameListAdapter adapter;
     private IGameList_Presenter presenter;
 
+    public GameListFragment()
+    {
+        adapter = new GameListAdapter();
+        presenter = new GameList_Presenter(this);
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startRefresher();
+    }
+
+    private void startRefresher(){
+        final Handler handler = new Handler();
+        final int delay = 5000; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                adapter.notifyDataSetChanged();
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
     }
 
     @Nullable
@@ -41,8 +58,6 @@ public class GameListFragment extends Fragment implements IGameList_View {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View v = inflater.inflate(R.layout.fragment_gamelist, container, false);
-
-        presenter = new GameList_Presenter(this);
 
         RecyclerView gameList_RV = v.findViewById(R.id.gameList_RecyclerView);
 
@@ -68,14 +83,10 @@ public class GameListFragment extends Fragment implements IGameList_View {
     return v;
     }
 
-
-
     @Override
     public void createGame() {
-
         Intent intent = new Intent(getContext(),CreateGameActivity.class);
         startActivity(intent);
-
     }
 
     @Override

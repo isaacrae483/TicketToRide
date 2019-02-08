@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
 
    public void loginSuccessful(ArrayList<Game> games){
 
-       gameListFragment = new GameListFragment(games);
+       gameListFragment = new GameListFragment();
        android.support.v4.app.FragmentTransaction t = getSupportFragmentManager().beginTransaction();
        t.replace(R.id.currentFragment_View, gameListFragment);
        t.commit();

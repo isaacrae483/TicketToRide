@@ -27,7 +27,9 @@ public class ServerModel {
     }
 
     public void addGame(Game game) {
+
         gameList.add(game);
+        System.out.println("Game added, current number of games: " + gameList.size());
     }
 
     public  boolean doesGameExist(String gameName) {

@@ -1,5 +1,7 @@
 package com.runninglight.tickettoride.communication;
 
+import android.util.Log;
+
 import com.runninglight.shared.Game;
 import com.runninglight.shared.User;
 
@@ -27,7 +29,7 @@ public class ClientModel extends Observable {
     {
         this.gameList = games;
         setChanged();
-        notifyObservers();
+        notifyObservers(games);
     }
 
     public void setCurrentUser(User currentUser) {
@@ -50,5 +52,7 @@ public class ClientModel extends Observable {
 
     public void addGame(Game g) {
         gameList.add(g);
+        setChanged();
+        notifyObservers(g);
     }
 }
