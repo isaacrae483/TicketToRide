@@ -56,9 +56,9 @@ public class ClientCommunicator
         }
     }
 
-    public void startPoller(String userId)
+    public void startPoller(String userName)
     {
-        poller.startPoller(userId);
+        poller.startPoller(userName);
     }
 
     public void stopPoller()

@@ -22,9 +22,10 @@ public class ServerProxy implements IServer {
     private static final String LOGIN_INFO = "com.runninglight.shared.LoginInfo";
     private static final String GAME_INFO = "com.runninglight.shared.GameInfo";
     private static final String USER = "com.runninglight.shared.USER";
+    private static final String GAME = "com.runninglight.shared.GAME";
 
     public static ServerProxy getInstance(){
-        if(instance == null){
+        if(instance == null) {
             instance = new ServerProxy();
         }
         return instance;
@@ -33,7 +34,7 @@ public class ServerProxy implements IServer {
     @Override
     public boolean register(LoginInfo loginInfo) {
         Results results = communicator.send(getRegisterCommand(loginInfo));
-        if(results.isSuccess()){
+        if(results.isSuccess()) {
             System.out.println("Register succeeded");
             return true;
         }
@@ -46,7 +47,7 @@ public class ServerProxy implements IServer {
     @Override
     public boolean login(LoginInfo loginInfo) {
         Results results = communicator.send(getLoginCommand(loginInfo));
-        if(results.isSuccess()){
+        if(results.isSuccess()) {
             System.out.println("Login succeeded");
             model.setCurrentUser(new User(loginInfo.getUserName(), loginInfo.getPassword()));
             return true;
@@ -61,7 +62,7 @@ public class ServerProxy implements IServer {
     public boolean createGame(GameInfo gameInfo) {
         System.out.println("creating game: " + gameInfo.getGameName());
         Results results = communicator.send(getCreateGameCommand(gameInfo));
-        if(results.isSuccess()){
+        if(results.isSuccess()) {
             System.out.println("Game Created Successfully");
             return true;
         }
@@ -74,8 +75,9 @@ public class ServerProxy implements IServer {
     @Override
     public boolean joinGame(User user, Game game) {
         Results results = communicator.send(getJoinGameCommand(user, game));
-        if(results.isSuccess()){
+        if(results.isSuccess()) {
             System.out.println("Game Joined Successfully");
+            model.setCurrentGame(game);
             return true;
         }
         else{
@@ -136,9 +138,9 @@ public class ServerProxy implements IServer {
     {
         return new Command(
                 SERVER_FACADE,
-                "createGame",
-                new String[] {USER},
-                new Object[] {user} );
+                "joinGame",
+                new String[] {USER, GAME},
+                new Object[] {user, game} );
     }
 
     private Command getGameListCommand()
