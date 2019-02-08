@@ -71,6 +71,7 @@ public class ServerFacade implements IServer {
             return false;
         }
         model.addUserToGame(user, game);
+        game.addPlayer(user);
         ClientProxy.getInstance().addPlayer(user, game);
         return true;
     }
