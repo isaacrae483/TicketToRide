@@ -25,15 +25,13 @@ import static com.runninglight.tickettoride.R.layout.recyclerview_row_gamelist;
 public class GameListAdapter_ListView extends ArrayAdapter<Game>{
 
     private final Activity context;
-    private  Game[] games;
+    private ArrayList<Game> games;
 
 
-    public GameListAdapter_ListView (Activity context,Game[] myGames){
-
-        super(context, recyclerview_row_gamelist , ClientModel.getInstance().getGameList().toArray(new Game[0]));
-
+    public GameListAdapter_ListView (Activity context,ArrayList<Game> myGames){
+        super(context, recyclerview_row_gamelist, myGames);
         this.context = context;
-        games = ClientModel.getInstance().getGameList().toArray(new Game[0]); ;
+        games = myGames;
 
     }
 
@@ -45,11 +43,16 @@ public class GameListAdapter_ListView extends ArrayAdapter<Game>{
         TextView gameName = rowView.findViewById(R.id.gameName_textView_recyclerRow);
         TextView currentPlayers = rowView.findViewById(R.id.currentPlayerNum_textView_recyclerRow);
 
-        gameName.setText(games[position].getGameName());
-        currentPlayers.setText(games[position].getNumPlayers() + "/" + games[position].getMaxPlayerNumber());
+        gameName.setText(games.get(position).getGameName());
+        currentPlayers.setText(games.get(position).getNumPlayers() + "/" + games.get(position).getMaxPlayerNumber());
 
 
         return rowView;
     }
 
+    public void refreshItems(ArrayList<Game> newGames){
+        games = newGames;
+        notifyDataSetChanged();
     }
+
+}

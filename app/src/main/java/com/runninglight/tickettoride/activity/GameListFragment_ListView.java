@@ -26,9 +26,10 @@ import com.runninglight.tickettoride.presenter.GameList_Presenter;
 
 public class GameListFragment_ListView extends Fragment implements IGameList_View
 {
-
+    private ClientModel model = ClientModel.getInstance();
     private GameListAdapter_ListView adapter;
     private IGameList_Presenter presenter;
+    private Handler handler;
 
     public GameListFragment_ListView()
     {
@@ -40,24 +41,31 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Game[] games= new Game[0];
+        adapter = new GameListAdapter_ListView(getActivity(), model.getGameList());
+    }
 
-
-        adapter = new GameListAdapter_ListView(getActivity(), games);
-
+    @Override
+    public void onResume(){
+        super.onResume();
         startRefresher();
     }
 
     private void startRefresher(){
-        final Handler handler = new Handler();
-        final int delay = 5000; //milliseconds
+        handler = new Handler();
+        final int delay = 2000; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){
-                adapter.notifyDataSetChanged();
+                adapter.refreshItems(model.getGameList());
                 handler.postDelayed(this, delay);
             }
         }, delay);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        handler.removeCallbacksAndMessages(null);
     }
 
     @Nullable
@@ -108,7 +116,8 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
     public void joinGameSuccessful(GameInfo gameInfo) {
 
         Intent intent = new Intent(getContext(),GameLobbyActivity.class);
-
+        intent.putExtra("gameName",gameInfo.getGameName());
+        intent.putExtra("maxPlayers",gameInfo.getMaxPlayerNumber());
         //TODO: add game info to the intent bundle
         startActivity(intent);
 
