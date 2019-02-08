@@ -73,6 +73,7 @@ public class ClientModel extends Observable {
         for (Game game : gameList) {
             if (game.getGameName().equals(g.getGameName())) {
                 game.addPlayer(u);
+                game.setNumPlayers(g.getNumPlayers());
                 System.out.println("Player added to Game " + game.getGameName() + " successfully");
             }
         }
