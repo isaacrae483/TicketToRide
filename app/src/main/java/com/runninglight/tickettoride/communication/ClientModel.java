@@ -14,6 +14,8 @@ public class ClientModel extends Observable {
 
     private User currentUser;
 
+    private Game currentGame;
+
     private ArrayList<Game> gameList;
 
     private ArrayList<User> userList;
@@ -36,7 +38,15 @@ public class ClientModel extends Observable {
         this.currentUser = currentUser;
     }
 
+    public void setCurrentGame(Game currentGame) {
+        this.currentGame = currentGame;
+    }
+
     public User getCurrentUser() { return currentUser; }
+
+    public Game getCurrentGame() {
+        return currentGame;
+    }
 
     public ArrayList<Game> getGameList() {
         return gameList;
