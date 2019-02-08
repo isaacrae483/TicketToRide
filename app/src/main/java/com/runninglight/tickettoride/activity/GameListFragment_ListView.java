@@ -108,7 +108,8 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
     public void joinGameSuccessful(GameInfo gameInfo) {
 
         Intent intent = new Intent(getContext(),GameLobbyActivity.class);
-
+        intent.putExtra("gameName",gameInfo.getGameName());
+        intent.putExtra("maxPlayers",gameInfo.getMaxPlayerNumber());
         //TODO: add game info to the intent bundle
         startActivity(intent);
 
