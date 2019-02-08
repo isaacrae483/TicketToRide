@@ -2,6 +2,7 @@ package com.runninglight.tickettoride.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,6 +37,19 @@ public class GameListFragment extends Fragment implements IGameList_View
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startRefresher();
+    }
+
+    private void startRefresher(){
+        final Handler handler = new Handler();
+        final int delay = 5000; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                adapter.notifyDataSetChanged();
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
     }
 
     @Nullable
@@ -69,14 +83,10 @@ public class GameListFragment extends Fragment implements IGameList_View
     return v;
     }
 
-
-
     @Override
     public void createGame() {
-
         Intent intent = new Intent(getContext(),CreateGameActivity.class);
         startActivity(intent);
-
     }
 
     @Override

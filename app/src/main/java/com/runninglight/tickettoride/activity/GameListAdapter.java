@@ -16,8 +16,11 @@ import java.util.ArrayList;
 
 public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHolder>  {
 
+    private ClientModel model = ClientModel.getInstance();
+    private ArrayList<Game> myGames;
+
     public GameListAdapter() {
-        myGames = ClientModel.getInstance().getGameList();
+        myGames = model.getGameList();
         //myGames = games;
 /*
         Game game  = new Game("MyGame",3);
@@ -26,8 +29,6 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHo
         myGames = test;
 */
     }
-
-    private ArrayList<Game> myGames;
 
     @NonNull
     @Override
@@ -44,7 +45,6 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
         Game game = myGames.get(i);
 
         TextView gameName = viewHolder.gameName;
