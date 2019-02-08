@@ -7,6 +7,7 @@ import com.runninglight.shared.GameInfo;
 import com.runninglight.tickettoride.IPresenter.IGameList_Presenter;
 import com.runninglight.tickettoride.communication.ClientCommunicator;
 import com.runninglight.tickettoride.communication.ClientModel;
+import com.runninglight.tickettoride.communication.ServerProxy;
 import com.runninglight.tickettoride.iview.IGameList_View;
 
 import java.util.Observable;
@@ -30,7 +31,16 @@ public class GameList_Presenter implements IGameList_Presenter, Observer
 
     @Override
     public void joinGame(GameInfo gameInfo) {
-        view.joinGameSuccessful(gameInfo);
+
+        Boolean canJoinGame = ServerProxy.getInstance().joinGame(ClientModel.getInstance().getCurrentUser(),
+                ClientModel.getInstance().getGame(gameInfo.getGameName()));
+
+        if(canJoinGame){
+            view.joinGameSuccessful(gameInfo);
+        }
+        else {
+            view.joinGameFailed();
+        }
     }
 
     @Override

@@ -130,4 +130,10 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
         startActivity(intent);
 
     }
+
+    @Override
+    public void joinGameFailed() {
+        Toast.makeText(getContext(),"This game is full",Toast.LENGTH_LONG).show();
+
+    }
 }

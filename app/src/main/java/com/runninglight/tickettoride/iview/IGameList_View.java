@@ -7,4 +7,5 @@ public interface IGameList_View {
     void createGame();
 
     void joinGameSuccessful(GameInfo gameInfo);
+    void joinGameFailed();
 }

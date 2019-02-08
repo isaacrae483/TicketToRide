@@ -110,4 +110,9 @@ public class GameListFragment extends Fragment implements IGameList_View
         startActivity(intent);
 
     }
+
+    @Override
+    public void joinGameFailed() {
+
+    }
 }
