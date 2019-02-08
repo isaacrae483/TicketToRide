@@ -42,10 +42,7 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
 
         Game[] games;
         games = ClientModel.getInstance().getGameList().toArray(new Game[0]);
-        if(games == null){
-            System.out.println("games was null");
-            games = new Game[0];
-        }
+
         //ClientModel.getInstance().getGameList().size()
         adapter = new GameListAdapter_ListView(getActivity(), games);
 
