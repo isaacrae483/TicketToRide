@@ -1,6 +1,7 @@
 package com.runninglight.tickettoride.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
@@ -16,8 +17,12 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
     private TextView lobbyTitle_TV;
     private TextView playerCount_TV;
     private TextView lobbyMessage_TV;
-
+    private Handler handler;
     private IGameLobby_Presenter presenter;
+    private ClientModel model = ClientModel.getInstance();
+    private String gameName;
+    private int currentNumPlayers;
+    private int maxNumPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +37,41 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
         lobbyMessage_TV = findViewById(R.id.lobbyMessage_textView);
         playerCount_TV = findViewById(R.id.playerCurrent_textView);
 
-        String gameName =extra.getString("gameName");
+        gameName =extra.getString("gameName");
 
 
         lobbyTitle_TV.setText(gameName);
-        playerCount_TV.setText(ClientModel.getInstance().getGame(gameName).getNumPlayers()+"/"+ClientModel.getInstance().getGame(gameName).getMaxPlayerNumber());
+        currentNumPlayers = model.getGame(gameName).getNumPlayers();
+        maxNumPlayers = model.getGame(gameName).getMaxPlayerNumber();
+        playerCount_TV.setText(currentNumPlayers + "/" + maxNumPlayers);
 
 
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        startRefresher();
+    }
+
+    private void startRefresher(){
+        handler = new Handler();
+        final int delay = 2000; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                currentNumPlayers = model.getGame(gameName).getNumPlayers();
+                playerCount_TV.setText(currentNumPlayers + "/" + maxNumPlayers);
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        handler.removeCallbacksAndMessages(null);
     }
 
 
