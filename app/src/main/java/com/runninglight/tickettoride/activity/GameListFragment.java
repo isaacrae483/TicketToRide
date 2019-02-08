@@ -27,6 +27,7 @@ public class GameListFragment extends Fragment implements IGameList_View
 
     private GameListAdapter adapter;
     private IGameList_Presenter presenter;
+    private Handler handler;
 
     public GameListFragment()
     {
@@ -37,19 +38,31 @@ public class GameListFragment extends Fragment implements IGameList_View
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startRefresher();
     }
 
     private void startRefresher(){
-        final Handler handler = new Handler();
-        final int delay = 5000; //milliseconds
+        handler = new Handler();
+        final int delay = 2000; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){
                 adapter.notifyDataSetChanged();
+                System.out.println("Checking");
                 handler.postDelayed(this, delay);
             }
         }, delay);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        startRefresher();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        handler.removeCallbacksAndMessages(null);
     }
 
     @Nullable
