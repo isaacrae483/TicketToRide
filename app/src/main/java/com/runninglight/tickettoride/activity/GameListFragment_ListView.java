@@ -40,10 +40,9 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Game[] games;
-        games = ClientModel.getInstance().getGameList().toArray(new Game[0]);
+        Game[] games= new Game[0];
 
-        //ClientModel.getInstance().getGameList().size()
+
         adapter = new GameListAdapter_ListView(getActivity(), games);
 
         startRefresher();

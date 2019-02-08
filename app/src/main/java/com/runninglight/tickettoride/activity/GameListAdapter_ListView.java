@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.runninglight.shared.Game;
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.communication.ClientModel;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -24,15 +25,15 @@ import static com.runninglight.tickettoride.R.layout.recyclerview_row_gamelist;
 public class GameListAdapter_ListView extends ArrayAdapter<Game>{
 
     private final Activity context;
-    private final Game[] games;
+    private  Game[] games;
 
 
     public GameListAdapter_ListView (Activity context,Game[] myGames){
 
-        super(context, recyclerview_row_gamelist , myGames);
+        super(context, recyclerview_row_gamelist , ClientModel.getInstance().getGameList().toArray(new Game[0]));
 
         this.context = context;
-        games =myGames ;
+        games = ClientModel.getInstance().getGameList().toArray(new Game[0]); ;
 
     }
 
