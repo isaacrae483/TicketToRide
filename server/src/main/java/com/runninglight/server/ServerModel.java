@@ -37,7 +37,7 @@ public class ServerModel {
             if (game.getGameName().equals(g.getGameName())) {
                 game.addPlayer(u);
                 System.out.println("Player added to Game " + game.getGameName() + " successfully");
-                System.out.println(game.getNumPlayers());
+                //System.out.println(game.getNumPlayers());
             }
         }
     }
