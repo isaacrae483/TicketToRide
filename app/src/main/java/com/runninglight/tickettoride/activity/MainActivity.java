@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
 {
 
     private LoginFragment loginFragment;
-    private GameListFragment gameListFragment;
+    private GameListFragment_ListView gameListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
 
    public void loginSuccessful(ArrayList<Game> games){
 
-       gameListFragment = new GameListFragment();
+       gameListFragment = new GameListFragment_ListView();
        android.support.v4.app.FragmentTransaction t = getSupportFragmentManager().beginTransaction();
        t.replace(R.id.currentFragment_View, gameListFragment);
        t.commit();
