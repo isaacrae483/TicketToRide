@@ -81,12 +81,4 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
         lobbyMessage_TV.setText(R.string.lobby_message_starting);
     }
 
-    @Override
-    public void addPlayer(String gameName) {
-        playerCount_TV = findViewById(R.id.playerCurrent_textView);
-        Game game = ClientModel.getInstance().getGame(gameName);
-
-        playerCount_TV.append(String.valueOf(game.getNumPlayers()),0,1);
-
-    }
 }

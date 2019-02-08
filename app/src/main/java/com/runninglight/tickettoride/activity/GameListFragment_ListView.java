@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
@@ -89,7 +90,14 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object o = gameList_LV.getItemAtPosition(position);
                 Game game = (Game)o;
-                presenter.joinGame(new GameInfo(game.getGameName(),game.getMaxPlayerNumber()));
+
+                if(game.getMaxPlayerNumber() == game.getNumPlayers()){
+                    Toast.makeText(getContext(),"This game is full",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    presenter.joinGame(new GameInfo(game.getGameName(),game.getMaxPlayerNumber()));
+
+                }
             }
         });
 
