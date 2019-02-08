@@ -27,8 +27,11 @@ public class ClientProxy implements IClient {
     }
 
     @Override
-    public void addPlayer(User u) {
-        ServerModel.getInstance().addUser(u);
+    public void addPlayer(User u, Game g) {
+        for (User user : ServerModel.getInstance().getUserList())
+        {
+            ServerCommunicator.getInstance().setCommandForUser(user.getUserName(), getPlayerAddedCommand(u, g));
+        }
     }
 
     private Command getGameAddedCommand(Game game)
@@ -38,5 +41,13 @@ public class ClientProxy implements IClient {
                 "addGame",
                 new String[] {"com.runninglight.shared.Game"},
                 new Object[] {game} );
+    }
+
+    private Command getPlayerAddedCommand(User user, Game game) {
+        return new Command(
+                "com.runninglight.tickettoride.communication.ClientFacade",
+                "addPlayer",
+                new String[] {"com.runninglight.shared.User", "com.runninglight.shared.Game"},
+                new Object[] {user, game} );
     }
 }

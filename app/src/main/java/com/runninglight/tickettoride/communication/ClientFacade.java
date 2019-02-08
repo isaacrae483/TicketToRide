@@ -6,8 +6,8 @@ import com.runninglight.shared.User;
 
 public class ClientFacade implements IClient {
     @Override
-    public void addPlayer(User u) {
-        ClientModel.getInstance().addUser(u);
+    public void addPlayer(User u, Game g) {
+        ClientModel.getInstance().addUserToGame(u, g);
     }
 
     @Override
