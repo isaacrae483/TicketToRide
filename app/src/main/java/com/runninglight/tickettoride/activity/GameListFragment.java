@@ -47,7 +47,6 @@ public class GameListFragment extends Fragment implements IGameList_View
         handler.postDelayed(new Runnable(){
             public void run(){
                 adapter.notifyDataSetChanged();
-                System.out.println("Checking");
                 handler.postDelayed(this, delay);
             }
         }, delay);
