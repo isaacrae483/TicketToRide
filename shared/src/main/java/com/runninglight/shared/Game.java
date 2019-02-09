@@ -65,6 +65,7 @@ public class Game {
         int userIndex = find(user.getUserID());
         if(userIndex != -1){
             playerList.remove(userIndex);
+            numPlayers--;
         }
     }
 

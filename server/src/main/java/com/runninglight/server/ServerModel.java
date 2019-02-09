@@ -42,6 +42,15 @@ public class ServerModel {
         }
     }
 
+    public boolean removeUserFromGame(User user, Game game){
+        int gameIndex = getGameIndex(game.getGameID());
+        if(gameIndex != -1 && isValidUser(user)){
+            gameList.get(gameIndex).removePlayer(user);
+            return true;
+        }
+        return false;
+    }
+
     public  boolean doesGameExist(String gameName) {
         for(Game g : gameList) {
             if(g.getGameName().equals(gameName)) {
@@ -58,6 +67,15 @@ public class ServerModel {
             }
         }
         return null;
+    }
+
+    public int getGameIndex(String gameID){
+        for(int i = 0; i < gameList.size(); i++){
+            if(gameList.get(i).getGameID().equals(gameID)){
+                return i;
+            }
+        }
+        return -1;
     }
 
     public boolean isValidUser(User user){

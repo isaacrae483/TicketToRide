@@ -11,5 +11,7 @@ public interface IServer {
 
     boolean joinGame(User user, Game game);
 
+    boolean leaveGame(User user, Game game);
+
     Game[] getGameList();
 }

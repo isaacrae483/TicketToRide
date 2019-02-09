@@ -87,6 +87,20 @@ public class ServerProxy implements IServer {
     }
 
     @Override
+    public boolean leaveGame(User user, Game game){
+        Results results = communicator.send(getLeaveGameCommand(user, game));
+        if(results.isSuccess()) {
+            System.out.println("Game Left Successfully");
+            model.setCurrentGame(null);
+            return true;
+        }
+        else{
+            System.out.println(results.getErrorInfo());
+            return false;
+        }
+    }
+
+    @Override
     public Game[] getGameList() {
         Results results = communicator.send(getGameListCommand());
         if (results.isSuccess()) {
@@ -139,6 +153,15 @@ public class ServerProxy implements IServer {
         return new Command(
                 SERVER_FACADE,
                 "joinGame",
+                new String[] {USER, GAME},
+                new Object[] {user, game} );
+    }
+
+    private Command getLeaveGameCommand(User user, Game game)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "leaveGame",
                 new String[] {USER, GAME},
                 new Object[] {user, game} );
     }

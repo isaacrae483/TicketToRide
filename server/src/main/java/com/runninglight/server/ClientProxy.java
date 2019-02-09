@@ -10,6 +10,12 @@ public class ClientProxy implements IClient {
 
     private static ClientProxy instance;
 
+    private ServerCommunicator communicator = ServerCommunicator.getInstance();
+
+    private static final String CLIENT_FACADE = "com.runninglight.tickettoride.communication.ClientFacade";
+    private static final String USER = "com.runninglight.shared.User";
+    private static final String GAME = "com.runninglight.shared.Game";
+
     public static ClientProxy getInstance() {
         if (instance == null) {
             instance = new ClientProxy();
@@ -22,7 +28,7 @@ public class ClientProxy implements IClient {
     {
         for (User user : ServerModel.getInstance().getUserList())
         {
-            ServerCommunicator.getInstance().setCommandForUser(user.getUserName(), getGameAddedCommand(g));
+            communicator.setCommandForUser(user.getUserName(), getGameAddedCommand(g));
         }
     }
 
@@ -30,24 +36,40 @@ public class ClientProxy implements IClient {
     public void addPlayer(User u, Game g) {
         for (User user : ServerModel.getInstance().getUserList())
         {
-            ServerCommunicator.getInstance().setCommandForUser(user.getUserName(), getPlayerAddedCommand(u, g));
+            communicator.setCommandForUser(user.getUserName(), getPlayerAddedCommand(u, g));
+        }
+    }
+
+    @Override
+    public void removePlayer(User u, Game g){
+        for (User user : ServerModel.getInstance().getUserList())
+        {
+            communicator.setCommandForUser(user.getUserName(), getPlayerRemovedCommand(u, g));
         }
     }
 
     private Command getGameAddedCommand(Game game)
     {
         return new Command(
-                "com.runninglight.tickettoride.communication.ClientFacade",
+                CLIENT_FACADE,
                 "addGame",
-                new String[] {"com.runninglight.shared.Game"},
+                new String[] {GAME},
                 new Object[] {game} );
     }
 
     private Command getPlayerAddedCommand(User user, Game game) {
         return new Command(
-                "com.runninglight.tickettoride.communication.ClientFacade",
+                CLIENT_FACADE,
                 "addPlayer",
-                new String[] {"com.runninglight.shared.User", "com.runninglight.shared.Game"},
+                new String[] {USER, GAME},
+                new Object[] {user, game} );
+    }
+
+    private Command getPlayerRemovedCommand(User user, Game game) {
+        return new Command(
+                CLIENT_FACADE,
+                "removePlayer",
+                new String[] {USER, GAME},
                 new Object[] {user, game} );
     }
 }

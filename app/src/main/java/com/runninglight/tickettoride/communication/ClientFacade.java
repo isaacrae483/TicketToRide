@@ -5,13 +5,21 @@ import com.runninglight.shared.IClient;
 import com.runninglight.shared.User;
 
 public class ClientFacade implements IClient {
+
+    private ClientModel model = ClientModel.getInstance();
+
     @Override
     public void addPlayer(User u, Game g) {
-        ClientModel.getInstance().addUserToGame(u, g);
+        model.addUserToGame(u, g);
+    }
+
+    @Override
+    public void removePlayer(User u, Game g){
+        model.removeUserFromGame(u, g);
     }
 
     @Override
     public void addGame(Game g) {
-        ClientModel.getInstance().addGame(g);
+        model.addGame(g);
     }
 }

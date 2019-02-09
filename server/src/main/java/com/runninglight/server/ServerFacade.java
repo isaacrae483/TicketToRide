@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class ServerFacade implements IServer {
    private ServerModel model = ServerModel.getInstance();
+   private ClientProxy proxy = ClientProxy.getInstance();
 
     @Override
     public boolean login(LoginInfo loginInfo) {
@@ -60,7 +61,7 @@ public class ServerFacade implements IServer {
         }
         Game game = new Game(gameInfo.getGameName(), gameInfo.getMaxPlayerNumber());
         model.addGame(game);
-        ClientProxy.getInstance().addGame(game);
+        proxy.addGame(game);
         return true;
     }
 
@@ -72,8 +73,17 @@ public class ServerFacade implements IServer {
         }
         model.addUserToGame(user, game);
         game.addPlayer(user);
-        ClientProxy.getInstance().addPlayer(user, game);
+        proxy.addPlayer(user, game);
         return true;
+    }
+
+    @Override
+    public boolean leaveGame(User u, Game g){
+        if(model.removeUserFromGame(u, g)){
+            proxy.removePlayer(u, g);
+            return true;
+        }
+        return false;
     }
 
     @Override

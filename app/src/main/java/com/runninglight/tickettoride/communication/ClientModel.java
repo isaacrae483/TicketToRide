@@ -79,6 +79,15 @@ public class ClientModel extends Observable {
         }
     }
 
+    public void removeUserFromGame(User u, Game g){
+        for(Game game : gameList){
+            if(game.getGameID().equals(g.getGameID())){
+                game.removePlayer(u);
+                System.out.println("Successfully removed " + u.getUserName() + " from " + g.getGameName());
+            }
+        }
+    }
+
     public void addGame(Game g) {
         gameList.add(g);
         setChanged();

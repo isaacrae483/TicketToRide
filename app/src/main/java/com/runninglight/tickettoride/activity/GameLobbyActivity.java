@@ -63,6 +63,7 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
             public void run(){
                 currentNumPlayers = model.getGame(gameName).getNumPlayers();
                 playerCount_TV.setText(currentNumPlayers + "/" + maxNumPlayers);
+                checkForStart();
                 handler.postDelayed(this, delay);
             }
         }, delay);
@@ -74,11 +75,22 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
         handler.removeCallbacksAndMessages(null);
     }
 
+    @Override
+    public void onBackPressed(){
+        presenter.leaveGame();
+        super.onBackPressed();
+    }
 
     @Override
     public void startGame() {
 
         lobbyMessage_TV.setText(R.string.lobby_message_starting);
+    }
+
+    private void checkForStart(){
+        if(currentNumPlayers == maxNumPlayers){
+            presenter.startGame();
+        }
     }
 
 }
