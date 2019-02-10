@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.runninglight.shared.Game;
 import com.runninglight.tickettoride.IPresenter.IGameLobby_Presenter;
@@ -83,7 +84,7 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
 
     @Override
     public void startGame() {
-
+        showToast("Starting game...");
         lobbyMessage_TV.setText(R.string.lobby_message_starting);
     }
 
@@ -93,4 +94,7 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
         }
     }
 
+    public void showToast(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 }
