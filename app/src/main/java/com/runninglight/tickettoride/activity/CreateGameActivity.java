@@ -1,11 +1,13 @@
 package com.runninglight.tickettoride.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.runninglight.shared.GameInfo;
 import com.runninglight.tickettoride.IPresenter.ICreateGame_Presenter;
@@ -77,5 +79,10 @@ public class CreateGameActivity extends AppCompatActivity implements ICreateGame
 
         finish();
         //TODO: join the newly created game
+    }
+
+    public void showToast(String message){
+        GameListFragment gameFragment = new GameListFragment();
+        Toast.makeText(gameFragment.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

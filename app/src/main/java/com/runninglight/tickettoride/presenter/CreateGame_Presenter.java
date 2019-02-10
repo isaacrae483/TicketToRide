@@ -1,7 +1,10 @@
 package com.runninglight.tickettoride.presenter;
 
+import android.widget.Toast;
+
 import com.runninglight.shared.GameInfo;
 import com.runninglight.tickettoride.IPresenter.ICreateGame_Presenter;
+import com.runninglight.tickettoride.activity.GameListFragment;
 import com.runninglight.tickettoride.communication.ServerProxy;
 import com.runninglight.tickettoride.iview.ICreateGame_View;
 
@@ -11,6 +14,7 @@ public class CreateGame_Presenter implements ICreateGame_Presenter {
 
     public CreateGame_Presenter(ICreateGame_View v){
         view = v;
+
     }
 
     private ICreateGame_View view;
@@ -26,7 +30,7 @@ public class CreateGame_Presenter implements ICreateGame_Presenter {
         }
         else
         {
-            // Notify user the game was unable to be created and why
+            view.showToast("Game name already exists.");
         }
 
     }

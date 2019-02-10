@@ -8,4 +8,5 @@ public interface ICreateGame_View {
     void cancel();
 
     void onCreateSuccessful();
+    void showToast(String message);
 }

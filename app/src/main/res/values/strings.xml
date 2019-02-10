@@ -11,7 +11,7 @@
     <string name="username">Username:</string>
     <string name="username_default">username</string>
     <string name="GameListTitle">The Following Games are Joinable</string>
-    <string name="createButton_title">Create</string>
+    <string name="createButton_title">Create Game</string>
     <string name="lobby_title">Lobby Title</string>
     <string name="lobby_message_waiting">waiting for players…</string>
     <string name="lobby_message_starting">lobby full starting game…</string>

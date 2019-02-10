@@ -2,26 +2,41 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#dbdbda">
 
     <TextView
         android:id="@+id/gameListTitle_textView_listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/GameListTitle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
+        android:paddingTop="70dp"
+        android:gravity="center"/>
 
     <ListView
         android:id="@+id/gameList_listView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/gameListTitle_textView_listView" />
+        app:layout_constraintTop_toBottomOf="@id/gameListTitle_textView_listView"
+        android:paddingTop="40dp"
+        android:textSize="20sp"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/button_layout">
     <Button
         android:id="@+id/create_button_gameList_listView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/createButton_title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="150dp"
+        android:padding="18dp"
+        android:background="#6E98BA"/>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

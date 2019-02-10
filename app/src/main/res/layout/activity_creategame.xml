@@ -2,24 +2,28 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#dbdbda">
 
     <TableLayout
         android:id="@+id/gameInfo_Table"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
 
         <TableRow
             android:id="@+id/gameName_Row"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/gameName_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/game_name_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="15sp"/>
 
             <EditText
                 android:id="@+id/gameName_editText"
@@ -27,20 +31,23 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@string/game_name_default" />
+                android:text="@string/game_name_default"
+                android:textSize="15sp"/>
         </TableRow>
 
         <TableRow
             android:id="@+id/playerNumber_Row"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/playerNumber_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/number_of_players_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="15sp"/>
 
             <EditText
                 android:id="@+id/playerNumber_editText"
@@ -48,24 +55,37 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
-                android:text="@string/player_num_default" />
+                android:text="@string/player_num_default"
+                android:textSize="15sp"/>
         </TableRow>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:padding="20dp"
+            >
+
+            <Button
+                android:id="@+id/create_Button_create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="@string/create_game_button"
+                android:background="#6E98BA"/>
+
+            <Button
+                android:id="@+id/cancel_Button_create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel_button"
+                android:layout_marginStart="20dp"
+                android:background="#6E98BA"/>
+        </LinearLayout>
 
     </TableLayout>
 
-    <Button
-        android:id="@+id/cancel_Button_create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/create_Button_create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_game_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
