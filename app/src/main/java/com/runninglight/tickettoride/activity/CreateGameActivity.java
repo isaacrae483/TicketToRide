@@ -51,7 +51,7 @@ public class CreateGameActivity extends AppCompatActivity implements ICreateGame
         cancel_BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: return to previous activity... essentially the back button
+                cancel();
             }
         });
 
@@ -70,7 +70,7 @@ public class CreateGameActivity extends AppCompatActivity implements ICreateGame
 
     @Override
     public void cancel() {
-
+        finish();
     }
 
     @Override
@@ -82,7 +82,6 @@ public class CreateGameActivity extends AppCompatActivity implements ICreateGame
     }
 
     public void showToast(String message){
-        GameListFragment gameFragment = new GameListFragment();
-        Toast.makeText(gameFragment.getContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

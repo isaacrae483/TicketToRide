@@ -53,11 +53,11 @@ public class ServerFacade implements IServer {
     public boolean createGame(GameInfo gameInfo) {
         if (gameInfo.getMaxPlayerNumber() < 2 || gameInfo.getMaxPlayerNumber() > 5) {
             System.out.println("Invalid player number");
-            return false;
+            throw new IllegalArgumentException("Invalid player number");
         }
-        else if (model.doesGameExist(gameInfo.getGameName())) {
-            System.out.println("Game name already exists");
-            return false;
+        else if(gameInfo.getGameName() == null || gameInfo.getGameName().equals("")){
+            System.out.println("Empty game name");
+            throw new IllegalArgumentException("Empty game name");
         }
         Game game = new Game(gameInfo.getGameName(), gameInfo.getMaxPlayerNumber());
         model.addGame(game);

@@ -71,7 +71,7 @@ public class ClientModel extends Observable {
 
     public void addUserToGame(User u, Game g) {
         for (Game game : gameList) {
-            if (game.getGameName().equals(g.getGameName())) {
+            if (game.getGameID().equals(g.getGameID())) {
                 game.addPlayer(u);
                 game.setNumPlayers(g.getNumPlayers());
                 System.out.println("Player added to Game " + game.getGameName() + " successfully");

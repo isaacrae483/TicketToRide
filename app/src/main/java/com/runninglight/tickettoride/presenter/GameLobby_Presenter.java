@@ -23,11 +23,12 @@ public class GameLobby_Presenter implements IGameLobby_Presenter {
 
         view.startGame();
     }
+
+
     @Override
     public void leaveGame(){
         proxy.leaveGame(model.getCurrentUser(), model.getCurrentGame());
     }
-
 
 
 

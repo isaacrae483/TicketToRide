@@ -33,19 +33,17 @@ public class ServerModel {
     }
 
     public void addUserToGame(User u, Game g) {
-        for (Game game : gameList) {
-            if (game.getGameName().equals(g.getGameName())) {
-                game.addPlayer(u);
-                System.out.println("Player added to Game " + game.getGameName() + " successfully");
-                //System.out.println(game.getNumPlayers());
-            }
+        int gameIndex = getGameIndex(g.getGameID());
+        if(gameIndex != -1 && isValidUser(u)){
+            gameList.get(gameIndex).addPlayer(u);
+            System.out.println("Player added to Game " + g.getGameName() + " successfully");
         }
     }
 
-    public boolean removeUserFromGame(User user, Game game){
-        int gameIndex = getGameIndex(game.getGameID());
-        if(gameIndex != -1 && isValidUser(user)){
-            gameList.get(gameIndex).removePlayer(user);
+    public boolean removeUserFromGame(User u, Game g){
+        int gameIndex = getGameIndex(g.getGameID());
+        if(gameIndex != -1 && isValidUser(u)){
+            gameList.get(gameIndex).removePlayer(u);
             return true;
         }
         return false;

@@ -30,7 +30,7 @@ public class CreateGame_Presenter implements ICreateGame_Presenter {
         }
         else
         {
-            view.showToast("Game name already exists.");
+            view.showToast("Failed to create game");
         }
 
     }
