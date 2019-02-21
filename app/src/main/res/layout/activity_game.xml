@@ -4,6 +4,20 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/chat_drawer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <FrameLayout
+            android:id="@+id/chat_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+    </android.support.v4.widget.DrawerLayout>
+
     <FrameLayout
         android:id="@+id/map_frame"
         android:layout_width="0dp"
