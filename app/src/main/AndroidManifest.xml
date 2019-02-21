@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".activity.GameLobbyActivity" />
         <activity android:name=".activity.CreateGameActivity" />
+        <activity android:name=".activity.game.GameActivity" />
     </application>
 
 </manifest>
