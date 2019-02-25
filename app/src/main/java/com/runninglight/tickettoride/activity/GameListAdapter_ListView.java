@@ -50,8 +50,7 @@ public class GameListAdapter_ListView extends ArrayAdapter<Game>{
         return rowView;
     }
 
-    public void refreshItems(ArrayList<Game> newGames){
-        games = newGames;
+    public void refresh(){
         notifyDataSetChanged();
     }
 

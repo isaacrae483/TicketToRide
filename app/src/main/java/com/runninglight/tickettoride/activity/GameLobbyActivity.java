@@ -22,6 +22,7 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
     private IGameLobby_Presenter presenter;
     private ClientModel model = ClientModel.getInstance();
     private String gameName;
+    private String gameID;
     private int currentNumPlayers;
     private int maxNumPlayers;
 
@@ -38,42 +39,16 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
         lobbyMessage_TV = findViewById(R.id.lobbyMessage_textView);
         playerCount_TV = findViewById(R.id.playerCurrent_textView);
 
-        gameName =extra.getString("gameName");
-
+        gameName = extra.getString("gameName");
+        gameID = extra.getString("gameID");
 
         lobbyTitle_TV.setText(gameName);
-        currentNumPlayers = model.getGame(gameName).getNumPlayers();
-        maxNumPlayers = model.getGame(gameName).getMaxPlayerNumber();
+        currentNumPlayers = model.getGame(gameID).getNumPlayers();
+        maxNumPlayers = model.getGame(gameID).getMaxPlayerNumber();
         playerCount_TV.setText(currentNumPlayers + "/" + maxNumPlayers);
 
 
 
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        startRefresher();
-    }
-
-    private void startRefresher(){
-        handler = new Handler();
-        final int delay = 2000; //milliseconds
-
-        handler.postDelayed(new Runnable(){
-            public void run(){
-                currentNumPlayers = model.getGame(gameName).getNumPlayers();
-                playerCount_TV.setText(currentNumPlayers + "/" + maxNumPlayers);
-                checkForStart();
-                handler.postDelayed(this, delay);
-            }
-        }, delay);
-    }
-
-    @Override
-    public void onPause(){
-        super.onPause();
-        handler.removeCallbacksAndMessages(null);
     }
 
     @Override
@@ -96,5 +71,11 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
 
     public void showToast(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void refresh(){
+        currentNumPlayers = model.getGame(gameID).getNumPlayers();
+        playerCount_TV.setText(currentNumPlayers + "/" + maxNumPlayers);
+        checkForStart();
     }
 }

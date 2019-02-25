@@ -33,7 +33,7 @@ public class GameList_Presenter implements IGameList_Presenter, Observer
     public void joinGame(GameInfo gameInfo) {
 
         Boolean canJoinGame = ServerProxy.getInstance().joinGame(ClientModel.getInstance().getCurrentUser(),
-                ClientModel.getInstance().getGame(gameInfo.getGameName()));
+                ClientModel.getInstance().getGame(gameInfo.getGameID()));
 
         if(canJoinGame){
             view.joinGameSuccessful(gameInfo);
@@ -57,6 +57,7 @@ public class GameList_Presenter implements IGameList_Presenter, Observer
             Log.d("TicketToRide", "Game added: " +  addedGame.getGameName());
             for (Game game : ClientModel.getInstance().getGameList()) Log.d("TicketToRide", game.getGameName());
             // The adapter needs to be updated here, since the list of games has changed
+            view.refresh();
         }
     }
 }

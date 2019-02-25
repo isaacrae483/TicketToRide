@@ -6,14 +6,16 @@ import com.runninglight.tickettoride.communication.ServerProxy;
 import com.runninglight.tickettoride.iview.IGameLobby_View;
 
 import java.util.Observable;
+import java.util.Observer;
 
-public class GameLobby_Presenter implements IGameLobby_Presenter {
+public class GameLobby_Presenter implements IGameLobby_Presenter, Observer {
 
     private ServerProxy proxy = ServerProxy.getInstance();
     private ClientModel model = ClientModel.getInstance();
 
     public GameLobby_Presenter(IGameLobby_View v){
         view =v;
+        model.addObserver(this);
     }
 
 
@@ -34,6 +36,6 @@ public class GameLobby_Presenter implements IGameLobby_Presenter {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        view.refresh();
     }
 }
