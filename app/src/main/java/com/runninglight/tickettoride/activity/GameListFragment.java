@@ -8,18 +8,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.tickettoride.IPresenter.IGameList_Presenter;
 import com.runninglight.tickettoride.R;
-import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.iview.IGameList_View;
 import com.runninglight.tickettoride.presenter.GameList_Presenter;
 
