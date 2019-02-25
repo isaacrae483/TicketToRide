@@ -2,12 +2,15 @@ package com.runninglight.server.communication;
 
 import com.runninglight.shared.Command;
 import com.runninglight.shared.Game;
+import com.runninglight.shared.Message;
+import com.runninglight.shared.MessageCompare;
 import com.runninglight.shared.Serializer;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ServerCommunicator
 {
@@ -27,18 +30,22 @@ public class ServerCommunicator
 
     public static void main(String[] args)
     {
-        Game game1 = new Game("game1", 2);
-        Game game2 = new Game("game2", 2);
-        //Game[] games = { game1, game2 };
-        ArrayList<Game> games = new ArrayList<>();
-        games.add(game1);
-        games.add(game2);
-        String json = new Serializer().serialize(games);
-        System.out.println(json);
-        ArrayList<Game> gamesDeserialized = (ArrayList<Game>) new Serializer().deserializeObject(json, games.getClass().getName());
-        //Game[] gamesDeserialized = (Game[]) new Serializer().deserializeObject(json, games.getClass().getName());
-        for (Game game : gamesDeserialized) System.out.println(game.getGameName());
-
+        Message message = new Message("userName", "1");
+        message.timestampMessage();
+        try
+        {
+            Thread.sleep(1000);
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+        Message message1 = new Message("userName1", "2");
+        message1.timestampMessage();
+        ArrayList<Message> messages = new ArrayList<>();
+        messages.add(message1);
+        messages.add(message);
+        Collections.sort(messages, new MessageCompare());
+        for (Message m : messages) System.out.println(m.getMessage());
     }
 
     public void startServer(int port)
