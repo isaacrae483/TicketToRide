@@ -8,6 +8,9 @@ public class GameInfo {
     /** Max number of players allowed in the room */
     private int maxPlayerNumber;
 
+    /** ID of game */
+    private String gameID;
+
     /**
      * GameInfo constructor
      *
@@ -22,12 +25,22 @@ public class GameInfo {
         this.maxPlayerNumber = maxPlayerNumber;
     }
 
+    public GameInfo(String gameName, int maxPlayerNumber, String gameID) {
+        this.gameName = gameName;
+        this.maxPlayerNumber = maxPlayerNumber;
+        this.gameID = gameID;
+    }
+
     public String getGameName() {
         return gameName;
     }
 
     public int getMaxPlayerNumber() {
         return maxPlayerNumber;
+    }
+
+    public String getGameID() {
+        return gameID;
     }
 
     public void setGameName(String gameName) {

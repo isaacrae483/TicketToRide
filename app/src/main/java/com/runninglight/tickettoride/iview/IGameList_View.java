@@ -8,4 +8,5 @@ public interface IGameList_View {
 
     void joinGameSuccessful(GameInfo gameInfo);
     void joinGameFailed();
+    void refresh();
 }

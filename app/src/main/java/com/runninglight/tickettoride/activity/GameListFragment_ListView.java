@@ -45,30 +45,6 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
         adapter = new GameListAdapter_ListView(getActivity(), model.getGameList());
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        startRefresher();
-    }
-
-    private void startRefresher(){
-        handler = new Handler();
-        final int delay = 2000; //milliseconds
-
-        handler.postDelayed(new Runnable(){
-            public void run(){
-                adapter.refreshItems(model.getGameList());
-                handler.postDelayed(this, delay);
-            }
-        }, delay);
-    }
-
-    @Override
-    public void onPause(){
-        super.onPause();
-        handler.removeCallbacksAndMessages(null);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -95,7 +71,7 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
                     Toast.makeText(getContext(),"This game is full",Toast.LENGTH_LONG).show();
                 }
                 else{
-                    presenter.joinGame(new GameInfo(game.getGameName(),game.getMaxPlayerNumber()));
+                    presenter.joinGame(new GameInfo(game.getGameName(),game.getMaxPlayerNumber(), game.getGameID()));
 
                 }
             }
@@ -125,6 +101,7 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
 
         Intent intent = new Intent(getContext(),GameLobbyActivity.class);
         intent.putExtra("gameName",gameInfo.getGameName());
+        intent.putExtra("gameID", gameInfo.getGameID());
         intent.putExtra("maxPlayers",gameInfo.getMaxPlayerNumber());
         //TODO: add game info to the intent bundle
         startActivity(intent);
@@ -135,5 +112,9 @@ public class GameListFragment_ListView extends Fragment implements IGameList_Vie
     public void joinGameFailed() {
         Toast.makeText(getContext(),"This game is full",Toast.LENGTH_LONG).show();
 
+    }
+
+    public void refresh(){
+        adapter.refresh();
     }
 }

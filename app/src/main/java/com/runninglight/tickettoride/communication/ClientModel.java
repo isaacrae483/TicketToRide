@@ -42,9 +42,9 @@ public class ClientModel extends Observable {
         this.currentGame = currentGame;
     }
 
-    public Game getGame(String gameName) {
+    public Game getGame(String gameID) {
         for (Game game : gameList) {
-            if (gameName.equals(game.getGameName())) {
+            if (gameID.equals(game.getGameID())) {
                 return game;
             }
         }
@@ -74,6 +74,8 @@ public class ClientModel extends Observable {
             if (game.getGameID().equals(g.getGameID())) {
                 game.addPlayer(u);
                 game.setNumPlayers(g.getNumPlayers());
+                setChanged();
+                notifyObservers(g);
                 System.out.println("Player added to Game " + game.getGameName() + " successfully");
             }
         }
@@ -83,6 +85,8 @@ public class ClientModel extends Observable {
         for(Game game : gameList){
             if(game.getGameID().equals(g.getGameID())){
                 game.removePlayer(u);
+                setChanged();
+                notifyObservers(g);
                 System.out.println("Successfully removed " + u.getUserName() + " from " + g.getGameName());
             }
         }
