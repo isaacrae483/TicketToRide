@@ -6,23 +6,8 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/map_layout_relative"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/map_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/the_backgroud_map"
-            app:srcCompat="@drawable/ic_launcher_background" />
-
-        <android.support.v7.widget.GridLayout
-            android:id="@+id/gridLayout_map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </android.support.v7.widget.GridLayout>
     </RelativeLayout>
-
 </android.support.constraint.ConstraintLayout>
