@@ -4,7 +4,7 @@ public class City {
     private String name;
 
     public City(String name) {
-        this.name = name;
+        setName(name);
     }
 
     public String getName() {
@@ -12,6 +12,6 @@ public class City {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.replaceAll("_", " ");
     }
 }
