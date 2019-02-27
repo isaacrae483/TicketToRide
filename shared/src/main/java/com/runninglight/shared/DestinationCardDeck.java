@@ -63,9 +63,4 @@ public class DestinationCardDeck {
         }
         return sb.toString();
     }
-
-    public static void main(String[] args){
-        DestinationCardDeck myDeck = new DestinationCardDeck();
-        System.out.println(myDeck.toString());
-    }
 }
