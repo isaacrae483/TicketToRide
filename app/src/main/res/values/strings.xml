@@ -22,4 +22,5 @@
     <string name="number_of_players_title">Number of Players (2-5):</string>
     <string name="game_name_default">myGame</string>
     <string name="game_name_title">Game Name:</string>
+    <string name="the_backgroud_map">The Backgroud Map</string>
 </resources>
