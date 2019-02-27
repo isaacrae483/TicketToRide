@@ -49,7 +49,7 @@ public class ServerModel {
         return false;
     }
 
-    public  boolean doesGameExist(String gameName) {
+    public boolean doesGameExist(String gameName) {
         for(Game g : gameList) {
             if(g.getGameName().equals(gameName)) {
                 return true;
