@@ -39,4 +39,9 @@ public class DestinationCard {
     public ArrayList<City> getCities() {
         return cities;
     }
+
+    @Override
+    public String toString(){
+        return cities.get(0).getName() + "--" + cities.get(1).getName();
+    }
 }
