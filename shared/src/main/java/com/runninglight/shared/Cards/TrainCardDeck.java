@@ -1,16 +1,25 @@
 package com.runninglight.shared.Cards;
 
 public class TrainCardDeck {
-    TrainCardDeck(){}
 
-    public int getNumCardsInDeck(){
-        int numCards = 0;
+    private static TrainCardDeck instance;
+
+    public static TrainCardDeck getInstance() {
+        if (instance == null) {
+            instance = new TrainCardDeck();
+        }
+        return instance;
+    }
+
+    private TrainCardDeck(){}
+
+    private int numCards = 105;
+
+    public int getNumCardsInDeck() {
         return numCards;
     }
 
-    public TrainCard drawCard() {
-        return new TrainCard();
-    }
+    //public TrainCard drawCard() {}
 
     public void discard(TrainCard trainCard){}
 
