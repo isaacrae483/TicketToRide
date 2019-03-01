@@ -14,4 +14,8 @@ public interface IServer {
     boolean leaveGame(User user, Game game);
 
     Game[] getGameList();
+
+    DestinationCard[] drawDestCards(String gameID, int numCards);
+
+    void returnDestCards(String gameID, DestinationCard[] cards);
 }

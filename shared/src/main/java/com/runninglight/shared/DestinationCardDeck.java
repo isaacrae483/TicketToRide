@@ -44,10 +44,15 @@ public class DestinationCardDeck {
     }
 
     public DestinationCard getRandomCard(){
-        int index = ThreadLocalRandom.current().nextInt(deck.size());
-        DestinationCard result = deck.get(index);
-        deck.remove(index);
-        return result;
+        if(deck.size() > 0) {
+            int index = ThreadLocalRandom.current().nextInt(deck.size());
+            DestinationCard result = deck.get(index);
+            deck.remove(index);
+            return result;
+        }
+        else{
+            throw new RuntimeException("Cannot draw another card");
+        }
     }
 
     public ArrayList<DestinationCard> getDeck() {

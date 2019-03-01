@@ -12,7 +12,13 @@ public class Game {
     private String gameID;
 
     /** List of Users in the game room */
-    private ArrayList<User> playerList;
+    private ArrayList<User> userList;
+
+    /** List of Players in the game room */
+    private ArrayList<Player> playerList;
+
+    /** Destination Card Deck */
+    private DestinationCardDeck destCardDeck;
 
     /** Maximum number of Users allowed in the game room */
     private int maxPlayerNumber;
@@ -22,6 +28,9 @@ public class Game {
 
     /** Indicates the last index of the hex ID */
     private static final int ID_END = 7;
+
+    /** Starting number of train cars */
+    private static final int MAX_TRAIN_CARS = 45;
 
     /**
      * Game constructor
@@ -36,53 +45,92 @@ public class Game {
         this.gameName = gameName;
         this.maxPlayerNumber = maxPlayerNumber;
         this.numPlayers = 0;
-        this.playerList = new ArrayList<>();
+        this.userList = new ArrayList<>();
         this.gameID = generateID();
+      //  this.destCardDeck = new DestinationCardDeck();
+        // For now, initializing a DestinationCardDeck breaks it
+    }
+
+    public void initPlayers(){
+        for(User user : userList){
+            playerList.add(new Player(user.getUserName(), MAX_TRAIN_CARS));
+        }
+    }
+
+    public boolean isValidPlayer(Player player){
+        String playerName = player.getName();
+        int resultIndex = find(playerName);
+        if(resultIndex == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     /**
-     * Adds a User to the playerList
+     * Adds a User to the userList
      * @param user User to add
      *
      * @pre none
-     * @post Adds a User to the playerList
+     * @post Adds a User to the userList
      */
     public void addPlayer(User user){
         if(user != null) {
-            playerList.add(user);
+            userList.add(user);
             ++numPlayers;
         }
     }
 
     /**
-     * Removes a User from the playerList
+     * Removes a User from the userList
      * @param user User to remove
      *
      * @pre none
-     * @post Removes a User from the playerList if it exists
+     * @post Removes a User from the userList if it exists
      */
     public void removePlayer(User user){
-        int userIndex = find(user.getUserID());
+        int userIndex = find(user.getUserName());
         if(userIndex != -1){
-            playerList.remove(userIndex);
+            userList.remove(userIndex);
             numPlayers--;
         }
     }
 
+    public DestinationCard[] drawDestCards(int numCards){
+        DestinationCard[] cards = new DestinationCard[numCards];
+        int index = 0;      // Use this to keep track of how many cards were actually drawn
+
+        try {
+            for (index = 0; index < numCards; index++) {
+                cards[index] = destCardDeck.getRandomCard();
+            }
+            return cards;
+        }
+        // The total desired number of cards could not be drawn because the deck is empty
+        catch(RuntimeException e){
+            DestinationCard[] smallerCards = new DestinationCard[index + 1];
+            for(int i = 0; i < index + 1; i++){
+                smallerCards[i] = cards[i];
+            }
+            return smallerCards;
+        }
+    }
+
     /**
-     * Searches the playerList for a User with a specific userID and returns the index of the User
-     * @param userID ID to search for
-     * @return the index in the playerList of the User with the specified userID, -1 if not found
+     * Searches the userList for a User with a specific userID and returns the index of the User
+     * @param userName username to search for
+     * @return the index in the userList of the User with the specified userID, -1 if not found
      *
      * @pre none
-     * @post Returns the index in the playerList of the User with the specified userID, -1 if not found
+     * @post Returns the index in the userList of the User with the specified userID, -1 if not found
      */
-    private int find(String userID){
-        if(userID == null){
+    private int find(String userName){
+        if(userName == null){
             return -1;
         }
-        for(int i = 0; i < playerList.size(); i++){
-            if(playerList.get(i).getUserID().equals(userID)){
+        for(int i = 0; i < userList.size(); i++){
+            if(userList.get(i).getUserName().equals(userName)){
                 return i;
             }
         }
@@ -116,12 +164,12 @@ public class Game {
         this.gameID = gameID;
     }
 
-    public ArrayList<User> getPlayerList() {
-        return playerList;
+    public ArrayList<User> getUserList() {
+        return userList;
     }
 
-    public void setPlayerList(ArrayList<User> playerList) {
-        this.playerList = playerList;
+    public void setUserList(ArrayList<User> userList) {
+        this.userList = userList;
     }
 
     public int getMaxPlayerNumber() {

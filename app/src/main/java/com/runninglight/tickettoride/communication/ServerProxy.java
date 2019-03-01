@@ -3,10 +3,12 @@ package com.runninglight.tickettoride.communication;
 import android.util.Log;
 
 import com.runninglight.shared.Command;
+import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.shared.IServer;
 import com.runninglight.shared.LoginInfo;
+import com.runninglight.shared.Player;
 import com.runninglight.shared.Results;
 import com.runninglight.shared.Serializer;
 import com.runninglight.shared.User;
@@ -23,6 +25,8 @@ public class ServerProxy implements IServer {
     private static final String GAME_INFO = "com.runninglight.shared.GameInfo";
     private static final String USER = "com.runninglight.shared.User";
     private static final String GAME = "com.runninglight.shared.Game";
+    private static final String PLAYER = "com.runninglight.shared.Player";
+    private static final String STRING = "java.lang.String";
 
     public static ServerProxy getInstance(){
         if(instance == null) {
@@ -121,6 +125,31 @@ public class ServerProxy implements IServer {
         }
     }
 
+    // TODO: Change User to Player
+    @Override
+    public DestinationCard[] drawDestCards(String gameID, int numCards){
+        Results results = communicator.send(getDrawDestCardsCommand(gameID, numCards));
+        if (results.isSuccess()) {
+            System.out.println("Destination cards drawn successfully");
+
+            DestinationCard[] cards = new DestinationCard[] {};
+            cards = (DestinationCard[]) new Serializer().deserializeObject(results.getData().toString(), cards.getClass().getName());
+           // ArrayList<DestinationCard> cardList = new ArrayList<>();
+            //for (Object card : cards) cardList.add((DestinationCard) card);
+
+            return cards;
+        }
+        else {
+            System.out.println(results.getErrorInfo());
+            return null;
+        }
+    }
+
+    @Override
+    public void returnDestCards(String gameID, DestinationCard[] cards){
+
+    }
+
     private Command getRegisterCommand(LoginInfo loginInfo)
     {
          return new Command(
@@ -173,5 +202,23 @@ public class ServerProxy implements IServer {
                 "getGameList",
                 new String[] {},
                 new Object[] {} );
+    }
+
+    private Command getDrawDestCardsCommand(String gameID, int numCards)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "drawDestCards",
+                new String[] {STRING, "int"},
+                new Object[] {gameID, numCards} );
+    }
+
+    private Command getReturnDestCardsCommand(String gameID, DestinationCard[] cards)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "returnDestCards",
+                new String[] {STRING, "int"},
+                new Object[] {gameID, cards} );
     }
 }

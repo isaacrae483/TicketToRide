@@ -1,6 +1,8 @@
 package com.runninglight.server;
 
+import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
+import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
 
 import java.util.ArrayList;
@@ -83,6 +85,22 @@ public class ServerModel {
             }
         }
         return false;
+    }
+
+    public Game getGameByID(String gameID){
+        int resultIndex = getGameIndex(gameID);
+        if(resultIndex == -1){
+            return null;
+        }
+        return gameList.get(resultIndex);
+    }
+
+    public DestinationCard[] drawDestCards(String gameID, int numCards){
+        int gameIndex = getGameIndex(gameID);
+        if(gameIndex == -1){
+            return null;
+        }
+        return gameList.get(gameIndex).drawDestCards(numCards);
     }
 
     public ArrayList<Game> getGameList() {

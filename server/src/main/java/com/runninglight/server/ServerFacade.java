@@ -2,10 +2,12 @@ package com.runninglight.server;
 
 import com.runninglight.server.communication.ServerCommunicator;
 import com.runninglight.shared.Command;
+import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.shared.IServer;
 import com.runninglight.shared.LoginInfo;
+import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
 
 import java.util.ArrayList;
@@ -93,4 +95,15 @@ public class ServerFacade implements IServer {
         System.out.println(gamesArray);
         return gamesArray;
     }
+
+    @Override
+    public DestinationCard[] drawDestCards(String gameID, int numCards){
+        return model.drawDestCards(gameID, numCards);
+    }
+
+    @Override
+    public void returnDestCards(String gameID, DestinationCard[] cards){
+
+    }
+
 }
