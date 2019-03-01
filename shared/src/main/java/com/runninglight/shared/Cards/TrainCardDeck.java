@@ -19,7 +19,9 @@ public class TrainCardDeck {
         return numCards;
     }
 
-    //public TrainCard drawCard() {}
+    public TrainCard drawCard() {
+        return null;
+    }
 
     public void discard(TrainCard trainCard){}
 
