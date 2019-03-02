@@ -48,7 +48,6 @@ public class Game {
         this.userList = new ArrayList<>();
         this.gameID = generateID();
         this.destCardDeck = new DestinationCardDeck();
-        // For now, initializing a DestinationCardDeck breaks it
     }
 
     /**
