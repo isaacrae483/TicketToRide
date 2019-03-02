@@ -103,7 +103,7 @@ public class ServerFacade implements IServer {
 
     @Override
     public void returnDestCards(String gameID, DestinationCard[] cards){
-
+        model.returnDestCards(gameID, cards);
     }
 
 }

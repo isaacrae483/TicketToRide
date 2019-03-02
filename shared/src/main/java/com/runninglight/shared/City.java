@@ -8,10 +8,10 @@ public class City {
     }
 
     public String getName() {
-        return name;
+        return name.replace('_', ' ');
     }
 
     public void setName(String name) {
-        this.name = name.replaceAll("_", " ");
+        this.name = name;
     }
 }

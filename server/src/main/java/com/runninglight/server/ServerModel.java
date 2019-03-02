@@ -103,6 +103,13 @@ public class ServerModel {
         return gameList.get(gameIndex).drawDestCards(numCards);
     }
 
+    public void returnDestCards(String gameID, DestinationCard[] cards){
+        int gameIndex = getGameIndex(gameID);
+        if(gameIndex != -1) {
+            gameList.get(gameIndex).returnDestCards(cards);
+        }
+    }
+
     public ArrayList<Game> getGameList() {
         return gameList;
     }

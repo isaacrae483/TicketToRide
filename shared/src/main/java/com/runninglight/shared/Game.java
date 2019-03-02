@@ -18,7 +18,7 @@ public class Game {
     private ArrayList<Player> playerList;
 
     /** Destination Card Deck */
-    private DestinationCardDeck destCardDeck;
+    private transient DestinationCardDeck destCardDeck;
 
     /** Maximum number of Users allowed in the game room */
     private int maxPlayerNumber;
@@ -47,13 +47,17 @@ public class Game {
         this.numPlayers = 0;
         this.userList = new ArrayList<>();
         this.gameID = generateID();
-      //  this.destCardDeck = new DestinationCardDeck();
+        this.destCardDeck = new DestinationCardDeck();
         // For now, initializing a DestinationCardDeck breaks it
     }
 
+    /**
+     * Creates Player objects from Users to start the game
+     */
     public void initPlayers(){
         for(User user : userList){
-            playerList.add(new Player(user.getUserName(), MAX_TRAIN_CARS));
+            // TODO: Finish GameColor to allow creation
+            //playerList.add(new Player(user.getUserName(), MAX_TRAIN_CARS));
         }
     }
 
@@ -103,8 +107,9 @@ public class Game {
 
         try {
             for (index = 0; index < numCards; index++) {
-                cards[index] = destCardDeck.getRandomCard();
+                cards[index] = destCardDeck.drawCard();
             }
+            System.out.println(destCardDeck.getDeck().size());
             return cards;
         }
         // The total desired number of cards could not be drawn because the deck is empty
@@ -115,6 +120,13 @@ public class Game {
             }
             return smallerCards;
         }
+    }
+
+    public void returnDestCards(DestinationCard[] cards){
+        for(DestinationCard card : cards){
+            destCardDeck.returnCard(card);
+        }
+        System.out.println(destCardDeck.getDeck().size());
     }
 
     /**

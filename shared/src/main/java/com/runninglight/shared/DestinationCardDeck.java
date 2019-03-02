@@ -3,6 +3,7 @@ package com.runninglight.shared;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -31,6 +32,7 @@ public class DestinationCardDeck {
                 DestinationCard card = new DestinationCard(startCity, endCity);
                 deck.add(card);
             }
+            Collections.shuffle(deck);
         }
         catch(FileNotFoundException e){
             // Throws an exception that the Command will catch to return a false success
@@ -43,16 +45,22 @@ public class DestinationCardDeck {
 
     }
 
-    public DestinationCard getRandomCard(){
+    public DestinationCard drawCard(){
         if(deck.size() > 0) {
-            int index = ThreadLocalRandom.current().nextInt(deck.size());
-            DestinationCard result = deck.get(index);
-            deck.remove(index);
+            DestinationCard result = deck.get(0);
+            deck.remove(0);
             return result;
         }
         else{
             throw new RuntimeException("Cannot draw another card");
         }
+    }
+
+    public void returnCard(DestinationCard card){
+        if(card == null){
+            throw new RuntimeException("Invalid card");
+        }
+        deck.add(card);
     }
 
     public ArrayList<DestinationCard> getDeck() {

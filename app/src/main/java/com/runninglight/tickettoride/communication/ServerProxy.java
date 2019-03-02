@@ -26,6 +26,7 @@ public class ServerProxy implements IServer {
     private static final String USER = "com.runninglight.shared.User";
     private static final String GAME = "com.runninglight.shared.Game";
     private static final String PLAYER = "com.runninglight.shared.Player";
+    private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.DestinationCard;";
     private static final String STRING = "java.lang.String";
 
     public static ServerProxy getInstance(){
@@ -125,7 +126,6 @@ public class ServerProxy implements IServer {
         }
     }
 
-    // TODO: Change User to Player
     @Override
     public DestinationCard[] drawDestCards(String gameID, int numCards){
         Results results = communicator.send(getDrawDestCardsCommand(gameID, numCards));
@@ -136,7 +136,6 @@ public class ServerProxy implements IServer {
             cards = (DestinationCard[]) new Serializer().deserializeObject(results.getData().toString(), cards.getClass().getName());
            // ArrayList<DestinationCard> cardList = new ArrayList<>();
             //for (Object card : cards) cardList.add((DestinationCard) card);
-
             return cards;
         }
         else {
@@ -147,7 +146,17 @@ public class ServerProxy implements IServer {
 
     @Override
     public void returnDestCards(String gameID, DestinationCard[] cards){
+        Results results = communicator.send(getReturnDestCardsCommand(gameID, cards));
+        if (results.isSuccess()) {
+            System.out.println("Destination cards returned successfully");
 
+            for(int i = 0; i < cards.length; i++){
+                System.out.println(cards[i]);
+            }
+        }
+        else {
+            System.out.println(results.getErrorInfo());
+        }
     }
 
     private Command getRegisterCommand(LoginInfo loginInfo)
@@ -218,7 +227,7 @@ public class ServerProxy implements IServer {
         return new Command(
                 SERVER_FACADE,
                 "returnDestCards",
-                new String[] {STRING, "int"},
+                new String[] {STRING, DEST_CARD_ARRAY},
                 new Object[] {gameID, cards} );
     }
 }
