@@ -52,8 +52,7 @@ public class TrainCardDeck {
 
     public TrainCard drawCard() {
         if (trainCards.size() == 0) {
-            trainCards = discardPile.getDiscardPile();
-            shuffleDeck();
+            addDiscardToDeck();
         }
         TrainCard drawnCard = trainCards.get(0);
         trainCards.remove(0);
@@ -66,5 +65,8 @@ public class TrainCardDeck {
 
     public void shuffleDeck() {}
 
-    public void addDiscardToDeck(){}
+    public void addDiscardToDeck(){
+        trainCards = discardPile.getDiscardPile();
+        shuffleDeck();
+    }
 }
