@@ -5,16 +5,28 @@ import java.util.ArrayList;
 public class Map {
     private ArrayList<Route> allRoutes;
 
-    public void claimRoute() {
+    private ArrayList<City> allCities;
 
+    public void claimRoute(int routeIndex, Player p) {
+        allRoutes.get(routeIndex).setClaimed(p);
     }
 
-    public void getCity(City c) {
-
+    public int getCity(City c) {
+        for (int i = 0; i < allCities.size(); ++i) {
+            if (allCities.get(i).equals(c)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
-    public void getRoute(Route r) {
-
+    public int getRouteIndex(Route r) {
+        for (int i = 0; i < allRoutes.size(); ++i) {
+            if (allRoutes.get(i).equals(r)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     boolean playerConnects(City city1, City city2) {
