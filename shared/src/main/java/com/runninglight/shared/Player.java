@@ -6,7 +6,7 @@ public class Player {
 
     private String name;
 
-    private GameColor color;
+    private CardColor color;
 
     private int points;
 
@@ -16,7 +16,7 @@ public class Player {
 
     private ArrayList<Route> claimedRoutes;
 
-    public Player(String name, int trainCars, GameColor color) {
+    public Player(String name, int trainCars, CardColor color) {
         this.name = name;
         this.points = 0;
         this.color = color;

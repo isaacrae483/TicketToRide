@@ -1,9 +1,15 @@
 package com.runninglight.shared.Cards;
 
-import com.runninglight.shared.GameColor;
+import com.runninglight.shared.CardColor;
 
 public class TrainCard {
-    TrainCard(GameColor color){}
+    TrainCard(CardColor color){
+        cardColor = color;
+    }
 
-    //public GameColor getCardColor(){}
+    private CardColor cardColor;
+
+    public CardColor getCardColor(){
+        return cardColor;
+    }
 }
