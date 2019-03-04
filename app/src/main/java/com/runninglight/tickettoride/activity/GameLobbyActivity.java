@@ -1,5 +1,6 @@
 package com.runninglight.tickettoride.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import com.runninglight.shared.Game;
 import com.runninglight.tickettoride.IPresenter.IGameLobby_Presenter;
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.activity.game.GameActivity;
 import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.iview.IGameLobby_View;
 import com.runninglight.tickettoride.presenter.GameLobby_Presenter;
@@ -61,6 +63,10 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
     public void startGame() {
         showToast("Starting game...");
         lobbyMessage_TV.setText(R.string.lobby_message_starting);
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+
+
     }
 
     private void checkForStart(){

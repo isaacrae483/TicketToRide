@@ -25,8 +25,6 @@
             <Button
                 android:id="@+id/vancouver_BTN"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="ME"
                 app:layout_column="0"
                 app:layout_row="0" />
@@ -34,11 +32,9 @@
             <Button
                 android:id="@+id/seattle_BTN"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                app:layout_row="5"
-                app:layout_column="5"
-                android:layout_height="wrap_content"
-                android:text="ME" />
+                android:text="ME"
+                app:layout_column="0"
+                app:layout_row="5" />
         </android.support.v7.widget.GridLayout>
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
