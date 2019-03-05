@@ -8,6 +8,7 @@ import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.shared.IServer;
 import com.runninglight.shared.LoginInfo;
+import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.Results;
 import com.runninglight.shared.Serializer;
@@ -28,6 +29,7 @@ public class ServerProxy implements IServer {
     private static final String PLAYER = "com.runninglight.shared.Player";
     private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.DestinationCard;";
     private static final String STRING = "java.lang.String";
+    private static final String MESSAGE = "com.runninglight.shared.Message";
 
     public static ServerProxy getInstance(){
         if(instance == null) {
@@ -157,6 +159,31 @@ public class ServerProxy implements IServer {
         else {
             System.out.println(results.getErrorInfo());
         }
+    }
+
+    @Override
+    public boolean sendMessage(Message message, Game game)
+    {
+        Results results = communicator.send(getSendMessageCommand(message, game));
+        if (results.isSuccess())
+        {
+            Log.d("TTR.ServerProxy", "Message sent successfully");
+        }
+        else
+        {
+            System.out.println(results.getErrorInfo());
+            return false;
+        }
+        return true;
+    }
+
+    private Command getSendMessageCommand(Message message, Game game)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "sendMessage",
+                new String[] {MESSAGE, GAME},
+                new Object[] {message, game} );
     }
 
     private Command getRegisterCommand(LoginInfo loginInfo)

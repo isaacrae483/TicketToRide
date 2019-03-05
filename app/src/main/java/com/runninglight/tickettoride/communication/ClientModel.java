@@ -3,6 +3,7 @@ package com.runninglight.tickettoride.communication;
 import android.util.Log;
 
 import com.runninglight.shared.Game;
+import com.runninglight.shared.Message;
 import com.runninglight.shared.User;
 
 import java.util.ArrayList;
@@ -96,5 +97,32 @@ public class ClientModel extends Observable {
         gameList.add(g);
         setChanged();
         notifyObservers(g);
+    }
+
+    public void addMessage(Message message, Game game)
+    {
+        for (Game g : gameList)
+        {
+            if (g.getGameID().equals(game.getGameID()))
+            {
+                Log.d("TTR.ClientModel", "adding message '" + message.getMessage() + "' to game: " + getCurrentGame());
+                getCurrentGame().addMessage(message);
+                setChanged();
+                notifyObservers(message);
+                break;
+            }
+        }
+    }
+
+    public ArrayList<Message> getMessages(Game game)
+    {
+        for (Game g : gameList)
+        {
+            if (g.getGameID().equals(game.getGameID()))
+            {
+                return g.getMessages();
+            }
+        }
+        return null;
     }
 }

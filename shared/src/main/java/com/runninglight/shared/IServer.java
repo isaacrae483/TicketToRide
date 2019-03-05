@@ -13,6 +13,8 @@ public interface IServer {
 
     boolean leaveGame(User user, Game game);
 
+    boolean sendMessage(Message message, Game game);
+
     Game[] getGameList();
 
     DestinationCard[] drawDestCards(String gameID, int numCards);

@@ -17,6 +17,8 @@ public class Game {
     /** List of Players in the game room */
     private ArrayList<Player> playerList;
 
+    private Chat chat;
+
     /** Destination Card Deck */
     private transient DestinationCardDeck destCardDeck;
 
@@ -48,6 +50,7 @@ public class Game {
         this.userList = new ArrayList<>();
         this.gameID = generateID();
         this.destCardDeck = new DestinationCardDeck();
+        this.chat = new Chat();
     }
 
     /**
@@ -198,4 +201,8 @@ public class Game {
     public void setNumPlayers(int numPlayers) {
         this.numPlayers = numPlayers;
     }
+
+    public void addMessage(Message message) { chat.addMessage(message); }
+
+    public ArrayList<Message> getMessages() { return chat.getSortedMessages(); }
 }

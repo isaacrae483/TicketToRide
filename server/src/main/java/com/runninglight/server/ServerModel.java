@@ -2,6 +2,7 @@ package com.runninglight.server;
 
 import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
+import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
 
@@ -107,6 +108,19 @@ public class ServerModel {
         int gameIndex = getGameIndex(gameID);
         if(gameIndex != -1) {
             gameList.get(gameIndex).returnDestCards(cards);
+        }
+    }
+
+    public void addMessageToGame(Message message, Game game)
+    {
+        for (int i = 0; i < gameList.size(); i++)
+        {
+            if (gameList.get(i).getGameID().equals(game.getGameID()))
+            {
+                message.timestampMessage();
+                System.out.println("Adding message: '" + message.getMessage() + "' from user: " + message.getUserName() + " in game: " + game.getGameName());
+                gameList.get(i).addMessage(message);
+            }
         }
     }
 

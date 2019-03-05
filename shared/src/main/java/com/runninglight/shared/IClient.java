@@ -7,4 +7,6 @@ public interface IClient {
     void removePlayer(User u, Game g);
 
     void addGame(Game g);
+
+    void broadcastMessage(Message message, Game game);
 }

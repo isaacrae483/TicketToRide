@@ -18,11 +18,11 @@ public class GameLobby_Presenter implements IGameLobby_Presenter, Observer {
         model.addObserver(this);
     }
 
-
     private IGameLobby_View view;
     @Override
     public void startGame() {
 
+        model.deleteObserver(this);
         view.startGame();
     }
 

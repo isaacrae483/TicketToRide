@@ -7,6 +7,7 @@ import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.shared.IServer;
 import com.runninglight.shared.LoginInfo;
+import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
 
@@ -104,6 +105,15 @@ public class ServerFacade implements IServer {
     @Override
     public void returnDestCards(String gameID, DestinationCard[] cards){
         model.returnDestCards(gameID, cards);
+    }
+
+    @Override
+    public boolean sendMessage(Message message, Game game)
+    {
+        System.out.println("Received message: '" + message.getMessage() + "' from user: " + message.getUserName() + " in game: " + game.getGameName());
+        ServerModel.getInstance().addMessageToGame(message, game);
+        ClientProxy.getInstance().broadcastMessage(message, game);
+        return true;
     }
 
 }
