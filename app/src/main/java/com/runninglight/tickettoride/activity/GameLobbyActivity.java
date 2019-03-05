@@ -61,7 +61,7 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
 
     @Override
     public void startGame() {
-        showToast("Starting game...");
+        //showToast("Starting game...");
         lobbyMessage_TV.setText(R.string.lobby_message_starting);
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);

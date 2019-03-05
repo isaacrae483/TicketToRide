@@ -11,8 +11,8 @@
 
         <ImageView
             android:id="@+id/map_image_IV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:contentDescription="@string/the_backgroud_map"
             app:srcCompat="@drawable/ttr_map_croped" />
 
@@ -24,7 +24,7 @@
 
             <Button
                 android:id="@+id/vancouver_BTN"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                style="@style/Widget.AppCompat.Button"
                 android:text="ME"
                 app:layout_column="0"
                 app:layout_row="0" />
