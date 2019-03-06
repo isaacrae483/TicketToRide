@@ -14,10 +14,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.runninglight.tickettoride.IPresenter.game.IMapPresenter;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.iview.game.IMap_View;
+import com.runninglight.tickettoride.presenter.game.MapPresenter;
 
 public class MapFragment extends Fragment implements IMap_View {
+
+    private IMapPresenter presenter;
 
     private ImageView map;
 
@@ -35,6 +39,8 @@ public class MapFragment extends Fragment implements IMap_View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
+        presenter = new MapPresenter(this);
+
         View v = inflater.inflate(R.layout.fragment_map, container, false);
 
         map = v.findViewById(R.id.map_image_IV);
@@ -46,8 +52,7 @@ public class MapFragment extends Fragment implements IMap_View {
         map.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                event.getX();
-                event.getY();
+                presenter.touchMap((int) event.getX(),(int) event.getY());
                 return false;
             }
         });
