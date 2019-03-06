@@ -78,4 +78,8 @@ public class ServerCommunicator
     {
         return commandManager.getCommand(userId);
     }
+
+    public void setCommandForGame(Game game, Command command){
+        commandManager.setCommandForGame(game, command);
+    }
 }

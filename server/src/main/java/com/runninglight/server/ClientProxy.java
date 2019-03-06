@@ -66,10 +66,7 @@ public class ClientProxy implements IClient {
 
     @Override
     public void setDestinationCards(Game g, Player p){
-        for(User user : g.getUserList())
-        {
-            communicator.setCommandForUser(user.getUserName(), getSetDestinationCardsCommand(g, p));
-        }
+        communicator.setCommandForGame(g, getSetDestinationCardsCommand(g, p));
     }
 
     private Command getGameAddedCommand(Game game)
