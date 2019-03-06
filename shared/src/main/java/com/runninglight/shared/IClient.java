@@ -9,4 +9,6 @@ public interface IClient {
     void addGame(Game g);
 
     void broadcastMessage(Message message, Game game);
+
+    void setDestinationCards(Game g, Player p);
 }

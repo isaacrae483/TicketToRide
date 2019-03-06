@@ -1,6 +1,7 @@
 package com.runninglight.shared;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class Game {
@@ -51,6 +52,7 @@ public class Game {
         this.gameID = generateID();
         this.destCardDeck = new DestinationCardDeck();
         this.chat = new Chat();
+        this.playerList = new ArrayList<>();
     }
 
     /**
@@ -84,6 +86,7 @@ public class Game {
     public void addPlayer(User user){
         if(user != null) {
             userList.add(user);
+            playerList.add(new Player(user.getUserName(), MAX_TRAIN_CARS, PlayerColor.values()[numPlayers]));
             ++numPlayers;
         }
     }
@@ -99,6 +102,7 @@ public class Game {
         int userIndex = find(user.getUserName());
         if(userIndex != -1){
             userList.remove(userIndex);
+            playerList.remove(userIndex);
             numPlayers--;
         }
     }
@@ -129,6 +133,30 @@ public class Game {
             destCardDeck.returnCard(card);
         }
         System.out.println(destCardDeck.getDeck().size());
+    }
+
+    public void addDestinationCards(String playerName, DestinationCard[] cards){
+        Player p = getPlayer(playerName);
+        ArrayList<DestinationCard> newCards = new ArrayList<>(Arrays.asList(cards));
+        p.addDestinationCards(newCards);
+    }
+
+    public void setDestinationCards(String playerName, DestinationCard[] cards){
+        Player p = getPlayer(playerName);
+        ArrayList<DestinationCard> newCards = new ArrayList<>(Arrays.asList(cards));
+        p.setDestinationCards(newCards);
+    }
+
+    public Player getPlayer(String playerName){
+        if(playerName == null){
+            return null;
+        }
+        for(Player p : playerList){
+            if(p.getName().equals(playerName)){
+                return p;
+            }
+        }
+        return null;
     }
 
     /**
@@ -205,4 +233,8 @@ public class Game {
     public void addMessage(Message message) { chat.addMessage(message); }
 
     public ArrayList<Message> getMessages() { return chat.getSortedMessages(); }
+
+    public ArrayList<Player> getPlayerList() {
+        return playerList;
+    }
 }

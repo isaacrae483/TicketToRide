@@ -2,8 +2,10 @@ package com.runninglight.tickettoride.communication;
 
 import android.util.Log;
 
+import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
+import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
 
 import java.util.ArrayList;
@@ -124,5 +126,9 @@ public class ClientModel extends Observable {
             }
         }
         return null;
+    }
+
+    public void setDestinationCards(Game g, Player p){
+        g.setDestinationCards(p.getName(), p.getDestinationCards().toArray(new DestinationCard[0]));
     }
 }

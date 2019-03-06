@@ -25,6 +25,10 @@ public class Player {
         claimedRoutes = new ArrayList<>();
     }
 
+    public void addDestinationCards(ArrayList<DestinationCard> cards){
+        destinationCards.addAll(cards);
+    }
+
     public String getName() {
         return name;
     }

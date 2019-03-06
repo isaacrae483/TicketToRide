@@ -104,11 +104,14 @@ public class ServerModel {
         return gameList.get(gameIndex).drawDestCards(numCards);
     }
 
-    public void returnDestCards(String gameID, DestinationCard[] cards){
+    public void returnDestCards(String gameID, String playerName,
+                                DestinationCard[] cardsKept, DestinationCard[] cardsToReturn){
         int gameIndex = getGameIndex(gameID);
         if(gameIndex != -1) {
-            gameList.get(gameIndex).returnDestCards(cards);
+            gameList.get(gameIndex).returnDestCards(cardsToReturn);
+            gameList.get(gameIndex).addDestinationCards(playerName, cardsKept);
         }
+
     }
 
     public void addMessageToGame(Message message, Game game)

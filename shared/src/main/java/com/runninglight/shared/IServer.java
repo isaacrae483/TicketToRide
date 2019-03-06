@@ -19,5 +19,6 @@ public interface IServer {
 
     DestinationCard[] drawDestCards(String gameID, int numCards);
 
-    void returnDestCards(String gameID, DestinationCard[] cards);
+    void returnDestCards(String gameID, String playerName,
+                         DestinationCard[] cardsKept, DestinationCard[] cardsToReturn);
 }
