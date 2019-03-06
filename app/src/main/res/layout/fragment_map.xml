@@ -10,6 +10,6 @@
 
         android:layout_height="match_parent"
         android:contentDescription="@string/the_backgroud_map"
-        app:srcCompat="@drawable/ttr_map_croped" />
+        app:srcCompat="@drawable/ttr_cropped" />
 
 </android.support.constraint.ConstraintLayout>
