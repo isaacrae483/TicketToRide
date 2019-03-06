@@ -3,7 +3,7 @@ package com.runninglight.shared.Cards;
 import com.runninglight.shared.CardColor;
 
 public class TrainCard {
-    TrainCard(CardColor color){
+    public TrainCard(CardColor color){
         cardColor = color;
     }
 

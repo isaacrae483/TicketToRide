@@ -1,5 +1,7 @@
 package com.runninglight.shared;
 
+import com.runninglight.shared.Cards.TrainCard;
+
 import java.util.ArrayList;
 
 public interface IServer {
@@ -14,6 +16,8 @@ public interface IServer {
     boolean leaveGame(User user, Game game);
 
     boolean sendMessage(Message message, Game game);
+
+    TrainCard drawTrainCard(Game game);
 
     Game[] getGameList();
 

@@ -1,6 +1,7 @@
 package com.runninglight.server;
 
 import com.runninglight.server.communication.ServerCommunicator;
+import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Command;
 import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
@@ -116,4 +117,10 @@ public class ServerFacade implements IServer {
         return true;
     }
 
+    @Override
+    public TrainCard drawTrainCard(Game game)
+    {
+        // STUB
+        return null;
+    }
 }
