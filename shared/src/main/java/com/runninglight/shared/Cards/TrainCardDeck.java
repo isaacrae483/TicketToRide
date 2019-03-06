@@ -53,9 +53,11 @@ public class TrainCardDeck {
     public TrainCard drawCard() {
         if (trainCards.size() == 0) {
             addDiscardToDeck();
+            numCards = trainCards.size();
         }
         TrainCard drawnCard = trainCards.get(0);
         trainCards.remove(0);
+        numCards = trainCards.size();
         return drawnCard;
     }
 
