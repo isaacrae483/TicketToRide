@@ -79,7 +79,7 @@ class CardHolder
     private TrainCard trainCard;
     private boolean isEmpty;
 
-    public CardHolder(ImageView imageView)
+    public CardHolder(final ImageView imageView)
     {
         this.imageView = imageView;
         trainCard = null;
@@ -91,6 +91,7 @@ class CardHolder
             public void onClick(View v)
             {
                 Log.d("TTR.DeckFragment", "selected card: " + trainCard.getCardColor() );
+                setCard(null);
             }
         });
     }

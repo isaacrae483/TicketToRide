@@ -17,6 +17,7 @@ import com.runninglight.shared.Serializer;
 import com.runninglight.shared.User;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ServerProxy implements IServer {
     private static ServerProxy instance = null;
@@ -189,7 +190,21 @@ public class ServerProxy implements IServer {
         // This does not implement the actual drawTrainCard from server functionality and is a stub
         // for phase 2 testing
 
-        return new TrainCard(CardColor.BLUE);
+        int rand = new Random().nextInt(10);
+        switch (rand)
+        {
+            case 0: return new TrainCard(CardColor.BLUE);
+            case 1: return new TrainCard(CardColor.RED);
+            case 2: return new TrainCard(CardColor.GREEN);
+            case 3: return new TrainCard(CardColor.ORANGE);
+            case 4: return new TrainCard(CardColor.YELLOW);
+            case 5: return new TrainCard(CardColor.PINK);
+            case 6: return new TrainCard(CardColor.BLACK);
+            case 7: return new TrainCard(CardColor.WHITE);
+            case 8: return new TrainCard(CardColor.WILD);
+            case 9: return new TrainCard(CardColor.WILD);
+        }
+        return null;
     }
 
     private Command getSendMessageCommand(Message message, Game game)
