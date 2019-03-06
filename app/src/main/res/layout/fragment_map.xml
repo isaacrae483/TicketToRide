@@ -6,9 +6,12 @@
 
     <ImageView
         android:id="@+id/map_image_IV"
-        android:layout_width="match_parent"
-
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:contentDescription="@string/the_backgroud_map"
         app:srcCompat="@drawable/ttr_cropped" />
 
