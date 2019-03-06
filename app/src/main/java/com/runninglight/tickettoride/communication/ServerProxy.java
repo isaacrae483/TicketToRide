@@ -2,6 +2,8 @@ package com.runninglight.tickettoride.communication;
 
 import android.util.Log;
 
+import com.runninglight.shared.CardColor;
+import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Command;
 import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
@@ -179,6 +181,15 @@ public class ServerProxy implements IServer {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public TrainCard drawTrainCard(Game game)
+    {
+        // This does not implement the actual drawTrainCard from server functionality and is a stub
+        // for phase 2 testing
+
+        return new TrainCard(CardColor.BLUE);
     }
 
     private Command getSendMessageCommand(Message message, Game game)

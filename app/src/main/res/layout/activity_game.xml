@@ -49,6 +49,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <fragment
+                class="com.runninglight.tickettoride.activity.game.DeckFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </FrameLayout>
 
     </android.support.constraint.ConstraintLayout>

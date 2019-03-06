@@ -15,8 +15,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.iview.game.IMap_View;
 
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements IMap_View {
 
     private ImageView map;
 
@@ -40,6 +41,7 @@ public class MapFragment extends Fragment {
         BitmapDrawable drawable = (BitmapDrawable) map.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
         map.setImageBitmap(bitmap);
+        map.setScaleType(ImageView.ScaleType.FIT_XY);
 
         map.setOnTouchListener(new View.OnTouchListener() {
             @Override
