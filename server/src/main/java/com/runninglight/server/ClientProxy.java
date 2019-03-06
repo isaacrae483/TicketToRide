@@ -2,9 +2,11 @@ package com.runninglight.server;
 
 import com.runninglight.server.communication.ServerCommunicator;
 import com.runninglight.shared.Command;
+import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.IClient;
 import com.runninglight.shared.Message;
+import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
 
 public class ClientProxy implements IClient {
@@ -17,6 +19,9 @@ public class ClientProxy implements IClient {
     private static final String USER = "com.runninglight.shared.User";
     private static final String GAME = "com.runninglight.shared.Game";
     private static final String MESSAGE = "com.runninglight.shared.Message";
+    private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.DestinationCard;";
+    private static final String PLAYER = "com.runninglight.shared.Player";
+
 
     public static ClientProxy getInstance() {
         if (instance == null) {
@@ -59,6 +64,11 @@ public class ClientProxy implements IClient {
         }
     }
 
+    @Override
+    public void setDestinationCards(Game g, Player p){
+        communicator.setCommandForGame(g, getSetDestinationCardsCommand(g, p));
+    }
+
     private Command getGameAddedCommand(Game game)
     {
         return new Command(
@@ -91,5 +101,14 @@ public class ClientProxy implements IClient {
                 "broadcastMessage",
                 new String[] {MESSAGE, GAME},
                 new Object[] {message, game} );
+    }
+
+    private Command getSetDestinationCardsCommand(Game game, Player p)
+    {
+        return new Command(
+                CLIENT_FACADE,
+                "setDestinationCards",
+                new String[] {GAME, PLAYER},
+                new Object[] {game, p} );
     }
 }

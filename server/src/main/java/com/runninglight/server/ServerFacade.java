@@ -104,8 +104,12 @@ public class ServerFacade implements IServer {
     }
 
     @Override
-    public void returnDestCards(String gameID, DestinationCard[] cards){
-        model.returnDestCards(gameID, cards);
+    public void returnDestCards(String gameID, String playerName,
+                                DestinationCard[] cardsKept, DestinationCard[] cardsToReturn){
+        model.returnDestCards(gameID, playerName, cardsKept, cardsToReturn);
+        Game g = model.getGameByID(gameID);
+        Player p = g.getPlayer(playerName);
+        proxy.setDestinationCards(g, p);
     }
 
     @Override

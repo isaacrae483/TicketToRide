@@ -1,5 +1,7 @@
 package com.runninglight.tickettoride.activity.game;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,10 +15,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.iview.game.IMap_View;
 
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements IMap_View {
 
     private ImageView map;
+
 
     public MapFragment(){}
 
@@ -34,16 +38,21 @@ public class MapFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_map, container, false);
 
         map = v.findViewById(R.id.map_image_IV);
+        BitmapDrawable drawable = (BitmapDrawable) map.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        map.setImageBitmap(bitmap);
+        map.setScaleType(ImageView.ScaleType.FIT_XY);
 
         map.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()== MotionEvent.ACTION_UP){
-                    Toast.makeText(getActivity(),(int) event.getX(),Toast.LENGTH_LONG);
-                }
+                event.getX();
+                event.getY();
                 return false;
             }
         });
+
+
 
         return v;
     }

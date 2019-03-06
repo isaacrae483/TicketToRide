@@ -149,13 +149,17 @@ public class ServerProxy implements IServer {
     }
 
     @Override
-    public void returnDestCards(String gameID, DestinationCard[] cards){
-        Results results = communicator.send(getReturnDestCardsCommand(gameID, cards));
+    public void returnDestCards(String gameID, String playerName,
+                                DestinationCard[] cardsKept, DestinationCard[] cardsToReturn){
+        Results results = communicator.send(getReturnDestCardsCommand(gameID, playerName, cardsKept, cardsToReturn));
         if (results.isSuccess()) {
             System.out.println("Destination cards returned successfully");
 
-            for(int i = 0; i < cards.length; i++){
-                System.out.println(cards[i]);
+            for(int i = 0; i < cardsToReturn.length; i++){
+                System.out.println("Returned " + cardsToReturn[i]);
+            }
+            for(int i = 0; i < cardsKept.length; i++){
+                System.out.println("Kept " + cardsKept[i]);
             }
         }
         else {
@@ -260,12 +264,13 @@ public class ServerProxy implements IServer {
                 new Object[] {gameID, numCards} );
     }
 
-    private Command getReturnDestCardsCommand(String gameID, DestinationCard[] cards)
+    private Command getReturnDestCardsCommand(String gameID, String playerName,
+                                              DestinationCard[] cardsKept, DestinationCard[] cardsToReturn)
     {
         return new Command(
                 SERVER_FACADE,
                 "returnDestCards",
-                new String[] {STRING, DEST_CARD_ARRAY},
-                new Object[] {gameID, cards} );
+                new String[] {STRING, STRING, DEST_CARD_ARRAY, DEST_CARD_ARRAY},
+                new Object[] {gameID, playerName, cardsKept, cardsToReturn} );
     }
 }

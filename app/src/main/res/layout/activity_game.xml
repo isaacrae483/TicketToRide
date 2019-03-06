@@ -11,7 +11,7 @@
         <FrameLayout
             android:id="@+id/map_frame"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="250dp"
             app:layout_constraintBottom_toTopOf="@id/hand_frame"
             app:layout_constraintEnd_toStartOf="@id/deck_frame"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
 
         <FrameLayout
             android:id="@+id/deck_frame"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/hand_frame"
             app:layout_constraintEnd_toEndOf="parent"

@@ -3,6 +3,8 @@ package com.runninglight.tickettoride.activity.game;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.runninglight.tickettoride.IPresenter.game.IGameActivity_Presenter;
@@ -22,6 +24,11 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+
+
         setContentView(R.layout.activity_game);
 
         presenter = new GameActivity_Presenter(this);
