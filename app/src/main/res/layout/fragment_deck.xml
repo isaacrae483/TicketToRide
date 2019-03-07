@@ -10,34 +10,34 @@
 
         <ImageView
             android:id="@+id/deck_view"
-            android:layout_width="175dp"
-            android:layout_height="125dp"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
             android:src="@drawable/draw_image"/>
 
         <ImageView
             android:id="@+id/card_holder_1"
-            android:layout_width="175dp"
-            android:layout_height="125dp" />
+            android:layout_width="100dp"
+            android:layout_height="75dp" />
 
         <ImageView
             android:id="@+id/card_holder_2"
-            android:layout_width="175dp"
-            android:layout_height="125dp" />
+            android:layout_width="100dp"
+            android:layout_height="75dp" />
 
         <ImageView
             android:id="@+id/card_holder_3"
-            android:layout_width="175dp"
-            android:layout_height="125dp" />
+            android:layout_width="100dp"
+            android:layout_height="75dp" />
 
         <ImageView
             android:id="@+id/card_holder_4"
-            android:layout_width="175dp"
-            android:layout_height="125dp" />
+            android:layout_width="100dp"
+            android:layout_height="75dp" />
 
         <ImageView
             android:id="@+id/card_holder_5"
-            android:layout_width="175dp"
-            android:layout_height="125dp" />
+            android:layout_width="100dp"
+            android:layout_height="75dp" />
 
     </LinearLayout>
 
