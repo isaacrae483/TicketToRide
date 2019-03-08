@@ -17,7 +17,9 @@ public interface IServer {
 
     boolean sendMessage(Message message, Game game);
 
-    TrainCard drawTrainCard(Game game);
+    boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard);
+
+    boolean drawCardFromDeckToHand(Game game, User user);
 
     Game[] getGameList();
 
