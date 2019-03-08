@@ -58,6 +58,7 @@ public class ChatFragment extends Fragment implements IChatView
             {
                 Log.d("TTR.ChatFragment", "sending message: " + editText.getText().toString());
                 chatPresenter.sendMessage(editText.getText().toString());
+                editText.setText("");
             }
         });
     }
