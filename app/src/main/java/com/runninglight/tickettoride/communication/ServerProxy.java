@@ -89,7 +89,6 @@ public class ServerProxy implements IServer {
         if(results.isSuccess()) {
             System.out.println("Game Joined Successfully");
             model.setCurrentGame(game);
-            model.setCurrentPlayer(game.getPlayer(model.getCurrentUser().getUserName()));
             return true;
         }
         else{

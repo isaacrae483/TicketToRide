@@ -32,7 +32,7 @@ public class DestinationCardDeck {
                 int points = Integer.parseInt(scanner.next());
                 DestinationCard card = new DestinationCard(startCity, endCity, points);
                 String imageResource = startCity.getName().toLowerCase().replace(" ", "") +
-                        "_" + endCity.getName().toLowerCase().replace(" ", "") + ".png";
+                        "_" + endCity.getName().toLowerCase().replace(" ", "");
                 card.setImageResourceString(imageResource);
                 deck.add(card);
             }

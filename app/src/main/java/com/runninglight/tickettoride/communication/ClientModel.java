@@ -72,6 +72,10 @@ public class ClientModel extends Observable {
         return currentGame;
     }
 
+    public String getCurrentGameID(){
+        return currentGame.getGameID();
+    }
+
     public ArrayList<Game> getGameList() {
         return gameList;
     }

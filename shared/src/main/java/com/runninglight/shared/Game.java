@@ -166,7 +166,7 @@ public class Game {
     }
 
     public int getDeckSize(){
-        return destCardDeck.size();
+        return destDeckSize;
     }
 
     /**

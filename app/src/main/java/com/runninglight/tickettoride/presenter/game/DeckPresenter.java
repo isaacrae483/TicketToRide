@@ -22,6 +22,10 @@ public class DeckPresenter implements IDeckPresenter
         return instance;
     }
 
+    public DeckPresenter(){
+        ClientModel.getInstance().addObserver(this);
+    }
+
     public void addView(IDeckView deckView)
     {
         this.deckView = deckView;
