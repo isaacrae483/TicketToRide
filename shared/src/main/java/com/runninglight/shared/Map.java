@@ -1,11 +1,8 @@
 package com.runninglight.shared;
 
-import com.runninglight.shared.Cards.RouteColor;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Map {
@@ -47,7 +44,7 @@ public class Map {
         }
         catch(Exception e){
             // Throws an exception that the Command will catch to return a false success
-            throw new RuntimeException("Failed to build a full deck");
+            throw new RuntimeException("Failed to create all routes");
         }
 
     }
@@ -73,7 +70,7 @@ public class Map {
         }
         catch(Exception e){
             // Throws an exception that the Command will catch to return a false success
-            throw new RuntimeException("Failed to build a full deck");
+            throw new RuntimeException("Failed to create all cities");
         }
 
     }
