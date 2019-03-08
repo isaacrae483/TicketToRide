@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.runninglight.shared.CardColor;
@@ -34,6 +35,10 @@ public class DeckFragment extends Fragment implements IDeckView
 
     private ImageView destCardDeck;
     private TextView destCardDeckSize;
+    private RelativeLayout deckRelativeLayout;
+    private TextView trainCardDeckSizeText;
+
+    private int numTrainCardsInDeck;
 
     @Nullable
     @Override
@@ -49,13 +54,20 @@ public class DeckFragment extends Fragment implements IDeckView
         ImageView imageView4 = view.findViewById(R.id.card_holder_4);
         ImageView imageView5 = view.findViewById(R.id.card_holder_5);
 
-        ImageView deckImageView = view.findViewById(R.id.deck_view);
+        // ImageView deckImageView = view.findViewById(R.id.deck_view);
 
-        deckImageView.setOnClickListener(new View.OnClickListener()
+        numTrainCardsInDeck = 110;
+        deckRelativeLayout = view.findViewById(R.id.deck_view);
+        trainCardDeckSizeText = view.findViewById(R.id.num_train_cards_deck);
+        trainCardDeckSizeText.setText("" + numTrainCardsInDeck);
+
+        deckRelativeLayout.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+                numTrainCardsInDeck--;
+                trainCardDeckSizeText.setText("" + numTrainCardsInDeck);
                 presenter.drawCardFromDeck();
             }
         });
@@ -130,6 +142,7 @@ public class DeckFragment extends Fragment implements IDeckView
                     if (isEmpty) return;
                     Log.d("TTR.DeckFragment", "selected card: " + trainCard.getCardColor() );
                     setCard(null);
+                    ClientModel.getInstance().getCurrentGame().removeCardFromFaceUp(position);
                     presenter.cardDrawnFromFaceUp(trainCard, position);
                 }
             });

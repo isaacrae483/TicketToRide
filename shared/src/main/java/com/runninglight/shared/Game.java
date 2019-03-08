@@ -1,5 +1,8 @@
 package com.runninglight.shared;
 
+import com.runninglight.shared.Cards.FaceUpCards;
+import com.runninglight.shared.Cards.TrainCard;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
@@ -38,6 +41,8 @@ public class Game {
     /** Starting number of train cars */
     private static final int MAX_TRAIN_CARS = 45;
 
+    private FaceUpCards faceUpCards;
+
     /**
      * Game constructor
      *
@@ -57,6 +62,7 @@ public class Game {
         this.destDeckSize = this.destCardDeck.size();
         this.chat = new Chat();
         this.playerList = new ArrayList<>();
+        this.faceUpCards = new FaceUpCards();
     }
 
     /**
@@ -250,5 +256,20 @@ public class Game {
 
     public ArrayList<Player> getPlayerList() {
         return playerList;
+    }
+
+    public void addCardToFaceUp(TrainCard trainCard, int position)
+    {
+        faceUpCards.addCard(position, trainCard);
+    }
+
+    public TrainCard getCardFromFaceUp(int position)
+    {
+        return faceUpCards.getCard(position);
+    }
+
+    public TrainCard removeCardFromFaceUp(int position)
+    {
+        return faceUpCards.removeCard(position);
     }
 }

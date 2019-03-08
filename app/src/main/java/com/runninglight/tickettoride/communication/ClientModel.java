@@ -153,9 +153,9 @@ public class ClientModel extends Observable {
 
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
-        // Add store card in model?
         if (getCurrentGame().getGameID().equals(game.getGameID()))
         {
+            getCurrentGame().addCardToFaceUp(trainCard, position);
             DeckPresenter.getInstance().addCardToFaceUp(trainCard, position);
         }
     }
