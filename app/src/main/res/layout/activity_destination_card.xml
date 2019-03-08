@@ -6,4 +6,91 @@
     android:layout_height="match_parent"
     tools:context=".activity.game.DestinationCardActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Destination Cards"
+        android:textSize="50sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/card_choices"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <LinearLayout
+        android:id="@+id/card_choices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/dest_card_1"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_margin="20dp" />
+
+            <RadioButton
+                android:id="@+id/dest_card_1_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/dest_card_2"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_margin="20dp" />
+
+            <RadioButton
+                android:id="@+id/dest_card_2_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/dest_card_3"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_margin="20dp" />
+
+            <RadioButton
+                android:id="@+id/dest_card_3_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/confirm_dest_cards_button"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginVertical="40dp"
+        android:text="Confirm"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/card_choices"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
 </android.support.constraint.ConstraintLayout>
