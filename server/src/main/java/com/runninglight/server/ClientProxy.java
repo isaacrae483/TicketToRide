@@ -1,6 +1,7 @@
 package com.runninglight.server;
 
 import com.runninglight.server.communication.ServerCommunicator;
+import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Command;
 import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
@@ -67,6 +68,18 @@ public class ClientProxy implements IClient {
     @Override
     public void setDestinationCards(Game g, Player p){
         communicator.setCommandForGame(g, getSetDestinationCardsCommand(g, p));
+    }
+
+    @Override
+    public void addCardToHand(Game game, User user, TrainCard trainCard)
+    {
+
+    }
+
+    @Override
+    public void addCardToFaceUp(Game game, TrainCard trainCard)
+    {
+
     }
 
     private Command getGameAddedCommand(Game game)

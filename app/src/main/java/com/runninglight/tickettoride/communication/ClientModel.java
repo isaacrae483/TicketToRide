@@ -2,11 +2,13 @@ package com.runninglight.tickettoride.communication;
 
 import android.util.Log;
 
+import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
+import com.runninglight.tickettoride.presenter.game.DeckPresenter;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -140,5 +142,14 @@ public class ClientModel extends Observable {
 
     public void setDestinationCards(Game g, Player p){
         g.setDestinationCards(p.getName(), p.getDestinationCards().toArray(new DestinationCard[0]));
+    }
+
+    public void addCardToFaceUp(Game game, TrainCard trainCard)
+    {
+        // Add store card in model?
+        if (getCurrentGame().getGameID().equals(game.getGameID()))
+        {
+            DeckPresenter.getInstance().addCardToFaceUp(trainCard);
+        }
     }
 }

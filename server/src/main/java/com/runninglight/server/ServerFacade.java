@@ -122,9 +122,14 @@ public class ServerFacade implements IServer {
     }
 
     @Override
-    public TrainCard drawTrainCard(Game game)
+    public boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard)
     {
-        // STUB
-        return null;
+        return false;
+    }
+
+    @Override
+    public boolean drawCardFromDeckToHand(Game game, User user)
+    {
+        return false;
     }
 }

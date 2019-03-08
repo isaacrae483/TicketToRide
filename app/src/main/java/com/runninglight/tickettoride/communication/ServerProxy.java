@@ -186,26 +186,17 @@ public class ServerProxy implements IServer {
     }
 
     @Override
-    public TrainCard drawTrainCard(Game game)
+    public boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard)
     {
-        // This does not implement the actual drawTrainCard from server functionality and is a stub
-        // for phase 2 testing
+        // Add card to hand here
+        ClientFacade.getInstance().addCardToFaceUp(game, getRandomTraincard());
+        return false;
+    }
 
-        int rand = new Random().nextInt(10);
-        switch (rand)
-        {
-            case 0: return new TrainCard(CardColor.BLUE);
-            case 1: return new TrainCard(CardColor.RED);
-            case 2: return new TrainCard(CardColor.GREEN);
-            case 3: return new TrainCard(CardColor.ORANGE);
-            case 4: return new TrainCard(CardColor.YELLOW);
-            case 5: return new TrainCard(CardColor.PINK);
-            case 6: return new TrainCard(CardColor.BLACK);
-            case 7: return new TrainCard(CardColor.WHITE);
-            case 8: return new TrainCard(CardColor.WILD);
-            case 9: return new TrainCard(CardColor.WILD);
-        }
-        return null;
+    @Override
+    public boolean drawCardFromDeckToHand(Game game, User user)
+    {
+        return false;
     }
 
     private Command getSendMessageCommand(Message message, Game game)
@@ -288,5 +279,33 @@ public class ServerProxy implements IServer {
                 "returnDestCards",
                 new String[] {STRING, STRING, DEST_CARD_ARRAY, DEST_CARD_ARRAY},
                 new Object[] {gameID, playerName, cardsKept, cardsToReturn} );
+    }
+
+    private Command getDrawTrainCardFromDeck(Game game)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "drawTrainCard",
+                new String[] {GAME},
+                new Object[] {game} );
+    }
+
+    // Temporary
+
+    private TrainCard getRandomTraincard()
+    {
+        switch (new Random().nextInt(9))
+        {
+            case 0: return new TrainCard(CardColor.BLUE);
+            case 1: return new TrainCard(CardColor.BLACK);
+            case 2: return new TrainCard(CardColor.RED);
+            case 3: return new TrainCard(CardColor.GREEN);
+            case 4: return new TrainCard(CardColor.WHITE);
+            case 5: return new TrainCard(CardColor.PINK);
+            case 6: return new TrainCard(CardColor.ORANGE);
+            case 7: return new TrainCard(CardColor.YELLOW);
+            case 8: return new TrainCard(CardColor.WILD);
+        }
+        return null;
     }
 }
