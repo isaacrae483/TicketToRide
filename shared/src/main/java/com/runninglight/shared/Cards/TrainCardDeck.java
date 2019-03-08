@@ -3,6 +3,7 @@ package com.runninglight.shared.Cards;
 import com.runninglight.shared.CardColor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static com.runninglight.shared.CardColor.WILD;
 
@@ -65,7 +66,9 @@ public class TrainCardDeck {
         discardPile.addCard(trainCard);
     }
 
-    public void shuffleDeck() {}
+    public void shuffleDeck() {
+        Collections.shuffle(trainCards);
+    }
 
     public void addDiscardToDeck(){
         trainCards = discardPile.getDiscardPile();
