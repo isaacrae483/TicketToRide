@@ -1,5 +1,7 @@
 package com.runninglight.shared;
 
+import com.runninglight.shared.Cards.DestinationCard;
+
 import java.util.ArrayList;
 
 public class Player {

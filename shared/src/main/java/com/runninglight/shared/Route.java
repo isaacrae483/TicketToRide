@@ -1,9 +1,5 @@
 package com.runninglight.shared;
 
-import com.runninglight.shared.Cards.RouteColor;
-
-import java.util.ArrayList;
-
 public class Route {
 
     public Route(City c1, City c2, String col, int len, String t) {

@@ -1,11 +1,9 @@
 package com.runninglight.shared.Cards;
 
-import com.runninglight.shared.CardColor;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static com.runninglight.shared.CardColor.WILD;
+import static com.runninglight.shared.Cards.CardColor.WILD;
 
 public class TrainCardDeck {
 

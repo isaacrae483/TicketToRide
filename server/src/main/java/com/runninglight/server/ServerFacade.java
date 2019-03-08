@@ -1,10 +1,8 @@
 package com.runninglight.server;
 
-import com.runninglight.server.communication.ServerCommunicator;
-import com.runninglight.shared.CardColor;
+import com.runninglight.shared.Cards.CardColor;
 import com.runninglight.shared.Cards.TrainCard;
-import com.runninglight.shared.Command;
-import com.runninglight.shared.DestinationCard;
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.shared.IServer;

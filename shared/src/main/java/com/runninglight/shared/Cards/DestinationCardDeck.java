@@ -1,11 +1,12 @@
-package com.runninglight.shared;
+package com.runninglight.shared.Cards;
+
+import com.runninglight.shared.City;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class DestinationCardDeck {
 

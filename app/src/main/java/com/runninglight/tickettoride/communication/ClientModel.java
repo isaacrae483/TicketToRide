@@ -3,7 +3,7 @@ package com.runninglight.tickettoride.communication;
 import android.util.Log;
 
 import com.runninglight.shared.Cards.TrainCard;
-import com.runninglight.shared.DestinationCard;
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;

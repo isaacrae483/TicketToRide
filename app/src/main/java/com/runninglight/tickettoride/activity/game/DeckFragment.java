@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.runninglight.shared.CardColor;
+import com.runninglight.shared.Cards.CardColor;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.tickettoride.IPresenter.game.IDeckPresenter;
 import com.runninglight.tickettoride.R;

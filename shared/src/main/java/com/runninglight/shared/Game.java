@@ -1,5 +1,7 @@
 package com.runninglight.shared;
 
+import com.runninglight.shared.Cards.DestinationCard;
+import com.runninglight.shared.Cards.DestinationCardDeck;
 import com.runninglight.shared.Cards.FaceUpCards;
 import com.runninglight.shared.Cards.TrainCard;
 

@@ -1,8 +1,7 @@
 package com.runninglight.shared;
 
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Cards.TrainCard;
-
-import java.util.ArrayList;
 
 public interface IServer {
     boolean login(LoginInfo loginInfo);
