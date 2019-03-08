@@ -1,9 +1,12 @@
 package com.runninglight.server.communication;
 
+import com.runninglight.shared.CardColor;
+import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Command;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.MessageCompare;
+import com.runninglight.shared.Results;
 import com.runninglight.shared.Serializer;
 import com.sun.net.httpserver.HttpServer;
 
@@ -30,22 +33,13 @@ public class ServerCommunicator
 
     public static void main(String[] args)
     {
-        Message message = new Message("userName", "1");
-        message.timestampMessage();
-        try
-        {
-            Thread.sleep(1000);
-        } catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-        Message message1 = new Message("userName1", "2");
-        message1.timestampMessage();
-        ArrayList<Message> messages = new ArrayList<>();
-        messages.add(message1);
-        messages.add(message);
-        Collections.sort(messages, new MessageCompare());
-        for (Message m : messages) System.out.println(m.getMessage());
+        Results results = new Results(true, new TrainCard(CardColor.BLUE), null);
+        String json = new Serializer().serialize(results);
+        System.out.println(json);
+        Results res = new Serializer().deserializeResults(json);
+        System.out.println(res.getData());
+        TrainCard trainCard = (TrainCard) new Serializer().deserialize(res.getData().toString(), TrainCard.class);
+        System.out.println(trainCard.getCardColor());
     }
 
     public void startServer(int port)

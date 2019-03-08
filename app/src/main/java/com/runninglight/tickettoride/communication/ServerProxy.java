@@ -33,6 +33,7 @@ public class ServerProxy implements IServer {
     private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.DestinationCard;";
     private static final String STRING = "java.lang.String";
     private static final String MESSAGE = "com.runninglight.shared.Message";
+    private static final String TRAINCARD = "com.runninglight.shared.Cards.TrainCard";
 
     public static ServerProxy getInstance(){
         if(instance == null) {
@@ -185,10 +186,12 @@ public class ServerProxy implements IServer {
     }
 
     @Override
-    public boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard)
+    public boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard, int position)
     {
         // Add card to hand here
-        ClientFacade.getInstance().addCardToFaceUp(game, getRandomTraincard());
+        // ClientFacade.getInstance().addCardToFaceUp(game, getRandomTraincard());
+
+        ClientCommunicator.getInstance().send(getDrawCardFromFaceUpToHandCommand(game, user, trainCard, position));
         return false;
     }
 
@@ -196,6 +199,15 @@ public class ServerProxy implements IServer {
     public boolean drawCardFromDeckToHand(Game game, User user)
     {
         return false;
+    }
+
+    private Command getDrawCardFromFaceUpToHandCommand(Game game, User user, TrainCard trainCard, int position)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "drawCardFromFaceUpToHand",
+                new String[] {GAME, USER, TRAINCARD, "int"},
+                new Object[] {game, user, trainCard, position} );
     }
 
     private Command getSendMessageCommand(Message message, Game game)
@@ -280,7 +292,7 @@ public class ServerProxy implements IServer {
                 new Object[] {gameID, playerName, cardsKept, cardsToReturn} );
     }
 
-    private Command getDrawTrainCardFromDeck(Game game)
+    private Command getDrawTrainCardFromDeckCommand(Game game)
     {
         return new Command(
                 SERVER_FACADE,

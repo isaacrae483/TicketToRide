@@ -26,11 +26,11 @@ public class DeckPresenter implements IDeckPresenter
     }
 
     @Override
-    public void cardDrawnFromFaceUp(TrainCard trainCard)
+    public void cardDrawnFromFaceUp(TrainCard trainCard, int position)
     {
         User user = ClientModel.getInstance().getCurrentUser();
         Game game = ClientModel.getInstance().getCurrentGame();
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(game, user, trainCard);
+        ServerProxy.getInstance().drawCardFromFaceUpToHand(game, user, trainCard, position);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class DeckPresenter implements IDeckPresenter
     }
 
     @Override
-    public void addCardToFaceUp(TrainCard trainCard)
+    public void addCardToFaceUp(TrainCard trainCard, int position)
     {
-        deckView.addCardToFaceUpDeck(trainCard);
+        deckView.addCardToFaceUpDeck(trainCard, position);
     }
 }

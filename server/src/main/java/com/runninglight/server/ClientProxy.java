@@ -1,6 +1,8 @@
 package com.runninglight.server;
 
+import com.runninglight.server.communication.CommandManager;
 import com.runninglight.server.communication.ServerCommunicator;
+import com.runninglight.shared.CardColor;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Command;
 import com.runninglight.shared.DestinationCard;
@@ -9,6 +11,8 @@ import com.runninglight.shared.IClient;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
+
+import java.util.Random;
 
 public class ClientProxy implements IClient {
 
@@ -22,6 +26,7 @@ public class ClientProxy implements IClient {
     private static final String MESSAGE = "com.runninglight.shared.Message";
     private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.DestinationCard;";
     private static final String PLAYER = "com.runninglight.shared.Player";
+    private static final String TRAINCARD = "com.runninglight.shared.Cards.TrainCard";
 
 
     public static ClientProxy getInstance() {
@@ -73,13 +78,31 @@ public class ClientProxy implements IClient {
     @Override
     public void addCardToHand(Game game, User user, TrainCard trainCard)
     {
-
+        ServerCommunicator.getInstance().setCommandForGame(game, getAddCardToHandCommand(game, user, trainCard));
     }
 
     @Override
-    public void addCardToFaceUp(Game game, TrainCard trainCard)
+    public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
+        ServerCommunicator.getInstance().setCommandForGame(game, getAddCardToFaceUpCommand(game, trainCard, position));
+    }
 
+    private Command getAddCardToHandCommand(Game game, User user, TrainCard trainCard)
+    {
+        return new Command(
+                CLIENT_FACADE,
+                "addCardToHand",
+                new String[] {GAME, USER, TRAINCARD},
+                new Object[] {game, user, trainCard} );
+    }
+
+    private Command getAddCardToFaceUpCommand(Game game, TrainCard trainCard, int position)
+    {
+        return new Command(
+                CLIENT_FACADE,
+                "addCardToFaceUp",
+                new String[] {GAME, TRAINCARD, "int"},
+                new Object[] {game, trainCard, position} );
     }
 
     private Command getGameAddedCommand(Game game)

@@ -134,12 +134,12 @@ public class ClientModel extends Observable {
         g.setDestinationCards(p.getName(), p.getDestinationCards().toArray(new DestinationCard[0]));
     }
 
-    public void addCardToFaceUp(Game game, TrainCard trainCard)
+    public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
         // Add store card in model?
         if (getCurrentGame().getGameID().equals(game.getGameID()))
         {
-            DeckPresenter.getInstance().addCardToFaceUp(trainCard);
+            DeckPresenter.getInstance().addCardToFaceUp(trainCard, position);
         }
     }
 }

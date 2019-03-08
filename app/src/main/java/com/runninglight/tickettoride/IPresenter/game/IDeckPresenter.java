@@ -4,7 +4,7 @@ import com.runninglight.shared.Cards.TrainCard;
 
 public interface IDeckPresenter
 {
-    void cardDrawnFromFaceUp(TrainCard trainCard);
+    void cardDrawnFromFaceUp(TrainCard trainCard, int postion);
     void drawCardFromDeck();
-    void addCardToFaceUp(TrainCard trainCard);
+    void addCardToFaceUp(TrainCard trainCard, int position);
 }

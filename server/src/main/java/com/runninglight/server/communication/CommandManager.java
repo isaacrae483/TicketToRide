@@ -40,6 +40,7 @@ public class CommandManager
     {
         for (User user : game.getUserList())
         {
+            System.out.println("setting command: " + user.getUserName());
             setCommand(user.getUserName(), command);
         }
     }

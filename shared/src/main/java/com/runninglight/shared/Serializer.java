@@ -43,4 +43,9 @@ public class Serializer
         return null;
     }
 
+    public Object deserialize(String json, Class className)
+    {
+        return new Gson().fromJson(json, className);
+    }
+
 }

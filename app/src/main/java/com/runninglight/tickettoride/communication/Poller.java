@@ -19,7 +19,7 @@ import java.util.concurrent.ExecutionException;
 
 public class Poller
 {
-    private final static int HANDLER_DELAY = 1000;
+    private final static int HANDLER_DELAY = 500;
 
     private Handler commandHandler;
     private Runnable commandRunnable;

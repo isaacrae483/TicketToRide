@@ -1,6 +1,7 @@
 package com.runninglight.server;
 
 import com.runninglight.server.communication.ServerCommunicator;
+import com.runninglight.shared.CardColor;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Command;
 import com.runninglight.shared.DestinationCard;
@@ -13,6 +14,7 @@ import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class ServerFacade implements IServer {
@@ -122,8 +124,10 @@ public class ServerFacade implements IServer {
     }
 
     @Override
-    public boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard)
+    public boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard, int position)
     {
+        if (trainCard != null) ClientProxy.getInstance().addCardToHand(game, user, trainCard);
+        ClientProxy.getInstance().addCardToFaceUp(game, getRandomTraincard(), position);
         return false;
     }
 
@@ -131,5 +135,22 @@ public class ServerFacade implements IServer {
     public boolean drawCardFromDeckToHand(Game game, User user)
     {
         return false;
+    }
+
+    private TrainCard getRandomTraincard()
+    {
+        switch (new Random().nextInt(9))
+        {
+            case 0: return new TrainCard(CardColor.BLUE);
+            case 1: return new TrainCard(CardColor.BLACK);
+            case 2: return new TrainCard(CardColor.RED);
+            case 3: return new TrainCard(CardColor.GREEN);
+            case 4: return new TrainCard(CardColor.WHITE);
+            case 5: return new TrainCard(CardColor.PINK);
+            case 6: return new TrainCard(CardColor.ORANGE);
+            case 7: return new TrainCard(CardColor.YELLOW);
+            case 8: return new TrainCard(CardColor.WILD);
+        }
+        return null;
     }
 }

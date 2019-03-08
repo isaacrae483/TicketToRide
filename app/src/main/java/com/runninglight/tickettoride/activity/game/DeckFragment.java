@@ -55,11 +55,11 @@ public class DeckFragment extends Fragment implements IDeckView
             }
         });
 
-        cardHolder1 = new CardHolder(imageView1);
-        cardHolder2 = new CardHolder(imageView2);
-        cardHolder3 = new CardHolder(imageView3);
-        cardHolder4 = new CardHolder(imageView4);
-        cardHolder5 = new CardHolder(imageView5);
+        cardHolder1 = new CardHolder(imageView1, 1);
+        cardHolder2 = new CardHolder(imageView2, 2);
+        cardHolder3 = new CardHolder(imageView3, 3);
+        cardHolder4 = new CardHolder(imageView4, 4);
+        cardHolder5 = new CardHolder(imageView5, 5);
 
         cardHolder1.setCard(null);
         cardHolder2.setCard(null);
@@ -68,24 +68,24 @@ public class DeckFragment extends Fragment implements IDeckView
         cardHolder5.setCard(null);
 
         // TEMP for testing
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null);
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null);
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null);
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null);
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null);
+        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 1);
+        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 2);
+        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 3);
+        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 4);
+        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 5);
 
 
         return view;
     }
 
     @Override
-    public void addCardToFaceUpDeck(TrainCard trainCard)
+    public void addCardToFaceUpDeck(TrainCard trainCard, int position)
     {
-        if (cardHolder1.isEmpty()) { cardHolder1.setCard(trainCard); return; }
-        if (cardHolder2.isEmpty()) { cardHolder2.setCard(trainCard); return; }
-        if (cardHolder3.isEmpty()) { cardHolder3.setCard(trainCard); return; }
-        if (cardHolder4.isEmpty()) { cardHolder4.setCard(trainCard); return; }
-        if (cardHolder5.isEmpty()) { cardHolder5.setCard(trainCard); return; }
+        if (position == 1) { cardHolder1.setCard(trainCard); return; }
+        if (position == 2) { cardHolder2.setCard(trainCard); return; }
+        if (position == 3) { cardHolder3.setCard(trainCard); return; }
+        if (position == 4) { cardHolder4.setCard(trainCard); return; }
+        if (position == 5) { cardHolder5.setCard(trainCard); return; }
     }
 
     class CardHolder
@@ -93,10 +93,12 @@ public class DeckFragment extends Fragment implements IDeckView
         private ImageView imageView;
         private TrainCard trainCard;
         private boolean isEmpty;
+        private int position;
 
-        public CardHolder(final ImageView imageView)
+        public CardHolder(final ImageView imageView, final int position)
         {
             this.imageView = imageView;
+            this.position = position;
             trainCard = null;
             isEmpty = true;
 
@@ -108,7 +110,7 @@ public class DeckFragment extends Fragment implements IDeckView
                     if (isEmpty) return;
                     Log.d("TTR.DeckFragment", "selected card: " + trainCard.getCardColor() );
                     setCard(null);
-                    presenter.cardDrawnFromFaceUp(trainCard);
+                    presenter.cardDrawnFromFaceUp(trainCard, position);
                 }
             });
         }

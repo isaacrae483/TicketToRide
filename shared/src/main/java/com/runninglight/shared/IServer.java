@@ -17,7 +17,7 @@ public interface IServer {
 
     boolean sendMessage(Message message, Game game);
 
-    boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard);
+    boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard, int position);
 
     boolean drawCardFromDeckToHand(Game game, User user);
 
