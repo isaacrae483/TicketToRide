@@ -1,7 +1,7 @@
 package com.runninglight.tickettoride.IPresenter.game;
 
 
-import com.runninglight.shared.DestinationCard;
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.tickettoride.iview.game.IDestCardView;
 
 public interface IDestCardPresenter {

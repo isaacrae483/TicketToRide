@@ -22,7 +22,7 @@ public class DestinationCardDeck {
         try {
             deck = new ArrayList<>();
             String filePath = System.getProperty("user.dir") + File.separator +
-                    "shared\\src\\main\\java\\com\\runninglight\\shared\\destinationCards.txt";
+                    "shared\\src\\main\\java\\com\\runninglight\\shared\\Cards\\destinationCards.txt";
             File file = new File(filePath);
             Scanner scanner = new Scanner(file);
 

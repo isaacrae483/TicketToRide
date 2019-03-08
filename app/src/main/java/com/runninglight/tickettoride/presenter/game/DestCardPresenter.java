@@ -1,6 +1,6 @@
 package com.runninglight.tickettoride.presenter.game;
 
-import com.runninglight.shared.DestinationCard;
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.tickettoride.IPresenter.game.IDestCardPresenter;
 import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.communication.ServerProxy;

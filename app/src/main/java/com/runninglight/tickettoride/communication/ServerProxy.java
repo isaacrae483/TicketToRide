@@ -29,7 +29,7 @@ public class ServerProxy implements IServer {
     private static final String USER = "com.runninglight.shared.User";
     private static final String GAME = "com.runninglight.shared.Game";
     private static final String PLAYER = "com.runninglight.shared.Player";
-    private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.DestinationCard;";
+    private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.Cards.DestinationCard;";
     private static final String STRING = "java.lang.String";
     private static final String MESSAGE = "com.runninglight.shared.Message";
     private static final String TRAINCARD = "com.runninglight.shared.Cards.TrainCard";

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.runninglight.shared.DestinationCard;
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.tickettoride.IPresenter.game.IDestCardPresenter;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.iview.game.IDestCardView;
