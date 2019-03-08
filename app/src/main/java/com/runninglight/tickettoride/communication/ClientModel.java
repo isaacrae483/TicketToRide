@@ -142,6 +142,13 @@ public class ClientModel extends Observable {
 
     public void setDestinationCards(Game g, Player p){
         g.setDestinationCards(p.getName(), p.getDestinationCards().toArray(new DestinationCard[0]));
+        currentGame = g;
+        setChanged();
+        notifyObservers((Integer)currentGame.getDeckSize());
+    }
+
+    public int getCurrentDestDeckSize(){
+        return currentGame.getDestDeckSize();
     }
 
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)

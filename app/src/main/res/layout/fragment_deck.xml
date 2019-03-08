@@ -8,6 +8,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/dest_deck"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginVertical="5dp"
+                android:src="@drawable/destination_card" />
+            <TextView
+                android:id="@+id/dest_deck_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="50sp"
+                android:layout_alignLeft="@id/dest_deck"
+                android:layout_alignTop="@id/dest_deck"
+                android:layout_alignRight="@id/dest_deck"
+                android:layout_alignBottom="@id/dest_deck"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
         <ImageView
             android:id="@+id/deck_view"
             android:layout_width="100dp"

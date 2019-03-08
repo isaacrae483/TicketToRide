@@ -21,7 +21,7 @@ public class DestinationCardDeck {
         try {
             deck = new ArrayList<>();
             String filePath = System.getProperty("user.dir") + File.separator +
-                    "shared\\src\\main\\java\\com\\runninglight\\shared\\cities_test.txt";
+                    "shared\\src\\main\\java\\com\\runninglight\\shared\\destinationCards.txt";
             File file = new File(filePath);
             Scanner scanner = new Scanner(file);
 
@@ -29,9 +29,14 @@ public class DestinationCardDeck {
             for(int i = 0; i < STARTING_CARD_COUNT; i++){
                 City startCity = new City(scanner.next());
                 City endCity = new City(scanner.next());
-                DestinationCard card = new DestinationCard(startCity, endCity);
+                int points = Integer.parseInt(scanner.next());
+                DestinationCard card = new DestinationCard(startCity, endCity, points);
+                String imageResource = startCity.getName().toLowerCase().replace(" ", "") +
+                        "_" + endCity.getName().toLowerCase().replace(" ", "") + ".png";
+                card.setImageResourceString(imageResource);
                 deck.add(card);
             }
+            System.out.println(deck.toString());
             Collections.shuffle(deck);
         }
         catch(FileNotFoundException e){
@@ -61,6 +66,10 @@ public class DestinationCardDeck {
             throw new RuntimeException("Invalid card");
         }
         deck.add(card);
+    }
+
+    public int size(){
+        return deck.size();
     }
 
     public ArrayList<DestinationCard> getDeck() {

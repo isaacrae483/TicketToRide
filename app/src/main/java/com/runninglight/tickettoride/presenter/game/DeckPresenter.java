@@ -8,6 +8,8 @@ import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.communication.ServerProxy;
 import com.runninglight.tickettoride.iview.game.IDeckView;
 
+import java.util.Observable;
+
 public class DeckPresenter implements IDeckPresenter
 {
     private static DeckPresenter instance;
@@ -45,5 +47,19 @@ public class DeckPresenter implements IDeckPresenter
     public void addCardToFaceUp(TrainCard trainCard, int position)
     {
         deckView.addCardToFaceUpDeck(trainCard, position);
+    }
+
+    @Override
+    public void initDestCardDeck(){
+        int deckSize = ClientModel.getInstance().getCurrentDestDeckSize();
+        deckView.refreshDestDeck(deckSize);
+    }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        if(arg instanceof Integer){
+            deckView.refreshDestDeck(ClientModel.getInstance().getCurrentDestDeckSize());
+        }
     }
 }

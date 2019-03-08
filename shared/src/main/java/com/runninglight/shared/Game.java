@@ -23,6 +23,9 @@ public class Game {
     /** Destination Card Deck */
     private transient DestinationCardDeck destCardDeck;
 
+    /** Number of cards in Destination Card Deck */
+    private int destDeckSize;
+
     /** Maximum number of Users allowed in the game room */
     private int maxPlayerNumber;
 
@@ -51,6 +54,7 @@ public class Game {
         this.userList = new ArrayList<>();
         this.gameID = generateID();
         this.destCardDeck = new DestinationCardDeck();
+        this.destDeckSize = this.destCardDeck.size();
         this.chat = new Chat();
         this.playerList = new ArrayList<>();
     }
@@ -115,7 +119,8 @@ public class Game {
             for (index = 0; index < numCards; index++) {
                 cards[index] = destCardDeck.drawCard();
             }
-            System.out.println(destCardDeck.getDeck().size());
+            System.out.println(destCardDeck.size());
+            destDeckSize = destCardDeck.size();
             return cards;
         }
         // The total desired number of cards could not be drawn because the deck is empty
@@ -132,7 +137,8 @@ public class Game {
         for(DestinationCard card : cards){
             destCardDeck.returnCard(card);
         }
-        System.out.println(destCardDeck.getDeck().size());
+        System.out.println(destCardDeck.size());
+        destDeckSize = destCardDeck.size();
     }
 
     public void addDestinationCards(String playerName, DestinationCard[] cards){
@@ -157,6 +163,10 @@ public class Game {
             }
         }
         return null;
+    }
+
+    public int getDeckSize(){
+        return destCardDeck.size();
     }
 
     /**
@@ -224,6 +234,10 @@ public class Game {
 
     public int getNumPlayers() {
         return numPlayers;
+    }
+
+    public int getDestDeckSize(){
+        return destDeckSize;
     }
 
     public void setNumPlayers(int numPlayers) {

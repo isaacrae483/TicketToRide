@@ -1,7 +1,10 @@
 package com.runninglight.shared;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.swing.ImageIcon;
 
 public class DestinationCard {
 
@@ -10,6 +13,8 @@ public class DestinationCard {
     private int points;
 
     private ArrayList<City> cities;
+
+    private String imageResourceString;
 
     public DestinationCard(City start, City end){
         cities = new ArrayList<>(Arrays.asList(start, end));
@@ -38,6 +43,14 @@ public class DestinationCard {
 
     public ArrayList<City> getCities() {
         return cities;
+    }
+
+    public String getImageResourceString(){
+        return imageResourceString;
+    }
+
+    public void setImageResourceString(String imageResourceString){
+        this.imageResourceString = imageResourceString;
     }
 
     @Override
