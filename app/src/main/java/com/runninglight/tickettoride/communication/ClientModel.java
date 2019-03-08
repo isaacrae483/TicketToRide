@@ -3,7 +3,7 @@ package com.runninglight.tickettoride.communication;
 import android.util.Log;
 
 import com.runninglight.shared.Cards.TrainCard;
-import com.runninglight.shared.DestinationCard;
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
@@ -157,9 +157,9 @@ public class ClientModel extends Observable {
 
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
-        // Add store card in model?
         if (getCurrentGame().getGameID().equals(game.getGameID()))
         {
+            getCurrentGame().addCardToFaceUp(trainCard, position);
             DeckPresenter.getInstance().addCardToFaceUp(trainCard, position);
         }
     }

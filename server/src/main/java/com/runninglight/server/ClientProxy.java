@@ -1,18 +1,13 @@
 package com.runninglight.server;
 
-import com.runninglight.server.communication.CommandManager;
 import com.runninglight.server.communication.ServerCommunicator;
-import com.runninglight.shared.CardColor;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Command;
-import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.IClient;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
-
-import java.util.Random;
 
 public class ClientProxy implements IClient {
 

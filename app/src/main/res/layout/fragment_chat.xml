@@ -25,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="200px"
                 android:layout_margin="20px"
-                android:textSize="50px"/>
+                android:textSize="50px"
+                android:textColor="@android:color/white"/>
 
             <Button
                 android:id="@+id/button_send"

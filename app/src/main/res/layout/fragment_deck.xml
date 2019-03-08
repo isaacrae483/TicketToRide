@@ -32,12 +32,29 @@
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/deck_view"
-            android:layout_width="100dp"
-            android:layout_height="75dp"
-            android:src="@drawable/draw_image"
-            android:layout_gravity="center_horizontal"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/deck_view">
+
+            <ImageView
+                android:layout_width="125dp"
+                android:layout_height="100dp"
+                android:src="@drawable/train_card"
+                android:rotation="90"/>
+
+            <TextView
+                android:id="@+id/num_train_cards_deck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text=""
+                android:textSize="35dp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@android:color/white"/>
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/card_holder_1"
