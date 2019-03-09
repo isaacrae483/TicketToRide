@@ -10,13 +10,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.runninglight.tickettoride.IPresenter.game.IHandPresenter;
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.iview.game.IHandView;
+import com.runninglight.tickettoride.presenter.game.HandPresenter;
 
 
-public class HandFragment extends Fragment {
+public class HandFragment extends Fragment implements IHandView {
 
     private ImageView destHand;
     private TextView destHandSize;
+
+    private IHandPresenter presenter;
 
     public HandFragment() {
         // Required empty public constructor
@@ -26,9 +31,8 @@ public class HandFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //if (getArguments() != null) {
-
-        //}
+        presenter = HandPresenter.getInstance();
+        ((HandPresenter) presenter).addView(this);
     }
 
     @Override
@@ -41,5 +45,8 @@ public class HandFragment extends Fragment {
         return v;
     }
 
-
+    @Override
+    public void refreshDestCardCount(int numCards){
+        destHandSize.setText(Integer.toString(numCards));
+    }
 }

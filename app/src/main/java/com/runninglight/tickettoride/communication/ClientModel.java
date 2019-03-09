@@ -147,6 +147,9 @@ public class ClientModel extends Observable {
     public void setDestinationCards(Game g, Player p){
         g.setDestinationCards(p.getName(), p.getDestinationCards().toArray(new DestinationCard[0]));
         currentGame = g;
+        if(p.getName().equals(currentPlayer.getName())){
+            currentPlayer = p;
+        }
         setChanged();
         notifyObservers((Integer)currentGame.getDeckSize());
     }
