@@ -74,4 +74,6 @@ public class Player {
     public void setClaimedRoutes(ArrayList<Route> claimedRoutes) {
         this.claimedRoutes = claimedRoutes;
     }
+
+    public boolean hasDestinationCards() { return destinationCards.size() > 0; }
 }

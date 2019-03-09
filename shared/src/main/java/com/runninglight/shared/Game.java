@@ -295,4 +295,10 @@ public class Game {
     public int getTrainCardDeckSize() { return trainCardDeckCurrentSize; }
     public void decrementTrainCardDeckSize() { trainCardDeckCurrentSize--; }
     public void increaseTrainCardDeckSize(int numToIncrease) { trainCardDeckCurrentSize += numToIncrease; }
+
+    public boolean initDestinationCardsPicked()
+    {
+        for (Player player : playerList) if (!player.hasDestinationCards()) return false;
+        return true;
+    }
 }

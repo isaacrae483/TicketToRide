@@ -84,11 +84,11 @@ public class DeckFragment extends Fragment implements IDeckView
         cardHolder5.setCard(null);
 
         // TEMP for testing
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 1);
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 2);
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 3);
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 4);
-        ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 5);
+        //ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 1);
+        //ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 2);
+        //ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 3);
+        //ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 4);
+        //ServerProxy.getInstance().drawCardFromFaceUpToHand(ClientModel.getInstance().getCurrentGame(), null, null, 5);
 
         destCardDeck = view.findViewById(R.id.dest_deck);
         destCardDeckSize = view.findViewById(R.id.dest_deck_size);
