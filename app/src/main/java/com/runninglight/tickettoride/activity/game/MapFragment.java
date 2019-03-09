@@ -1,7 +1,9 @@
 package com.runninglight.tickettoride.activity.game;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.runninglight.tickettoride.IPresenter.game.IMapPresenter;
@@ -23,7 +26,9 @@ public class MapFragment extends Fragment implements IMap_View {
 
     private IMapPresenter presenter;
 
-    private ImageView map;
+    private RelativeLayout map;
+
+
 
 
     public MapFragment(){}
@@ -43,17 +48,13 @@ public class MapFragment extends Fragment implements IMap_View {
 
         View v = inflater.inflate(R.layout.fragment_map, container, false);
 
-        map = v.findViewById(R.id.map_image_IV);
-        BitmapDrawable drawable = (BitmapDrawable) map.getDrawable();
-        Bitmap bitmap = drawable.getBitmap();
-        map.setImageBitmap(bitmap);
-        map.setScaleType(ImageView.ScaleType.FIT_XY);
+        map = v.findViewById(R.id.map_RL);
 
         map.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 presenter.touchMap((int) event.getX(),(int) event.getY());
-                return false;
+                return true;
             }
         });
 
@@ -62,5 +63,10 @@ public class MapFragment extends Fragment implements IMap_View {
         return v;
     }
 
+    public void claimMiami(){
+        ImageView route = getView().findViewById(R.id.miami);
+        route.bringToFront();
+        route.setVisibility(View.VISIBLE);
+    }
 
     }
