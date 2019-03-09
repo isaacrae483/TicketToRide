@@ -14,6 +14,8 @@ public class DeckPresenter implements IDeckPresenter
 {
     private static DeckPresenter instance;
 
+    private ClientModel model = ClientModel.getInstance();
+
     private IDeckView deckView;
 
     public static DeckPresenter getInstance()
@@ -60,10 +62,23 @@ public class DeckPresenter implements IDeckPresenter
     }
 
     @Override
+    public void checkIfMyTurn(){
+        if(model.isMyTurn()){
+            deckView.enableListeners();
+        }
+        else{
+            deckView.disableListeners();
+        }
+    }
+
+    @Override
     public void update(Observable o, Object arg)
     {
         if(arg instanceof Integer){
             deckView.refreshDestDeck(ClientModel.getInstance().getCurrentDestDeckSize());
+        }
+        if(arg instanceof String){
+            checkIfMyTurn();
         }
     }
 }

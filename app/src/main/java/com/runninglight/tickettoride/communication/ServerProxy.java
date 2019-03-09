@@ -200,6 +200,14 @@ public class ServerProxy implements IServer {
         return false;
     }
 
+    @Override
+    public void setTurn(String gameID, String playerName){
+        Results results = communicator.send(getSetTurnCommand(gameID, playerName));
+        if (!results.isSuccess()) {
+            System.out.println(results.getErrorInfo());
+        }
+    }
+
     private Command getDrawCardFromFaceUpToHandCommand(Game game, User user, TrainCard trainCard, int position)
     {
         return new Command(
@@ -298,6 +306,15 @@ public class ServerProxy implements IServer {
                 "drawTrainCard",
                 new String[] {GAME},
                 new Object[] {game} );
+    }
+
+    private Command getSetTurnCommand(String gameID, String playerName)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "setTurn",
+                new String[] {STRING, STRING},
+                new Object[] {gameID, playerName} );
     }
 
     // Temporary

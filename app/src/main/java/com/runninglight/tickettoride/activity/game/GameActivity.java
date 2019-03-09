@@ -48,6 +48,6 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         //TODO: the other option is to change the frames to literal fragments once all the
         //TODO: fragments are done
 
-
+        presenter.initTurn();
     }
 }

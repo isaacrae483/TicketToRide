@@ -26,4 +26,6 @@ public interface IServer {
 
     void returnDestCards(String gameID, String playerName,
                          DestinationCard[] cardsKept, DestinationCard[] cardsToReturn);
+
+    void setTurn(String gameID, String playerName);
 }

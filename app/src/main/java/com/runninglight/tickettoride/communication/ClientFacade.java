@@ -55,4 +55,10 @@ public class ClientFacade implements IClient {
     {
         model.addCardToFaceUp(game, trainCard, position);
     }
+
+    @Override
+    public void setTurn(Game game, String playerName){
+        model.setCurrentGame(game);
+        model.setCurrentTurn(playerName);
+    }
 }

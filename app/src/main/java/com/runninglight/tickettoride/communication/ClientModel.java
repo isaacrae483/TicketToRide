@@ -166,4 +166,29 @@ public class ClientModel extends Observable {
             DeckPresenter.getInstance().addCardToFaceUp(trainCard, position);
         }
     }
+
+    public String getCurrentTurn(){
+        return currentGame.getCurrentTurn();
+    }
+
+    public void setCurrentTurn(String playerName){
+        currentGame.setCurrentTurn(playerName);
+        System.out.println("*** Current turn: " + playerName);
+        setChanged();
+        notifyObservers(playerName);
+    }
+
+    public boolean isMyTurn(){
+        if(currentPlayer.getName().equals(currentGame.getCurrentTurn())){
+            return true;
+        }
+        return false;
+    }
+
+    public void nextTurn(){
+        currentGame.nextTurn();
+        System.out.println("*** Current turn: " + currentGame.getCurrentTurn());
+        setChanged();
+        notifyObservers(currentGame.getCurrentTurn());
+    }
 }

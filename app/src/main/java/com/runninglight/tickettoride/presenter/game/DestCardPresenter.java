@@ -58,6 +58,8 @@ public class DestCardPresenter implements IDestCardPresenter {
         proxy.returnDestCards(model.getCurrentGameID(), model.getCurrentPlayer().getName(),
                 keptCards, cardsToReturn);
         firstTurn = false;
+        model.nextTurn();
+        proxy.setTurn(model.getCurrentGameID(), model.getCurrentTurn());
         destCardView.onSelectionSuccessful();
     }
 

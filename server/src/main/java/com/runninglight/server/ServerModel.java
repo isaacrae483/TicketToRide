@@ -126,6 +126,11 @@ public class ServerModel {
         }
     }
 
+    public void setTurn(String gameID, String playerName){
+        int gameIndex = getGameIndex(gameID);
+        gameList.get(gameIndex).setCurrentTurn(playerName);
+    }
+
     public ArrayList<Game> getGameList() {
         return gameList;
     }

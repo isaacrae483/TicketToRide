@@ -151,4 +151,10 @@ public class ServerFacade implements IServer {
         }
         return null;
     }
+
+    @Override
+    public void setTurn(String gameID, String playerName){
+        model.setTurn(gameID, playerName);
+        proxy.setTurn(model.getGameByID(gameID), playerName);
+    }
 }

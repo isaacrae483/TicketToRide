@@ -37,6 +37,12 @@ public class Game {
     /** Current number of players in the game room */
     private int numPlayers;
 
+    /** Name of player whose turn it is */
+    private String currentTurn;
+
+    /** Index in playerList of whose turn it is */
+    private int turnIndex;
+
     /** Indicates the last index of the hex ID */
     private static final int ID_END = 7;
 
@@ -67,15 +73,6 @@ public class Game {
         this.faceUpCards = new FaceUpCards();
     }
 
-    /**
-     * Creates Player objects from Users to start the game
-     */
-    public void initPlayers(){
-        for(User user : userList){
-            // TODO: Finish GameColor to allow creation
-            //playerList.add(new Player(user.getUserName(), MAX_TRAIN_CARS));
-        }
-    }
 
     public boolean isValidPlayer(Player player){
         String playerName = player.getName();
@@ -175,6 +172,23 @@ public class Game {
 
     public int getDeckSize(){
         return destDeckSize;
+    }
+
+    public String getCurrentTurn(){
+        return currentTurn;
+    }
+
+    public void setCurrentTurn(String playerName){
+        currentTurn = playerName;
+        turnIndex = find(playerName);
+    }
+
+    public void nextTurn(){
+        turnIndex++;
+        if(turnIndex == playerList.size()){
+            turnIndex = 0;
+        }
+        currentTurn = playerList.get(turnIndex).getName();
     }
 
     /**
