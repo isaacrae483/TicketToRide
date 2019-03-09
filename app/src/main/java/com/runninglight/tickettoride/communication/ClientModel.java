@@ -191,6 +191,7 @@ public class ClientModel extends Observable {
     {
         public TrainCard trainCard;
         public int position;
+    }
 
     public String getCurrentTurn(){
         return currentGame.getCurrentTurn();
