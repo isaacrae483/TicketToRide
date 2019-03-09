@@ -22,6 +22,8 @@ import com.runninglight.tickettoride.communication.ServerProxy;
 import com.runninglight.tickettoride.iview.game.IDeckView;
 import com.runninglight.tickettoride.presenter.game.DeckPresenter;
 
+import java.util.Observer;
+
 public class DeckFragment extends Fragment implements IDeckView
 {
     private View view;
@@ -56,18 +58,15 @@ public class DeckFragment extends Fragment implements IDeckView
 
         // ImageView deckImageView = view.findViewById(R.id.deck_view);
 
-        numTrainCardsInDeck = 110;
         deckRelativeLayout = view.findViewById(R.id.deck_view);
         trainCardDeckSizeText = view.findViewById(R.id.num_train_cards_deck);
-        trainCardDeckSizeText.setText("" + numTrainCardsInDeck);
+        trainCardDeckSizeText.setText("" + ClientModel.getInstance().getCurrentGame().getTrainCardDeckSize());
 
         deckRelativeLayout.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                numTrainCardsInDeck--;
-                trainCardDeckSizeText.setText("" + numTrainCardsInDeck);
                 presenter.drawCardFromDeck();
             }
         });
@@ -234,5 +233,11 @@ public class DeckFragment extends Fragment implements IDeckView
 
     public void refreshDestDeck(int deckSize){
         destCardDeckSize.setText(Integer.toString(deckSize));
+    }
+
+    @Override
+    public void refreshTrainCardDeckSize(int deckSize)
+    {
+        trainCardDeckSizeText.setText(Integer.toString(deckSize));
     }
 }

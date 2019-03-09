@@ -43,6 +43,8 @@ public class Game {
 
     private FaceUpCards faceUpCards;
 
+    private int trainCardDeckCurrentSize;
+
     /**
      * Game constructor
      *
@@ -63,6 +65,7 @@ public class Game {
         this.chat = new Chat();
         this.playerList = new ArrayList<>();
         this.faceUpCards = new FaceUpCards();
+        this.trainCardDeckCurrentSize = 110;
     }
 
     /**
@@ -272,4 +275,8 @@ public class Game {
     {
         return faceUpCards.removeCard(position);
     }
+
+    public int getTrainCardDeckSize() { return trainCardDeckCurrentSize; }
+    public void decrementTrainCardDeckSize() { trainCardDeckCurrentSize--; }
+    public void increaseTrainCardDeckSize(int numToIncrease) { trainCardDeckCurrentSize += numToIncrease; }
 }

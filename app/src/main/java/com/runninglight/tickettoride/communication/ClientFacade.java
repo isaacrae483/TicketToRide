@@ -50,11 +50,13 @@ public class ClientFacade implements IClient {
     @Override
     public void addCardToHand(Game game, User user, TrainCard trainCard)
     {
+        // Add card to hand in model here
     }
 
     @Override
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
         model.addCardToFaceUp(game, trainCard, position);
+        model.decrementTrainCardDeckSize();
     }
 }

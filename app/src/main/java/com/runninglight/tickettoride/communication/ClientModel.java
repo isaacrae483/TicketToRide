@@ -151,12 +151,38 @@ public class ClientModel extends Observable {
         return currentGame.getDestDeckSize();
     }
 
+    public void decrementTrainCardDeckSize()
+    {
+        currentGame.decrementTrainCardDeckSize();
+        setChanged();
+        notifyObservers(currentGame.getTrainCardDeckSize());
+    }
+    public void getTrainCardDeckSize() { currentGame.getTrainCardDeckSize(); }
+    public void addToTrainCardDeckSize(int increase)
+    {
+        currentGame.increaseTrainCardDeckSize(increase);
+        currentGame.decrementTrainCardDeckSize();
+        setChanged();
+        notifyObservers(currentGame.getTrainCardDeckSize());
+    }
+
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
         if (getCurrentGame().getGameID().equals(game.getGameID()))
         {
             getCurrentGame().addCardToFaceUp(trainCard, position);
-            DeckPresenter.getInstance().addCardToFaceUp(trainCard, position);
+            setChanged();
+            FaceUpCardUpdate faceUpCardUpdate = new FaceUpCardUpdate();
+            faceUpCardUpdate.position = position;
+            faceUpCardUpdate.trainCard = trainCard;
+            notifyObservers(faceUpCardUpdate);
+            //DeckPresenter.getInstance().addCardToFaceUp(trainCard, position);
         }
+    }
+
+    public class FaceUpCardUpdate
+    {
+        public TrainCard trainCard;
+        public int position;
     }
 }

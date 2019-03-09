@@ -9,8 +9,9 @@ import com.runninglight.tickettoride.communication.ServerProxy;
 import com.runninglight.tickettoride.iview.game.IDeckView;
 
 import java.util.Observable;
+import java.util.Observer;
 
-public class DeckPresenter implements IDeckPresenter
+public class DeckPresenter implements IDeckPresenter, Observer
 {
     private static DeckPresenter instance;
 
@@ -25,6 +26,7 @@ public class DeckPresenter implements IDeckPresenter
     public void addView(IDeckView deckView)
     {
         this.deckView = deckView;
+        ClientModel.getInstance().addObserver(this);
     }
 
     @Override
@@ -58,8 +60,16 @@ public class DeckPresenter implements IDeckPresenter
     @Override
     public void update(Observable o, Object arg)
     {
-        if(arg instanceof Integer){
+        if (arg instanceof Integer) {
             deckView.refreshDestDeck(ClientModel.getInstance().getCurrentDestDeckSize());
+            deckView.refreshTrainCardDeckSize(ClientModel.getInstance().getCurrentGame().getTrainCardDeckSize());
+        }
+        if (arg instanceof ClientModel.FaceUpCardUpdate)
+        {
+            ClientModel.FaceUpCardUpdate faceUpCardUpdate = (ClientModel.FaceUpCardUpdate) arg;
+            deckView.addCardToFaceUpDeck(faceUpCardUpdate.trainCard, faceUpCardUpdate.position);
         }
     }
+
+
 }
