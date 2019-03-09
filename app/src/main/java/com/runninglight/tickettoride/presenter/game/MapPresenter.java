@@ -14,7 +14,7 @@ public class MapPresenter implements IMapPresenter {
     @Override
     public void touchMap(int x, int y) {
         System.out.println("x: "+x +" y: "+ +y);
-        //map_view.claimMiami();
+        map_view.claimMiami();
     }
 
     @Override
