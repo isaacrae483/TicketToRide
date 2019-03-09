@@ -33,21 +33,6 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
 
         presenter = new GameActivity_Presenter(this);
 
-        FragmentManager fm = this.getSupportFragmentManager();
-
-         mapFragment= (MapFragment) fm.findFragmentById(R.id.map_frame);
-        if(mapFragment==null){
-            mapFragment= new MapFragment();
-            fm.beginTransaction()
-                    .add(R.id.map_frame,mapFragment)
-                    .commit();
-        }
-
-        //TODO: see MainActivity for example of how to put fragments into frames
-
-        //TODO: the other option is to change the frames to literal fragments once all the
-        //TODO: fragments are done
-
-
+        presenter.initTurn();
     }
 }

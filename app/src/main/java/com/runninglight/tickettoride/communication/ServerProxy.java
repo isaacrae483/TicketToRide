@@ -2,16 +2,15 @@ package com.runninglight.tickettoride.communication;
 
 import android.util.Log;
 
-import com.runninglight.shared.CardColor;
+import com.runninglight.shared.Cards.CardColor;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Command;
-import com.runninglight.shared.DestinationCard;
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.GameInfo;
 import com.runninglight.shared.IServer;
 import com.runninglight.shared.LoginInfo;
 import com.runninglight.shared.Message;
-import com.runninglight.shared.Player;
 import com.runninglight.shared.Results;
 import com.runninglight.shared.Serializer;
 import com.runninglight.shared.User;
@@ -30,7 +29,7 @@ public class ServerProxy implements IServer {
     private static final String USER = "com.runninglight.shared.User";
     private static final String GAME = "com.runninglight.shared.Game";
     private static final String PLAYER = "com.runninglight.shared.Player";
-    private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.DestinationCard;";
+    private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.Cards.DestinationCard;";
     private static final String STRING = "java.lang.String";
     private static final String MESSAGE = "com.runninglight.shared.Message";
     private static final String TRAINCARD = "com.runninglight.shared.Cards.TrainCard";
@@ -89,7 +88,6 @@ public class ServerProxy implements IServer {
         if(results.isSuccess()) {
             System.out.println("Game Joined Successfully");
             model.setCurrentGame(game);
-            model.setCurrentPlayer(game.getPlayer(model.getCurrentUser().getUserName()));
             return true;
         }
         else{
@@ -202,6 +200,14 @@ public class ServerProxy implements IServer {
         return false;
     }
 
+    @Override
+    public void setTurn(String gameID, String playerName){
+        Results results = communicator.send(getSetTurnCommand(gameID, playerName));
+        if (!results.isSuccess()) {
+            System.out.println(results.getErrorInfo());
+        }
+    }
+
     private Command getDrawCardFromFaceUpToHandCommand(Game game, User user, TrainCard trainCard, int position)
     {
         return new Command(
@@ -300,6 +306,15 @@ public class ServerProxy implements IServer {
                 "drawTrainCard",
                 new String[] {GAME},
                 new Object[] {game} );
+    }
+
+    private Command getSetTurnCommand(String gameID, String playerName)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "setTurn",
+                new String[] {STRING, STRING},
+                new Object[] {gameID, playerName} );
     }
 
     // Temporary

@@ -1,18 +1,13 @@
 package com.runninglight.server;
 
-import com.runninglight.server.communication.CommandManager;
 import com.runninglight.server.communication.ServerCommunicator;
-import com.runninglight.shared.CardColor;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Command;
-import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.IClient;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
-
-import java.util.Random;
 
 public class ClientProxy implements IClient {
 
@@ -27,6 +22,7 @@ public class ClientProxy implements IClient {
     private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.DestinationCard;";
     private static final String PLAYER = "com.runninglight.shared.Player";
     private static final String TRAINCARD = "com.runninglight.shared.Cards.TrainCard";
+    private static final String STRING = "java.lang.String";
 
 
     public static ClientProxy getInstance() {
@@ -85,6 +81,11 @@ public class ClientProxy implements IClient {
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
         ServerCommunicator.getInstance().setCommandForGame(game, getAddCardToFaceUpCommand(game, trainCard, position));
+    }
+
+    @Override
+    public void setTurn(Game game, String playerName){
+        communicator.setCommandForGame(game, getSetTurnCommand(game, playerName));
     }
 
     private Command getAddCardToHandCommand(Game game, User user, TrainCard trainCard)
@@ -146,5 +147,14 @@ public class ClientProxy implements IClient {
                 "setDestinationCards",
                 new String[] {GAME, PLAYER},
                 new Object[] {game, p} );
+    }
+
+    private Command getSetTurnCommand(Game game, String playerName)
+    {
+        return new Command(
+                CLIENT_FACADE,
+                "setTurn",
+                new String[] {GAME, STRING},
+                new Object[] {game, playerName} );
     }
 }

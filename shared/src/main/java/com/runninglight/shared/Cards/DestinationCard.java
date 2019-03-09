@@ -1,4 +1,6 @@
-package com.runninglight.shared;
+package com.runninglight.shared.Cards;
+
+import com.runninglight.shared.City;
 
 import java.awt.Image;
 import java.util.ArrayList;

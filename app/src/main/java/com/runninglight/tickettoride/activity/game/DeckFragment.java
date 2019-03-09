@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.runninglight.shared.CardColor;
+import com.runninglight.shared.Cards.CardColor;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.tickettoride.IPresenter.game.IDeckPresenter;
 import com.runninglight.tickettoride.R;
@@ -92,6 +92,14 @@ public class DeckFragment extends Fragment implements IDeckView
 
         destCardDeck = view.findViewById(R.id.dest_deck);
         destCardDeckSize = view.findViewById(R.id.dest_deck_size);
+
+        presenter.checkIfMyTurn();
+
+        return view;
+    }
+
+    @Override
+    public void enableListeners(){
         destCardDeck.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -99,8 +107,11 @@ public class DeckFragment extends Fragment implements IDeckView
                 startActivity(intent);
             }
         });
+    }
 
-        return view;
+    @Override
+    public void disableListeners(){
+        destCardDeck.setOnClickListener(null);
     }
 
     @Override

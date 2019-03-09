@@ -1,6 +1,11 @@
 package com.runninglight.tickettoride.IPresenter.game;
 
-import java.util.Observer;
+
+import com.runninglight.shared.Cards.DestinationCard;
+import com.runninglight.tickettoride.iview.game.IDestCardView;
 
 public interface IDestCardPresenter {
+    public void addView(IDestCardView v);
+    public DestinationCard[] drawDestCards();
+    public void returnDestCards(Integer[] keptIndices, Integer[] returnIndices);
 }

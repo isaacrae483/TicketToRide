@@ -15,12 +15,18 @@ public class DeckPresenter implements IDeckPresenter, Observer
 {
     private static DeckPresenter instance;
 
+    private ClientModel model = ClientModel.getInstance();
+
     private IDeckView deckView;
 
     public static DeckPresenter getInstance()
     {
         if (instance == null) instance = new DeckPresenter();
         return instance;
+    }
+
+    public DeckPresenter(){
+        ClientModel.getInstance().addObserver(this);
     }
 
     public void addView(IDeckView deckView)
@@ -58,6 +64,16 @@ public class DeckPresenter implements IDeckPresenter, Observer
     }
 
     @Override
+    public void checkIfMyTurn(){
+        if(model.isMyTurn()){
+            deckView.enableListeners();
+        }
+        else{
+            deckView.disableListeners();
+        }
+    }
+
+    @Override
     public void update(Observable o, Object arg)
     {
         if (arg instanceof Integer) {
@@ -68,6 +84,9 @@ public class DeckPresenter implements IDeckPresenter, Observer
         {
             ClientModel.FaceUpCardUpdate faceUpCardUpdate = (ClientModel.FaceUpCardUpdate) arg;
             deckView.addCardToFaceUpDeck(faceUpCardUpdate.trainCard, faceUpCardUpdate.position);
+        }
+        if(arg instanceof String){
+            checkIfMyTurn();
         }
     }
 

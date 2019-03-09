@@ -1,9 +1,8 @@
 package com.runninglight.server;
 
-import com.runninglight.shared.DestinationCard;
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
-import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
 
 import java.util.ArrayList;
@@ -125,6 +124,11 @@ public class ServerModel {
                 gameList.get(i).addMessage(message);
             }
         }
+    }
+
+    public void setTurn(String gameID, String playerName){
+        int gameIndex = getGameIndex(gameID);
+        gameList.get(gameIndex).setCurrentTurn(playerName);
     }
 
     public ArrayList<Game> getGameList() {

@@ -1,13 +1,11 @@
 package com.runninglight.tickettoride.communication;
 
 import com.runninglight.shared.Cards.TrainCard;
-import com.runninglight.shared.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.IClient;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
-import com.runninglight.tickettoride.presenter.game.DeckPresenter;
 
 public class ClientFacade implements IClient {
 
@@ -58,5 +56,11 @@ public class ClientFacade implements IClient {
     {
         model.addCardToFaceUp(game, trainCard, position);
         model.decrementTrainCardDeckSize();
+    }
+
+    @Override
+    public void setTurn(Game game, String playerName){
+        model.setCurrentGame(game);
+        model.setCurrentTurn(playerName);
     }
 }

@@ -1,11 +1,12 @@
-package com.runninglight.shared;
+package com.runninglight.shared.Cards;
+
+import com.runninglight.shared.City;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class DestinationCardDeck {
 
@@ -21,7 +22,7 @@ public class DestinationCardDeck {
         try {
             deck = new ArrayList<>();
             String filePath = System.getProperty("user.dir") + File.separator +
-                    "shared\\src\\main\\java\\com\\runninglight\\shared\\destinationCards.txt";
+                    "shared\\src\\main\\java\\com\\runninglight\\shared\\Cards\\destinationCards.txt";
             File file = new File(filePath);
             Scanner scanner = new Scanner(file);
 
@@ -32,7 +33,7 @@ public class DestinationCardDeck {
                 int points = Integer.parseInt(scanner.next());
                 DestinationCard card = new DestinationCard(startCity, endCity, points);
                 String imageResource = startCity.getName().toLowerCase().replace(" ", "") +
-                        "_" + endCity.getName().toLowerCase().replace(" ", "") + ".png";
+                        "_" + endCity.getName().toLowerCase().replace(" ", "");
                 card.setImageResourceString(imageResource);
                 deck.add(card);
             }

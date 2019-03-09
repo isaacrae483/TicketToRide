@@ -3,7 +3,7 @@ package com.runninglight.tickettoride.communication;
 import android.util.Log;
 
 import com.runninglight.shared.Cards.TrainCard;
-import com.runninglight.shared.DestinationCard;
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
@@ -70,6 +70,10 @@ public class ClientModel extends Observable {
 
     public Game getCurrentGame() {
         return currentGame;
+    }
+
+    public String getCurrentGameID(){
+        return currentGame.getGameID();
     }
 
     public ArrayList<Game> getGameList() {
@@ -143,6 +147,9 @@ public class ClientModel extends Observable {
     public void setDestinationCards(Game g, Player p){
         g.setDestinationCards(p.getName(), p.getDestinationCards().toArray(new DestinationCard[0]));
         currentGame = g;
+        if(p.getName().equals(currentPlayer.getName())){
+            currentPlayer = p;
+        }
         setChanged();
         notifyObservers((Integer)currentGame.getDeckSize());
     }
@@ -184,5 +191,29 @@ public class ClientModel extends Observable {
     {
         public TrainCard trainCard;
         public int position;
+
+    public String getCurrentTurn(){
+        return currentGame.getCurrentTurn();
+    }
+
+    public void setCurrentTurn(String playerName){
+        currentGame.setCurrentTurn(playerName);
+        System.out.println("*** Current turn: " + playerName);
+        setChanged();
+        notifyObservers(playerName);
+    }
+
+    public boolean isMyTurn(){
+        if(currentPlayer.getName().equals(currentGame.getCurrentTurn())){
+            return true;
+        }
+        return false;
+    }
+
+    public void nextTurn(){
+        currentGame.nextTurn();
+        System.out.println("*** Current turn: " + currentGame.getCurrentTurn());
+        setChanged();
+        notifyObservers(currentGame.getCurrentTurn());
     }
 }

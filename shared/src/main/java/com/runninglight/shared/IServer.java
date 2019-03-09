@@ -1,8 +1,7 @@
 package com.runninglight.shared;
 
+import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Cards.TrainCard;
-
-import java.util.ArrayList;
 
 public interface IServer {
     boolean login(LoginInfo loginInfo);
@@ -27,4 +26,6 @@ public interface IServer {
 
     void returnDestCards(String gameID, String playerName,
                          DestinationCard[] cardsKept, DestinationCard[] cardsToReturn);
+
+    void setTurn(String gameID, String playerName);
 }

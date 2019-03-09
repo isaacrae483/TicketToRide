@@ -17,4 +17,6 @@ public interface IClient {
     void addCardToHand(Game game, User user, TrainCard trainCard);
 
     void addCardToFaceUp(Game game, TrainCard trainCard, int position);
+
+    void setTurn(Game game, String playerName);
 }

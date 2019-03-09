@@ -1,19 +1,15 @@
 package com.runninglight.server.communication;
 
-import com.runninglight.shared.CardColor;
+import com.runninglight.shared.Cards.CardColor;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Command;
 import com.runninglight.shared.Game;
-import com.runninglight.shared.Message;
-import com.runninglight.shared.MessageCompare;
 import com.runninglight.shared.Results;
 import com.runninglight.shared.Serializer;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class ServerCommunicator
 {
