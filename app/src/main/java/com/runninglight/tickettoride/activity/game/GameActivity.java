@@ -32,7 +32,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         setContentView(R.layout.activity_game);
 
         presenter = new GameActivity_Presenter(this);
-
+        
         FragmentManager fm = this.getSupportFragmentManager();
 
          mapFragment= (MapFragment) fm.findFragmentById(R.id.map_frame);
