@@ -49,6 +49,11 @@ public class DestinationCardActivity extends AppCompatActivity implements IDestC
         setConfirmButtonListener();
     }
 
+    @Override
+    public void onBackPressed(){
+        // Back button is disabled
+    }
+
     public void drawDestCards(){
         int resID = 0;
         DestinationCard[] cards = presenter.drawDestCards();
