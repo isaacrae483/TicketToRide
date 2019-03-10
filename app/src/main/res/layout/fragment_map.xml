@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="40dp">
 
         <ImageView
-            android:id="@+id/duluth_1"
+            android:id="@+id/_21"
             android:layout_width="11dp"
             android:layout_height="250dp"
             android:layout_marginStart="480dp"
@@ -23,7 +23,7 @@
             android:visibility="invisible" />
 
         <ImageView
-            android:id="@+id/kansas_city_2"
+            android:id="@+id/_50"
             android:layout_width="11dp"
             android:layout_height="33dp"
             android:layout_marginStart="603dp"
@@ -32,7 +32,7 @@
             android:visibility="invisible" />
 
         <ImageView
-            android:id="@+id/omaha_3"
+            android:id="@+id/_37"
             android:layout_width="11dp"
             android:layout_height="64dp"
             android:layout_marginStart="605dp"
@@ -41,7 +41,7 @@
             android:visibility="invisible" />
 
         <ImageView
-            android:id="@+id/st_marie_4"
+            android:id="@+id/_33"
             android:layout_width="11dp"
             android:layout_height="122dp"
             android:layout_marginStart="695dp"
@@ -50,7 +50,7 @@
             android:visibility="invisible" />
 
         <ImageView
-            android:id="@+id/winnepegg_5"
+            android:id="@+id/_20"
             android:layout_width="11dp"
             android:layout_height="146dp"
             android:layout_marginStart="414dp"
@@ -59,7 +59,7 @@
             android:visibility="invisible" />
 
         <ImageView
-            android:id="@+id/miami_6"
+            android:id="@+id/_99"
             android:layout_width="11dp"
             android:layout_height="177dp"
             android:layout_marginStart="943dp"

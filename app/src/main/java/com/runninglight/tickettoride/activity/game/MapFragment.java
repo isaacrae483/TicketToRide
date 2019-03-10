@@ -36,6 +36,8 @@ public class MapFragment extends Fragment implements IMap_View {
 
     public MapFragment(){}
 
+    //TODO: note to self, there is a onclick attribute in image view, look into it
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,37 +68,35 @@ public class MapFragment extends Fragment implements IMap_View {
         return v;
     }
 
-    public void claimMiami(){
-        ImageView route = getView().findViewById(R.id.miami_6);
-        route.setVisibility(View.VISIBLE);
-    }
+
 
     @Override
     public void claimRoute(int route, PlayerColor color) {
         ImageView routeView;
 
         switch (route){
-            case 1:
-                routeView = getView().findViewById(R.id.duluth_1);
+            case 21:
+                routeView = getView().findViewById(R.id._21);
                 break;
 
-            case 2:
-                routeView = getView().findViewById(R.id.kansas_city_2);
+            case 50:
+                routeView = getView().findViewById(R.id._50);
                 break;
-            case 3:
-                routeView = getView().findViewById(R.id.omaha_3);
+            case 37:
+                routeView = getView().findViewById(R.id._37);
                 break;
-            case 4:
-                routeView = getView().findViewById(R.id.st_marie_4);
+            case 33:
+                routeView = getView().findViewById(R.id._33);
                 break;
-            case 5:
-                routeView = getView().findViewById(R.id.winnepegg_5);
+            case 20:
+                routeView = getView().findViewById(R.id._20);
                 break;
-            case 6:
-                routeView = getView().findViewById(R.id.miami_6);
+            case 99:
+                routeView = getView().findViewById(R.id._99);
                 break;
             default:
-                routeView = getView().findViewById(R.id.miami_6);
+                routeView = getView().findViewById(R.id._99);
+                System.out.println("unknown route defaulting to miami to atlanta");
         }
         routeView.setVisibility(View.VISIBLE);
         routeView.setBackgroundResource(findColor(color));
