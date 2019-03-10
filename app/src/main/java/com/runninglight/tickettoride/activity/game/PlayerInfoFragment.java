@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 import com.runninglight.shared.Player;
 import com.runninglight.shared.PlayerColor;
+import com.runninglight.tickettoride.IPresenter.game.IPlayerInfoPresenter;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.iview.game.IPlayerInfoView;
+import com.runninglight.tickettoride.presenter.game.PlayerInfoPresenter;
 
 import java.util.ArrayList;
 
@@ -46,6 +48,8 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
     private TextView player4_score;
     private ImageView player4_image;
 
+    IPlayerInfoPresenter presenter;
+
     public PlayerInfoFragment() {
         // Required empty public constructor
     }
@@ -54,9 +58,8 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //if (getArguments() != null) {
-
-        //}
+        presenter = PlayerInfoPresenter.getInstance();
+        ((PlayerInfoPresenter) presenter).addView(this);
     }
 
     @Override
@@ -100,7 +103,7 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
     public void updatePlayerInfo(ArrayList<Player> players, Player currentPlayer, String currentTurn) {
         int i = 1;
         for (Player p : players) {
-            if (!p.getName().equals(currentPlayer.getName())) {
+            //if (!p.getName().equals(currentPlayer.getName())) {
                 if (i == 1) {
                     setPlayer1(p, currentTurn);
                     i++;
@@ -115,7 +118,7 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
                     i++;
                 }
             }
-        }
+        //}
     }
 
     private void setPlayer1(Player p, String currentTurn) {
