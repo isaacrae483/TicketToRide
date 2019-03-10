@@ -190,14 +190,33 @@ public class ServerProxy implements IServer {
         // Add card to hand here
         // ClientFacade.getInstance().addCardToFaceUp(game, getRandomTraincard());
 
-        ClientCommunicator.getInstance().send(getDrawCardFromFaceUpToHandCommand(game, user, trainCard, position));
-        return false;
+        Results results = ClientCommunicator.getInstance().send(getDrawCardFromFaceUpToHandCommand(game, user, trainCard, position));
+        if (results.isSuccess())
+        {
+            Log.d("TTR.ServerProxy", "Message sent successfully");
+        }
+        else
+        {
+            System.out.println(results.getErrorInfo());
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean drawCardFromDeckToHand(Game game, User user)
     {
-        return false;
+        Results results = ClientCommunicator.getInstance().send(getDrawTrainCardFromDeckCommand(game, user));
+        if (results.isSuccess())
+        {
+            Log.d("TTR.ServerProxy", "Message sent successfully");
+        }
+        else
+        {
+            System.out.println(results.getErrorInfo());
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -299,13 +318,13 @@ public class ServerProxy implements IServer {
                 new Object[] {gameID, playerName, cardsKept, cardsToReturn} );
     }
 
-    private Command getDrawTrainCardFromDeckCommand(Game game)
+    private Command getDrawTrainCardFromDeckCommand(Game game, User user)
     {
         return new Command(
                 SERVER_FACADE,
-                "drawTrainCard",
-                new String[] {GAME},
-                new Object[] {game} );
+                "drawCardFromDeckToHand",
+                new String[] {GAME, USER},
+                new Object[] {game, user} );
     }
 
     private Command getSetTurnCommand(String gameID, String playerName)

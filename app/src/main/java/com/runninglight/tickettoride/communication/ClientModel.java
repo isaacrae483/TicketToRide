@@ -220,8 +220,8 @@ public class ClientModel extends Observable {
 
     public void addTrainCardToPlayerHand(TrainCard trainCard, User user, Game game)
     {
+        getCurrentPlayer().addCardToHand(trainCard);
         setChanged();
         notifyObservers();
-        getCurrentPlayer().addCardToHand(trainCard);
     }
 }

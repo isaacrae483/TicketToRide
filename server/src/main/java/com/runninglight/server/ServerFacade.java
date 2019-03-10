@@ -113,11 +113,16 @@ public class ServerFacade implements IServer {
 
         if (g.initDestinationCardsPicked())
         {
-            ClientProxy.getInstance().addCardToFaceUp(g, getRandomTraincard(), 1);
-            ClientProxy.getInstance().addCardToFaceUp(g, getRandomTraincard(), 2);
-            ClientProxy.getInstance().addCardToFaceUp(g, getRandomTraincard(), 3);
-            ClientProxy.getInstance().addCardToFaceUp(g, getRandomTraincard(), 4);
-            ClientProxy.getInstance().addCardToFaceUp(g, getRandomTraincard(), 5);
+            ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 1);
+            ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 2);
+            ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 3);
+            ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 4);
+            ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 5);
+
+            for (User user : g.getUserList())
+            {
+                for (int i = 0; i < 4; i++) ClientProxy.getInstance().addCardToHand(g, user, g.drawTrainCard());
+            }
         }
     }
 
@@ -133,32 +138,18 @@ public class ServerFacade implements IServer {
     @Override
     public boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard, int position)
     {
+        Game g = model.getGameByID(game.getGameID());
         if (trainCard != null) ClientProxy.getInstance().addCardToHand(game, user, trainCard);
-        ClientProxy.getInstance().addCardToFaceUp(game, getRandomTraincard(), position);
-        return false;
+        ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), position);
+        return true;
     }
 
     @Override
     public boolean drawCardFromDeckToHand(Game game, User user)
     {
-        return false;
-    }
-
-    private TrainCard getRandomTraincard()
-    {
-        switch (new Random().nextInt(9))
-        {
-            case 0: return new TrainCard(CardColor.BLUE);
-            case 1: return new TrainCard(CardColor.BLACK);
-            case 2: return new TrainCard(CardColor.RED);
-            case 3: return new TrainCard(CardColor.GREEN);
-            case 4: return new TrainCard(CardColor.WHITE);
-            case 5: return new TrainCard(CardColor.PINK);
-            case 6: return new TrainCard(CardColor.ORANGE);
-            case 7: return new TrainCard(CardColor.YELLOW);
-            case 8: return new TrainCard(CardColor.WILD);
-        }
-        return null;
+        Game g = model.getGameByID(game.getGameID());
+        ClientProxy.getInstance().addCardToHand(g, user, g.drawTrainCard());
+        return true;
     }
 
     @Override

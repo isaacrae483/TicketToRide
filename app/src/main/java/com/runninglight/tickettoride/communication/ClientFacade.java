@@ -1,5 +1,7 @@
 package com.runninglight.tickettoride.communication;
 
+import android.util.Log;
+
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.IClient;
@@ -48,14 +50,19 @@ public class ClientFacade implements IClient {
     @Override
     public void addCardToHand(Game game, User user, TrainCard trainCard)
     {
-        ClientModel.getInstance().addTrainCardToPlayerHand(trainCard, user, game);
+        model.setCurrentGame(game);
+        Log.d("TAG", "adding card: " + trainCard.getCardColor() + " to user: " + user.getUserName());
+        if (user.getUserID().equals(ClientModel.getInstance().getCurrentUser().getUserID()))
+        {
+            ClientModel.getInstance().addTrainCardToPlayerHand(trainCard, user, game);
+        }
     }
 
     @Override
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
+        model.setCurrentGame(game);
         model.addCardToFaceUp(game, trainCard, position);
-        model.decrementTrainCardDeckSize();
     }
 
     @Override

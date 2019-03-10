@@ -1,5 +1,6 @@
 package com.runninglight.shared;
 
+import com.runninglight.shared.Cards.CardColor;
 import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Cards.DestinationCardDeck;
 import com.runninglight.shared.Cards.FaceUpCards;
@@ -7,6 +8,7 @@ import com.runninglight.shared.Cards.TrainCard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.UUID;
 
 public class Game {
@@ -291,7 +293,11 @@ public class Game {
     {
         return faceUpCards.removeCard(position);
     }
-
+    public TrainCard drawTrainCard()
+    {
+        trainCardDeckCurrentSize--;
+        return getRandomTraincard();
+    }
     public int getTrainCardDeckSize() { return trainCardDeckCurrentSize; }
     public void decrementTrainCardDeckSize() { trainCardDeckCurrentSize--; }
     public void increaseTrainCardDeckSize(int numToIncrease) { trainCardDeckCurrentSize += numToIncrease; }
@@ -300,5 +306,24 @@ public class Game {
     {
         for (Player player : playerList) if (!player.hasDestinationCards()) return false;
         return true;
+    }
+
+    // TEST
+
+    private TrainCard getRandomTraincard()
+    {
+        switch (new Random().nextInt(9))
+        {
+            case 0: return new TrainCard(CardColor.BLUE);
+            case 1: return new TrainCard(CardColor.BLACK);
+            case 2: return new TrainCard(CardColor.RED);
+            case 3: return new TrainCard(CardColor.GREEN);
+            case 4: return new TrainCard(CardColor.WHITE);
+            case 5: return new TrainCard(CardColor.PINK);
+            case 6: return new TrainCard(CardColor.ORANGE);
+            case 7: return new TrainCard(CardColor.YELLOW);
+            case 8: return new TrainCard(CardColor.WILD);
+        }
+        return null;
     }
 }
