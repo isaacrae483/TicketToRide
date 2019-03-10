@@ -26,7 +26,7 @@ public class Player {
         this.points = 0;
         this.color = color;
         this.trainCars = trainCars;
-        this.hand = hand;
+        this.hand = new Hand();
         destinationCards = new ArrayList<>();
         claimedRoutes = new ArrayList<>();
     }

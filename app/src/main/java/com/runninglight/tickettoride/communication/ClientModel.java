@@ -217,4 +217,11 @@ public class ClientModel extends Observable {
         setChanged();
         notifyObservers(currentGame.getCurrentTurn());
     }
+
+    public void addTrainCardToPlayerHand(TrainCard trainCard, User user, Game game)
+    {
+        setChanged();
+        notifyObservers();
+        getCurrentPlayer().addCardToHand(trainCard);
+    }
 }

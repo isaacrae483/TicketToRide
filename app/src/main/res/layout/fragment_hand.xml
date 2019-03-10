@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.game.HandFragment">
+    android:layout_height="wrap_content"
+    tools:context=".activity.game.HandFragment"
+    android:orientation="horizontal">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/dest_hand"
             android:layout_width="150dp"
@@ -28,4 +29,213 @@
 
     </RelativeLayout>
 
-</FrameLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:src="@drawable/traincard_red"
+            android:rotation="90"/>
+
+        <TextView
+            android:id="@+id/num_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="35dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:src="@drawable/traincard_blue"
+            android:rotation="90"/>
+
+        <TextView
+            android:id="@+id/num_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="35dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:src="@drawable/traincard_green"
+            android:rotation="90"/>
+
+        <TextView
+            android:id="@+id/num_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="35dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:src="@drawable/traincard_yellow"
+            android:rotation="90"/>
+
+        <TextView
+            android:id="@+id/num_yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="35dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:src="@drawable/traincard_orange"
+            android:rotation="90"/>
+
+        <TextView
+            android:id="@+id/num_orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="35dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:src="@drawable/traincard_black"
+            android:rotation="90"/>
+
+        <TextView
+            android:id="@+id/num_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="35dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:src="@drawable/traincard_white"
+            android:rotation="90"/>
+
+        <TextView
+            android:id="@+id/num_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="35dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:src="@drawable/traincard_pink"
+            android:rotation="90"/>
+
+        <TextView
+            android:id="@+id/num_pink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="35dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:src="@drawable/traincard_wild"
+            android:rotation="90"/>
+
+        <TextView
+            android:id="@+id/num_wild"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="35dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

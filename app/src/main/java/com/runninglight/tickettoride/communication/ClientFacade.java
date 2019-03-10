@@ -48,7 +48,7 @@ public class ClientFacade implements IClient {
     @Override
     public void addCardToHand(Game game, User user, TrainCard trainCard)
     {
-        // Add card to hand in model here
+        ClientModel.getInstance().addTrainCardToPlayerHand(trainCard, user, game);
     }
 
     @Override
