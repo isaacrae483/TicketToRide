@@ -74,6 +74,7 @@ public class ClientProxy implements IClient {
     @Override
     public void addCardToHand(Game game, User user, TrainCard trainCard)
     {
+        game.getPlayer(user.getUserName()).addCardToHand(trainCard);
         ServerCommunicator.getInstance().setCommandForGame(game, getAddCardToHandCommand(game, user, trainCard));
     }
 

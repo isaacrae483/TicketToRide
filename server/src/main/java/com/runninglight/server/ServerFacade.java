@@ -139,7 +139,7 @@ public class ServerFacade implements IServer {
     public boolean drawCardFromFaceUpToHand(Game game, User user, TrainCard trainCard, int position)
     {
         Game g = model.getGameByID(game.getGameID());
-        if (trainCard != null) ClientProxy.getInstance().addCardToHand(game, user, trainCard);
+        if (trainCard != null) ClientProxy.getInstance().addCardToHand(g, user, trainCard);
         ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), position);
         return true;
     }

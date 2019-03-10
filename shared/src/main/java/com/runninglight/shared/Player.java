@@ -15,6 +15,8 @@ public class Player {
 
     private int trainCars;
 
+    private int numTrainCards;
+
     private ArrayList<DestinationCard> destinationCards;
 
     private ArrayList<Route> claimedRoutes;
@@ -27,6 +29,7 @@ public class Player {
         this.color = color;
         this.trainCars = trainCars;
         this.hand = new Hand();
+        this.numTrainCards = 0;
         destinationCards = new ArrayList<>();
         claimedRoutes = new ArrayList<>();
     }
@@ -84,8 +87,8 @@ public class Player {
     public Hand getHand() { return hand; }
 
     public int getHandSize() {
-        return hand.getHandSize();
+        return numTrainCards; // hand.getHandSize();
     }
 
-    public void addCardToHand(TrainCard trainCard) { hand.addTrainCard(trainCard); }
+    public void addCardToHand(TrainCard trainCard) { hand.addTrainCard(trainCard); numTrainCards++; }
 }
