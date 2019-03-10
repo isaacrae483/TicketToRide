@@ -47,7 +47,10 @@
             app:layout_constraintEnd_toStartOf="@id/deck_frame"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
+            <fragment
+                class="com.runninglight.tickettoride.activity.game.PlayerInfoFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </FrameLayout>
 
         <FrameLayout

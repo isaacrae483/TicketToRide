@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.runninglight.shared.Cards.TrainCard;
+import com.runninglight.shared.Player;
+import com.runninglight.shared.PlayerColor;
 import com.runninglight.tickettoride.IPresenter.game.IHandPresenter;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.iview.game.IHandView;
@@ -34,6 +36,18 @@ public class HandFragment extends Fragment implements IHandView {
     private TextView numBlackText;
     private TextView numWhiteText;
     private TextView numWildText;
+
+    private TextView currentplayer_name;
+    private TextView currentplayer_traincards;
+    private TextView currentplayer_destcards;
+    private TextView currentplayer_carsleft;
+    private TextView currentplayer_score;
+    private ImageView currentplayer_image;
+
+    private String TCARDS = "# Train Cards: ";
+    private String DCARDS = "# Dest Cards: ";
+    private String LEFT = "# Cars Left: ";
+    private String SCORE = "Score: ";
 
     private IHandPresenter presenter;
 
@@ -67,6 +81,13 @@ public class HandFragment extends Fragment implements IHandView {
         numPinkText = v.findViewById(R.id.num_pink);
         numGreenText = v.findViewById(R.id.num_green);
         numWildText = v.findViewById(R.id.num_wild);
+
+        currentplayer_name = v.findViewById(R.id.currentplayer_name);
+        currentplayer_traincards = v.findViewById(R.id.currentplayer_traincards);
+        currentplayer_destcards = v.findViewById(R.id.currentplayer_destcards);
+        currentplayer_carsleft = v.findViewById(R.id.currentplayer_carsleft);
+        currentplayer_score = v.findViewById(R.id.currentplayer_score);
+        currentplayer_image = v.findViewById(R.id.currentplayer_image);
 
         numYellowText.setText(Integer.toString(0));
         numGreenText.setText(Integer.toString(0));
@@ -132,5 +153,63 @@ public class HandFragment extends Fragment implements IHandView {
         numBlueText.setText(Integer.toString(blue));
         numBlackText.setText(Integer.toString(black));
         numWildText.setText(Integer.toString(wild));
+    }
+
+    @Override
+    public void updateCurrentPlayerInfo(Player currentPlayer, String currentTurn) {
+        currentplayer_name.setText(currentPlayer.getName());
+        currentplayer_traincards.setText(TCARDS + Integer.toString(currentPlayer.getHandSize()));
+        currentplayer_destcards.setText(DCARDS + Integer.toString(currentPlayer.getDestinationCards().size()));
+        currentplayer_carsleft.setText(LEFT + Integer.toString(currentPlayer.getTrainCars()));
+        currentplayer_score.setText(SCORE + Integer.toString(currentPlayer.getPoints()));
+        PlayerColor color = currentPlayer.getColor();
+
+        if (currentPlayer.getName().equals(currentTurn)) {
+            currentplayer_image.setImageResource(getImageId(color, true));
+        } else {
+            currentplayer_image.setImageResource(getImageId(color, false));
+        }
+    }
+
+    private int getImageId(PlayerColor color, boolean isTurn) {
+        switch (color) {
+            case BLACK:
+                if (isTurn) {
+                    return R.drawable.black;
+                } else {
+                    return R.drawable.black_turn;
+                }
+
+            case RED:
+                if (isTurn) {
+                    return R.drawable.red_turn;
+                } else {
+                    return R.drawable.red;
+                }
+
+            case GREEN:
+                if (isTurn) {
+                    return R.drawable.green_turn;
+                } else {
+                    return R.drawable.green;
+                }
+
+            case BLUE:
+                if (isTurn) {
+                    return R.drawable.blue_turn;
+                } else {
+                    return R.drawable.blue;
+                }
+
+            case YELLOW:
+                if (isTurn) {
+                    return R.drawable.yellow_turn;
+                } else {
+                    return R.drawable.yellow;
+                }
+
+            default:
+                return R.drawable.black;
+        }
     }
 }

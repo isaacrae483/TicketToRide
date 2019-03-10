@@ -83,5 +83,9 @@ public class Player {
 
     public Hand getHand() { return hand; }
 
+    public int getHandSize() {
+        return hand.getHandSize();
+    }
+
     public void addCardToHand(TrainCard trainCard) { hand.addTrainCard(trainCard); }
 }
