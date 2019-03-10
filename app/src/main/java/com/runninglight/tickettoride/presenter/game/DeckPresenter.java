@@ -76,9 +76,10 @@ public class DeckPresenter implements IDeckPresenter, Observer
     @Override
     public void update(Observable o, Object arg)
     {
+        deckView.refreshTrainCardDeckSize(ClientModel.getInstance().getCurrentGame().getTrainCardDeckSize());
         if (arg instanceof Integer) {
             deckView.refreshDestDeck(ClientModel.getInstance().getCurrentDestDeckSize());
-            deckView.refreshTrainCardDeckSize(ClientModel.getInstance().getCurrentGame().getTrainCardDeckSize());
+            //deckView.refreshTrainCardDeckSize(ClientModel.getInstance().getCurrentGame().getTrainCardDeckSize());
         }
         if (arg instanceof ClientModel.FaceUpCardUpdate)
         {
