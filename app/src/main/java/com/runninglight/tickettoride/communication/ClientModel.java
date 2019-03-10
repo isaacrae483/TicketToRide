@@ -220,7 +220,8 @@ public class ClientModel extends Observable {
 
     public void addTrainCardToPlayerHand(TrainCard trainCard, User user, Game game)
     {
-        getCurrentPlayer().addCardToHand(trainCard);
+        if (currentPlayer.getName().equals(user.getUserName())) getCurrentPlayer().addCardToHand(trainCard);
+        //game.getPlayer(user.getUserName()).addCardToHand(trainCard);
         setChanged();
         notifyObservers();
     }
