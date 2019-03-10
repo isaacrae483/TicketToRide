@@ -42,16 +42,15 @@
         <FrameLayout
             android:id="@+id/player_info_frame"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="100dp"
             app:layout_constraintBottom_toTopOf="@id/map_frame"
             app:layout_constraintEnd_toStartOf="@id/deck_frame"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <fragment
+                class="com.runninglight.tickettoride.activity.game.PlayerInfoFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                class="com.runninglight.tickettoride.activity.game.PlayerInfoFragment"/>
-
+                android:layout_height="match_parent" />
         </FrameLayout>
 
         <FrameLayout
