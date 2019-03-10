@@ -1,6 +1,7 @@
 package com.runninglight.shared;
 
 import com.runninglight.shared.Cards.DestinationCard;
+import com.runninglight.shared.Cards.TrainCard;
 
 import java.util.ArrayList;
 
@@ -18,11 +19,14 @@ public class Player {
 
     private ArrayList<Route> claimedRoutes;
 
+    private Hand hand;
+
     public Player(String name, int trainCars, PlayerColor color) {
         this.name = name;
         this.points = 0;
         this.color = color;
         this.trainCars = trainCars;
+        this.hand = hand;
         destinationCards = new ArrayList<>();
         claimedRoutes = new ArrayList<>();
     }
@@ -76,4 +80,8 @@ public class Player {
     }
 
     public boolean hasDestinationCards() { return destinationCards.size() > 0; }
+
+    public Hand getHand() { return hand; }
+
+    public void addCardToHand(TrainCard trainCard) { hand.addTrainCard(trainCard); }
 }
