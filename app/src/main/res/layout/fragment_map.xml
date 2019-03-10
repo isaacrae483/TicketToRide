@@ -14,16 +14,58 @@
         tools:layout_editor_absoluteY="40dp">
 
         <ImageView
-            android:id="@+id/miami"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="943dp"
-            android:layout_marginTop="317dp"
-            android:rotation="-47.5"
-            android:src="@drawable/length_5_route"
+            android:id="@+id/duluth_1"
+            android:layout_width="11dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="480dp"
+            android:layout_marginTop="24dp"
+            android:rotation="89.5"
             android:visibility="invisible" />
 
+        <ImageView
+            android:id="@+id/kansas_city_2"
+            android:layout_width="11dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="603dp"
+            android:layout_marginTop="227dp"
+            android:rotation="-35"
+            android:visibility="invisible" />
 
+        <ImageView
+            android:id="@+id/omaha_3"
+            android:layout_width="11dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="605dp"
+            android:layout_marginTop="155dp"
+            android:rotation="28"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/st_marie_4"
+            android:layout_width="11dp"
+            android:layout_height="122dp"
+            android:layout_marginStart="695dp"
+            android:layout_marginTop="53dp"
+            android:rotation="72"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/winnepegg_5"
+            android:layout_width="11dp"
+            android:layout_height="146dp"
+            android:layout_marginStart="414dp"
+            android:layout_marginTop="23dp"
+            android:rotation="53.25"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/miami_6"
+            android:layout_width="11dp"
+            android:layout_height="177dp"
+            android:layout_marginStart="943dp"
+            android:layout_marginTop="315dp"
+            android:rotation="-47.75"
+            android:visibility="invisible" />
 
 
     </RelativeLayout>
