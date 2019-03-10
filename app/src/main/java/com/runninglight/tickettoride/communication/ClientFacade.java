@@ -51,6 +51,7 @@ public class ClientFacade implements IClient {
     public void addCardToHand(Game game, User user, TrainCard trainCard)
     {
         model.setCurrentGame(game);
+        Log.d("TAG", "adding card: " + trainCard.getCardColor() + " to user: " + user.getUserName());
         if (user.getUserID().equals(ClientModel.getInstance().getCurrentUser().getUserID()))
         {
             ClientModel.getInstance().addTrainCardToPlayerHand(trainCard, user, game);
