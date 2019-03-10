@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.game.DestinationCardActivity"
+        <activity android:name=".activity.game.DestCardHandActivity"
             android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".activity.game.DestinationCardActivity"
+            android:screenOrientation="landscape" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

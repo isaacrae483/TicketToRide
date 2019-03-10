@@ -1,6 +1,7 @@
 package com.runninglight.tickettoride.activity.game;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -55,6 +56,7 @@ public class HandFragment extends Fragment implements IHandView {
         View v =  inflater.inflate(R.layout.fragment_hand, container, false);
         destHand = v.findViewById(R.id.dest_hand);
         destHandSize = v.findViewById(R.id.dest_hand_size);
+        setDestHandListener();
 
         numBlackText = v.findViewById(R.id.num_black);
         numBlueText = v.findViewById(R.id.num_blue);
@@ -77,6 +79,16 @@ public class HandFragment extends Fragment implements IHandView {
         numWildText.setText(Integer.toString(0));
 
         return v;
+    }
+
+    public void setDestHandListener(){
+        destHand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DestCardHandActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
