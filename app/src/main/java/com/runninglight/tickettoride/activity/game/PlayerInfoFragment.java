@@ -48,6 +48,12 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
     private TextView player4_score;
     private ImageView player4_image;
 
+    private String TCARDS = "# Train Cards: ";
+    private String DCARDS = "# Dest Cards: ";
+    private String LEFT = "# Cars Left: ";
+    private String SCORE = "Score: ";
+
+
     IPlayerInfoPresenter presenter;
 
     public PlayerInfoFragment() {
@@ -103,7 +109,7 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
     public void updatePlayerInfo(ArrayList<Player> players, Player currentPlayer, String currentTurn) {
         int i = 1;
         for (Player p : players) {
-            //if (!p.getName().equals(currentPlayer.getName())) {
+            if (!p.getName().equals(currentPlayer.getName())) {
                 if (i == 1) {
                     setPlayer1(p, currentTurn);
                     i++;
@@ -118,15 +124,15 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
                     i++;
                 }
             }
-        //}
+        }
     }
 
     private void setPlayer1(Player p, String currentTurn) {
         player1_name.setText(p.getName());
-        player1_traincards.setText(Integer.toString(p.getHand().getTrainCards().size()));
-        player1_destcards.setText(Integer.toString(p.getDestinationCards().size()));
-        player1_carsleft.setText(Integer.toString(p.getTrainCars()));
-        player1_score.setText(Integer.toString(p.getPoints()));
+        player1_traincards.setText(TCARDS + Integer.toString(p.getHandSize()));
+        player1_destcards.setText(DCARDS + Integer.toString(p.getDestinationCards().size()));
+        player1_carsleft.setText(LEFT + Integer.toString(p.getTrainCars()));
+        player1_score.setText(SCORE + Integer.toString(p.getPoints()));
         PlayerColor color = p.getColor();
 
         if (p.getName().equals(currentTurn)) {
@@ -138,10 +144,10 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
 
     private void setPlayer2(Player p, String currentTurn) {
         player2_name.setText(p.getName());
-        player2_traincards.setText(Integer.toString(p.getHand().getTrainCards().size()));
-        player2_destcards.setText(Integer.toString(p.getDestinationCards().size()));
-        player2_carsleft.setText(Integer.toString(p.getTrainCars()));
-        player2_score.setText(Integer.toString(p.getPoints()));
+        player2_traincards.setText(TCARDS + Integer.toString(p.getHandSize()));
+        player2_destcards.setText(DCARDS + Integer.toString(p.getDestinationCards().size()));
+        player2_carsleft.setText(LEFT + Integer.toString(p.getTrainCars()));
+        player2_score.setText(SCORE + Integer.toString(p.getPoints()));
         PlayerColor color = p.getColor();
 
         if (p.getName().equals(currentTurn)) {
@@ -153,10 +159,10 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
 
     private void setPlayer3(Player p, String currentTurn) {
         player3_name.setText(p.getName());
-        player3_traincards.setText(Integer.toString(p.getHand().getTrainCards().size()));
-        player3_destcards.setText(Integer.toString(p.getDestinationCards().size()));
-        player3_carsleft.setText(Integer.toString(p.getTrainCars()));
-        player3_score.setText(Integer.toString(p.getPoints()));
+        player3_traincards.setText(TCARDS + Integer.toString(p.getHandSize()));
+        player3_destcards.setText(DCARDS + Integer.toString(p.getDestinationCards().size()));
+        player3_carsleft.setText(LEFT + Integer.toString(p.getTrainCars()));
+        player3_score.setText(SCORE + Integer.toString(p.getPoints()));
         PlayerColor color = p.getColor();
 
         if (p.getName().equals(currentTurn)) {
@@ -168,11 +174,10 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
 
     private void setPlayer4(Player p, String currentTurn) {
         player4_name.setText(p.getName());
-        player4_traincards.setText(Integer.toString(p.getHand().getTrainCards().size()));
-        player4_destcards.setText(Integer.toString(p.getDestinationCards().size()));
-        player4_carsleft.setText(Integer.toString(p.getTrainCars()));
-        player4_score.setText(Integer.toString(p.getPoints()));
-
+        player4_traincards.setText(TCARDS + Integer.toString(p.getHandSize()));
+        player4_destcards.setText(DCARDS + Integer.toString(p.getDestinationCards().size()));
+        player4_carsleft.setText(LEFT + Integer.toString(p.getTrainCars()));
+        player4_score.setText(SCORE + Integer.toString(p.getPoints()));
         PlayerColor color = p.getColor();
 
         if (p.getName().equals(currentTurn)) {

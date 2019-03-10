@@ -36,5 +36,6 @@ public class HandPresenter implements IHandPresenter {
         int destCardCount = model.getCurrentPlayer().getDestinationCards().size();
         handView.refreshDestCardCount(destCardCount);
         handView.updateHandNumbers(ClientModel.getInstance().getCurrentPlayer().getHand().getTrainCards());
+        handView.updateCurrentPlayerInfo(model.getCurrentPlayer(), model.getCurrentTurn());
     }
 }

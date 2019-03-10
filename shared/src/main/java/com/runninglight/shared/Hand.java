@@ -13,6 +13,10 @@ public class Hand {
         trainCards = new ArrayList<>();
     }
 
+    public int getHandSize() {
+        return trainCards.size();
+    }
+
     public ArrayList<TrainCard> getTrainCards()
     {
         return trainCards;
