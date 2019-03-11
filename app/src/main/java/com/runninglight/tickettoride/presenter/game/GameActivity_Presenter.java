@@ -77,8 +77,10 @@ public class GameActivity_Presenter implements IGameActivity_Presenter {
                         break;
                     }
                     case 8:{
-                        model.addDestinationCardToPlayer("player1",
-                                new DestinationCard(new City("Boston"), new City("New_York")));
+                        DestinationCard card = new DestinationCard(new City("Boston"), new City("Miami"));
+                                String imageResource = "boston_miami";
+                        card.setImageResourceString(imageResource);
+                        model.addDestinationCardToPlayer("player1", card);
                         break;
                     }
                     case 9:{
@@ -86,8 +88,10 @@ public class GameActivity_Presenter implements IGameActivity_Presenter {
                         break;
                     }
                     case 10:{
-                        model.removeDestinationCardFromPlayer("player1",
-                                new DestinationCard(new City("Boston"), new City("New_York")));
+                        DestinationCard card = new DestinationCard(new City("Boston"), new City("Miami"));
+                        String imageResource = "boston_miami";
+                        card.setImageResourceString(imageResource);
+                        model.removeDestinationCardFromPlayer("player1", card);
                         break;
                     }
                     case 11:{
@@ -111,8 +115,10 @@ public class GameActivity_Presenter implements IGameActivity_Presenter {
                         break;
                     }
                     case 16:{
-                        model.addDestinationCardToPlayer("player2",
-                                new DestinationCard(new City("Boston"), new City("New_York")));
+                        DestinationCard card = new DestinationCard(new City("Boston"), new City("Miami"));
+                        String imageResource = "boston_miami";
+                        card.setImageResourceString(imageResource);
+                        model.addDestinationCardToPlayer("player2", card);
                         break;
                     }
                     case 17:{
