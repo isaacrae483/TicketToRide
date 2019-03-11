@@ -2,6 +2,7 @@ package com.runninglight.tickettoride.presenter.game;
 
 import android.util.Log;
 
+import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
 import com.runninglight.tickettoride.IPresenter.game.IChatPresenter;
 import com.runninglight.tickettoride.activity.game.ChatAdapter;
@@ -32,11 +33,24 @@ public class ChatPresenter implements IChatPresenter, Observer
     }
 
     @Override
+    public void initObserver(){
+        ClientModel.getInstance().addObserver(this);
+    }
+
+    @Override
+    public void removeObserver(){
+        ClientModel.getInstance().deleteObserver(this);
+    }
+
+    @Override
     public void update(Observable o, Object arg)
     {
         if (arg instanceof Message)
         {
             chatView.updateChat();
+        }
+        if(arg instanceof Game){
+            chatView.updateAdapter();
         }
     }
 }

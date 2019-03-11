@@ -7,4 +7,6 @@ public interface IGameLobby_Presenter extends Observer {
 
      void startGame();
      void leaveGame();
+     void initObserver();
+     void removeObserver();
 }

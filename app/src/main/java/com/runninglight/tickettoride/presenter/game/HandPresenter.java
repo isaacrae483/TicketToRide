@@ -32,6 +32,16 @@ public class HandPresenter implements IHandPresenter {
     }
 
     @Override
+    public void initObserver(){
+        model.addObserver(this);
+    }
+
+    @Override
+    public void removeObserver(){
+        model.deleteObserver(this);
+    }
+
+    @Override
     public void update(Observable o, Object arg) {
         int destCardCount = model.getCurrentPlayer().getDestinationCards().size();
         handView.refreshDestCardCount(destCardCount);

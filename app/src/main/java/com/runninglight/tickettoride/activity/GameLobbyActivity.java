@@ -54,7 +54,14 @@ public class GameLobbyActivity extends AppCompatActivity implements IGameLobby_V
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        presenter.initObserver();
+    }
+
+    @Override
     public void onBackPressed(){
+        presenter.removeObserver();
         presenter.leaveGame();
         super.onBackPressed();
     }

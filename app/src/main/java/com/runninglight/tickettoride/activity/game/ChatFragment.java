@@ -41,9 +41,27 @@ public class ChatFragment extends Fragment implements IChatView
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        chatPresenter.initObserver();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        chatPresenter.removeObserver();
+    }
+
+    @Override
     public void updateChat()
     {
         chatAdapter.refresh();
+    }
+
+    @Override
+    public void updateAdapter(){
+        chatAdapter = new ChatAdapter(getActivity(), ClientModel.getInstance().getCurrentGame().getMessages());
+        listView.setAdapter(chatAdapter);
     }
 
     private void initUiElements()

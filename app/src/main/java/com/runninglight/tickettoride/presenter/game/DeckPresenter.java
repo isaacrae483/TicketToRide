@@ -74,6 +74,16 @@ public class DeckPresenter implements IDeckPresenter, Observer
     }
 
     @Override
+    public void initObserver(){
+        model.addObserver(this);
+    }
+
+    @Override
+    public void removeObserver(){
+        model.deleteObserver(this);
+    }
+
+    @Override
     public void update(Observable o, Object arg)
     {
         deckView.refreshTrainCardDeckSize(ClientModel.getInstance().getCurrentGame().getTrainCardDeckSize());

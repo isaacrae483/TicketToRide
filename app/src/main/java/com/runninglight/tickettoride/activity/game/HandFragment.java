@@ -102,6 +102,18 @@ public class HandFragment extends Fragment implements IHandView {
         return v;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        presenter.initObserver();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        presenter.removeObserver();
+    }
+
     public void setDestHandListener(){
         destHand.setOnClickListener(new View.OnClickListener() {
             @Override

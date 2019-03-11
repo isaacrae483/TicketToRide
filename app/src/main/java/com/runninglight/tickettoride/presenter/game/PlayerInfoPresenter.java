@@ -36,4 +36,14 @@ public class PlayerInfoPresenter implements IPlayerInfoPresenter {
         playerInfoView.updatePlayerInfo(model.getCurrentGame().getPlayerList(), model.getCurrentPlayer(),
                 model.getCurrentTurn());
     }
+
+    @Override
+    public void initObserver(){
+        model.addObserver(this);
+    }
+
+    @Override
+    public void removeObserver(){
+        model.deleteObserver(this);
+    }
 }

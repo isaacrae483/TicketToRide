@@ -117,7 +117,14 @@ public class DeckFragment extends Fragment implements IDeckView
     @Override
     public void onResume(){
         super.onResume();
+        presenter.initObserver();
         presenter.initDestCardDeck();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        presenter.removeObserver();
     }
 
     @Override

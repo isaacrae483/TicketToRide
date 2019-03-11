@@ -33,7 +33,15 @@ public class GameLobby_Presenter implements IGameLobby_Presenter, Observer {
         proxy.leaveGame(model.getCurrentUser(), model.getCurrentGame());
     }
 
+    @Override
+    public void initObserver(){
+        model.addObserver(this);
+    }
 
+    @Override
+    public void removeObserver(){
+        model.deleteObserver(this);
+    }
 
     @Override
     public void update(Observable o, Object arg) {

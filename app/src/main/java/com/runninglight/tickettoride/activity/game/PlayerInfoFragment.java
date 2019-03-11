@@ -74,6 +74,7 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_playerinfo, container, false);
 
+        presenter.initObserver();
         player1_name = v.findViewById(R.id.player1_name);
         player1_traincards = v.findViewById(R.id.player1_traincards);
         player1_destcards = v.findViewById(R.id.player1_destcards);
@@ -103,6 +104,18 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
         player4_image = v.findViewById(R.id.player4_image);
 
         return v;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        presenter.initObserver();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        presenter.removeObserver();
     }
 
     @Override

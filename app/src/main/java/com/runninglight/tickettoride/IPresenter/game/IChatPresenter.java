@@ -5,4 +5,6 @@ import com.runninglight.tickettoride.activity.game.ChatAdapter;
 public interface IChatPresenter
 {
     void sendMessage(String message);
+    void initObserver();
+    void removeObserver();
 }
