@@ -6,6 +6,7 @@ import com.runninglight.shared.Cards.CardColor;
 import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.City;
+import com.runninglight.shared.PlayerColor;
 import com.runninglight.tickettoride.IPresenter.game.IGameActivity_Presenter;
 import com.runninglight.tickettoride.activity.game.GameActivity;
 import com.runninglight.tickettoride.communication.ClientModel;
@@ -112,6 +113,22 @@ public class GameActivity_Presenter implements IGameActivity_Presenter {
                     case 16:{
                         model.addDestinationCardToPlayer("player2",
                                 new DestinationCard(new City("Boston"), new City("New_York")));
+                        break;
+                    }
+                    case 17:{
+                        view.showToast("Player 1 will gain claim the route Helena to Winnipeg");
+                        break;
+                    }
+                    case 18:{
+                        view.claimRoute(20, PlayerColor.RED);
+                        break;
+                    }
+                    case 19:{
+                        view.showToast("Player 2 will gain claim the route Helena to Duluth");
+                        break;
+                    }
+                    case 20:{
+                        view.claimRoute(21, PlayerColor.GREEN);
                         break;
                     }
                 }

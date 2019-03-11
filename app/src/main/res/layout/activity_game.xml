@@ -19,7 +19,7 @@
             app:layout_constraintTop_toBottomOf="@id/player_info_frame">
 
             <fragment
-                android:id="@+id/fragment"
+                android:id="@+id/map_fragment"
                 android:name="com.runninglight.tickettoride.activity.game.MapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -33,10 +33,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/map_frame">
+
             <fragment
+                android:id="@+id/hand_fragment"
                 class="com.runninglight.tickettoride.activity.game.HandFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
         </FrameLayout>
 
         <FrameLayout
@@ -47,7 +49,9 @@
             app:layout_constraintEnd_toStartOf="@id/deck_frame"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <fragment
+                android:id="@+id/player_info_fragment"
                 class="com.runninglight.tickettoride.activity.game.PlayerInfoFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -62,6 +66,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <fragment
+                android:id="@+id/deck_fragment"
                 class="com.runninglight.tickettoride.activity.game.DeckFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

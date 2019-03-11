@@ -1,23 +1,16 @@
 package com.runninglight.tickettoride.activity.game;
 
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.ImageViewCompat;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.runninglight.shared.PlayerColor;
 import com.runninglight.tickettoride.IPresenter.game.IMapPresenter;
@@ -54,7 +47,7 @@ public class MapFragment extends Fragment implements IMap_View {
         View v = inflater.inflate(R.layout.fragment_map, container, false);
 
         map = v.findViewById(R.id.map_RL);
-
+/*
         map.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -62,6 +55,7 @@ public class MapFragment extends Fragment implements IMap_View {
                 return true;
             }
         });
+*/
 
 
 
@@ -75,21 +69,20 @@ public class MapFragment extends Fragment implements IMap_View {
         ImageView routeView;
 
         switch (route){
+            case 20:
+                routeView = getView().findViewById(R.id._20);
+                break;
             case 21:
                 routeView = getView().findViewById(R.id._21);
-                break;
-
-            case 50:
-                routeView = getView().findViewById(R.id._50);
-                break;
-            case 37:
-                routeView = getView().findViewById(R.id._37);
                 break;
             case 33:
                 routeView = getView().findViewById(R.id._33);
                 break;
-            case 20:
-                routeView = getView().findViewById(R.id._20);
+            case 37:
+                routeView = getView().findViewById(R.id._37);
+                break;
+            case 50:
+                routeView = getView().findViewById(R.id._50);
                 break;
             case 99:
                 routeView = getView().findViewById(R.id._99);
