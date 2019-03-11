@@ -91,4 +91,25 @@ public class Player {
     }
 
     public void addCardToHand(TrainCard trainCard) { hand.addTrainCard(trainCard); numTrainCards++; }
+
+    public void removeCardFromHand(TrainCard trainCard){
+        hand.removeTrainCard(trainCard);
+        numTrainCards--;
+    }
+
+    public void removeDestinationCard(DestinationCard card){
+        for(DestinationCard c : destinationCards){
+            if(c.toString().equals(card.toString())){
+                destinationCards.remove(c);
+            }
+        }
+    }
+
+    public void addPoints(int points){
+        this.points += points;
+    }
+
+    public void addTrainCars(int numCars){
+        this.trainCars += numCars;
+    }
 }

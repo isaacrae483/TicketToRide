@@ -163,6 +163,11 @@ public class Game {
         p.setDestinationCards(newCards);
     }
 
+    public void removeDestinationCard(String playerName, DestinationCard card){
+        int i = find(playerName);
+        playerList.get(i).removeDestinationCard(card);
+    }
+
     public Player getPlayer(String playerName){
         if(playerName == null){
             return null;
@@ -325,5 +330,26 @@ public class Game {
             case 8: return new TrainCard(CardColor.WILD);
         }
         return null;
+    }
+
+    public void addPointsToPlayer(String playerName, int points){
+        int i = find(playerName);
+        playerList.get(i).addPoints(points);
+
+    }
+
+    public void addTrainCardToPlayer(String playerName, TrainCard card){
+        int i = find(playerName);
+        playerList.get(i).addCardToHand(card);
+    }
+
+    public void removeTrainCardFromPlayer(String playerName, TrainCard card){
+        int i = find(playerName);
+        playerList.get(i).removeCardFromHand(card);
+    }
+
+    public void addTrainCarsToPlayer(String playerName, int numCars){
+        int i = find(playerName);
+        playerList.get(i).addTrainCars(numCars);
     }
 }

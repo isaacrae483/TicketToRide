@@ -26,4 +26,13 @@ public class Hand {
     {
         trainCards.add(trainCard);
     }
+
+    public void removeTrainCard(TrainCard card){
+        for(TrainCard c : trainCards){
+            if(c.getCardColor() == card.getCardColor()){
+                trainCards.remove(c);
+                return;
+            }
+        }
+    }
 }

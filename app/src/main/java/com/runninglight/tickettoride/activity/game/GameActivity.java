@@ -3,9 +3,11 @@ package com.runninglight.tickettoride.activity.game;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.runninglight.tickettoride.IPresenter.game.IGameActivity_Presenter;
 import com.runninglight.tickettoride.R;
@@ -34,5 +36,20 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         presenter = new GameActivity_Presenter(this);
 
         presenter.initTurn();
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+            presenter.startMockup();
+            return true;
+        }
+        return super.dispatchKeyEvent(e);
+    }
+
+
+    @Override
+    public void showToast(String message){
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

@@ -227,4 +227,53 @@ public class ClientModel extends Observable {
         setChanged();
         notifyObservers();
     }
+
+    public void refreshCurrentPlayer(String playerName){
+        if(currentPlayer.getName().equals(playerName)){
+            currentPlayer = currentGame.getPlayer(playerName);
+        }
+    }
+
+    public void addPointsToPlayer(String playerName, int points){
+        currentGame.addPointsToPlayer(playerName, points);
+        refreshCurrentPlayer(playerName);
+        setChanged();
+        notifyObservers();
+    }
+
+    public void addTrainCardToPlayer(String playerName, TrainCard card){
+        currentGame.addTrainCardToPlayer(playerName, card);
+        refreshCurrentPlayer(playerName);
+        setChanged();
+        notifyObservers();
+    }
+
+    public void removeTrainCardFromPlayer(String playerName, TrainCard card){
+        currentGame.removeTrainCardFromPlayer(playerName, card);
+        refreshCurrentPlayer(playerName);
+        setChanged();
+        notifyObservers();
+    }
+
+    public void addDestinationCardToPlayer(String playerName, DestinationCard card){
+        DestinationCard[] cards = {card};
+        currentGame.addDestinationCards(playerName, cards);
+        refreshCurrentPlayer(playerName);
+        setChanged();
+        notifyObservers();
+    }
+
+    public void removeDestinationCardFromPlayer(String playerName, DestinationCard card){
+        currentGame.removeDestinationCard(playerName, card);
+        refreshCurrentPlayer(playerName);
+        setChanged();
+        notifyObservers();
+    }
+
+    public void addTrainCarsToPlayer(String playerName, int numCars){
+        currentGame.addTrainCarsToPlayer(playerName, numCars);
+        refreshCurrentPlayer(playerName);
+        setChanged();
+        notifyObservers();
+    }
 }
