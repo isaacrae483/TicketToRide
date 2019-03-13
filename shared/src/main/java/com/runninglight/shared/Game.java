@@ -25,6 +25,7 @@ public class Game {
     /** List of Players in the game room */
     private ArrayList<Player> playerList;
 
+    /** Collection of chat messages */
     private Chat chat;
 
     /** Destination Card Deck */
@@ -51,8 +52,10 @@ public class Game {
     /** Starting number of train cars */
     private static final int MAX_TRAIN_CARS = 45;
 
+    /** The face up train cards for the game */
     private FaceUpCards faceUpCards;
 
+    /** The number of cards in the train card deck */
     private int trainCardDeckCurrentSize;
 
     /**
@@ -79,23 +82,13 @@ public class Game {
     }
 
 
-    public boolean isValidPlayer(Player player){
-        String playerName = player.getName();
-        int resultIndex = find(playerName);
-        if(resultIndex == -1){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-
     /**
-     * Adds a User to the userList
+     * Adds a User to the userList and a Player to the playerList
      * @param user User to add
      *
      * @pre none
-     * @post Adds a User to the userList
+     * @post Adds a User to the userList and a Player to the playerList
+     *      numPlayers += 1
      */
     public void addPlayer(User user){
         if(user != null) {
@@ -110,17 +103,32 @@ public class Game {
      * @param user User to remove
      *
      * @pre none
-     * @post Removes a User from the userList if it exists
+     * @post Removes a User from the userList and a Player from the playerList if they exist
+     *      numPlayers -= 1
      */
     public void removePlayer(User user){
-        int userIndex = find(user.getUserName());
-        if(userIndex != -1){
-            userList.remove(userIndex);
-            playerList.remove(userIndex);
-            numPlayers--;
+        if(user != null) {
+            int userIndex = find(user.getUserName());
+            if (userIndex != -1) {
+                userList.remove(userIndex);
+                playerList.remove(userIndex);
+                numPlayers--;
+            }
         }
     }
 
+    /**
+     * Pulls an array of DestinationCards from the DestinationCardDeck
+     *
+     * @param numCards number of cards to draw
+     * @return an array of DestinationCards with size == numCards if the deck allows,
+     *          size < numCards if there aren't enough cards in the deck
+     *
+     * @pre destCardDeck != null
+     *      numCards >= 0
+     * @post a DestinationCard[] of size <= numCards will be returned
+     *      destCardDeck's size -= cards.length
+     */
     public DestinationCard[] drawDestCards(int numCards){
         DestinationCard[] cards = new DestinationCard[numCards];
         int index = 0;      // Use this to keep track of how many cards were actually drawn
@@ -143,6 +151,16 @@ public class Game {
         }
     }
 
+    /**
+     * Returns an array of DestinationCards to the DestinationCardDeck
+     *
+     * @param cards the cards to return to the deck
+     *
+     * @pre cards != null
+     *      destCardDeck != null
+     * @post adds all DestinationCards in cards to destCardDeck
+     *      destCardDeck's size += cards.length
+     */
     public void returnDestCards(DestinationCard[] cards){
         for(DestinationCard card : cards){
             destCardDeck.returnCard(card);
@@ -151,23 +169,65 @@ public class Game {
         destDeckSize = destCardDeck.size();
     }
 
+    /**
+     * Adds DestinationCards to a Player's Hand
+     *
+     * @param playerName name of Player to give cards
+     * @param cards array of DestinationCards
+     *
+     * @pre cards != null
+     *      playerName is the name of an existing Player
+     * @post Adds all DestinationCards in cards to Player's Hand
+     *      Player's Hand's size += cards.length
+     */
     public void addDestinationCards(String playerName, DestinationCard[] cards){
         Player p = getPlayer(playerName);
         ArrayList<DestinationCard> newCards = new ArrayList<>(Arrays.asList(cards));
         p.addDestinationCards(newCards);
     }
 
+    /**
+     * Sets DestinationCards of a Player's Hand
+     *
+     * @param playerName name of Player to set cards for
+     * @param cards array of DestinationCards
+     *
+     * @pre cards != null
+     *      playerName is the name of an existing Player
+     * @post Sets DestinationCards in Player's Hand to cards
+     */
     public void setDestinationCards(String playerName, DestinationCard[] cards){
         Player p = getPlayer(playerName);
         ArrayList<DestinationCard> newCards = new ArrayList<>(Arrays.asList(cards));
         p.setDestinationCards(newCards);
     }
 
+    /**
+     * Removes a DestinationCard from a Player's Hand
+     *
+     * @param playerName name of Player to remove a card from
+     * @param card DestinationCard to remove
+     *
+     * @pre playerName is the name of an existing Player
+     *      card != null
+     * @post card is removed from Player's Hand
+     *      Player's Hand's size -= 1
+     */
     public void removeDestinationCard(String playerName, DestinationCard card){
         int i = find(playerName);
         playerList.get(i).removeDestinationCard(card);
     }
 
+    /**
+     * Gets a Player from playerList with the given name
+     *
+     * @param playerName name of Player to search for
+     * @return a Player object if found, null otherwise
+     *
+     * @pre playerList != null
+     *      playerList contains no null objects
+     * @post a Player object with a name of playerName is returned
+     */
     public Player getPlayer(String playerName){
         if(playerName == null){
             return null;
@@ -180,19 +240,26 @@ public class Game {
         return null;
     }
 
-    public int getDeckSize(){
-        return destDeckSize;
-    }
 
-    public String getCurrentTurn(){
-        return currentTurn;
-    }
-
+    /**
+     * Sets the current turn of the game
+     *
+     * @param playerName name of the player whose turn it is
+     *
+     * @pre playerName is the name of an existing player
+     * @post sets the current turn of the game to the provided player name
+     */
     public void setCurrentTurn(String playerName){
         currentTurn = playerName;
         turnIndex = find(playerName);
     }
 
+    /**
+     * Changes the current turn to the next player
+     *
+     * @pre none
+     * @post changes the current turn to the next Player in the playerList
+     */
     public void nextTurn(){
         turnIndex++;
         if(turnIndex == playerList.size()){
@@ -206,7 +273,7 @@ public class Game {
      * @param userName username to search for
      * @return the index in the userList of the User with the specified userID, -1 if not found
      *
-     * @pre none
+     * @pre userList != null
      * @post Returns the index in the userList of the User with the specified userID, -1 if not found
      */
     private int find(String userName){
@@ -232,81 +299,288 @@ public class Game {
         return longID.substring(0, ID_END);
     }
 
+    /**
+     * Gets the size of the destination card deck
+     *
+     * @return size of destination card deck
+     *
+     * @pre none
+     * @post returns the number of cards in the destination card deck
+     */
+    public int getDeckSize(){
+        return destDeckSize;
+    }
+
+    /**
+     * Gets the current turn
+     *
+     * @return the name of the player whose turn it is
+     *
+     * @pre none
+     * @post returns the name of the player whose turn it is
+     */
+    public String getCurrentTurn(){
+        return currentTurn;
+    }
+
+    /**
+     * Gets the name of this Game
+     *
+     * @return the name of this Game
+     *
+     * @pre none
+     * @post returns the name of this Game
+     */
     public String getGameName() {
         return gameName;
     }
 
+    /**
+     * Sets the name of this Game
+     *
+     * @param gameName new name to set
+     *
+     * @pre none
+     * @post sets the name of the Game to gameName
+     */
     public void setGameName(String gameName) {
         this.gameName = gameName;
     }
 
+    /**
+     * Gets the ID of the game
+     *
+     * @return 8-digit hex ID of the game
+     *
+     * @pre none
+     * @post returns the 8-digit hex ID of this game
+     */
     public String getGameID() {
         return gameID;
     }
 
+    /**
+     * Sets the ID of the game
+     *
+     * @param gameID ID to set
+     *
+     * @pre none
+     * @post sets the ID of this game to gameID
+     */
     public void setGameID(String gameID) {
         this.gameID = gameID;
     }
 
+    /**
+     * Gets the list of Users
+     *
+     * @return the list of Users in this game
+     *
+     * @pre none
+     * @post returns an ArrayList of Users in this game
+     */
     public ArrayList<User> getUserList() {
         return userList;
     }
 
+    /**
+     * Sets the list of Users
+     *
+     * @param userList list of Users to set
+     *
+     * @pre none
+     * @post sets the userList of this game to the new userList
+     */
     public void setUserList(ArrayList<User> userList) {
         this.userList = userList;
     }
 
+    /**
+     * Gets the max number of players allowed in the room
+     *
+     * @return the max number of players allowed in the room
+     *
+     * @pre none
+     * @post returns the max number of players allowed in the room
+     */
     public int getMaxPlayerNumber() {
         return maxPlayerNumber;
     }
 
+    /**
+     * Sets the max number of players allowed in the room
+     *
+     * @param maxPlayerNumber max number of players to set
+     *
+     * @pre none
+     * @post sets the max number of players allowed in the room to maxPlayerNumber
+     */
     public void setMaxPlayerNumber(int maxPlayerNumber) {
         this.maxPlayerNumber = maxPlayerNumber;
     }
 
+    /**
+     * Gets the number of players currently in the game
+     *
+     * @return number of players in the game
+     *
+     * @pre none
+     * @post returns the number of players in the game
+     */
     public int getNumPlayers() {
         return numPlayers;
     }
 
+    /**
+     * Gets the size of the destination card deck
+     *
+     * @return size of destination card deck
+     *
+     * @pre none
+     * @post returns the number of cards in the destination card deck
+     */
     public int getDestDeckSize(){
         return destDeckSize;
     }
 
+    /**
+     * Sets the number of players in the game
+     *
+     * @param numPlayers number of players to set
+     *
+     * @pre none
+     * @post sets the number of players in the game to numPlayers
+     */
     public void setNumPlayers(int numPlayers) {
         this.numPlayers = numPlayers;
     }
 
+    /**
+     * Adds a message to the chat
+     *
+     * @param message message to add
+     *
+     * @pre chat != null
+     * @post adds a message to the chat
+     */
     public void addMessage(Message message) { chat.addMessage(message); }
 
+    /**
+     * Gets the messages in the chat
+     *
+     * @return the sorted messages of the chat
+     *
+     * @pre chat != null
+     * @post returns the messages of the chat sorted by timestamp
+     */
     public ArrayList<Message> getMessages() { return chat.getSortedMessages(); }
 
+    /**
+     * Gets the list of players in the game
+     *
+     * @return the list of players in the game
+     *
+     * @pre none
+     * @post returns the list of players in the game
+     */
     public ArrayList<Player> getPlayerList() {
         return playerList;
     }
 
+    /**
+     * Adds a card to the face-up deck
+     *
+     * @param trainCard card to add
+     * @param position position in the face-up deck to add the card
+     *
+     * @pre faceUpCards != null
+     * @post adds the train card to the face-up deck at the specified position
+     */
     public void addCardToFaceUp(TrainCard trainCard, int position)
     {
         faceUpCards.addCard(position, trainCard);
     }
 
+    /**
+     * Gets the train card at a specific position of the face-up deck
+     *
+     * @param position position to pull card from
+     * @return the train card at that position if there is one
+     *
+     * @pre faceUpCards != null
+     * @post returns the train card at the specified location in the face-up deck
+     */
     public TrainCard getCardFromFaceUp(int position)
     {
         return faceUpCards.getCard(position);
     }
 
+    /**
+     * Removes a train card from the face-up deck at the given position
+     *
+     * @param position position to remove card from
+     * @return the train card that was at the given position
+     *
+     * @pre faceUpCards != null
+     *      1 <= position <= 5
+     * @post removes the train card from the face-up deck at the given position and returns it
+     */
     public TrainCard removeCardFromFaceUp(int position)
     {
         return faceUpCards.removeCard(position);
     }
+
+    /**
+     * Draws a train card from the train card deck
+     *
+     * @return a random train card from the train card deck
+     *
+     * @pre none
+     * @post returns a random train card
+     */
     public TrainCard drawTrainCard()
     {
         trainCardDeckCurrentSize--;
         return getRandomTraincard();
     }
+
+    /**
+     * Gets the size of the train card deck
+     *
+     * @return the number of cards in the train card deck
+     *
+     * @pre none
+     * @post returns the number of cards in the train card deck
+     */
     public int getTrainCardDeckSize() { return trainCardDeckCurrentSize; }
+
+    /**
+     * Reduces the trainCardDeckCurrentSize by 1
+     *
+     * @pre none
+     * @post trainCardDeckCurrentSize--
+     */
     public void decrementTrainCardDeckSize() { trainCardDeckCurrentSize--; }
+
+    /**
+     * Increases trainCardDeckCurrentSize by the specified amount
+     *
+     * @param numToIncrease number to add to trainCardDeckCurrentSize
+     *
+     * @pre none
+     * @post adds numToIncrease to trainCardDeckCurrentSize
+     */
     public void increaseTrainCardDeckSize(int numToIncrease) { trainCardDeckCurrentSize += numToIncrease; }
 
+
+    /**
+     * Determines whether or not all players have picked destination cards
+     *
+     * @return true if all players have picked destination cards, false otherwise
+     *
+     * @pre playerList has no null objects
+     * @post returns true if all players have picked destination cards, false otherwise
+     */
     public boolean initDestinationCardsPicked()
     {
         for (Player player : playerList) if (!player.hasDestinationCards()) return false;
@@ -315,6 +589,14 @@ public class Game {
 
     // TEST
 
+    /**
+     * Gets a random train card
+     *
+     * @return a random train card
+     *
+     * @pre none
+     * @post returns a random train card
+     */
     private TrainCard getRandomTraincard()
     {
         switch (new Random().nextInt(9))
@@ -332,22 +614,59 @@ public class Game {
         return null;
     }
 
+    /**
+     * Adds a specified number of points to a given player
+     *
+     * @param playerName name of player to add points to
+     * @param points number of points to add
+     *
+     * @pre player named playerName exists in the playerList
+     * @post adds points to the player named playerName
+     */
     public void addPointsToPlayer(String playerName, int points){
         int i = find(playerName);
         playerList.get(i).addPoints(points);
 
     }
 
+    /**
+     * Adds a train card to a player
+     *
+     * @param playerName name of player to add a train card to
+     * @param card train card to give to player
+     *
+     * @pre player named playerName exists in the playerList
+     * @post adds a train card to the player's hand
+     *      the size of the player's hand += 1
+     */
     public void addTrainCardToPlayer(String playerName, TrainCard card){
         int i = find(playerName);
         playerList.get(i).addCardToHand(card);
     }
 
+    /**
+     * Removes a train card from the player
+     *
+     * @param playerName name of player to remove train card from
+     * @param card train card to remove
+     *
+     * @pre player named playerName exists in the playerList
+     * @post removes the given train card from the player's hand if it exists
+     */
     public void removeTrainCardFromPlayer(String playerName, TrainCard card){
         int i = find(playerName);
         playerList.get(i).removeCardFromHand(card);
     }
 
+    /**
+     * Adds a specified number of train cars to a player
+     *
+     * @param playerName name of player to add train cars to
+     * @param numCars number of cars to add
+     *
+     * @pre player named playerName exists in the playerList
+     * @post adds numCars to the player named playerName's number of train cars
+     */
     public void addTrainCarsToPlayer(String playerName, int numCars){
         int i = find(playerName);
         playerList.get(i).addTrainCars(numCars);
