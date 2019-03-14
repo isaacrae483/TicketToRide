@@ -363,6 +363,106 @@
             android:visibility="visible" />
 
         <ImageView
+            android:id="@+id/stlouis_chicago_1"
+            android:layout_width="10dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="721dp"
+            android:layout_marginTop="197dp"
+            android:background="@android:color/holo_red_dark"
+            android:rotation="39.5"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/stlouis_chicago_2"
+            android:layout_width="11dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="697dp"
+            android:layout_marginTop="275dp"
+            android:background="@android:color/black"
+            android:rotation="19"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/lilrock_stlouis"
+            android:layout_width="11dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="733dp"
+            android:layout_marginTop="201dp"
+            android:background="@android:color/black"
+            android:rotation="40"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/lilrock_neworleans"
+            android:layout_width="11dp"
+            android:layout_height="98dp"
+            android:layout_marginStart="722dp"
+            android:layout_marginTop="341dp"
+            android:background="@android:color/black"
+            android:rotation="-35.5"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/houston_neworleans"
+            android:layout_width="84dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="667dp"
+            android:layout_marginTop="437dp"
+            android:background="@android:color/black"
+            android:rotation="-6.5"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/duluth_toronto"
+            android:layout_width="10dp"
+            android:layout_height="245dp"
+            android:layout_marginStart="751dp"
+            android:layout_marginTop="7dp"
+            android:background="@android:color/black"
+            android:rotation="82.5"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/stlouis_pittsburgh"
+            android:layout_width="10dp"
+            android:layout_height="196dp"
+            android:layout_marginStart="809dp"
+            android:layout_marginTop="135dp"
+            android:background="@android:color/black"
+            android:rotation="67"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/stlouis_nashville"
+            android:layout_width="10dp"
+            android:layout_height="79dp"
+            android:layout_marginStart="756dp"
+            android:layout_marginTop="251dp"
+            android:background="@android:color/black"
+            android:rotation="-77"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/stmarie_toronto"
+            android:layout_width="81dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="787dp"
+            android:layout_marginTop="92dp"
+            android:background="@android:color/black"
+            android:rotation="7"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/nashville_atlanta"
+            android:layout_width="10dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="842dp"
+            android:layout_marginTop="296dp"
+            android:background="@android:color/black"
+            android:rotation="-62"
+            android:visibility="visible" />
+
+        <ImageView
             android:id="@+id/_21"
             android:layout_width="11dp"
             android:layout_height="250dp"
