@@ -5,24 +5,67 @@ import com.runninglight.shared.Cards.TrainCard;
 
 import java.util.ArrayList;
 
+/**
+ * Player model class
+ * contains all model elements of a Player in a Ticket to Ride game including destinationCards and
+ * a hand. Also includes basic information such as name and color
+ *
+ * Invariants: points >= 0, trainCars >= 0, numTrainCards >= 0; hand, color, name, destinationCards,
+ * trainCards all not null
+ */
 public class Player {
 
+    /**
+     * String containing the name of the player
+     */
     private String name;
 
+    /**
+     * PLayerObject containing the color for the player
+     */
     private PlayerColor color;
 
+    /**
+     * Number of points the player has currently
+     */
     private int points;
 
+    /**
+     * Number of trainCars the player has currently
+     */
     private int trainCars;
 
+    /**
+     * Number of trainCards the player has currently
+     */
     private int numTrainCards;
 
+    /**
+     * ArrayList containing all the destination cards the player has currently
+     */
     private ArrayList<DestinationCard> destinationCards;
 
+    /**
+     * ArrayList containing all the Routes the player has claimed currently
+     */
     private ArrayList<Route> claimedRoutes;
 
+    /**
+     * Model class containing all the TrainCards that the player holds currently
+     */
     private Hand hand;
 
+    /**
+     * constructor of class for a Player in the Ticket To Ride game
+     * @param name Player name, corresponds to the username.
+     * @param trainCars umber of inital train cars
+     * @param color Color assigned to this player
+     *
+     * precondition: None
+     * postcondition: points == 0, this.name == name, this.trainCars == trainCars,
+     *              this.numTrainCards == 0; color, destinationCards, hand, claimedRoutes all not
+     *              null
+     */
     public Player(String name, int trainCars, PlayerColor color) {
         this.name = name;
         this.points = 0;
@@ -34,69 +77,197 @@ public class Player {
         claimedRoutes = new ArrayList<>();
     }
 
+    /**
+     * Adds a list of DestinationCards to the players list of destination cards
+     * @param cards ArrayList of all destination cards to be added to the players destination cards
+     *
+     *  precondition: cards != null, cards.length > 0
+     *  postcondition: this.cards.size == (original this.cards.size) + cards.size
+     */
     public void addDestinationCards(ArrayList<DestinationCard> cards){
         destinationCards.addAll(cards);
     }
 
+    /**
+     * Returns name
+     * @return Name of player
+     *
+     * precondition: None
+     * postcondition: Name unchanged
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets name
+     * @param name Name to set
+     *
+     * precondition: name != null
+     * postcondition: this.name == name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Returns color
+     * @return Color of player
+     *
+     * precondition: None
+     * postcondition: Color unchanged
+     */
     public PlayerColor getColor() {
         return color;
     }
 
+    /**
+     * Returns points
+     * @return Points of player
+     *
+     * precondition: None
+     * postcondition: Points unchanged
+     */
     public int getPoints() {
         return points;
     }
 
+    /**
+     * Sets points
+     * @param points points to set
+     *
+     * precondition: points >= 0
+     * postcondition: this.points == points
+     */
     public void setPoints(int points) {
         this.points = points;
     }
 
+    /**
+     * Returns number of traincars
+     * @return Number of trainCars
+     *
+     * precondition: None
+     * postcondition: trainCars unchanged
+     */
     public int getTrainCars() {
         return trainCars;
     }
 
+    /**
+     * Sets trainCars
+     * @param trainCars number of traincars to set
+     *
+     * precondition: trainCars >= 0
+     * postcondition: this.trainCars == trainCars
+     */
     public void setTrainCars(int trainCars) {
         this.trainCars = trainCars;
     }
 
+    /**
+     * Returns player's DestinationCards
+     * @return ArrayList of destinationCards
+     *
+     * precondition: None
+     * postcondition: this.destinationCards unchanged
+     */
     public ArrayList<DestinationCard> getDestinationCards() {
         return destinationCards;
     }
 
+    /**
+     * Sets destinationCards
+     * @param destinationCards list of DestinationCards to set
+     *
+     * precondition: destinationCards != null, destinationCards.size > 0
+     * postcondition: this.destinationCards == destinationCards
+     */
     public void setDestinationCards(ArrayList<DestinationCard> destinationCards) {
         this.destinationCards = destinationCards;
     }
 
+    /**
+     * Returns player's claimed routes
+     * @return ArrayList of Route containing routes claimed by player
+     *
+     * precondition: None
+     * postcondition: this.claimedRoutes unchanged
+     */
     public ArrayList<Route> getClaimedRoutes() {
         return claimedRoutes;
     }
 
+    /**
+     * Sets claimedRoutes
+     * @param claimedRoutes list of claimed routes to set for this player
+     *
+     * precondition: destinationCards != null, destinationCards.length > 0
+     * postcondition: this.claimedRoutes == claimedRoutes
+     */
     public void setClaimedRoutes(ArrayList<Route> claimedRoutes) {
         this.claimedRoutes = claimedRoutes;
     }
 
+    /**
+     * Return whether the player has destination cards or not
+     * @return true if destinationCards.size > 0, otherwise false
+     *
+     * precondition: None
+     * postcondition: destinationCards unchanged
+     */
     public boolean hasDestinationCards() { return destinationCards.size() > 0; }
 
+    /**
+     * Returns player's hand
+     * @return player's Hand object
+     *
+     * precondition: None
+     * postcondition: this.hand unchanged
+     */
     public Hand getHand() { return hand; }
 
+    /**
+     * Returns size of player's hand
+     * @return int with number of cards in player's hand
+     *
+     * precondition: None
+     * postcondition: this.hand unchanged
+     */
     public int getHandSize() {
         return numTrainCards; // hand.getHandSize();
     }
 
+    /**
+     * Adds the TrainCard param to the players hand
+     * @param trainCard trainCard to add
+     *
+     * precondition: trainCard != null
+     * postcondition: this.hand.size == (original hand.size + 1), hand contains trainCard,
+     *                  this.numTrainCards == (original numTrainCards + 1)
+     */
     public void addCardToHand(TrainCard trainCard) { hand.addTrainCard(trainCard); numTrainCards++; }
 
+    /**
+     * removes the specified trainCard from the players hand
+     * @param trainCard trainCard to remove
+     *
+     * precondition: trainCard != null
+     * postcondition: this.hand.size == (original hand.size - 1),
+     *                  this.numTrainCards == (original numTrainCards - 1)
+     */
     public void removeCardFromHand(TrainCard trainCard){
         hand.removeTrainCard(trainCard);
         numTrainCards--;
     }
 
+    /**
+     * removes the specified destinationCard from the players hand
+     * @param card trainCard to remove
+     *
+     * precondition: card != null
+     * postcondition: this.destinationCards.size == (original destinationCards.size - 1),
+     */
     public void removeDestinationCard(DestinationCard card){
         for(DestinationCard c : destinationCards){
             if(c.toString().equals(card.toString())){
@@ -105,10 +276,24 @@ public class Player {
         }
     }
 
+    /**
+     * Adds points to the player's points
+     * @param points
+     *
+     * precondition: points > 0
+     * postcondition: this.points == (original this.points) + points
+     */
     public void addPoints(int points){
         this.points += points;
     }
 
+    /**
+     * Adds trainCars to the player's trainCar number
+     * @param numCars
+     *
+     * precondition: points > 0
+     * postcondition: this.trainCars == (original this.trainCars) + numCars
+     */
     public void addTrainCars(int numCars){
         this.trainCars += numCars;
     }
