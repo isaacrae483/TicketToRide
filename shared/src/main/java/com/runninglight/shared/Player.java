@@ -58,7 +58,7 @@ public class Player {
     /**
      * constructor of class for a Player in the Ticket To Ride game
      * @param name Player name, corresponds to the username.
-     * @param trainCars umber of inital train cars
+     * @param trainCars number of initial train cars
      * @param color Color assigned to this player
      *
      * precondition: None
