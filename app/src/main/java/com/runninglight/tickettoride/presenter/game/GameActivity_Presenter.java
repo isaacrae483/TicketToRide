@@ -23,12 +23,6 @@ public class GameActivity_Presenter implements IGameActivity_Presenter {
 
     private IGameActivity_View view;
 
-    /**
-     * The person who goes first is the person who joined the room first
-     */
-    public void initTurn(){
-        model.initTurn();
-    }
 
     @Override
     public void update(Observable o, Object arg) {

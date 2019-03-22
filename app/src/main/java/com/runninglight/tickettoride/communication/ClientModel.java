@@ -199,11 +199,7 @@ public class ClientModel extends Observable {
         return currentGame.getTurnName();
     }
 
-    public void setCurrentTurn(PlayerState playerState){ //String playerName){
-        /*currentGame.setCurrentTurn(playerName);
-        System.out.println("*** Current turn: " + playerName);
-        setChanged();
-        notifyObservers(playerName);*/
+    public void setCurrentTurn(PlayerState playerState){
         currentGame.setPlayerState(playerState);
         System.out.println("*** Current turn: " + playerState.getPlayerName());
         setChanged();
@@ -211,18 +207,10 @@ public class ClientModel extends Observable {
     }
 
     public boolean isMyTurn(){
-       /* if(currentPlayer.getName().equals(currentGame.getCurrentTurn())){
-            return true;
-        }
-        return false;*/
        return currentGame.isMyTurn(currentPlayer.getName());
     }
 
     public void nextTurn(){
-       /* currentGame.nextTurn();
-        System.out.println("*** Current turn: " + currentGame.getCurrentTurn());
-        setChanged();
-        notifyObservers(currentGame.getCurrentTurn());*/
         currentGame.nextTurn();
         System.out.println("*** Current turn: " + currentGame.getTurnName());
         setChanged();
@@ -288,11 +276,5 @@ public class ClientModel extends Observable {
 
     public PlayerState getPlayerState(){
         return currentGame.getPlayerState();
-    }
-
-    public void initTurn(){
-        currentGame.initTurn();
-        setChanged();
-        notifyObservers(currentGame.getTurnName());
     }
 }

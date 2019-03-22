@@ -41,12 +41,6 @@ public class Game {
     /** Current number of players in the game room */
     private int numPlayers;
 
-    /** Name of player whose turn it is */
-    private String currentTurn;
-
-    /** Index in playerList of whose turn it is */
-    private int turnIndex;
-
     /** Indicates the last index of the hex ID */
     private static final int ID_END = 7;
 
@@ -123,7 +117,7 @@ public class Game {
                 userList.remove(userIndex);
                 playerList.remove(userIndex);
                 numPlayers--;
-               // playerState.setTotalPlayers(numPlayers);
+                playerState.setTotalPlayers(numPlayers);
             }
         }
     }
@@ -253,30 +247,12 @@ public class Game {
 
 
     /**
-     * Sets the current turn of the game
-     *
-     * @param playerName name of the player whose turn it is
-     *
-     * @pre playerName is the name of an existing player
-     * @post sets the current turn of the game to the provided player name
-     */
-   /* public void setCurrentTurn(String playerName){
-        currentTurn = playerName;
-        turnIndex = find(playerName);
-    }*/
-
-    /**
      * Changes the current turn to the next player
      *
      * @pre none
      * @post changes the current turn to the next Player in the playerList
      */
     public void nextTurn(){
-        /*turnIndex++;
-        if(turnIndex == playerList.size()){
-            turnIndex = 0;
-        }
-        currentTurn = playerList.get(turnIndex).getName();*/
         playerState.nextTurn(this);
     }
 
@@ -323,17 +299,6 @@ public class Game {
         return destDeckSize;
     }
 
-    /**
-     * Gets the current turn
-     *
-     * @return the name of the player whose turn it is
-     *
-     * @pre none
-     * @post returns the name of the player whose turn it is
-     */
-    /*public String getCurrentTurn(){
-        return currentTurn;
-    }*/
 
     public boolean isMyTurn(String playerName){
         return playerState.isMyTurn(playerName);
@@ -603,7 +568,31 @@ public class Game {
         return true;
     }
 
-    // TEST
+    public void setPlayerState(PlayerState playerState){
+        this.playerState = playerState;
+    }
+
+    public String getNextPlayerName(int index){
+        int nextIndex = index + 1;
+        if(nextIndex >= numPlayers){
+            nextIndex = 0;
+        }
+        return playerList.get(nextIndex).getName();
+    }
+
+    public String getTurnName(){
+        return playerState.getPlayerName();
+    }
+
+    public PlayerState getPlayerState(){
+        return playerState;
+    }
+
+    public void initTurn(){
+        setPlayerState(new PlayerState(playerList.get(0).getName(), numPlayers));
+    }
+
+    /* ************************** TEST ******************************* */
 
     /**
      * Gets a random train card
@@ -688,27 +677,4 @@ public class Game {
         playerList.get(i).addTrainCars(numCars);
     }
 
-    public void setPlayerState(PlayerState playerState){
-        this.playerState = playerState;
-    }
-
-    public String getNextPlayerName(int index){
-        int nextIndex = index + 1;
-        if(nextIndex >= numPlayers){
-            nextIndex = 0;
-        }
-        return playerList.get(nextIndex).getName();
-    }
-
-    public String getTurnName(){
-        return playerState.getPlayerName();
-    }
-
-    public PlayerState getPlayerState(){
-        return playerState;
-    }
-
-    public void initTurn(){
-        setPlayerState(new PlayerState(playerList.get(0).getName(), numPlayers));
-    }
 }
