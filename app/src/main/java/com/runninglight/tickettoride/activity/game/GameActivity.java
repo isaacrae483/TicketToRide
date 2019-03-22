@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
 
         presenter = new GameActivity_Presenter(this);
 
-        presenter.initTurn();
+        //presenter.initTurn();
     }
 
     @Override

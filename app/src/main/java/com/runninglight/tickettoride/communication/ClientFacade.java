@@ -8,6 +8,7 @@ import com.runninglight.shared.IClient;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
+import com.runninglight.shared.state.PlayerState;
 
 public class ClientFacade implements IClient {
 
@@ -63,8 +64,8 @@ public class ClientFacade implements IClient {
     }
 
     @Override
-    public void setTurn(Game game, String playerName){
+    public void setTurn(Game game, PlayerState playerState){
         model.setCurrentGame(game);
-        model.setCurrentTurn(playerName);
+        model.setCurrentTurn(playerState);
     }
 }

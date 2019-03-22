@@ -10,6 +10,7 @@ import com.runninglight.shared.LoginInfo;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
+import com.runninglight.shared.state.PlayerState;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -153,8 +154,8 @@ public class ServerFacade implements IServer {
     }
 
     @Override
-    public void setTurn(String gameID, String playerName){
-        model.setTurn(gameID, playerName);
-        proxy.setTurn(model.getGameByID(gameID), playerName);
+    public void setTurn(String gameID, PlayerState playerState){
+        model.setTurn(gameID, playerState);
+        proxy.setTurn(model.getGameByID(gameID), playerState);
     }
 }

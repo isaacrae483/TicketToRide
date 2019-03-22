@@ -8,7 +8,6 @@ import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.City;
 import com.runninglight.shared.PlayerColor;
 import com.runninglight.tickettoride.IPresenter.game.IGameActivity_Presenter;
-import com.runninglight.tickettoride.activity.game.GameActivity;
 import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.iview.game.IGameActivity_View;
 
@@ -28,7 +27,7 @@ public class GameActivity_Presenter implements IGameActivity_Presenter {
      * The person who goes first is the person who joined the room first
      */
     public void initTurn(){
-        model.setCurrentTurn(model.getCurrentGame().getPlayerList().get(0).getName());
+        model.initTurn();
     }
 
     @Override

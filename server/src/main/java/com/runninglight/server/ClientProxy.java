@@ -8,6 +8,7 @@ import com.runninglight.shared.IClient;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
+import com.runninglight.shared.state.PlayerState;
 
 public class ClientProxy implements IClient {
 
@@ -23,6 +24,7 @@ public class ClientProxy implements IClient {
     private static final String PLAYER = "com.runninglight.shared.Player";
     private static final String TRAINCARD = "com.runninglight.shared.Cards.TrainCard";
     private static final String STRING = "java.lang.String";
+    private static final String PLAYER_STATE = "com.runninglight.shared.state.PlayerState";
 
 
     public static ClientProxy getInstance() {
@@ -85,8 +87,8 @@ public class ClientProxy implements IClient {
     }
 
     @Override
-    public void setTurn(Game game, String playerName){
-        communicator.setCommandForGame(game, getSetTurnCommand(game, playerName));
+    public void setTurn(Game game, PlayerState playerState){
+        communicator.setCommandForGame(game, getSetTurnCommand(game, playerState));
     }
 
     private Command getAddCardToHandCommand(Game game, User user, TrainCard trainCard)
@@ -150,12 +152,12 @@ public class ClientProxy implements IClient {
                 new Object[] {game, p} );
     }
 
-    private Command getSetTurnCommand(Game game, String playerName)
+    private Command getSetTurnCommand(Game game, PlayerState playerState)
     {
         return new Command(
                 CLIENT_FACADE,
                 "setTurn",
-                new String[] {GAME, STRING},
-                new Object[] {game, playerName} );
+                new String[] {GAME, PLAYER_STATE},
+                new Object[] {game, playerState} );
     }
 }

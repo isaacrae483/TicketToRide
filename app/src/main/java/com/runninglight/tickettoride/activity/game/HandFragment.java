@@ -99,6 +99,8 @@ public class HandFragment extends Fragment implements IHandView {
         numBlackText.setText(Integer.toString(0));
         numWildText.setText(Integer.toString(0));
 
+        presenter.initInfo();
+
         return v;
     }
 
@@ -168,7 +170,7 @@ public class HandFragment extends Fragment implements IHandView {
     }
 
     @Override
-    public void updateCurrentPlayerInfo(Player currentPlayer, String currentTurn) {
+    public void updateCurrentPlayerInfo(Player currentPlayer, boolean isMyTurn) {
         currentplayer_name.setText(currentPlayer.getName());
         currentplayer_traincards.setText(TCARDS + Integer.toString(currentPlayer.getHandSize()));
         currentplayer_destcards.setText(DCARDS + Integer.toString(currentPlayer.getDestinationCards().size()));
@@ -176,7 +178,7 @@ public class HandFragment extends Fragment implements IHandView {
         currentplayer_score.setText(SCORE + Integer.toString(currentPlayer.getPoints()));
         PlayerColor color = currentPlayer.getColor();
 
-        if (currentPlayer.getName().equals(currentTurn)) {
+        if (isMyTurn) {
             currentplayer_image.setImageResource(getImageId(color, true));
         } else {
             currentplayer_image.setImageResource(getImageId(color, false));

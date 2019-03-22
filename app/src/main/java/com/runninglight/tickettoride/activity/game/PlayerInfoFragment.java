@@ -103,6 +103,8 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
         player4_score = v.findViewById(R.id.player4_score);
         player4_image = v.findViewById(R.id.player4_image);
 
+        presenter.initInfo();
+
         return v;
     }
 

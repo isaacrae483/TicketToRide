@@ -1,6 +1,7 @@
 package com.runninglight.shared;
 
 import com.runninglight.shared.Cards.TrainCard;
+import com.runninglight.shared.state.PlayerState;
 
 public interface IClient {
 
@@ -18,5 +19,5 @@ public interface IClient {
 
     void addCardToFaceUp(Game game, TrainCard trainCard, int position);
 
-    void setTurn(Game game, String playerName);
+    void setTurn(Game game, PlayerState playerState);
 }

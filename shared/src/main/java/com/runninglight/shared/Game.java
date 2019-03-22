@@ -5,6 +5,7 @@ import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Cards.DestinationCardDeck;
 import com.runninglight.shared.Cards.FaceUpCards;
 import com.runninglight.shared.Cards.TrainCard;
+import com.runninglight.shared.state.PlayerState;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,6 +59,9 @@ public class Game {
     /** The number of cards in the train card deck */
     private int trainCardDeckCurrentSize;
 
+    /** Current turn of the game */
+    private PlayerState playerState;
+
     /**
      * Game constructor
      *
@@ -95,6 +99,12 @@ public class Game {
             userList.add(user);
             playerList.add(new Player(user.getUserName(), MAX_TRAIN_CARS, PlayerColor.values()[numPlayers]));
             ++numPlayers;
+            if(numPlayers == 1) {
+                playerState = new PlayerState(playerList.get(0).getName(), numPlayers);
+            }
+            else if(numPlayers > 1){
+                playerState.setTotalPlayers(numPlayers);
+            }
         }
     }
 
@@ -113,6 +123,7 @@ public class Game {
                 userList.remove(userIndex);
                 playerList.remove(userIndex);
                 numPlayers--;
+               // playerState.setTotalPlayers(numPlayers);
             }
         }
     }
@@ -249,10 +260,10 @@ public class Game {
      * @pre playerName is the name of an existing player
      * @post sets the current turn of the game to the provided player name
      */
-    public void setCurrentTurn(String playerName){
+   /* public void setCurrentTurn(String playerName){
         currentTurn = playerName;
         turnIndex = find(playerName);
-    }
+    }*/
 
     /**
      * Changes the current turn to the next player
@@ -261,11 +272,12 @@ public class Game {
      * @post changes the current turn to the next Player in the playerList
      */
     public void nextTurn(){
-        turnIndex++;
+        /*turnIndex++;
         if(turnIndex == playerList.size()){
             turnIndex = 0;
         }
-        currentTurn = playerList.get(turnIndex).getName();
+        currentTurn = playerList.get(turnIndex).getName();*/
+        playerState.nextTurn(this);
     }
 
     /**
@@ -319,8 +331,12 @@ public class Game {
      * @pre none
      * @post returns the name of the player whose turn it is
      */
-    public String getCurrentTurn(){
+    /*public String getCurrentTurn(){
         return currentTurn;
+    }*/
+
+    public boolean isMyTurn(String playerName){
+        return playerState.isMyTurn(playerName);
     }
 
     /**
@@ -670,5 +686,29 @@ public class Game {
     public void addTrainCarsToPlayer(String playerName, int numCars){
         int i = find(playerName);
         playerList.get(i).addTrainCars(numCars);
+    }
+
+    public void setPlayerState(PlayerState playerState){
+        this.playerState = playerState;
+    }
+
+    public String getNextPlayerName(int index){
+        int nextIndex = index + 1;
+        if(nextIndex >= numPlayers){
+            nextIndex = 0;
+        }
+        return playerList.get(nextIndex).getName();
+    }
+
+    public String getTurnName(){
+        return playerState.getPlayerName();
+    }
+
+    public PlayerState getPlayerState(){
+        return playerState;
+    }
+
+    public void initTurn(){
+        setPlayerState(new PlayerState(playerList.get(0).getName(), numPlayers));
     }
 }
