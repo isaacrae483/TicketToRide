@@ -12,7 +12,7 @@ public class FaceUpCards {
         }*/
     }
 
-    //private TrainCardDeck trainCardDeck = TrainCardDeck.getInstance();
+    //private TrainCardDeck trainCardDeck = TrainCardDeck
 
     private TrainCard[] faceUpCards;
 

@@ -42,10 +42,16 @@ public class HandPresenter implements IHandPresenter {
     }
 
     @Override
+    public void initInfo(){
+        handView.updateHandNumbers(ClientModel.getInstance().getCurrentPlayer().getHand().getTrainCards());
+        handView.updateCurrentPlayerInfo(model.getCurrentPlayer(), model.isMyTurn());
+    }
+
+    @Override
     public void update(Observable o, Object arg) {
         int destCardCount = model.getCurrentPlayer().getDestinationCards().size();
         handView.refreshDestCardCount(destCardCount);
         handView.updateHandNumbers(ClientModel.getInstance().getCurrentPlayer().getHand().getTrainCards());
-        handView.updateCurrentPlayerInfo(model.getCurrentPlayer(), model.getCurrentTurn());
+        handView.updateCurrentPlayerInfo(model.getCurrentPlayer(), model.isMyTurn());
     }
 }

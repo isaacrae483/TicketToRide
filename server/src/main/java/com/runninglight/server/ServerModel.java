@@ -4,6 +4,7 @@ import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.User;
+import com.runninglight.shared.state.PlayerState;
 
 import java.util.ArrayList;
 
@@ -126,9 +127,9 @@ public class ServerModel {
         }
     }
 
-    public void setTurn(String gameID, String playerName){
+    public void setTurn(String gameID, PlayerState playerState){
         int gameIndex = getGameIndex(gameID);
-        gameList.get(gameIndex).setCurrentTurn(playerName);
+        gameList.get(gameIndex).setPlayerState(playerState);
     }
 
     public ArrayList<Game> getGameList() {

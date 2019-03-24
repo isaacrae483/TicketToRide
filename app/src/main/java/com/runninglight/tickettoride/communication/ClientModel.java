@@ -8,7 +8,7 @@ import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
-import com.runninglight.tickettoride.presenter.game.DeckPresenter;
+import com.runninglight.shared.state.PlayerState;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -160,6 +160,7 @@ public class ClientModel extends Observable {
         return currentGame.getDestDeckSize();
     }
 
+    /*
     public void decrementTrainCardDeckSize()
     {
         currentGame.decrementTrainCardDeckSize();
@@ -174,6 +175,7 @@ public class ClientModel extends Observable {
         setChanged();
         notifyObservers(currentGame.getTrainCardDeckSize());
     }
+    */
 
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
@@ -196,28 +198,25 @@ public class ClientModel extends Observable {
     }
 
     public String getCurrentTurn(){
-        return currentGame.getCurrentTurn();
+        return currentGame.getTurnName();
     }
 
-    public void setCurrentTurn(String playerName){
-        currentGame.setCurrentTurn(playerName);
-        System.out.println("*** Current turn: " + playerName);
+    public void setCurrentTurn(PlayerState playerState){
+        currentGame.setPlayerState(playerState);
+        System.out.println("*** Current turn: " + playerState.getPlayerName());
         setChanged();
-        notifyObservers(playerName);
+        notifyObservers(playerState.getPlayerName());
     }
 
     public boolean isMyTurn(){
-        if(currentPlayer.getName().equals(currentGame.getCurrentTurn())){
-            return true;
-        }
-        return false;
+       return currentGame.isMyTurn(currentPlayer.getName());
     }
 
     public void nextTurn(){
         currentGame.nextTurn();
-        System.out.println("*** Current turn: " + currentGame.getCurrentTurn());
+        System.out.println("*** Current turn: " + currentGame.getTurnName());
         setChanged();
-        notifyObservers(currentGame.getCurrentTurn());
+        notifyObservers(currentGame.getTurnName());
     }
 
     public void addTrainCardToPlayerHand(TrainCard trainCard, User user, Game game)
@@ -275,5 +274,9 @@ public class ClientModel extends Observable {
         refreshCurrentPlayer(playerName);
         setChanged();
         notifyObservers();
+    }
+
+    public PlayerState getPlayerState(){
+        return currentGame.getPlayerState();
     }
 }

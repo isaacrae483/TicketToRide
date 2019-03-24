@@ -24,6 +24,7 @@ public class GameLobby_Presenter implements IGameLobby_Presenter, Observer {
 
         model.deleteObserver(this);
         model.setCurrentPlayer(model.getCurrentGame().getPlayer(model.getCurrentUser().getUserName()));
+       // model.initTurn();
         view.startGame();
     }
 

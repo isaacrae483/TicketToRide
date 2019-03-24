@@ -14,6 +14,7 @@ import com.runninglight.shared.Message;
 import com.runninglight.shared.Results;
 import com.runninglight.shared.Serializer;
 import com.runninglight.shared.User;
+import com.runninglight.shared.state.PlayerState;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,6 +34,7 @@ public class ServerProxy implements IServer {
     private static final String STRING = "java.lang.String";
     private static final String MESSAGE = "com.runninglight.shared.Message";
     private static final String TRAINCARD = "com.runninglight.shared.Cards.TrainCard";
+    private static final String PLAYER_STATE = "com.runninglight.shared.state.PlayerState";
 
     public static ServerProxy getInstance(){
         if(instance == null) {
@@ -220,8 +222,8 @@ public class ServerProxy implements IServer {
     }
 
     @Override
-    public void setTurn(String gameID, String playerName){
-        Results results = communicator.send(getSetTurnCommand(gameID, playerName));
+    public void setTurn(String gameID, PlayerState playerState){
+        Results results = communicator.send(getSetTurnCommand(gameID, playerState));
         if (!results.isSuccess()) {
             System.out.println(results.getErrorInfo());
         }
@@ -327,13 +329,13 @@ public class ServerProxy implements IServer {
                 new Object[] {game, user} );
     }
 
-    private Command getSetTurnCommand(String gameID, String playerName)
+    private Command getSetTurnCommand(String gameID, PlayerState playerState)
     {
         return new Command(
                 SERVER_FACADE,
                 "setTurn",
-                new String[] {STRING, STRING},
-                new Object[] {gameID, playerName} );
+                new String[] {STRING, PLAYER_STATE},
+                new Object[] {gameID, playerState} );
     }
 
     // Temporary

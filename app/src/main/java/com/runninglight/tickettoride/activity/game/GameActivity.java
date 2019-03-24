@@ -33,8 +33,6 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         setContentView(R.layout.activity_game);
 
         presenter = new GameActivity_Presenter(this);
-
-        presenter.initTurn();
     }
 
     @Override
