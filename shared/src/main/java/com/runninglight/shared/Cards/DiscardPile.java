@@ -1,14 +1,16 @@
 package com.runninglight.shared.Cards;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class DiscardPile {
     DiscardPile(){}
 
     private ArrayList<TrainCard> discardPile;
 
-    public void addCard(TrainCard discard) {
-        discardPile.add(discard);
+    public void addCards(ArrayList<TrainCard> discards) {
+        discardPile.addAll(discards);
     }
 
     public ArrayList<TrainCard> getDiscardPile() {

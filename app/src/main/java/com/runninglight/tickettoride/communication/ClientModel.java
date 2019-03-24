@@ -160,6 +160,7 @@ public class ClientModel extends Observable {
         return currentGame.getDestDeckSize();
     }
 
+    /*
     public void decrementTrainCardDeckSize()
     {
         currentGame.decrementTrainCardDeckSize();
@@ -174,6 +175,7 @@ public class ClientModel extends Observable {
         setChanged();
         notifyObservers(currentGame.getTrainCardDeckSize());
     }
+    */
 
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
