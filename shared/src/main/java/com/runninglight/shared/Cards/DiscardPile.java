@@ -14,4 +14,8 @@ public class DiscardPile {
     public ArrayList<TrainCard> getDiscardPile() {
         return discardPile;
     }
+
+    public void clearDiscardPile() {
+        discardPile.clear();
+    }
 }
