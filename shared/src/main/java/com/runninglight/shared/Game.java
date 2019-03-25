@@ -59,6 +59,8 @@ public class Game {
     /** Current turn of the game */
     private PlayerState playerState;
 
+    private boolean initDestCardsPicked;
+
     /**
      * Game constructor
      *
@@ -81,6 +83,7 @@ public class Game {
         this.trainCardDeck = new TrainCardDeck();
         this.faceUpCards = new FaceUpCards();
         this.trainCardDeckCurrentSize = 110;
+        this.initDestCardsPicked = false;
     }
 
 
@@ -562,11 +565,8 @@ public class Game {
      * @pre playerList has no null objects
      * @post returns true if all players have picked destination cards, false otherwise
      */
-    public boolean initDestinationCardsPicked()
-    {
-        for (Player player : playerList) if (!player.hasDestinationCards()) return false;
-        return true;
-    }
+    public boolean initDestinationCardsPicked() { return initDestCardsPicked; }
+    public void setInitDestCardsPicked() { initDestCardsPicked = true; }
 
     public void setPlayerState(PlayerState playerState){
         this.playerState = playerState;

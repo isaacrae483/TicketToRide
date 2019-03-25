@@ -112,13 +112,15 @@ public class ServerFacade implements IServer {
         Player p = g.getPlayer(playerName);
         proxy.setDestinationCards(g, p);
 
-        if (g.initDestinationCardsPicked())
+        if (!g.initDestinationCardsPicked())
         {
             ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 1);
             ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 2);
             ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 3);
             ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 4);
             ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 5);
+
+            g.setInitDestCardsPicked();
 
             for (User user : g.getUserList())
             {
