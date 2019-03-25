@@ -5,6 +5,7 @@ import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Cards.DestinationCardDeck;
 import com.runninglight.shared.Cards.FaceUpCards;
 import com.runninglight.shared.Cards.TrainCard;
+import com.runninglight.shared.Cards.TrainCardDeck;
 import com.runninglight.shared.state.PlayerState;
 
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class Game {
     /** Starting number of train cars */
     private static final int MAX_TRAIN_CARS = 45;
 
+    private transient TrainCardDeck trainCardDeck;
+
     /** The face up train cards for the game */
     private FaceUpCards faceUpCards;
 
@@ -75,6 +78,7 @@ public class Game {
         this.destDeckSize = this.destCardDeck.size();
         this.chat = new Chat();
         this.playerList = new ArrayList<>();
+        this.trainCardDeck = new TrainCardDeck();
         this.faceUpCards = new FaceUpCards();
         this.trainCardDeckCurrentSize = 110;
     }
@@ -521,8 +525,9 @@ public class Game {
      */
     public TrainCard drawTrainCard()
     {
-        trainCardDeckCurrentSize--;
-        return getRandomTraincard();
+        TrainCard drawnCard = trainCardDeck.drawCard();
+        trainCardDeckCurrentSize = trainCardDeck.getNumCardsInDeck();
+        return drawnCard;
     }
 
     /**
@@ -535,12 +540,7 @@ public class Game {
      */
     public int getTrainCardDeckSize() { return trainCardDeckCurrentSize; }
 
-    /**
-     * Reduces the trainCardDeckCurrentSize by 1
-     *
-     * @pre none
-     * @post trainCardDeckCurrentSize--
-     */
+    /*
     public void decrementTrainCardDeckSize() { trainCardDeckCurrentSize--; }
 
     /**
@@ -550,9 +550,9 @@ public class Game {
      *
      * @pre none
      * @post adds numToIncrease to trainCardDeckCurrentSize
-     */
-    public void increaseTrainCardDeckSize(int numToIncrease) { trainCardDeckCurrentSize += numToIncrease; }
 
+    public void increaseTrainCardDeckSize(int numToIncrease) { trainCardDeckCurrentSize += numToIncrease; }
+    */
 
     /**
      * Determines whether or not all players have picked destination cards
@@ -592,7 +592,7 @@ public class Game {
         setPlayerState(new PlayerState(playerList.get(0).getName(), numPlayers));
     }
 
-    /* ************************** TEST ******************************* */
+    /* ************************** TEST ********************************/
 
     /**
      * Gets a random train card
@@ -601,7 +601,7 @@ public class Game {
      *
      * @pre none
      * @post returns a random train card
-     */
+    */
     private TrainCard getRandomTraincard()
     {
         switch (new Random().nextInt(9))
@@ -618,6 +618,7 @@ public class Game {
         }
         return null;
     }
+
 
     /**
      * Adds a specified number of points to a given player

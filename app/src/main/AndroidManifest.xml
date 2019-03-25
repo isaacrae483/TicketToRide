@@ -12,8 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.game.DestCardHandActivity"
-            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".activity.game.GameOverActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".activity.game.DestCardHandActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.game.DestinationCardActivity"
             android:screenOrientation="landscape" />
