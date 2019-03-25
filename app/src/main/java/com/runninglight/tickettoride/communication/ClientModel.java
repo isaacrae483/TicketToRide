@@ -166,7 +166,9 @@ public class ClientModel extends Observable {
         setChanged();
         notifyObservers(currentGame.getTrainCardDeckSize());
     }
+
     public void getTrainCardDeckSize() { currentGame.getTrainCardDeckSize(); }
+
     public void addToTrainCardDeckSize(int increase)
     {
         currentGame.increaseTrainCardDeckSize(increase);
