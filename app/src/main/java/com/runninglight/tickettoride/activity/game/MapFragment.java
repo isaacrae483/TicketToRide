@@ -1,6 +1,7 @@
 package com.runninglight.tickettoride.activity.game;
 
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -47,20 +48,14 @@ public class MapFragment extends Fragment implements IMap_View {
         View v = inflater.inflate(R.layout.fragment_map, container, false);
 
         map = v.findViewById(R.id.map_RL);
-/*
-        map.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                presenter.touchMap((int) event.getX(),(int) event.getY());
-                return true;
-            }
-        });
-*/
-
 
 
         return v;
     }
+
+
+
+
 
 
 
@@ -88,7 +83,8 @@ public class MapFragment extends Fragment implements IMap_View {
                 routeView = getView().findViewById(R.id._99);
                 break;
             default:
-                routeView = getView().findViewById(R.id._99);
+                String id = "_"+Integer.toString(route);
+                routeView = getView().findViewById(getID(id));
                 System.out.println("unknown route defaulting to miami to atlanta");
         }
         routeView.setVisibility(View.VISIBLE);
@@ -120,5 +116,14 @@ public class MapFragment extends Fragment implements IMap_View {
                 return R.color.player_black;
         }
     }
+
+    private int getID(String identifier){
+        Resources resources = getResources();
+        int ID = resources.getIdentifier(identifier,"id",getContext().getPackageName());
+        System.out.println("found id for "+identifier+ " "+ID);
+        return ID;
+    }
+
+
 
 }

@@ -35,6 +35,7 @@
             android:name=".activity.game.GameActivity"
             android:configChanges="orientation"
             android:screenOrientation="landscape" />
+        <activity android:name=".activity.game.ClaimRouteActivity" />
     </application>
 
 </manifest>
