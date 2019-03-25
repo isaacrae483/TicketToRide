@@ -66,7 +66,12 @@ public class DeckPresenter implements IDeckPresenter, Observer
     @Override
     public void checkIfMyTurn(){
         if(model.isMyTurn()){
-            deckView.enableListeners();
+            if(model.initDestCardsPicked()) {
+                deckView.enableListeners();
+            }
+            else{
+                deckView.enableDestDeckListener();
+            }
         }
         else{
             deckView.disableListeners();

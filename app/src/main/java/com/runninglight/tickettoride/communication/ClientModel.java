@@ -221,6 +221,10 @@ public class ClientModel extends Observable {
         notifyObservers(currentGame.getTurnName());
     }
 
+    public boolean initDestCardsPicked(){
+        return currentGame.initDestinationCardsPicked();
+    }
+
     public void addTrainCardToPlayerHand(TrainCard trainCard, User user, Game game)
     {
         if (currentPlayer.getName().equals(user.getUserName())) getCurrentPlayer().addCardToHand(trainCard);
