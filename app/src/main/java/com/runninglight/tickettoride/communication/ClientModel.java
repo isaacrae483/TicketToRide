@@ -11,6 +11,7 @@ import com.runninglight.shared.User;
 import com.runninglight.shared.state.PlayerState;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Observable;
 
 public class ClientModel extends Observable {
