@@ -853,6 +853,156 @@
             android:visibility="visible" />
 
         <ImageView
+            android:id="@+id/sea_cal_"
+            android:layout_width="11dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="147dp"
+            android:layout_marginTop="77dp"
+            android:background="@android:color/black"
+            android:rotation="85"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/sea_cal_2"
+            android:layout_width="11dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginTop="80dp"
+            android:background="@android:color/black"
+            android:rotation="90"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/sea_cal_3"
+            android:layout_width="11dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="185dp"
+            android:layout_marginTop="66dp"
+            android:background="@android:color/black"
+            android:rotation="65"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/sea_cal_4"
+            android:layout_width="11dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="214dp"
+            android:layout_marginTop="45dp"
+            android:background="@android:color/black"
+            android:rotation="36"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/por_slc_"
+            android:layout_width="11dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="77dp"
+            android:layout_marginTop="129dp"
+            android:background="@android:color/black"
+            android:rotation="100"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/por_slc_2"
+            android:layout_width="11dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="118dp"
+            android:layout_marginTop="138dp"
+            android:background="@android:color/black"
+            android:rotation="107"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/por_slc_3"
+            android:layout_width="11dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="151dp"
+            android:background="@android:color/black"
+            android:rotation="116"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/por_slc_4"
+            android:layout_width="11dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="188dp"
+            android:layout_marginTop="169dp"
+            android:background="@android:color/black"
+            android:rotation="119"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/por_slc_5"
+            android:layout_width="11dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="219dp"
+            android:layout_marginTop="189dp"
+            android:background="@android:color/black"
+            android:rotation="129"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/por_slc_6"
+            android:layout_width="12dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="245dp"
+            android:layout_marginTop="218dp"
+            android:background="@android:color/black"
+            android:rotation="147"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/lv_slc_"
+            android:layout_width="13dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="319dp"
+            android:background="@android:color/black"
+            android:rotation="57"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/lv_slc_2"
+            android:layout_width="13dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="243dp"
+            android:layout_marginTop="294dp"
+            android:background="@android:color/black"
+            android:rotation="31"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/lv_slc_3"
+            android:layout_width="13dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="253dp"
+            android:layout_marginTop="266dp"
+            android:background="@android:color/black"
+            android:rotation="12"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/la_lv_"
+            android:layout_width="11dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="335dp"
+            android:background="@android:color/black"
+            android:rotation="84"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/la_lv_2"
+            android:layout_width="11dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="129dp"
+            android:layout_marginTop="355dp"
+            android:background="@android:color/black"
+            android:rotation="33"
+            android:visibility="visible" />
+
+        <ImageView
             android:id="@+id/city1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
