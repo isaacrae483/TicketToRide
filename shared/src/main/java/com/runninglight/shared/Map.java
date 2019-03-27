@@ -168,4 +168,16 @@ public class Map {
     boolean playerConnects(City city1, City city2) {
         return false;
     }
+
+    public Route[] findRoutes(String cityName){
+        ArrayList <Route> routes = new ArrayList<>();
+
+        for(int i=0; i< allRoutes.size(); i++){
+            if( (allRoutes.get(i).getCity1().equals(cityName) )||( allRoutes.get(i).getCity2().equals(cityName)) )
+                routes.add(allRoutes.get(i));
+        }
+
+        return (Route[]) routes.toArray();
+    }
+
 }

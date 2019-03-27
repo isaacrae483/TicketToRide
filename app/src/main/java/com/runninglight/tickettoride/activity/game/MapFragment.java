@@ -1,6 +1,7 @@
 package com.runninglight.tickettoride.activity.game;
 
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -146,7 +147,10 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
 
     @Override
     public void onClick(View v) {
-        System.out.println("clicked city: " + v.getId());
+        System.out.println("clicked city: " + v.getTag());
+        Intent intent = new Intent(getActivity(), ClaimRouteActivity.class);
+        intent.putExtra("title",v.getTag().toString());
+        startActivity(intent);
 
     }
 }

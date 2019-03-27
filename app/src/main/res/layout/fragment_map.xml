@@ -1009,6 +1009,7 @@
             android:layout_marginStart="859dp"
             android:layout_marginTop="310dp"
             android:visibility="visible"
+            android:tag="Atlanta"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1018,6 +1019,7 @@
             android:layout_marginStart="1038dp"
             android:layout_marginTop="63dp"
             android:visibility="visible"
+            android:tag="Boston"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1027,6 +1029,7 @@
             android:layout_marginStart="210dp"
             android:layout_marginTop="18dp"
             android:visibility="visible"
+            android:tag="Calgary"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1036,6 +1039,7 @@
             android:layout_marginStart="967dp"
             android:layout_marginTop="316dp"
             android:visibility="visible"
+            android:tag="Charleston"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1045,6 +1049,7 @@
             android:layout_marginStart="743dp"
             android:layout_marginTop="177dp"
             android:visibility="visible"
+            android:tag="Chicago"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1054,6 +1059,7 @@
             android:layout_marginStart="590dp"
             android:layout_marginTop="395dp"
             android:visibility="visible"
+            android:tag="Dallas"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1063,6 +1069,7 @@
             android:layout_marginStart="393dp"
             android:layout_marginTop="262dp"
             android:visibility="visible"
+            android:tag="Denver"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1072,6 +1079,7 @@
             android:layout_marginStart="602dp"
             android:layout_marginTop="125dp"
             android:visibility="visible"
+            android:tag="Duluth"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1081,6 +1089,7 @@
             android:layout_marginStart="380dp"
             android:layout_marginTop="415dp"
             android:visibility="visible"
+            android:tag="ElPaso"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1090,6 +1099,7 @@
             android:layout_marginStart="327dp"
             android:layout_marginTop="130dp"
             android:visibility="visible"
+            android:tag="Helena"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1099,6 +1109,7 @@
             android:layout_marginStart="638dp"
             android:layout_marginTop="429dp"
             android:visibility="visible"
+            android:tag="Houston"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1108,6 +1119,7 @@
             android:layout_marginStart="589dp"
             android:layout_marginTop="246dp"
             android:visibility="visible"
+            android:tag="KansasCity"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1117,6 +1129,7 @@
             android:layout_marginStart="179dp"
             android:layout_marginTop="329dp"
             android:visibility="visible"
+            android:tag="LasVegas"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1126,6 +1139,7 @@
             android:layout_marginStart="671dp"
             android:layout_marginTop="324dp"
             android:visibility="visible"
+            android:tag="LittleRock"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1135,6 +1149,7 @@
             android:layout_marginStart="102dp"
             android:layout_marginTop="380dp"
             android:visibility="visible"
+            android:tag="LosAngeles"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1144,6 +1159,7 @@
             android:layout_marginStart="1004dp"
             android:layout_marginTop="451dp"
             android:visibility="visible"
+            android:tag="Miami"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1153,6 +1169,7 @@
             android:layout_marginStart="973dp"
             android:layout_marginTop="13dp"
             android:visibility="visible"
+            android:tag="Montreal"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1162,6 +1179,7 @@
             android:layout_marginStart="800dp"
             android:layout_marginTop="279dp"
             android:visibility="visible"
+            android:tag="Nashville"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1171,6 +1189,7 @@
             android:layout_marginStart="745dp"
             android:layout_marginTop="418dp"
             android:visibility="visible"
+            android:tag="NewOrleans"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1180,6 +1199,7 @@
             android:layout_marginStart="993dp"
             android:layout_marginTop="126dp"
             android:visibility="visible"
+            android:tag="NewYork"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1189,6 +1209,7 @@
             android:layout_marginStart="567dp"
             android:layout_marginTop="320dp"
             android:visibility="visible"
+            android:tag="OklahomaCity"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1198,6 +1219,7 @@
             android:layout_marginStart="565dp"
             android:layout_marginTop="203dp"
             android:visibility="visible"
+            android:tag="Omaha"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1207,6 +1229,7 @@
             android:layout_marginStart="242dp"
             android:layout_marginTop="383dp"
             android:visibility="visible"
+            android:tag="Phoenix"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1216,6 +1239,7 @@
             android:layout_marginStart="895dp"
             android:layout_marginTop="165dp"
             android:visibility="visible"
+            android:tag="Pittsburgh"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1225,6 +1249,7 @@
             android:layout_marginStart="29dp"
             android:layout_marginTop="123dp"
             android:visibility="visible"
+            android:tag="Portland"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1234,6 +1259,7 @@
             android:layout_marginStart="935dp"
             android:layout_marginTop="261dp"
             android:visibility="visible"
+            android:tag="Raleigh"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1243,6 +1269,7 @@
             android:layout_marginStart="691dp"
             android:layout_marginTop="247dp"
             android:visibility="visible"
+            android:tag="SaintLouis"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1252,6 +1279,7 @@
             android:layout_marginStart="243dp"
             android:layout_marginTop="235dp"
             android:visibility="visible"
+            android:tag="SaltLakeCity"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1261,6 +1289,7 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="290dp"
             android:visibility="visible"
+            android:tag="SanFransisco"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1270,6 +1299,7 @@
             android:layout_marginStart="386dp"
             android:layout_marginTop="340dp"
             android:visibility="visible"
+            android:tag="SantaFe"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1279,6 +1309,7 @@
             android:layout_marginStart="748dp"
             android:layout_marginTop="69dp"
             android:visibility="visible"
+            android:tag="SaultStMarie"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1288,6 +1319,7 @@
             android:layout_marginStart="54dp"
             android:layout_marginTop="79dp"
             android:visibility="visible"
+            android:tag="Seattle"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1297,6 +1329,7 @@
             android:layout_marginStart="875dp"
             android:layout_marginTop="87dp"
             android:visibility="visible"
+            android:tag="Toronto"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1306,6 +1339,7 @@
             android:layout_marginStart="59dp"
             android:layout_marginTop="33dp"
             android:visibility="visible"
+            android:tag="Vancouver"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1315,6 +1349,7 @@
             android:layout_marginStart="1003dp"
             android:layout_marginTop="205dp"
             android:visibility="visible"
+            android:tag="Washington"
             app:srcCompat="@drawable/city" />
 
         <ImageView
@@ -1324,6 +1359,7 @@
             android:layout_marginStart="471dp"
             android:layout_marginTop="28dp"
             android:visibility="visible"
+            android:tag="Winnipeg"
             app:srcCompat="@drawable/city" />
 
 
