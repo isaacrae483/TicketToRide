@@ -5,7 +5,9 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class DiscardPile {
-    DiscardPile(){}
+    DiscardPile(){
+        discardPile = new ArrayList<>();
+    }
 
     private ArrayList<TrainCard> discardPile;
 

@@ -306,6 +306,13 @@ public class Game {
         return destDeckSize;
     }
 
+    public FaceUpCards getFaceUpCards() {
+        return faceUpCards;
+    }
+
+    public TrainCardDeck getTrainCardDeck() {
+        return trainCardDeck;
+    }
 
     public boolean isMyTurn(String playerName){
         return playerState.isMyTurn(playerName);
@@ -590,6 +597,10 @@ public class Game {
 
     public void initTurn(){
         setPlayerState(new PlayerState(playerList.get(0).getName(), numPlayers));
+    }
+
+    public Player getLastPlayer(){
+        return playerList.get(playerList.size() - 1);
     }
 
     /* ************************** TEST ********************************/

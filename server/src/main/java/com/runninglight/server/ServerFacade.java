@@ -13,6 +13,7 @@ import com.runninglight.shared.User;
 import com.runninglight.shared.state.PlayerState;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 
@@ -112,13 +113,9 @@ public class ServerFacade implements IServer {
         Player p = g.getPlayer(playerName);
         proxy.setDestinationCards(g, p);
 
-        if (!g.initDestinationCardsPicked())
+        if (!g.initDestinationCardsPicked() && playerName.equals(g.getLastPlayer().getName()))
         {
-            ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 1);
-            ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 2);
-            ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 3);
-            ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 4);
-            ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 5);
+            dealNewFaceUpCards(g);
 
             g.setInitDestCardsPicked();
 
@@ -143,7 +140,12 @@ public class ServerFacade implements IServer {
     {
         Game g = model.getGameByID(game.getGameID());
         if (trainCard != null) ClientProxy.getInstance().addCardToHand(g, user, trainCard);
-        ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), position);
+        TrainCard newCard = g.drawTrainCard();
+        ClientProxy.getInstance().addCardToFaceUp(g, newCard, position);
+        if (g.getFaceUpCards().tooManyWildCards()) {
+            g.getTrainCardDeck().discard(new ArrayList<TrainCard>(Arrays.asList(g.getFaceUpCards().getFaceUpCards())));
+            dealNewFaceUpCards(g);
+        }
         return true;
     }
 
@@ -159,5 +161,17 @@ public class ServerFacade implements IServer {
     public void setTurn(String gameID, PlayerState playerState){
         model.setTurn(gameID, playerState);
         proxy.setTurn(model.getGameByID(gameID), playerState);
+    }
+
+    private void dealNewFaceUpCards(Game g) {
+        ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 1);
+        ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 2);
+        ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 3);
+        ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 4);
+        ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 5);
+        if (g.getFaceUpCards().tooManyWildCards()) {
+            g.getTrainCardDeck().discard(new ArrayList<TrainCard>(Arrays.asList(g.getFaceUpCards().getFaceUpCards())));
+            dealNewFaceUpCards(g);
+        }
     }
 }

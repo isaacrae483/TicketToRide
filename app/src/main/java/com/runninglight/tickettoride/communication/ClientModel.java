@@ -11,6 +11,7 @@ import com.runninglight.shared.User;
 import com.runninglight.shared.state.PlayerState;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Observable;
 
 public class ClientModel extends Observable {
@@ -219,6 +220,10 @@ public class ClientModel extends Observable {
         System.out.println("*** Current turn: " + currentGame.getTurnName());
         setChanged();
         notifyObservers(currentGame.getTurnName());
+    }
+
+    public boolean initDestCardsPicked(){
+        return currentGame.initDestinationCardsPicked();
     }
 
     public void addTrainCardToPlayerHand(TrainCard trainCard, User user, Game game)

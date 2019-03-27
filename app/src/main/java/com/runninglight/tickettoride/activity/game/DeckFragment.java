@@ -62,14 +62,6 @@ public class DeckFragment extends Fragment implements IDeckView
         trainCardDeckSizeText = view.findViewById(R.id.num_train_cards_deck);
         trainCardDeckSizeText.setText("" + ClientModel.getInstance().getCurrentGame().getTrainCardDeckSize());
 
-        deckRelativeLayout.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                presenter.drawCardFromDeck();
-            }
-        });
 
         cardHolder1 = new CardHolder(imageView1, 1);
         cardHolder2 = new CardHolder(imageView2, 2);
@@ -100,6 +92,12 @@ public class DeckFragment extends Fragment implements IDeckView
 
     @Override
     public void enableListeners(){
+        enableDestDeckListener();
+        enableTrainDeckListeners();
+    }
+
+    @Override
+    public void enableDestDeckListener(){
         destCardDeck.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -110,8 +108,83 @@ public class DeckFragment extends Fragment implements IDeckView
     }
 
     @Override
+    public void enableTrainDeckListeners(){
+        deckRelativeLayout.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                presenter.drawCardFromDeck();
+            }
+        });
+
+        cardHolder1.setClickListener();
+        cardHolder2.setClickListener();
+        cardHolder3.setClickListener();
+        cardHolder4.setClickListener();
+        cardHolder5.setClickListener();
+    }
+
+    @Override
     public void disableListeners(){
+        disableDestDeckListener();
+        disableTrainDeckListeners();
+    }
+
+    @Override
+    public void disableDestDeckListener(){
         destCardDeck.setOnClickListener(null);
+    }
+
+    @Override
+    public void disableTrainDeckListeners(){
+        deckRelativeLayout.setOnClickListener(null);
+
+        disableFaceUpListener(1);
+        disableFaceUpListener(2);
+        disableFaceUpListener(3);
+        disableFaceUpListener(4);
+        disableFaceUpListener(5);
+    }
+
+    @Override
+    public void disableFaceUpListener(int position){
+        switch (position){
+            case 1:
+                cardHolder1.disableClickListener();
+                break;
+            case 2:
+                cardHolder2.disableClickListener();
+                break;
+            case 3:
+                cardHolder3.disableClickListener();
+                break;
+            case 4:
+                cardHolder4.disableClickListener();
+                break;
+            case 5:
+                cardHolder5.disableClickListener();
+                break;
+        }
+    }
+
+    @Override
+    public void disableFaceUpWildListeners(){
+        if(cardHolder1.getCard() != null && cardHolder1.getCard().isWild()){
+            disableFaceUpListener(1);
+        }
+        if(cardHolder2.getCard() != null && cardHolder2.getCard().isWild()){
+            disableFaceUpListener(2);
+        }
+        if(cardHolder3.getCard() != null && cardHolder3.getCard().isWild()){
+            disableFaceUpListener(3);
+        }
+        if(cardHolder4.getCard() != null && cardHolder4.getCard().isWild()){
+            disableFaceUpListener(4);
+        }
+        if(cardHolder5.getCard() != null && cardHolder5.getCard().isWild()){
+            disableFaceUpListener(5);
+        }
     }
 
     @Override
@@ -151,6 +224,16 @@ public class DeckFragment extends Fragment implements IDeckView
             trainCard = null;
             isEmpty = true;
 
+
+        }
+
+        public CardColor viewCardColor()
+        {
+            if (trainCard == null) return null;
+            return trainCard.getCardColor();
+        }
+
+        public void setClickListener(){
             this.imageView.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -165,10 +248,8 @@ public class DeckFragment extends Fragment implements IDeckView
             });
         }
 
-        public CardColor viewCardColor()
-        {
-            if (trainCard == null) return null;
-            return trainCard.getCardColor();
+        public void disableClickListener(){
+            this.imageView.setOnClickListener(null);
         }
 
         public void setCard(TrainCard trainCard)
@@ -188,8 +269,7 @@ public class DeckFragment extends Fragment implements IDeckView
 
         public TrainCard getCard()
         {
-
-            return null;
+            return trainCard;
         }
 
         public boolean isEmpty()

@@ -36,16 +36,6 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
     }
 
     @Override
-    public boolean dispatchKeyEvent(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-            presenter.startMockup();
-            return true;
-        }
-        return super.dispatchKeyEvent(e);
-    }
-
-
-    @Override
     public void showToast(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }

@@ -15,4 +15,5 @@ public interface IDeckPresenter extends Observer
     void initObserver();
     void removeObserver();
     void addView(IDeckView view);
+    boolean hasDrawnCards();
 }

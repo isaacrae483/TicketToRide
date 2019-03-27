@@ -83,6 +83,7 @@ public class ClientProxy implements IClient {
     @Override
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
+        game.getFaceUpCards().addCard(position, trainCard);
         ServerCommunicator.getInstance().setCommandForGame(game, getAddCardToFaceUpCommand(game, trainCard, position));
     }
 

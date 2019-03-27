@@ -72,9 +72,12 @@ public class TrainCardDeck {
      * @return the card that is drawn from the deck
      */
     public TrainCard drawCard() {
-        TrainCard drawnCard = trainCards.get(0);
-        trainCards.remove(0);
-        numCards = trainCards.size();
+        TrainCard drawnCard = null;
+        if (trainCards.size() != 0) {
+            drawnCard = trainCards.get(0);
+            trainCards.remove(0);
+            numCards = trainCards.size();
+        }
         if (trainCards.size() == 0) {
             addDiscardToDeck();
             numCards = trainCards.size();
@@ -107,7 +110,7 @@ public class TrainCardDeck {
      * @post the discardPile is added to the deck
      */
     public void addDiscardToDeck(){
-        trainCards = discardPile.getDiscardPile();
+        trainCards = new ArrayList<>(discardPile.getDiscardPile());
         discardPile.clearDiscardPile();
         shuffleDeck();
     }
