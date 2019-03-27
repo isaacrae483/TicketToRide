@@ -165,8 +165,14 @@ public class Map {
         return -1;
     }
 
-    boolean playerConnects(City city1, City city2) {
-        return false;
+    public ArrayList<Route> routesWithCity(City c) {
+        ArrayList<Route> routesToVisit = new ArrayList<>();
+        for (Route r : allRoutes) {
+            if (r.getCity1().equals(c) || r.getCity2().equals(c)) {
+                routesToVisit.add(r);
+            }
+        }
+        return routesToVisit;
     }
 
     public Route[] findRoutes(String cityName){

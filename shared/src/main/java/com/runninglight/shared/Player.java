@@ -4,6 +4,7 @@ import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Cards.TrainCard;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 /**
  * Player model class
@@ -55,6 +56,12 @@ public class Player {
      */
     private Hand hand;
 
+    private int destCardsGained;
+
+    private int destCardsLost;
+
+    private boolean hasMostRoutes;
+
     /**
      * constructor of class for a Player in the Ticket To Ride game
      * @param name Player name, corresponds to the username.
@@ -73,6 +80,9 @@ public class Player {
         this.trainCars = trainCars;
         this.hand = new Hand();
         this.numTrainCards = 0;
+        destCardsGained = 0;
+        destCardsLost = 0;
+        hasMostRoutes = false;
         destinationCards = new ArrayList<>();
         claimedRoutes = new ArrayList<>();
     }
@@ -296,5 +306,105 @@ public class Player {
      */
     public void addTrainCars(int numCars){
         this.trainCars += numCars;
+    }
+
+    public void calculateTotalPoints() {
+        int bonus = 0;
+        if (hasMostRoutes) {
+            bonus = 10;
+        }
+        points = points + bonus + destCardsGained - destCardsLost;
+    }
+
+    public void destCardPoints() {
+        destCardsGained = 0;
+        destCardsLost = 0;
+        for (DestinationCard destCard : destinationCards) {
+            if (destCardComplete(destCard)) {
+                destCardsGained = destCardsGained + destCard.getPoints();
+            }
+            else {
+                destCardsLost = destCardsLost + destCard.getPoints();
+            }
+        }
+    }
+
+    private boolean destCardComplete(DestinationCard destCard) {
+        City startCity = destCard.getCities().get(0);
+        City endCity = destCard.getCities().get(1);
+
+        TreeSet<City> visitedCities = new TreeSet<>();
+        ArrayList<Route> routesToVisit = new ArrayList<>();
+
+        routesToVisit.addAll(routesWithCity(startCity));
+        visitedCities.add(startCity);
+
+        while (!routesToVisit.isEmpty()) {
+            ArrayList<City> citiesToCheck = new ArrayList<>();
+            for (Route r : routesToVisit) {
+                ArrayList<City> otherCities = new ArrayList<>();
+                if (!visitedCities.contains(r.getCity1())) {
+                    visitedCities.add(r.getCity1());
+                    otherCities.addAll(otherCities(r.getCity1()));
+                }
+                if (!visitedCities.contains(r.getCity2())) {
+                    visitedCities.add(r.getCity2());
+                    otherCities.addAll(otherCities(r.getCity2()));
+                }
+                for (City c : otherCities) {
+                    if (c.equals(endCity)) {
+                        return true;
+                    }
+                    if (!visitedCities.contains(c)) {
+                        visitedCities.add(c);
+                        citiesToCheck.add(c);
+                    }
+                }
+            }
+            routesToVisit.clear();
+            for (City c : citiesToCheck) {
+                routesToVisit.addAll(routesWithCity(c));
+            }
+        }
+        return false;
+    }
+
+    private ArrayList<Route> routesWithCity(City c) {
+        ArrayList<Route> routesToVisit = new ArrayList<>();
+        for (Route r : claimedRoutes) {
+            if (r.getCity1().equals(c) || r.getCity2().equals(c)) {
+                routesToVisit.add(r);
+            }
+        }
+        return routesToVisit;
+    }
+
+    private ArrayList<City> otherCities(City rootCity) {
+        ArrayList<City> otherCities = new ArrayList<>();
+        for (Route r : claimedRoutes) {
+            if (r.getCity1().equals(rootCity)) {
+                otherCities.add(r.getCity2());
+            }
+            else if (r.getCity2().equals(rootCity)) {
+                otherCities.add(r.getCity1());
+            }
+        }
+        return otherCities;
+    }
+
+    public int getDestCardsGained() {
+        return destCardsGained;
+    }
+
+    public int getDestCardsLost() {
+        return destCardsLost;
+    }
+
+    public void setHasMostRoutes(boolean hasMostRoutes) {
+        this.hasMostRoutes = hasMostRoutes;
+    }
+
+    public boolean getHasMostRoutes() {
+        return hasMostRoutes;
     }
 }
