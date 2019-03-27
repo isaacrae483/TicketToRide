@@ -90,4 +90,8 @@ public class Route {
             points = 0;
         }
     }
+
+    public String toString(){
+        return city1.getName()+ " to " + city2.getName();
+    }
 }
