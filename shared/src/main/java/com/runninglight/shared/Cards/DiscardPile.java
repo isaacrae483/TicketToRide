@@ -5,9 +5,11 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class DiscardPile {
-    DiscardPile(){}
+    DiscardPile(){
+        discardPile = new ArrayList<>();
+    }
 
-    private ArrayList<TrainCard> discardPile = new ArrayList<>();
+    private ArrayList<TrainCard> discardPile;
 
     public void addCards(ArrayList<TrainCard> discards) {
         discardPile.addAll(discards);
