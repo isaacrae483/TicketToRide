@@ -112,6 +112,9 @@ public class ServerFacade implements IServer {
         Player p = g.getPlayer(playerName);
         proxy.setDestinationCards(g, p);
 
+        Message message = new Message("HISTORY", playerName + " drew " + cardsKept.length + " destination card s");
+        sendMessage(message, g);
+
         if (!g.initDestinationCardsPicked())
         {
             ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 1);
@@ -144,6 +147,9 @@ public class ServerFacade implements IServer {
         Game g = model.getGameByID(game.getGameID());
         if (trainCard != null) ClientProxy.getInstance().addCardToHand(g, user, trainCard);
         ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), position);
+
+        Message message = new Message("HISTORY", user.getUserName() + " draw a " + trainCard.getCardColor() + " traincard from the face up cards");
+        sendMessage(message, game);
         return true;
     }
 
@@ -152,6 +158,9 @@ public class ServerFacade implements IServer {
     {
         Game g = model.getGameByID(game.getGameID());
         ClientProxy.getInstance().addCardToHand(g, user, g.drawTrainCard());
+
+        Message message = new Message("HISTORY", user.getUserName() + " draw a card from the deck");
+        sendMessage(message, game);
         return true;
     }
 
