@@ -592,6 +592,10 @@ public class Game {
         setPlayerState(new PlayerState(playerList.get(0).getName(), numPlayers));
     }
 
+    public Player getLastPlayer(){
+        return playerList.get(playerList.size() - 1);
+    }
+
     /* ************************** TEST ********************************/
 
     /**

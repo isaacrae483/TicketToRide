@@ -127,7 +127,8 @@ public class DeckFragment extends Fragment implements IDeckView
 
     @Override
     public void disableListeners(){
-
+        disableDestDeckListener();
+        disableTrainDeckListeners();
     }
 
     @Override
