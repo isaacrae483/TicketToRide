@@ -10,4 +10,11 @@ public class TrainCard {
     public CardColor getCardColor(){
         return cardColor;
     }
+
+    public boolean isWild(){
+        if(cardColor == CardColor.WILD){
+            return true;
+        }
+        return false;
+    }
 }

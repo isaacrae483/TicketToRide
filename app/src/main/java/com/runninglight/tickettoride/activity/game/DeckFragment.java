@@ -140,11 +140,51 @@ public class DeckFragment extends Fragment implements IDeckView
     public void disableTrainDeckListeners(){
         deckRelativeLayout.setOnClickListener(null);
 
-        cardHolder1.disableClickListener();
-        cardHolder2.disableClickListener();
-        cardHolder3.disableClickListener();
-        cardHolder4.disableClickListener();
-        cardHolder5.disableClickListener();
+        disableFaceUpListener(1);
+        disableFaceUpListener(2);
+        disableFaceUpListener(3);
+        disableFaceUpListener(4);
+        disableFaceUpListener(5);
+    }
+
+    @Override
+    public void disableFaceUpListener(int position){
+        switch (position){
+            case 1:
+                cardHolder1.disableClickListener();
+                break;
+            case 2:
+                cardHolder2.disableClickListener();
+                break;
+            case 3:
+                cardHolder3.disableClickListener();
+                break;
+            case 4:
+                cardHolder4.disableClickListener();
+                break;
+            case 5:
+                cardHolder5.disableClickListener();
+                break;
+        }
+    }
+
+    @Override
+    public void disableFaceUpWildListeners(){
+        if(cardHolder1.getCard() != null && cardHolder1.getCard().isWild()){
+            disableFaceUpListener(1);
+        }
+        if(cardHolder2.getCard() != null && cardHolder2.getCard().isWild()){
+            disableFaceUpListener(2);
+        }
+        if(cardHolder3.getCard() != null && cardHolder3.getCard().isWild()){
+            disableFaceUpListener(3);
+        }
+        if(cardHolder4.getCard() != null && cardHolder4.getCard().isWild()){
+            disableFaceUpListener(4);
+        }
+        if(cardHolder5.getCard() != null && cardHolder5.getCard().isWild()){
+            disableFaceUpListener(5);
+        }
     }
 
     @Override
@@ -229,8 +269,7 @@ public class DeckFragment extends Fragment implements IDeckView
 
         public TrainCard getCard()
         {
-
-            return null;
+            return trainCard;
         }
 
         public boolean isEmpty()

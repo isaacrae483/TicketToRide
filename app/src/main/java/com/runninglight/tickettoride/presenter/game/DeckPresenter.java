@@ -17,7 +17,13 @@ public class DeckPresenter implements IDeckPresenter, Observer
 
     private ClientModel model = ClientModel.getInstance();
 
+    private ServerProxy proxy = ServerProxy.getInstance();
+
     private IDeckView deckView;
+
+    private int trainCardsDrawn;
+
+    private static final int MAX_TRAIN_CARDS_PER_TURN = 2;
 
     public static DeckPresenter getInstance()
     {
@@ -27,6 +33,7 @@ public class DeckPresenter implements IDeckPresenter, Observer
 
     public DeckPresenter(){
         ClientModel.getInstance().addObserver(this);
+        trainCardsDrawn = 0;
     }
 
     public void addView(IDeckView deckView)
@@ -41,6 +48,13 @@ public class DeckPresenter implements IDeckPresenter, Observer
         User user = ClientModel.getInstance().getCurrentUser();
         Game game = ClientModel.getInstance().getCurrentGame();
         ServerProxy.getInstance().drawCardFromFaceUpToHand(game, user, trainCard, position);
+        trainCardsDrawn++;
+        if(trainCard.isWild()){
+            trainCardsDrawn = 0;
+            model.nextTurn();
+            proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
+        }
+        checkIfTurnOver();
     }
 
     @Override
@@ -49,6 +63,8 @@ public class DeckPresenter implements IDeckPresenter, Observer
         User user = ClientModel.getInstance().getCurrentUser();
         Game game = ClientModel.getInstance().getCurrentGame();
         ServerProxy.getInstance().drawCardFromDeckToHand(game, user);
+        trainCardsDrawn++;
+        checkIfTurnOver();
     }
 
     @Override
@@ -79,6 +95,22 @@ public class DeckPresenter implements IDeckPresenter, Observer
     }
 
     @Override
+    public boolean hasDrawnCards(){
+        if(trainCardsDrawn > 0){
+            return true;
+        }
+        return false;
+    }
+
+    private void checkIfTurnOver(){
+        if(trainCardsDrawn == MAX_TRAIN_CARDS_PER_TURN){
+            trainCardsDrawn = 0;
+            model.nextTurn();
+            proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
+        }
+    }
+
+    @Override
     public void initObserver(){
         model.addObserver(this);
     }
@@ -103,6 +135,10 @@ public class DeckPresenter implements IDeckPresenter, Observer
         }
         if(arg instanceof String){
             checkIfMyTurn();
+        }
+
+        if(hasDrawnCards()){
+            deckView.disableFaceUpWildListeners();
         }
     }
 

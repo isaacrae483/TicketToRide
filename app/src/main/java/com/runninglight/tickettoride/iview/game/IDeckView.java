@@ -10,6 +10,8 @@ public interface IDeckView
     void enableTrainDeckListeners();
     void disableDestDeckListener();
     void disableTrainDeckListeners();
+    void disableFaceUpListener(int position);
+    void disableFaceUpWildListeners();
     void addCardToFaceUpDeck(TrainCard trainCard, int position);
     void refreshDestDeck(int deckSize);
     void refreshTrainCardDeckSize(int deckSize);
