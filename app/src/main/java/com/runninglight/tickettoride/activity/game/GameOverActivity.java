@@ -43,6 +43,7 @@ public class GameOverActivity extends AppCompatActivity implements IGameOverView
             }
         });
         views = new ArrayList<>();
+
         ArrayList<View> p1 = new ArrayList<>();
         p1.add(findViewById(R.id.p1_rank_view));
         p1.add(findViewById(R.id.p1_player_view));
@@ -51,6 +52,7 @@ public class GameOverActivity extends AppCompatActivity implements IGameOverView
         p1.add(findViewById(R.id.p1_dc_lost_view));
         p1.add(findViewById(R.id.p1_largest_path_view));
         views.add(p1);
+
         ArrayList<View> p2 = new ArrayList<>();
         p2.add(findViewById(R.id.p2_rank_view));
         p2.add(findViewById(R.id.p2_player_view));
@@ -59,6 +61,7 @@ public class GameOverActivity extends AppCompatActivity implements IGameOverView
         p2.add(findViewById(R.id.p2_dc_lost_view));
         p2.add(findViewById(R.id.p2_largest_path_view));
         views.add(p2);
+
         ArrayList<View> p3 = new ArrayList<>();
         p3.add(findViewById(R.id.p3_rank_view));
         p3.add(findViewById(R.id.p3_player_view));
@@ -67,6 +70,7 @@ public class GameOverActivity extends AppCompatActivity implements IGameOverView
         p3.add(findViewById(R.id.p3_dc_lost_view));
         p3.add(findViewById(R.id.p3_largest_path_view));
         views.add(p3);
+
         ArrayList<View> p4 = new ArrayList<>();
         p4.add(findViewById(R.id.p4_rank_view));
         p4.add(findViewById(R.id.p4_player_view));
@@ -75,6 +79,7 @@ public class GameOverActivity extends AppCompatActivity implements IGameOverView
         p4.add(findViewById(R.id.p4_dc_lost_view));
         p4.add(findViewById(R.id.p4_largest_path_view));
         views.add(p4);
+
         ArrayList<View> p5 = new ArrayList<>();
         p5.add(findViewById(R.id.p5_rank_view));
         p5.add(findViewById(R.id.p5_player_view));
@@ -88,15 +93,40 @@ public class GameOverActivity extends AppCompatActivity implements IGameOverView
     @Override
     public void setPlayerPoints(ArrayList<Player> players)
     {
+        ArrayList<Player> mostRoutesPlayers = new ArrayList<>();
+        int maxRoutes = -1;
+        for (Player p : players) {
+            if (p.getClaimedRoutes().size() > maxRoutes) {
+                mostRoutesPlayers.clear();
+                mostRoutesPlayers.add(p);
+                maxRoutes = p.getClaimedRoutes().size();
+            }
+            else if (p.getClaimedRoutes().size() == maxRoutes) {
+                mostRoutesPlayers.add(p);
+            }
+        }
+        for (Player p : mostRoutesPlayers) {
+            p.setHasMostRoutes(true);
+        }
+
+        for (Player p : players) {
+            p.calculateTotalPoints();
+        }
+
         Collections.sort(players, new PlayerCompare());
+
         for (int i = 0; i < players.size(); i++)
         {
             ((TextView) views.get(i).get(0)).setText(String.valueOf(i + 1));
             ((TextView) views.get(i).get(1)).setText(players.get(i).getName());
             ((TextView) views.get(i).get(2)).setText(String.valueOf(players.get(i).getPoints()));
-            ((TextView) views.get(i).get(3)).setText("");
-            ((TextView) views.get(i).get(4)).setText("");
-            ((TextView) views.get(i).get(5)).setText("");
+            ((TextView) views.get(i).get(3)).setText(String.valueOf(players.get(i).getDestCardsGained()));
+            ((TextView) views.get(i).get(4)).setText(String.valueOf(players.get(i).getDestCardsLost()));
+            String mostRoutesPoints = "0";
+            if (players.get(i).getHasMostRoutes()) {
+                mostRoutesPoints = "10";
+            }
+            ((TextView) views.get(i).get(5)).setText(mostRoutesPoints);
         }
     }
 }
