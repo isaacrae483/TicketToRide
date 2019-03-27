@@ -2,6 +2,8 @@ package com.runninglight.shared.Cards;
 
 import java.util.ArrayList;
 
+import static com.runninglight.shared.Cards.CardColor.WILD;
+
 public class FaceUpCards {
 
     public FaceUpCards() {
@@ -38,5 +40,23 @@ public class FaceUpCards {
     public void addCard(int index, TrainCard trainCard){
         faceUpCards[index - 1] = trainCard;
         //faceUpCards.add(index, trainCardDeck.drawCard());
+    }
+
+    public boolean tooManyWildCards() {
+        int numWildCards = 0;
+        for (TrainCard card : faceUpCards) {
+            if (card != null) {
+                if (card.getCardColor().equals(WILD)) {
+                    ++numWildCards;
+                }
+            }
+        }
+        if (numWildCards >= 3) {
+            System.out.println("too many wild cards");
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
