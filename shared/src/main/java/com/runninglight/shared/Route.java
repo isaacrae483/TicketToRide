@@ -102,6 +102,6 @@ public class Route {
     public String toString(){
         return city1.getName()+ " to " + city2.getName();
     }
-    public String getCity1(){return city1.getName();}
-    public String getCity2(){return city2.getName();}
+    public String getCity1Name(){return city1.getName();}
+    public String getCity2Name(){return city2.getName();}
 }
