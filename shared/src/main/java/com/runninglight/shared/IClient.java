@@ -22,4 +22,6 @@ public interface IClient {
     void setTurn(Game game, PlayerState playerState);
 
     void endGame(Game game);
+
+    void claimRoute(Game game, Player player, Route route);
 }

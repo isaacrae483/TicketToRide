@@ -11,7 +11,9 @@ import com.runninglight.shared.GameInfo;
 import com.runninglight.shared.IServer;
 import com.runninglight.shared.LoginInfo;
 import com.runninglight.shared.Message;
+import com.runninglight.shared.Player;
 import com.runninglight.shared.Results;
+import com.runninglight.shared.Route;
 import com.runninglight.shared.Serializer;
 import com.runninglight.shared.User;
 import com.runninglight.shared.state.PlayerState;
@@ -30,6 +32,7 @@ public class ServerProxy implements IServer {
     private static final String USER = "com.runninglight.shared.User";
     private static final String GAME = "com.runninglight.shared.Game";
     private static final String PLAYER = "com.runninglight.shared.Player";
+    private static final String ROUTE = "com.runninglight.shared.Route";
     private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.Cards.DestinationCard;";
     private static final String STRING = "java.lang.String";
     private static final String MESSAGE = "com.runninglight.shared.Message";
@@ -230,11 +233,30 @@ public class ServerProxy implements IServer {
     }
 
     @Override
-    public void endGame(String gameID){
+    public void endGame(String gameID) {
         Results results = communicator.send(getEndGameCommand(gameID));
         if (!results.isSuccess()) {
             System.out.println(results.getErrorInfo());
         }
+    }
+
+    @Override
+    public void claimRoute(Game game, Player player, Route route)
+    {
+        Results results = communicator.send(getClaimRouteCommand(game, player, route));
+        if (!results.isSuccess()) {
+            System.out.println(results.getErrorInfo());
+        }
+    }
+
+
+    private Command getClaimRouteCommand(Game game, Player player, Route route)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "claimRoute",
+                new String[] {GAME, USER, ROUTE},
+                new Object[] {game, player, route} );
     }
 
     private Command getDrawCardFromFaceUpToHandCommand(Game game, User user, TrainCard trainCard, int position)

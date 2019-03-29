@@ -31,4 +31,6 @@ public interface IServer {
     void setTurn(String gameID, PlayerState playerState);
 
     void endGame(String gameID);
+
+    void claimRoute(Game game, Player player, Route route);
 }

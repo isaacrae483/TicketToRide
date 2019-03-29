@@ -9,6 +9,7 @@ import com.runninglight.shared.IServer;
 import com.runninglight.shared.LoginInfo;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
+import com.runninglight.shared.Route;
 import com.runninglight.shared.User;
 import com.runninglight.shared.state.PlayerState;
 
@@ -198,5 +199,11 @@ public class ServerFacade implements IServer {
             g.getTrainCardDeck().discard(new ArrayList<TrainCard>(Arrays.asList(g.getFaceUpCards().getFaceUpCards())));
             dealNewFaceUpCards(g);
         }
+    }
+
+    @Override
+    public void claimRoute(Game game, Player player, Route route)
+    {
+
     }
 }
