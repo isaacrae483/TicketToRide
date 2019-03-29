@@ -216,7 +216,7 @@ public class ClientModel extends Observable {
     }
 
     public void nextTurn(){
-        currentGame.nextTurn();
+        currentGame.continueGame();
         System.out.println("*** Current turn: " + currentGame.getTurnName());
         setChanged();
         notifyObservers(currentGame.getTurnName());

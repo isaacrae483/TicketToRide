@@ -6,6 +6,8 @@ import com.runninglight.shared.Cards.DestinationCardDeck;
 import com.runninglight.shared.Cards.FaceUpCards;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Cards.TrainCardDeck;
+import com.runninglight.shared.state.DuringGameState;
+import com.runninglight.shared.state.IGameState;
 import com.runninglight.shared.state.PlayerState;
 
 import java.util.ArrayList;
@@ -48,6 +50,9 @@ public class Game {
     /** Starting number of train cars */
     private static final int MAX_TRAIN_CARS = 45;
 
+    /** Ending number of train cars */
+    private static final int END_TRAIN_CARS = 2;
+
     private transient TrainCardDeck trainCardDeck;
 
     /** The face up train cards for the game */
@@ -58,6 +63,9 @@ public class Game {
 
     /** Current turn of the game */
     private PlayerState playerState;
+
+    /** Current state of the game */
+    private IGameState gameState;
 
     private boolean initDestCardsPicked;
 
@@ -84,6 +92,7 @@ public class Game {
         this.faceUpCards = new FaceUpCards();
         this.trainCardDeckCurrentSize = 110;
         this.initDestCardsPicked = false;
+        this.gameState = new DuringGameState();
     }
 
 
@@ -689,4 +698,20 @@ public class Game {
         playerList.get(i).addTrainCars(numCars);
     }
 
+    public boolean isLastTurn(){
+        for(Player p : playerList){
+            if(p.getTrainCars() <= END_TRAIN_CARS){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void continueGame(){
+        gameState.continueGame(this);
+    }
+
+    public void setGameState(IGameState gameState){
+        this.gameState = gameState;
+    }
 }
