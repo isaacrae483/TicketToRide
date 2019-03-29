@@ -51,8 +51,14 @@ public class DeckPresenter implements IDeckPresenter, Observer
         trainCardsDrawn++;
         if(trainCard.isWild()){
             trainCardsDrawn = 0;
-            model.nextTurn();
-            proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
+            try {
+                model.nextTurn();
+                proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
+            }
+            catch(RuntimeException e){
+                //deckView.endGame();
+                proxy.endGame(model.getCurrentGameID());
+            }
         }
         checkIfTurnOver();
     }
@@ -105,8 +111,15 @@ public class DeckPresenter implements IDeckPresenter, Observer
     private void checkIfTurnOver(){
         if(trainCardsDrawn == MAX_TRAIN_CARDS_PER_TURN){
             trainCardsDrawn = 0;
-            model.nextTurn();
-            proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
+            try {
+                model.nextTurn();
+                proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
+            }
+            catch(RuntimeException e){
+               // model.signalEndGame();
+               // deckView.endGame();
+                proxy.endGame(model.getCurrentGameID());
+            }
         }
     }
 

@@ -11,6 +11,7 @@ public class DuringGameState implements IGameState {
     public void continueGame(Game game) {
         if(game.isLastTurn()) {
             game.setGameState(new FinishingGameState(game.getNumPlayers()));
+            game.setGameStateData(new String[]{"FinishingGameState", Integer.toString(game.getNumPlayers())});
         }
         game.nextTurn();
     }

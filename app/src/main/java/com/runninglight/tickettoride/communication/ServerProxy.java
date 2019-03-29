@@ -229,6 +229,14 @@ public class ServerProxy implements IServer {
         }
     }
 
+    @Override
+    public void endGame(String gameID){
+        Results results = communicator.send(getEndGameCommand(gameID));
+        if (!results.isSuccess()) {
+            System.out.println(results.getErrorInfo());
+        }
+    }
+
     private Command getDrawCardFromFaceUpToHandCommand(Game game, User user, TrainCard trainCard, int position)
     {
         return new Command(
@@ -336,6 +344,15 @@ public class ServerProxy implements IServer {
                 "setTurn",
                 new String[] {STRING, PLAYER_STATE},
                 new Object[] {gameID, playerState} );
+    }
+
+    private Command getEndGameCommand(String gameID)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "endGame",
+                new String[] {STRING},
+                new Object[] {gameID} );
     }
 
     // Temporary

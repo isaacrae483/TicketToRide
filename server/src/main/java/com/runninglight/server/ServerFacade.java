@@ -66,6 +66,7 @@ public class ServerFacade implements IServer {
             throw new IllegalArgumentException("Empty game name");
         }
         Game game = new Game(gameInfo.getGameName(), gameInfo.getMaxPlayerNumber());
+        game.updateGameState();
         model.addGame(game);
         proxy.addGame(game);
         return true;
@@ -111,6 +112,12 @@ public class ServerFacade implements IServer {
         model.returnDestCards(gameID, playerName, cardsKept, cardsToReturn);
         Game g = model.getGameByID(gameID);
         Player p = g.getPlayer(playerName);
+
+        // TESTING
+       // p.addTrainCars(-1);
+        //System.out.println(p.getName() + ": " + p.getTrainCars());
+
+        g.updateGameState();
         proxy.setDestinationCards(g, p);
 
         Message message = new Message("HISTORY", playerName + " drew a " + cardsKept.length + " destination cards");
@@ -143,6 +150,7 @@ public class ServerFacade implements IServer {
     {
         Game g = model.getGameByID(game.getGameID());
         if (trainCard != null) ClientProxy.getInstance().addCardToHand(g, user, trainCard);
+        g.updateGameState();
         TrainCard newCard = g.drawTrainCard();
         ClientProxy.getInstance().addCardToFaceUp(g, newCard, position);
         if (g.getFaceUpCards().tooManyWildCards()) {
@@ -158,6 +166,7 @@ public class ServerFacade implements IServer {
     public boolean drawCardFromDeckToHand(Game game, User user)
     {
         Game g = model.getGameByID(game.getGameID());
+        g.updateGameState();
         ClientProxy.getInstance().addCardToHand(g, user, g.drawTrainCard());
 
         Message message = new Message("HISTORY", user.getUserName() + " drew a traincard from the deck");
@@ -168,7 +177,15 @@ public class ServerFacade implements IServer {
     @Override
     public void setTurn(String gameID, PlayerState playerState){
         model.setTurn(gameID, playerState);
-        proxy.setTurn(model.getGameByID(gameID), playerState);
+        Game game = model.getGameByID(gameID);
+        game.updateGameState();
+        proxy.setTurn(game, playerState);
+    }
+
+    @Override
+    public void endGame(String gameID){
+        Game game = model.getGameByID(gameID);
+        proxy.endGame(game);
     }
 
     private void dealNewFaceUpCards(Game g) {

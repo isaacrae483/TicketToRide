@@ -7,6 +7,7 @@ import com.runninglight.shared.Cards.FaceUpCards;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Cards.TrainCardDeck;
 import com.runninglight.shared.state.DuringGameState;
+import com.runninglight.shared.state.FinishingGameState;
 import com.runninglight.shared.state.IGameState;
 import com.runninglight.shared.state.PlayerState;
 
@@ -65,7 +66,10 @@ public class Game {
     private PlayerState playerState;
 
     /** Current state of the game */
-    private IGameState gameState;
+    transient private IGameState gameState;
+
+    /** String representation of gameState -- used for deserializing */
+    private String[] gameStateData;
 
     private boolean initDestCardsPicked;
 
@@ -95,6 +99,7 @@ public class Game {
         this.trainCardDeckCurrentSize = 110;
         this.initDestCardsPicked = false;
         this.gameState = new DuringGameState();
+        this.gameStateData = new String[]{"DuringGameState", null};
     }
 
 
@@ -617,7 +622,46 @@ public class Game {
     public Map getMap(){return map;}
     public void initMap(){ map = new Map();}
 
-    /* ************************** TEST ********************************/
+    public boolean isLastTurn(){
+        for(Player p : playerList){
+            if(p.getTrainCars() <= END_TRAIN_CARS){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void continueGame(){
+        gameState.continueGame(this);
+    }
+
+    public void setGameState(IGameState gameState){
+        this.gameState = gameState;
+    }
+
+    public void updateGameState(){
+        if(gameStateData[0].equals("DuringGameState")){
+            gameState = new DuringGameState();
+            System.out.println(gameStateData[0]);
+        }
+        else{
+            gameState = new FinishingGameState(Integer.parseInt(gameStateData[1]));
+            System.out.println(gameStateData[0]);
+        }
+    }
+
+    public void decrementTurnsLeft(){
+        int turnsLeft = Integer.parseInt(gameStateData[1]);
+        turnsLeft--;
+        gameStateData[1] = Integer.toString(turnsLeft);
+    }
+
+    public void setGameStateData(String[] data){
+        gameStateData[0] = data[0];
+        gameStateData[1] = data[1];
+    }
+
+    /*************************** TEST ********************************/
 
     /**
      * Gets a random train card
@@ -703,20 +747,4 @@ public class Game {
         playerList.get(i).addTrainCars(numCars);
     }
 
-    public boolean isLastTurn(){
-        for(Player p : playerList){
-            if(p.getTrainCars() <= END_TRAIN_CARS){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void continueGame(){
-        gameState.continueGame(this);
-    }
-
-    public void setGameState(IGameState gameState){
-        this.gameState = gameState;
-    }
 }

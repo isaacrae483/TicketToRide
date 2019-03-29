@@ -29,4 +29,6 @@ public interface IServer {
                          DestinationCard[] cardsKept, DestinationCard[] cardsToReturn);
 
     void setTurn(String gameID, PlayerState playerState);
+
+    void endGame(String gameID);
 }

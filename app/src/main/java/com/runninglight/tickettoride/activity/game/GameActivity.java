@@ -1,6 +1,7 @@
 package com.runninglight.tickettoride.activity.game;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -49,6 +50,11 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void endGame(){
+        Intent intent = new Intent(this, GameOverActivity.class);
+        startActivity(intent);
+    }
 
 
     private int findColor(PlayerColor color){

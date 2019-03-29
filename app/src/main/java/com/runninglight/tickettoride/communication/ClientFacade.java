@@ -34,23 +34,27 @@ public class ClientFacade implements IClient {
 
     @Override
     public void addGame(Game g) {
+        g.updateGameState();
         model.addGame(g);
     }
 
     @Override
     public void broadcastMessage(Message message, Game game)
     {
+        game.updateGameState();
         model.addMessage(message, game);
     }
 
     @Override
     public void setDestinationCards(Game g, Player p){
+        g.updateGameState();
         model.setDestinationCards(g, p);
     }
 
     @Override
     public void addCardToHand(Game game, User user, TrainCard trainCard)
     {
+        game.updateGameState();
         model.setCurrentGame(game);
         Log.d("TAG", "adding card: " + trainCard.getCardColor() + " to user: " + user.getUserName());
         ClientModel.getInstance().addTrainCardToPlayerHand(trainCard, user, game);
@@ -59,13 +63,22 @@ public class ClientFacade implements IClient {
     @Override
     public void addCardToFaceUp(Game game, TrainCard trainCard, int position)
     {
+        game.updateGameState();
         model.setCurrentGame(game);
         model.addCardToFaceUp(game, trainCard, position);
     }
 
     @Override
     public void setTurn(Game game, PlayerState playerState){
+        game.updateGameState();
         model.setCurrentGame(game);
         model.setCurrentTurn(playerState);
+    }
+
+    @Override
+    public void endGame(Game game){
+        game.updateGameState();
+        model.setCurrentGame(game);
+        model.signalEndGame();
     }
 }
