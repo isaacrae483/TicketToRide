@@ -10,7 +10,6 @@ import java.util.Observable;
 
 public class ClaimRoutePresenter implements IClaimRoutePresenter {
 
-    private static ClaimRoutePresenter instance;
 
     private ClientModel model = ClientModel.getInstance();
 
@@ -18,40 +17,21 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
 
     private IClaimRouteActivityView claimRouteActivityView;
 
-    private   ClaimRoutePresenter(){
-        ClientModel.getInstance().addObserver(this);
+    public ClaimRoutePresenter(IClaimRouteActivityView view){
+        addView(view);
 
     }
 
     public void addView(IClaimRouteActivityView activityView)
     {
         this.claimRouteActivityView = activityView;
-        ClientModel.getInstance().addObserver(this);
-    }
-
-    public static ClaimRoutePresenter getInstance()
-    {
-        if (instance == null) instance = new ClaimRoutePresenter();
-        return instance;
     }
 
     @Override
     public void claimRoute(int routeNumber) {
         //TODO:Claim route via proxy?
+        System.out.println("attempting to claim route: "+ routeNumber +"stopping at Presenter for now");
     }
 
-    @Override
-    public void initObserver(){
-        model.addObserver(this);
-    }
 
-    @Override
-    public void removeObserver(){
-        model.deleteObserver(this);
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        //on second thought this doesnt need to be observable
-    }
 }

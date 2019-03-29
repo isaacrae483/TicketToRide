@@ -81,6 +81,8 @@ public class Route {
         routeNum = num;
     }
 
+    public int getRouteNum() {return routeNum;}
+
     private void calculatePoints() {
         if (length == 1) {
             points = 1;

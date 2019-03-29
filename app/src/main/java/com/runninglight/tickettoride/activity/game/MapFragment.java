@@ -34,9 +34,6 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
 
     public MapFragment(){}
 
-    //TODO: note to self, there is a onclick attribute in image view, look into it
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,22 +62,22 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
 
         switch (route){
             case 20:
-                routeView = getView().findViewById(R.id._20);
+                routeView = getView().findViewById(R.id._20_1);
                 break;
             case 21:
-                routeView = getView().findViewById(R.id._21);
+                routeView = getView().findViewById(R.id._21_1);
                 break;
             case 33:
-                routeView = getView().findViewById(R.id._33);
+                routeView = getView().findViewById(R.id._33_1);
                 break;
             case 37:
-                routeView = getView().findViewById(R.id._37);
+                routeView = getView().findViewById(R.id._37_1);
                 break;
             case 50:
-                routeView = getView().findViewById(R.id._50);
+                routeView = getView().findViewById(R.id._50_1);
                 break;
             case 99:
-                routeView = getView().findViewById(R.id._99);
+                routeView = getView().findViewById(R.id._99_1);
                 break;
             default:
                 String id = "_"+Integer.toString(route);
@@ -96,11 +93,16 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
     @Override
     public void refresh(ArrayList<Route> allRoutes) {
         for (int i=0; i<allRoutes.size();i++){
-            for(int j=1; j<= allRoutes.get(i).getLength(); j++){
-                String routeID = "_"+i+"_"+j;
-                //getActivity().findViewById(getID(routeID)).   //TODO: check og claim route for stuff ;)
-
+            Route temp = allRoutes.get(i);
+            if(temp.getClaimed() != null){
+                for(int j=1; j<= temp.getLength(); j++){
+                    String routeID ="_"+i+"_"+j;
+                    ImageView view = getActivity().findViewById(getID(routeID));  //TODO: check og claim route for stuff ;)
+                    if(view != null)
+                        view.setBackgroundResource(findColor(temp.getClaimed().getColor()));
+                }
             }
+
         }
 //TODO: hook up map to model
     }
