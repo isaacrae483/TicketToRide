@@ -206,9 +206,9 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoView {
         switch (color) {
             case BLACK:
                 if (isTurn) {
-                    return R.drawable.black;
-                } else {
                     return R.drawable.black_turn;
+                } else {
+                    return R.drawable.black;
                 }
 
             case RED:
