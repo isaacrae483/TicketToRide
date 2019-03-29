@@ -125,7 +125,10 @@ public class Map {
      * @post the route at routeIndex in allRoutes will be marked as claimed by Player p
      */
     public void claimRoute(int routeIndex, Player p) {
+        System.out.println("in map class,  before claiming route:"+routeIndex+ allRoutes.get(routeIndex).getClaimed());
+
         allRoutes.get(routeIndex).setClaimed(p);
+        System.out.println("in map class, claiming route:"+routeIndex+ allRoutes.get(routeIndex).getClaimed());
     }
 
     /**
@@ -172,20 +175,22 @@ public class Map {
         return routesToVisit;
     }
 
-    public Route[] findRoutes(String cityName){
+    public ArrayList<Route> findRoutes(String cityName){
         ArrayList <Route> routes = new ArrayList<>();
 
         for(int i=0; i< allRoutes.size(); i++){
-            if( (allRoutes.get(i).getCity1Name().equals(cityName) )||( allRoutes.get(i).getCity2Name().equals(cityName)) )
-                allRoutes.get(i).setRouteNum(i);
+            if( (allRoutes.get(i).getCity1Name().equals(cityName) )||( allRoutes.get(i).getCity2Name().equals(cityName)) ) {
+                allRoutes.get(i).setRouteNum(i + 1);
                 routes.add(allRoutes.get(i));
+            }
         }
-
-        return (Route[]) routes.toArray();
+        return routes;
     }
 
     public File passFile(File file){
         return file;
     }
+
+    public ArrayList<Route> getAllRoutes(){return allRoutes;}
 
 }

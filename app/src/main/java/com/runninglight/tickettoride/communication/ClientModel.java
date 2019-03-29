@@ -284,6 +284,12 @@ public class ClientModel extends Observable {
         notifyObservers();
     }
 
+    public void claimRoute(int routeNumer){
+        getCurrentGame().getMap().claimRoute(routeNumer,getCurrentPlayer());
+        setChanged();
+        notifyObservers();
+    }
+
     public PlayerState getPlayerState(){
         return currentGame.getPlayerState();
     }

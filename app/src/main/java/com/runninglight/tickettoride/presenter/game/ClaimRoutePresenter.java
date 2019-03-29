@@ -30,7 +30,9 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
     @Override
     public void claimRoute(int routeNumber) {
         //TODO:Claim route via proxy?
-        System.out.println("attempting to claim route: "+ routeNumber +"stopping at Presenter for now");
+        System.out.println("claiming route: "+ routeNumber);
+        //short circuit
+        ClientModel.getInstance().claimRoute(routeNumber);
     }
 
 

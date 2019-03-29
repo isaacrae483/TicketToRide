@@ -92,6 +92,7 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
 
     @Override
     public void refresh(ArrayList<Route> allRoutes) {
+        System.out.println("refreshing map");
         for (int i=0; i<allRoutes.size();i++){
             Route temp = allRoutes.get(i);
             if(temp.getClaimed() != null){

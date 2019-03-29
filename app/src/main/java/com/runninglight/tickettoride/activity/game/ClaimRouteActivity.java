@@ -19,6 +19,9 @@ import com.runninglight.tickettoride.IPresenter.game.IClaimRoutePresenter;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.iview.game.IClaimRouteActivityView;
+import com.runninglight.tickettoride.presenter.game.ClaimRoutePresenter;
+
+import java.util.ArrayList;
 
 import static com.runninglight.tickettoride.R.layout.recyclerview_row_gamelist;
 import static com.runninglight.tickettoride.R.layout.row_claim_route;
@@ -35,6 +38,8 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
+        presenter = new ClaimRoutePresenter(this);
+
         String sTitle = getIntent().getStringExtra("title");
 
         TextView title = findViewById(R.id.claim_route_title);
@@ -42,20 +47,23 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
 
         title.setText(sTitle);
 
-        //adapter = new ClaimRouteAdapter(getApplicationContext(), ClientModel.getInstance().getCurrentGame().getMap().findRoutes(sTitle));
+        adapter = new ClaimRouteAdapter(getApplicationContext(), ClientModel.getInstance().getCurrentGame().getMap().findRoutes(sTitle));
+        routes_lv.setAdapter(adapter);
+
         routes_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 presenter.claimRoute((int)view.getTag());
+                finish();
             }
         });
     }
 
     private class ClaimRouteAdapter extends ArrayAdapter<Route>{
 
-        private Route[] items;
+        private ArrayList<Route> items;
 
-        public ClaimRouteAdapter(Context context, Route[] items) {
+        public ClaimRouteAdapter(Context context, ArrayList<Route> items) {
             super(context, R.layout.row_claim_route, items);
             this.items = items;
         }
@@ -66,9 +74,9 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
 
             TextView routeTitle = rowView.findViewById(R.id.claim_route_row_title);
 
-            routeTitle.setText(items[position].toString());
+            routeTitle.setText(items.get(position).toString());
 
-            rowView.setTag(items[position].getRouteNum());
+            rowView.setTag(items.get(position).getRouteNum());
 
 
             return rowView;
