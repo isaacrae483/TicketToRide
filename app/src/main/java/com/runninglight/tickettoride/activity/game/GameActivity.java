@@ -40,7 +40,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         for (String file : files) {
             System.out.print(", " + file);
         }
-        ClientModel.getInstance().getCurrentGame().initMap();
+   //     ClientModel.getInstance().getCurrentGame().initMap();
 
     }
 
@@ -49,37 +49,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    public void claimRoute(int route, PlayerColor color) {
-        ImageView routeView;
 
-        switch (route){
-            case 20:
-                routeView = findViewById(R.id._20);
-                break;
-            case 21:
-                routeView = findViewById(R.id._21);
-                break;
-            case 33:
-                routeView = findViewById(R.id._33);
-                break;
-            case 37:
-                routeView = findViewById(R.id._37);
-                break;
-            case 50:
-                routeView = findViewById(R.id._50);
-                break;
-            case 99:
-                routeView = findViewById(R.id._99);
-                break;
-            default:
-                routeView = findViewById(R.id._99);
-                System.out.println("unknown route defaulting to miami to atlanta");
-        }
-        routeView.setVisibility(View.VISIBLE);
-        routeView.setBackgroundResource(findColor(color));
-
-
-    }
 
     private int findColor(PlayerColor color){
         switch (color.toString())
