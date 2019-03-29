@@ -56,7 +56,6 @@ public class DeckPresenter implements IDeckPresenter, Observer
                 proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
             }
             catch(RuntimeException e){
-                //deckView.endGame();
                 proxy.endGame(model.getCurrentGameID());
             }
         }
@@ -116,8 +115,6 @@ public class DeckPresenter implements IDeckPresenter, Observer
                 proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
             }
             catch(RuntimeException e){
-               // model.signalEndGame();
-               // deckView.endGame();
                 proxy.endGame(model.getCurrentGameID());
             }
         }

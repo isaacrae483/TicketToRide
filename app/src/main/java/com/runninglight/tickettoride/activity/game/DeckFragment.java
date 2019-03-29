@@ -339,9 +339,4 @@ public class DeckFragment extends Fragment implements IDeckView
         trainCardDeckSizeText.setText(Integer.toString(deckSize));
     }
 
-    @Override
-    public void endGame(){
-        Intent intent = new Intent(getContext(), GameOverActivity.class);
-        startActivity(intent);
-    }
 }
