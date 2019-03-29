@@ -43,6 +43,10 @@ public class Route {
         return city2;
     }
 
+    public RouteColor getColor() {
+        return color;
+    }
+
     private void calculateColor(String col) {
         //PINK, WHITE, BLUE, YELLOW, ORANGE, BLACK, RED, GREEN, GREY
         if (col.equals("pink")) {

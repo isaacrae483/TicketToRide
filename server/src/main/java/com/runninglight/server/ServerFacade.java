@@ -154,7 +154,7 @@ public class ServerFacade implements IServer {
         g.updateGameState();
         TrainCard newCard = g.drawTrainCard();
         ClientProxy.getInstance().addCardToFaceUp(g, newCard, position);
-        if (g.getFaceUpCards().tooManyWildCards()) {
+        if (g.getFaceUpCards().tooManyWildCards() && !g.getTrainCardDeck().lessThanThree()) {
             g.getTrainCardDeck().discard(new ArrayList<TrainCard>(Arrays.asList(g.getFaceUpCards().getFaceUpCards())));
             dealNewFaceUpCards(g);
         }
@@ -195,7 +195,7 @@ public class ServerFacade implements IServer {
         ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 3);
         ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 4);
         ClientProxy.getInstance().addCardToFaceUp(g, g.drawTrainCard(), 5);
-        if (g.getFaceUpCards().tooManyWildCards()) {
+        if (g.getFaceUpCards().tooManyWildCards() && !g.getTrainCardDeck().lessThanThree()) {
             g.getTrainCardDeck().discard(new ArrayList<TrainCard>(Arrays.asList(g.getFaceUpCards().getFaceUpCards())));
             dealNewFaceUpCards(g);
         }

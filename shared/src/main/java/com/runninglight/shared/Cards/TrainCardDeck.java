@@ -114,4 +114,18 @@ public class TrainCardDeck {
         discardPile.clearDiscardPile();
         shuffleDeck();
     }
+
+    public boolean lessThanThree() {
+        int numOtherCards = 0;
+        for (TrainCard card : trainCards) {
+            if (!card.isWild()) {
+                ++numOtherCards;
+            }
+        }
+        if (numOtherCards < 3) {
+            return true;
+        }
+        return false;
+    }
+//a function to check if the deck has less than 3 non-wild cards
 }

@@ -1,9 +1,12 @@
 package com.runninglight.shared;
 
+import com.runninglight.shared.Cards.CardColor;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Cards.TrainCardDeck;
 
 import java.util.ArrayList;
+
+import static com.runninglight.shared.Cards.CardColor.WILD;
 
 public class Hand {
 
@@ -27,12 +30,42 @@ public class Hand {
         trainCards.add(trainCard);
     }
 
-    public void removeTrainCard(TrainCard card){
-        for(TrainCard c : trainCards){
-            if(c.getCardColor() == card.getCardColor()){
-                trainCards.remove(c);
-                return;
+    public ArrayList<TrainCard> playTrainCards(String color, int length){
+        ArrayList<TrainCard> cardsToPlay = new ArrayList<>();
+        int numCards = 0;
+
+        for(TrainCard card : trainCards){
+            if (numCards < length) {
+                if (card.getCardColor().toString().equals(color)) {
+                    cardsToPlay.add(new TrainCard(card.getCardColor()));
+                    trainCards.remove(card);
+                    ++numCards;
+                }
             }
         }
+        for(TrainCard card : trainCards) {
+            if (numCards < length) {
+                if (card.getCardColor().toString().equals(WILD.toString())) {
+                    cardsToPlay.add(new TrainCard(card.getCardColor()));
+                    trainCards.remove(card);
+                    ++numCards;
+                }
+            }
+        }
+        return cardsToPlay;
+    }
+
+    public boolean canClaimRoute(String color, int length) {
+        int numCards = 0;
+
+        for (TrainCard card : trainCards) {
+            if (card.getCardColor().toString().equals(color) || card.getCardColor().toString().equals(WILD.toString())) {
+                ++numCards;
+            }
+        }
+        if (numCards >= length) {
+            return true;
+        }
+        return false;
     }
 }
