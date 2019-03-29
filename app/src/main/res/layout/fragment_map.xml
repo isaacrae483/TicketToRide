@@ -129,7 +129,7 @@
             android:layout_height="33dp"
             android:layout_marginStart="245dp"
             android:layout_marginTop="218dp"
-            android:background="@android:color/transparent"
+            android:background="@android:color/holo_green_dark"
             android:rotation="147"
             android:visibility="visible" />
 

@@ -25,6 +25,9 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
 
     private Fragment mapFragment;
 
+    GameActivity(){
+    }
+
 
 
 
@@ -37,17 +40,16 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
 
         setContentView(R.layout.activity_game);
 
-        presenter = new GameActivity_Presenter(this);
 
-        String[] files = getApplicationContext().fileList();
-        for (String file : files) {
-            System.out.print(", " + file);
-        }
         try {
-            ClientModel.getInstance().getCurrentGame().initMapClient(getAssets().open("routes.txt"));
+            ClientModel.getInstance().intiMap(getAssets().open("routes.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        presenter = new GameActivity_Presenter(this);
+
 
     }
 

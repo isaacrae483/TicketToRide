@@ -46,7 +46,6 @@ public class MapPresenter implements IMapPresenter {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("updated in map presenter");
-    map_view.refresh( ClientModel.getInstance().getCurrentGame().getMap().getAllRoutes());
+    map_view.refresh( ClientModel.getInstance().getCurrentMap().getAllRoutes());
     }
 }

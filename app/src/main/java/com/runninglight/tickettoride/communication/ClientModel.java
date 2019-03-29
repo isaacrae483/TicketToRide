@@ -1,16 +1,22 @@
 package com.runninglight.tickettoride.communication;
 
+import android.renderscript.ScriptGroup;
 import android.util.Log;
 
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.GameOverAlert;
+import com.runninglight.shared.Map;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
 import com.runninglight.shared.state.PlayerState;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Observable;
@@ -24,6 +30,8 @@ public class ClientModel extends Observable {
     private Player currentPlayer;
 
     private Game currentGame;
+
+    private Map currentMap;
 
     private ArrayList<Game> gameList;
 
@@ -227,6 +235,11 @@ public class ClientModel extends Observable {
         return currentGame.initDestinationCardsPicked();
     }
 
+    public void intiMap(InputStream stream){
+
+        currentMap = new Map(stream);
+    }
+
     public void addTrainCardToPlayerHand(TrainCard trainCard, User user, Game game)
     {
         if (currentPlayer.getName().equals(user.getUserName())) getCurrentPlayer().addCardToHand(trainCard);
@@ -285,7 +298,7 @@ public class ClientModel extends Observable {
     }
 
     public void claimRoute(int routeNumer){
-        getCurrentGame().getMap().claimRoute(routeNumer,getCurrentPlayer());
+       currentMap.claimRoute(routeNumer,getCurrentPlayer());
         setChanged();
         notifyObservers();
     }
@@ -298,4 +311,6 @@ public class ClientModel extends Observable {
         setChanged();
         notifyObservers(new GameOverAlert());
     }
+
+    public Map getCurrentMap(){return currentMap;}
 }

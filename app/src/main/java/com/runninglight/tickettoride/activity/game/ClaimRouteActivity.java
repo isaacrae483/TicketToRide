@@ -1,6 +1,7 @@
 package com.runninglight.tickettoride.activity.game;
 
 import android.content.Context;
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -47,12 +48,14 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
 
         title.setText(sTitle);
 
-        adapter = new ClaimRouteAdapter(getApplicationContext(), ClientModel.getInstance().getCurrentGame().getMap().findRoutes(sTitle));
+        adapter = new ClaimRouteAdapter(getApplicationContext(), ClientModel.getInstance().getCurrentMap().findRoutes(sTitle));
         routes_lv.setAdapter(adapter);
 
         routes_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Route curr = ClientModel.getInstance().getCurrentMap().getAllRoutes().get(position);
+
                 presenter.claimRoute((int)view.getTag());
                 finish();
             }

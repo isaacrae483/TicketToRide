@@ -12,6 +12,9 @@ import com.runninglight.shared.state.IGameState;
 import com.runninglight.shared.state.PlayerState;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -75,7 +78,7 @@ public class Game {
 
     private boolean initDestCardsPicked;
 
-    private Map map;
+    private transient Map map;
 
     /**
      * Game constructor
@@ -102,6 +105,7 @@ public class Game {
         this.initDestCardsPicked = false;
         this.gameState = new DuringGameState();
         this.gameStateData = new String[]{"DuringGameState", null};
+        initMapServer();
     }
 
 
@@ -622,11 +626,26 @@ public class Game {
     }
 
     public Map getMap(){return map;}
+
     public void initMapClient(InputStream file){
         map = new Map(file);
     }
-    public void initMapServer(InputStream file){
-        map = new Map(file);
+
+    public void initMapServer(){
+        String filePath = System.getProperty("user.dir") + File.separator +
+                "app\\src\\main\\assets\\routes.txt";
+
+        File file = new File(filePath);
+
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("in server init map throwing file not found");
+            e.printStackTrace();
+        }
+
+        map = new Map(inputStream);
     }
 
 
