@@ -34,7 +34,7 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
         TextView title = findViewById(R.id.claim_route_title);
         title.setText(sTitle);
 
-        adapter = new ClaimRouteAdapter(getApplicationContext(), ClientModel.getInstance().getMap().findRoutes(sTitle));
+        //adapter = new ClaimRouteAdapter(getApplicationContext(), ClientModel.getInstance().getCurrentGame().getMap().findRoutes(sTitle));
 
         //TODO:Set onclick listener for list
     }

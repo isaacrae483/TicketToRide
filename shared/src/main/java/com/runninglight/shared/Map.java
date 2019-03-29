@@ -59,7 +59,6 @@ public class Map {
                     "shared\\src\\main\\java\\com\\runninglight\\shared\\routes.txt";
             File file = new File(filePath);
             Scanner scanner = new Scanner(file);
-
             // Loop should only run 100 times to make 100 routes
             for(int i = 0; i < TOTAL_ROUTES; i++){
                 City city1 = new City(scanner.next());
@@ -179,7 +178,8 @@ public class Map {
         ArrayList <Route> routes = new ArrayList<>();
 
         for(int i=0; i< allRoutes.size(); i++){
-            if( (allRoutes.get(i).getCity1().equals(cityName) )||( allRoutes.get(i).getCity2().equals(cityName)) )
+            if( (allRoutes.get(i).getCity1Name().equals(cityName) )||( allRoutes.get(i).getCity2Name().equals(cityName)) )
+                allRoutes.get(i).setRouteNum(i);
                 routes.add(allRoutes.get(i));
         }
 

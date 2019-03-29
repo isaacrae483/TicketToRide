@@ -15,10 +15,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.runninglight.shared.PlayerColor;
+import com.runninglight.shared.Route;
 import com.runninglight.tickettoride.IPresenter.game.IMapPresenter;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.iview.game.IMap_View;
 import com.runninglight.tickettoride.presenter.game.MapPresenter;
+
+import java.util.ArrayList;
 
 public class MapFragment extends Fragment implements IMap_View, View.OnClickListener {
 
@@ -91,8 +94,15 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
     }
 
     @Override
-    public void refresh() {
+    public void refresh(ArrayList<Route> allRoutes) {
+        for (int i=0; i<allRoutes.size();i++){
+            for(int j=1; j<= allRoutes.get(i).getLength(); j++){
+                String routeID = "_"+i+"_"+j;
+                //getActivity().findViewById(getID(routeID)).   //TODO: check og claim route for stuff ;)
 
+            }
+        }
+//TODO: hook up map to model
     }
 
     private int findColor(PlayerColor color){

@@ -286,4 +286,6 @@ public class ClientModel extends Observable {
     public PlayerState getPlayerState(){
         return currentGame.getPlayerState();
     }
+
+
 }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.runninglight.shared.PlayerColor;
 import com.runninglight.tickettoride.IPresenter.game.IGameActivity_Presenter;
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.iview.game.IGameActivity_View;
 import com.runninglight.tickettoride.presenter.game.GameActivity_Presenter;
 
@@ -20,6 +21,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
     private IGameActivity_Presenter presenter;
 
     private Fragment mapFragment;
+
 
 
 
@@ -33,6 +35,13 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         setContentView(R.layout.activity_game);
 
         presenter = new GameActivity_Presenter(this);
+
+        String[] files = getApplicationContext().fileList();
+        for (String file : files) {
+            System.out.print(", " + file);
+        }
+        ClientModel.getInstance().getCurrentGame().initMap();
+
     }
 
     @Override

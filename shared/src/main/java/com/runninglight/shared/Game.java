@@ -61,6 +61,8 @@ public class Game {
 
     private boolean initDestCardsPicked;
 
+    private Map map;
+
     /**
      * Game constructor
      *
@@ -602,6 +604,9 @@ public class Game {
     public Player getLastPlayer(){
         return playerList.get(playerList.size() - 1);
     }
+
+    public Map getMap(){return map;}
+    public void initMap(){ map = new Map();}
 
     /* ************************** TEST ********************************/
 
