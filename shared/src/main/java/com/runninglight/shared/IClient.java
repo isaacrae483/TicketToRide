@@ -20,4 +20,6 @@ public interface IClient {
     void addCardToFaceUp(Game game, TrainCard trainCard, int position);
 
     void setTurn(Game game, PlayerState playerState);
+
+    void claimRoute(Game game, Player player, Route route);
 }

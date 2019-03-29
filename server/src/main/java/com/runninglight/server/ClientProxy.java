@@ -7,6 +7,7 @@ import com.runninglight.shared.Game;
 import com.runninglight.shared.IClient;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
+import com.runninglight.shared.Route;
 import com.runninglight.shared.User;
 import com.runninglight.shared.state.PlayerState;
 
@@ -22,6 +23,7 @@ public class ClientProxy implements IClient {
     private static final String MESSAGE = "com.runninglight.shared.Message";
     private static final String DEST_CARD_ARRAY = "[Lcom.runninglight.shared.DestinationCard;";
     private static final String PLAYER = "com.runninglight.shared.Player";
+    private static final String ROUTE = "com.runninglight.shared.Route";
     private static final String TRAINCARD = "com.runninglight.shared.Cards.TrainCard";
     private static final String STRING = "java.lang.String";
     private static final String PLAYER_STATE = "com.runninglight.shared.state.PlayerState";
@@ -90,6 +92,21 @@ public class ClientProxy implements IClient {
     @Override
     public void setTurn(Game game, PlayerState playerState){
         communicator.setCommandForGame(game, getSetTurnCommand(game, playerState));
+    }
+
+    @Override
+    public void claimRoute(Game game, Player player, Route route)
+    {
+        communicator.setCommandForGame(game, getClaimRouteCommand(game, player, route));
+    }
+
+    private Command getClaimRouteCommand(Game game, Player player, Route route)
+    {
+        return new Command(
+                CLIENT_FACADE,
+                "addCardToHand",
+                new String[] {GAME, PLAYER, ROUTE},
+                new Object[] {game, player, route} );
     }
 
     private Command getAddCardToHandCommand(Game game, User user, TrainCard trainCard)
