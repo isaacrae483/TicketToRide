@@ -149,6 +149,7 @@ public class DeckPresenter implements IDeckPresenter, Observer
 
         if(hasDrawnCards()){
             deckView.disableFaceUpWildListeners();
+            deckView.disableDestDeckListener();
         }
     }
 
