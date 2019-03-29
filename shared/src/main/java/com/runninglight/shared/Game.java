@@ -8,6 +8,8 @@ import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Cards.TrainCardDeck;
 import com.runninglight.shared.state.PlayerState;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -606,7 +608,13 @@ public class Game {
     }
 
     public Map getMap(){return map;}
-    public void initMap(){ map = new Map();}
+    public void initMapClient(InputStream file){
+        map = new Map(file);
+    }
+    public void initMapServer(InputStream file){
+        map = new Map(file);
+    }
+
 
     /* ************************** TEST ********************************/
 

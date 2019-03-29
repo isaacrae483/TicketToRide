@@ -16,6 +16,8 @@ import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.iview.game.IGameActivity_View;
 import com.runninglight.tickettoride.presenter.game.GameActivity_Presenter;
 
+import java.io.IOException;
+
 public class GameActivity extends AppCompatActivity implements IGameActivity_View {
 
     private IGameActivity_Presenter presenter;
@@ -40,7 +42,11 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         for (String file : files) {
             System.out.print(", " + file);
         }
-   //     ClientModel.getInstance().getCurrentGame().initMap();
+        try {
+            ClientModel.getInstance().getCurrentGame().initMapClient(getAssets().open("routes.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
