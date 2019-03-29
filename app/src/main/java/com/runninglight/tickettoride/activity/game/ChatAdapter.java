@@ -24,14 +24,13 @@ public class ChatAdapter extends ArrayAdapter<Message>
 {
 
     private final Activity context;
-    private ArrayList<Message> messages;
 
+    private ArrayList<Message> messageList;
 
-    public ChatAdapter (Activity context,ArrayList<Message> messages){
+    public ChatAdapter (Activity context, ArrayList<Message> messages){
         super(context, message_row, messages);
         this.context = context;
-        this.messages = messages;
-
+        this.messageList = messages;
     }
 
 
@@ -41,16 +40,14 @@ public class ChatAdapter extends ArrayAdapter<Message>
 
         TextView messageContent = rowView.findViewById(R.id.message_view);
         TextView nameView = rowView.findViewById(R.id.name_view);
-        messageContent.setText(messages.get(position).getMessage());
-        nameView.setText(messages.get(position).getUserName());
-
-
-
-
+        messageContent.setText(messageList.get(position).getMessage());
+        nameView.setText(messageList.get(position).getUserName());
         return rowView;
     }
 
-    public void refresh(){
+    public void refresh(Message message)
+    {
+        messageList.add(message);
         notifyDataSetChanged();
     }
 

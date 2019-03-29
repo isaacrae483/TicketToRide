@@ -47,10 +47,10 @@ public class ChatPresenter implements IChatPresenter, Observer
     {
         if (arg instanceof Message)
         {
-            chatView.updateChat();
+            chatView.updateChat((Message) arg);
         }
         if(arg instanceof Game){
-            chatView.updateAdapter();
+            //chatView.updateAdapter();
         }
     }
 }

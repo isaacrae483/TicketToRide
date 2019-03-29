@@ -12,10 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.runninglight.shared.Message;
 import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.iview.game.IChatView;
 import com.runninglight.tickettoride.presenter.game.ChatPresenter;
+
+import java.util.ArrayList;
 
 public class ChatFragment extends Fragment implements IChatView
 {
@@ -34,7 +37,7 @@ public class ChatFragment extends Fragment implements IChatView
         initUiElements();
 
         listView = view.findViewById(R.id.chat_view);
-        chatAdapter = new ChatAdapter(getActivity(), ClientModel.getInstance().getCurrentGame().getMessages());
+        chatAdapter = new ChatAdapter(getActivity(), new ArrayList<Message>());
         listView.setAdapter(chatAdapter);
 
         return view;
@@ -53,14 +56,14 @@ public class ChatFragment extends Fragment implements IChatView
     }
 
     @Override
-    public void updateChat()
+    public void updateChat(Message message)
     {
-        chatAdapter.refresh();
+        chatAdapter.refresh(message);
     }
 
     @Override
     public void updateAdapter(){
-        chatAdapter = new ChatAdapter(getActivity(), ClientModel.getInstance().getCurrentGame().getMessages());
+        chatAdapter = new ChatAdapter(getActivity(), new ArrayList<Message>());
         listView.setAdapter(chatAdapter);
     }
 
