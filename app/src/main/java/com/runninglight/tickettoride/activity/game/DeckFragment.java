@@ -338,4 +338,5 @@ public class DeckFragment extends Fragment implements IDeckView
     {
         trainCardDeckSizeText.setText(Integer.toString(deckSize));
     }
+
 }

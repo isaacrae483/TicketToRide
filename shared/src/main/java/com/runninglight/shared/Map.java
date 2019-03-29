@@ -2,6 +2,7 @@ package com.runninglight.shared;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,9 +39,9 @@ public class Map {
      * @post allCities initialized correctly (allCities.size() == 36)
      * @post Initialized Map ready for gameplay: no routes claimed
      */
-    public Map(){
-        initializeRoutes();
-        initializeCities();
+    public Map(InputStream fileRoute){
+        initializeRoutes(fileRoute);
+        //initializeCities(fileCity);
     }
 
     /**
@@ -52,12 +53,16 @@ public class Map {
      * @post no routes are claimed
      * @exception RuntimeException if an error occurs while creating the routes
      */
-    private void initializeRoutes(){
-        try {
+    private void initializeRoutes(InputStream file){
+
             allRoutes = new ArrayList<>();
+            /*
             String filePath = System.getProperty("user.dir") + File.separator +
-                    "shared\\src\\main\\java\\com\\runninglight\\shared\\routes.txt";
+                    "app\\src\\main\\assets\\routes.txt";
             File file = new File(filePath);
+            */
+
+
             Scanner scanner = new Scanner(file);
             // Loop should only run 100 times to make 100 routes
             for(int i = 0; i < TOTAL_ROUTES; i++){
@@ -70,16 +75,6 @@ public class Map {
                 allRoutes.add(route);
             }
             System.out.println(allRoutes.toString());
-        }
-        catch(FileNotFoundException e){
-            // Throws an exception that the Command will catch to return a false success
-            throw new RuntimeException("File doesn't exist");
-        }
-        catch(Exception e){
-            // Throws an exception that the Command will catch to return a false success
-            throw new RuntimeException("Failed to create all routes");
-        }
-
     }
 
     /**
@@ -90,13 +85,16 @@ public class Map {
      * @post allCities initialized correctly (allCities.size() == 36)
      * @exception RuntimeException if an error occurs while creating the routes
      */
-    private void initializeCities(){
+    private void initializeCities(File file){
         try {
             allCities = new ArrayList<>();
+            /*
             String filePath = System.getProperty("user.dir") + File.separator +
-                    "shared\\src\\main\\java\\com\\runninglight\\shared\\cities.txt";
+                    "app\\src\\main\\assets\\cities.txt";
             File file = new File(filePath);
+            */
             Scanner scanner = new Scanner(file);
+
 
             // Loop should only run 36 times to make 36 routes
             for(int i = 0; i < TOTAL_CITIES; i++){
@@ -184,6 +182,10 @@ public class Map {
         }
 
         return (Route[]) routes.toArray();
+    }
+
+    public File passFile(File file){
+        return file;
     }
 
 }

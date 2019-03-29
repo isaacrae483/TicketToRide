@@ -1,6 +1,7 @@
 package com.runninglight.tickettoride.activity.game;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -15,6 +16,8 @@ import com.runninglight.tickettoride.R;
 import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.iview.game.IGameActivity_View;
 import com.runninglight.tickettoride.presenter.game.GameActivity_Presenter;
+
+import java.io.IOException;
 
 public class GameActivity extends AppCompatActivity implements IGameActivity_View {
 
@@ -40,7 +43,11 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         for (String file : files) {
             System.out.print(", " + file);
         }
-   //     ClientModel.getInstance().getCurrentGame().initMap();
+        try {
+            ClientModel.getInstance().getCurrentGame().initMapClient(getAssets().open("routes.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -49,6 +56,11 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void endGame(){
+        Intent intent = new Intent(this, GameOverActivity.class);
+        startActivity(intent);
+    }
 
 
     private int findColor(PlayerColor color){

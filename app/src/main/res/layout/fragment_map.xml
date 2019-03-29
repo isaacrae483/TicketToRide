@@ -754,16 +754,6 @@
             android:visibility="visible" />
 
         <ImageView
-            android:id="@+id/_99_1"
-            android:layout_width="11dp"
-            android:layout_height="177dp"
-            android:layout_marginStart="943dp"
-            android:layout_marginTop="315dp"
-            android:background="@android:color/black"
-            android:rotation="-47.75"
-            android:visibility="visible" />
-
-        <ImageView
             android:id="@+id/_98_1"
             android:layout_width="10dp"
             android:layout_height="82dp"
@@ -771,6 +761,16 @@
             android:layout_marginTop="299dp"
             android:background="@android:color/black"
             android:rotation="91"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/_99_1"
+            android:layout_width="11dp"
+            android:layout_height="177dp"
+            android:layout_marginStart="943dp"
+            android:layout_marginTop="315dp"
+            android:background="@android:color/black"
+            android:rotation="-47.75"
             android:visibility="visible" />
 
         <ImageView

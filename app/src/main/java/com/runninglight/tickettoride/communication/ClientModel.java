@@ -5,6 +5,7 @@ import android.util.Log;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Game;
+import com.runninglight.shared.GameOverAlert;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
@@ -216,7 +217,7 @@ public class ClientModel extends Observable {
     }
 
     public void nextTurn(){
-        currentGame.nextTurn();
+        currentGame.continueGame();
         System.out.println("*** Current turn: " + currentGame.getTurnName());
         setChanged();
         notifyObservers(currentGame.getTurnName());
@@ -287,5 +288,8 @@ public class ClientModel extends Observable {
         return currentGame.getPlayerState();
     }
 
-
+    public void signalEndGame(){
+        setChanged();
+        notifyObservers(new GameOverAlert());
+    }
 }

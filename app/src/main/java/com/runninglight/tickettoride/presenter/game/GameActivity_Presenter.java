@@ -6,6 +6,7 @@ import com.runninglight.shared.Cards.CardColor;
 import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.City;
+import com.runninglight.shared.GameOverAlert;
 import com.runninglight.shared.PlayerColor;
 import com.runninglight.tickettoride.IPresenter.game.IGameActivity_Presenter;
 import com.runninglight.tickettoride.communication.ClientModel;
@@ -19,6 +20,7 @@ public class GameActivity_Presenter implements IGameActivity_Presenter {
 
     public GameActivity_Presenter(IGameActivity_View v){
         view = v;
+        model.addObserver(this);
     }
 
     private IGameActivity_View view;
@@ -26,7 +28,9 @@ public class GameActivity_Presenter implements IGameActivity_Presenter {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        if(arg instanceof GameOverAlert){
+            view.endGame();
+        }
     }
 
 

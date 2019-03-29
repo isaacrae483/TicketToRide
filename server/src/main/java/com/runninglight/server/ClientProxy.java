@@ -95,6 +95,11 @@ public class ClientProxy implements IClient {
     }
 
     @Override
+    public void endGame(Game game) {
+        communicator.setCommandForGame(game, getEndGameCommand(game));
+    }
+
+    @Override
     public void claimRoute(Game game, Player player, Route route)
     {
         communicator.setCommandForGame(game, getClaimRouteCommand(game, player, route));
@@ -177,5 +182,14 @@ public class ClientProxy implements IClient {
                 "setTurn",
                 new String[] {GAME, PLAYER_STATE},
                 new Object[] {game, playerState} );
+    }
+
+    private Command getEndGameCommand(Game game)
+    {
+        return new Command(
+                CLIENT_FACADE,
+                "endGame",
+                new String[] {GAME},
+                new Object[] {game} );
     }
 }

@@ -233,6 +233,14 @@ public class ServerProxy implements IServer {
     }
 
     @Override
+    public void endGame(String gameID) {
+        Results results = communicator.send(getEndGameCommand(gameID));
+        if (!results.isSuccess()) {
+            System.out.println(results.getErrorInfo());
+        }
+    }
+
+    @Override
     public void claimRoute(Game game, Player player, Route route)
     {
         Results results = communicator.send(getClaimRouteCommand(game, player, route));
@@ -240,6 +248,7 @@ public class ServerProxy implements IServer {
             System.out.println(results.getErrorInfo());
         }
     }
+
 
     private Command getClaimRouteCommand(Game game, Player player, Route route)
     {
@@ -357,6 +366,15 @@ public class ServerProxy implements IServer {
                 "setTurn",
                 new String[] {STRING, PLAYER_STATE},
                 new Object[] {gameID, playerState} );
+    }
+
+    private Command getEndGameCommand(String gameID)
+    {
+        return new Command(
+                SERVER_FACADE,
+                "endGame",
+                new String[] {STRING},
+                new Object[] {gameID} );
     }
 
     // Temporary
