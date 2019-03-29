@@ -1,31 +1,37 @@
 package com.runninglight.shared;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class Chat
 {
-    ArrayList<Message> messages;
+    //Message[] messages;
+    int index;
 
     public Chat()
     {
-        messages = new ArrayList<>();
+        //messages = new Message[10000];
+        index = 0;
     }
 
     public void addMessage(Message message)
     {
         message.timestampMessage();
-        messages.add(message);
+        //messages[index++] = message;
     }
 
-    public ArrayList<Message> getSortedMessages()
+    public Message[] getSortedMessages()
     {
-        sortMessages();
-        return messages;
+        //sortMessages();
+        //return messages;
+        return null;
     }
 
     private void sortMessages()
     {
-        Collections.sort(messages, new MessageCompare());
+        //Arrays.sort(messages, new MessageCompare());
     }
 }
