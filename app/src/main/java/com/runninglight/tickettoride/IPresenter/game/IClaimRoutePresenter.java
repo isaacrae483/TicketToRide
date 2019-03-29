@@ -2,6 +2,6 @@ package com.runninglight.tickettoride.IPresenter.game;
 
 import java.util.Observer;
 
-public interface IGameActivity_Presenter extends Observer {
- //   void startMockup();
+public interface IClaimRoutePresenter {
+    void claimRoute(int routeNumber);
 }

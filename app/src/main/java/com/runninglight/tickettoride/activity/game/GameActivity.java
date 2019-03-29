@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.runninglight.shared.PlayerColor;
 import com.runninglight.tickettoride.IPresenter.game.IGameActivity_Presenter;
 import com.runninglight.tickettoride.R;
+import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.iview.game.IGameActivity_View;
 import com.runninglight.tickettoride.presenter.game.GameActivity_Presenter;
 
@@ -20,6 +21,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
     private IGameActivity_Presenter presenter;
 
     private Fragment mapFragment;
+
 
 
 
@@ -33,6 +35,13 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         setContentView(R.layout.activity_game);
 
         presenter = new GameActivity_Presenter(this);
+
+        String[] files = getApplicationContext().fileList();
+        for (String file : files) {
+            System.out.print(", " + file);
+        }
+   //     ClientModel.getInstance().getCurrentGame().initMap();
+
     }
 
     @Override
@@ -40,37 +49,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    public void claimRoute(int route, PlayerColor color) {
-        ImageView routeView;
 
-        switch (route){
-            case 20:
-                routeView = findViewById(R.id._20);
-                break;
-            case 21:
-                routeView = findViewById(R.id._21);
-                break;
-            case 33:
-                routeView = findViewById(R.id._33);
-                break;
-            case 37:
-                routeView = findViewById(R.id._37);
-                break;
-            case 50:
-                routeView = findViewById(R.id._50);
-                break;
-            case 99:
-                routeView = findViewById(R.id._99);
-                break;
-            default:
-                routeView = findViewById(R.id._99);
-                System.out.println("unknown route defaulting to miami to atlanta");
-        }
-        routeView.setVisibility(View.VISIBLE);
-        routeView.setBackgroundResource(findColor(color));
-
-
-    }
 
     private int findColor(PlayerColor color){
         switch (color.toString())

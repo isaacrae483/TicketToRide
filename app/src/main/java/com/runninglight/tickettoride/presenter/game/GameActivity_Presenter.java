@@ -29,6 +29,8 @@ public class GameActivity_Presenter implements IGameActivity_Presenter {
 
     }
 
+
+    /*
     @Override
     public void startMockup(){
         final Handler handler = new Handler();
@@ -137,5 +139,6 @@ public class GameActivity_Presenter implements IGameActivity_Presenter {
         },5000);
     }
 
+*/
 
 }

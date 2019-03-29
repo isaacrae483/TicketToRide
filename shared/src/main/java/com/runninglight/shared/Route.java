@@ -25,6 +25,8 @@ public class Route {
 
     private City city2;
 
+    private int routeNum;
+
     public void setClaimed(Player p) {
         claimed = p;
     }
@@ -75,6 +77,12 @@ public class Route {
         }
     }
 
+    public void setRouteNum(int num){
+        routeNum = num;
+    }
+
+    public int getRouteNum() {return routeNum;}
+
     private void calculatePoints() {
         if (length == 1) {
             points = 1;
@@ -102,6 +110,10 @@ public class Route {
     public String toString(){
         return city1.getName()+ " to " + city2.getName();
     }
+
     public String getCity1Name(){return city1.getName();}
+
     public String getCity2Name(){return city2.getName();}
+
+    public int getLength(){return length;}
 }

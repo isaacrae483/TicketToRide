@@ -46,6 +46,6 @@ public class MapPresenter implements IMapPresenter {
 
     @Override
     public void update(Observable o, Object arg) {
-    map_view.refresh();
+    //map_view.refresh();
     }
 }
