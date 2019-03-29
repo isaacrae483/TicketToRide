@@ -136,7 +136,7 @@ public class ClientModel extends Observable {
         }
     }
 
-    public ArrayList<Message> getMessages(Game game)
+    public Message[] getMessages(Game game)
     {
         for (Game g : gameList)
         {

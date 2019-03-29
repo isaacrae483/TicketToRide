@@ -486,7 +486,7 @@ public class Game {
      * @pre chat != null
      * @post returns the messages of the chat sorted by timestamp
      */
-    public ArrayList<Message> getMessages() { return chat.getSortedMessages(); }
+    public Message[] getMessages() { return chat.getSortedMessages(); }
 
     /**
      * Gets the list of players in the game

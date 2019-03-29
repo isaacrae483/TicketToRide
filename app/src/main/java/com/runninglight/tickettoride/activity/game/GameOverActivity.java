@@ -129,4 +129,9 @@ public class GameOverActivity extends AppCompatActivity implements IGameOverView
             ((TextView) views.get(i).get(5)).setText(mostRoutesPoints);
         }
     }
+
+    @Override
+    public void onBackPressed(){
+
+    }
 }
