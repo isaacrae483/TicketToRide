@@ -18,36 +18,38 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
 
     private IClaimRouteActivityView claimRouteActivityView;
 
-    public ClaimRoutePresenter(IClaimRouteActivityView view){
+    public ClaimRoutePresenter(IClaimRouteActivityView view) {
         addView(view);
 
     }
 
-    public void addView(IClaimRouteActivityView activityView)
-    {
+    public void addView(IClaimRouteActivityView activityView) {
         this.claimRouteActivityView = activityView;
     }
 
     @Override
     public void claimRoute(int routeNumber) {
-        System.out.println("claiming route: "+ routeNumber);
-        Route temp = ClientModel.getInstance().getCurrentMap().getAllRoutes().get(routeNumber-1);
-        //short circuit
-        if(ClientModel.getInstance().getCurrentPlayer().getHand().canClaimRoute(temp.getColor().toString(), temp.getLength())){
-            if(temp.getClaimed() == null){
-                ClientModel.getInstance().claimRoute(routeNumber);
-                proxy.claimRoute(model.getCurrentGameID(), model.getCurrentPlayer(), routeNumber);
-            }
-            else{
-                claimRouteActivityView.showToast("Route already claimed");
-                System.out.println("Route already claimed");
-            }
+        System.out.println("claiming route: " + routeNumber);
+        Route temp = ClientModel.getInstance().getCurrentMap().getAllRoutes().get(routeNumber - 1);
 
+        if (ClientModel.getInstance().getCurrentPlayer().getTrainCars() >= temp.getLength()) {
+            if (ClientModel.getInstance().getCurrentPlayer().getHand().canClaimRoute(temp.getColor().toString(), temp.getLength())) {
+                if (temp.getClaimed() == null) {
+                    ClientModel.getInstance().claimRoute(routeNumber);
+                    proxy.claimRoute(model.getCurrentGameID(), model.getCurrentPlayer(), routeNumber);
+                    claimRouteActivityView.showToast("Claiming route");
+                    claimRouteActivityView.endActivity();
+                } else {
+                    claimRouteActivityView.showToast("Route already claimed");
+                }
+
+            } else
+                claimRouteActivityView.showToast("Not enough cards");
+
+        } else {
+            claimRouteActivityView.showToast("Not enough Train cars.");
         }
-        else
-            System.out.println("not enough cards");
+
 
     }
-
-
 }
