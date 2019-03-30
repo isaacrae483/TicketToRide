@@ -19,7 +19,7 @@
             android:layout_height="27dp"
             android:layout_marginStart="64dp"
             android:layout_marginTop="63dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="0"
             android:visibility="visible" />
 
@@ -29,7 +29,7 @@
             android:layout_height="27dp"
             android:layout_marginStart="78dp"
             android:layout_marginTop="63dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="0"
             android:visibility="visible" />
 
@@ -39,7 +39,7 @@
             android:layout_height="124dp"
             android:layout_marginStart="149dp"
             android:layout_marginTop="-17dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="85"
             android:visibility="visible" />
 
@@ -49,7 +49,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="49dp"
             android:layout_marginTop="103dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="27"
             android:visibility="visible" />
 
@@ -59,7 +59,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="63dp"
             android:layout_marginTop="108dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="27"
             android:visibility="visible" />
 
@@ -69,7 +69,7 @@
             android:layout_height="245dp"
             android:layout_marginStart="204dp"
             android:layout_marginTop="9dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="99"
             android:visibility="visible" />
 
@@ -129,7 +129,7 @@
             android:layout_height="33dp"
             android:layout_marginStart="245dp"
             android:layout_marginTop="218dp"
-            android:background="@android:color/holo_green_dark"
+            android:background="@android:color/transparent"
             android:rotation="147"
             android:visibility="visible" />
 
@@ -159,7 +159,7 @@
             android:layout_height="140dp"
             android:layout_marginStart="288dp"
             android:layout_marginTop="24dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="131"
             android:visibility="visible" />
 
@@ -169,7 +169,7 @@
             android:layout_height="146dp"
             android:layout_marginStart="414dp"
             android:layout_marginTop="23dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="53.25"
             android:visibility="visible" />
 
@@ -179,7 +179,7 @@
             android:layout_height="250dp"
             android:layout_marginStart="480dp"
             android:layout_marginTop="24dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="89.5"
             android:visibility="visible" />
 
@@ -189,7 +189,7 @@
             android:layout_height="200dp"
             android:layout_marginStart="463dp"
             android:layout_marginTop="89dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="107"
             android:visibility="visible" />
 
@@ -199,7 +199,7 @@
             android:layout_height="127dp"
             android:layout_marginStart="378dp"
             android:layout_marginTop="151dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="151"
             android:visibility="visible" />
 
@@ -209,7 +209,7 @@
             android:layout_height="100dp"
             android:layout_marginStart="300dp"
             android:layout_marginTop="150dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="39"
             android:visibility="visible" />
 
@@ -219,7 +219,7 @@
             android:layout_height="120dp"
             android:layout_marginStart="332dp"
             android:layout_marginTop="199dp"
-            android:background="@android:color/holo_red_dark"
+            android:background="@android:color/transparent"
             android:rotation="98.5"
             android:visibility="visible" />
 
@@ -229,7 +229,7 @@
             android:layout_height="120dp"
             android:layout_marginStart="329dp"
             android:layout_marginTop="210dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="98.5"
             android:visibility="visible" />
 
@@ -239,7 +239,7 @@
             android:layout_height="35dp"
             android:layout_marginStart="220dp"
             android:layout_marginTop="319dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="57"
             android:visibility="visible" />
 
@@ -249,7 +249,7 @@
             android:layout_height="31dp"
             android:layout_marginStart="243dp"
             android:layout_marginTop="294dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="31"
             android:visibility="visible" />
 
@@ -259,7 +259,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="253dp"
             android:layout_marginTop="266dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="12"
             android:visibility="visible" />
 
@@ -269,7 +269,7 @@
             android:layout_height="120dp"
             android:layout_marginStart="326dp"
             android:layout_marginTop="359dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="102"
             android:visibility="visible" />
 
@@ -279,7 +279,7 @@
             android:layout_height="120dp"
             android:layout_marginStart="332dp"
             android:layout_marginTop="319dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="71.5"
             android:visibility="visible" />
 
@@ -779,7 +779,7 @@
             android:layout_height="31dp"
             android:layout_marginStart="26dp"
             android:layout_marginTop="148dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="28"
             android:visibility="visible" />
 
@@ -789,7 +789,7 @@
             android:layout_height="31dp"
             android:layout_marginStart="13dp"
             android:layout_marginTop="178dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="15"
             android:visibility="visible" />
 
@@ -799,7 +799,7 @@
             android:layout_height="28dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="210dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="2"
             android:visibility="visible" />
 
@@ -809,7 +809,7 @@
             android:layout_height="28dp"
             android:layout_marginStart="9dp"
             android:layout_marginTop="240dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="-6"
             android:visibility="visible" />
 
@@ -819,7 +819,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="269dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="-20"
             android:visibility="visible" />
 
@@ -829,7 +829,7 @@
             android:layout_height="31dp"
             android:layout_marginStart="41dp"
             android:layout_marginTop="149dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="29"
             android:visibility="visible" />
 
@@ -839,7 +839,7 @@
             android:layout_height="31dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="178dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="15"
             android:visibility="visible" />
 
@@ -849,7 +849,7 @@
             android:layout_height="28dp"
             android:layout_marginStart="23dp"
             android:layout_marginTop="211dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="0"
             android:visibility="visible" />
 
@@ -859,7 +859,7 @@
             android:layout_height="28dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="241dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="-6"
             android:visibility="visible" />
 
@@ -869,7 +869,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="31dp"
             android:layout_marginTop="270dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="-20"
             android:visibility="visible" />
 
@@ -879,7 +879,7 @@
             android:layout_height="31dp"
             android:layout_marginStart="38dp"
             android:layout_marginTop="320dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="-28"
             android:visibility="visible" />
 
@@ -889,7 +889,7 @@
             android:layout_height="33dp"
             android:layout_marginStart="58dp"
             android:layout_marginTop="347dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="-43"
             android:visibility="visible" />
 
@@ -899,7 +899,7 @@
             android:layout_height="35dp"
             android:layout_marginStart="84dp"
             android:layout_marginTop="369dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="-52"
             android:visibility="visible" />
 
@@ -909,7 +909,7 @@
             android:layout_height="31dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="314dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="-28"
             android:visibility="visible" />
 
@@ -919,7 +919,7 @@
             android:layout_height="32dp"
             android:layout_marginStart="70dp"
             android:layout_marginTop="339dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="-42"
             android:visibility="visible" />
 
@@ -929,7 +929,7 @@
             android:layout_height="37dp"
             android:layout_marginStart="96dp"
             android:layout_marginTop="361dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="-52"
             android:visibility="visible" />
 
@@ -939,7 +939,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="147dp"
             android:layout_marginTop="77dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="85"
             android:visibility="visible" />
 
@@ -949,7 +949,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="105dp"
             android:layout_marginTop="80dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="90"
             android:visibility="visible" />
 
@@ -959,7 +959,7 @@
             android:layout_height="38dp"
             android:layout_marginStart="185dp"
             android:layout_marginTop="66dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="65"
             android:visibility="visible" />
 
@@ -969,7 +969,7 @@
             android:layout_height="32dp"
             android:layout_marginStart="214dp"
             android:layout_marginTop="45dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="36"
             android:visibility="visible" />
 
@@ -979,7 +979,7 @@
             android:layout_height="36dp"
             android:layout_marginStart="163dp"
             android:layout_marginTop="335dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="84"
             android:visibility="visible" />
 
@@ -989,7 +989,7 @@
             android:layout_height="34dp"
             android:layout_marginStart="129dp"
             android:layout_marginTop="355dp"
-            android:background="@android:color/black"
+            android:background="@android:color/transparent"
             android:rotation="33"
             android:visibility="visible" />
 
@@ -1352,6 +1352,206 @@
             android:visibility="visible"
             android:tag="Winnipeg"
             app:srcCompat="@drawable/city" />
+
+        <ImageView
+            android:id="@+id/la_phoenix_"
+            android:layout_width="10dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginTop="372dp"
+            android:background="@android:color/transparent"
+            android:rotation="86"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/la_phoenix_2"
+            android:layout_width="10dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="189dp"
+            android:layout_marginTop="370dp"
+            android:background="@android:color/transparent"
+            android:rotation="90"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/la_phoenix_3"
+            android:layout_width="10dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="231dp"
+            android:layout_marginTop="372dp"
+            android:background="@android:color/transparent"
+            android:rotation="100"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/la_elpaso_1"
+            android:layout_width="10dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="147dp"
+            android:layout_marginTop="395dp"
+            android:background="@android:color/transparent"
+            android:rotation="120"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/la_elpaso_2"
+            android:layout_width="10dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="184dp"
+            android:layout_marginTop="411dp"
+            android:background="@android:color/transparent"
+            android:rotation="108"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/la_elpaso_3"
+            android:layout_width="10dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="224dp"
+            android:layout_marginTop="422dp"
+            android:background="@android:color/transparent"
+            android:rotation="101"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/la_elpaso_4"
+            android:layout_width="10dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="266dp"
+            android:layout_marginTop="426dp"
+            android:background="@android:color/transparent"
+            android:rotation="97"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/la_elpaso_5"
+            android:layout_width="10dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="307dp"
+            android:layout_marginTop="428dp"
+            android:background="@android:color/transparent"
+            android:rotation="87"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/la_elpaso_6"
+            android:layout_width="10dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="349dp"
+            android:layout_marginTop="424dp"
+            android:background="@android:color/transparent"
+            android:rotation="79"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/cal_winni_1"
+            android:layout_width="10dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="256dp"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/transparent"
+            android:rotation="73"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/cal_winni_2"
+            android:layout_width="39dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="282dp"
+            android:layout_marginTop="17dp"
+            android:background="@android:color/transparent"
+            android:rotation="-9"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/cal_winni_3"
+            android:layout_width="39dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="323dp"
+            android:layout_marginTop="13dp"
+            android:background="@android:color/transparent"
+            android:rotation="-2"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/cal_winni_4"
+            android:layout_width="39dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="365dp"
+            android:layout_marginTop="13dp"
+            android:background="@android:color/transparent"
+            android:rotation="4"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/cal_winni_5"
+            android:layout_width="40dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="405dp"
+            android:layout_marginTop="19dp"
+            android:background="@android:color/transparent"
+            android:rotation="11"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/cal_winni_6"
+            android:layout_width="40dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="445dp"
+            android:layout_marginTop="29dp"
+            android:background="@android:color/transparent"
+            android:rotation="19"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/phon_denver_1"
+            android:layout_width="11dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="270dp"
+            android:layout_marginTop="367dp"
+            android:background="@android:color/transparent"
+            android:rotation="27"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/phon_denver_2"
+            android:layout_width="11dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="289dp"
+            android:layout_marginTop="340dp"
+            android:background="@android:color/transparent"
+            android:rotation="37"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/phon_denver_3"
+            android:layout_width="11dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="313dp"
+            android:background="@android:color/transparent"
+            android:rotation="42"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/phon_denver_4"
+            android:layout_width="11dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="338dp"
+            android:layout_marginTop="288dp"
+            android:background="@android:color/transparent"
+            android:rotation="60"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/phon_denver_5"
+            android:layout_width="11dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="374dp"
+            android:layout_marginTop="273dp"
+            android:background="@android:color/transparent"
+            android:rotation="77"
+            android:visibility="visible" />
 
 
     </RelativeLayout>

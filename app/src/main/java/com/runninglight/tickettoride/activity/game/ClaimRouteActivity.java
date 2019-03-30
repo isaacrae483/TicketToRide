@@ -67,11 +67,12 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
 
         private ArrayList<Route> items;
 
-        public ClaimRouteAdapter(Context context, ArrayList<Route> items) {
+        ClaimRouteAdapter(Context context, ArrayList<Route> items) {
             super(context, R.layout.row_claim_route, items);
             this.items = items;
         }
 
+        @NonNull
         public View getView(int position, View view, @NonNull ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(row_claim_route, null, true);
@@ -88,6 +89,10 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
 
             return rowView;
         }
+
+    }
+
+    public void launchGrey(){
 
     }
 
