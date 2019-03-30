@@ -245,7 +245,7 @@ public class Player {
      * postcondition: this.hand unchanged
      */
     public int getHandSize() {
-        return numTrainCards; // hand.getHandSize();
+        return hand.getHandSize();
     }
 
     /**
@@ -406,5 +406,10 @@ public class Player {
 
     public boolean getHasMostRoutes() {
         return hasMostRoutes;
+    }
+
+    public ArrayList<TrainCard> playTrainCards(String color, int length) {
+        trainCars -= length;
+        return hand.playTrainCards(color, length);
     }
 }

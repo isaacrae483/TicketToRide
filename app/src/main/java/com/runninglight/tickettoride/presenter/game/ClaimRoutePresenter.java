@@ -36,8 +36,10 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
         if(ClientModel.getInstance().getCurrentPlayer().getHand().canClaimRoute(temp.getColor().toString(), temp.getLength())){
             if(temp.getClaimed() == null){
                 ClientModel.getInstance().claimRoute(routeNumber);
+                proxy.claimRoute(model.getCurrentGameID(), model.getCurrentPlayer(), routeNumber);
             }
             else{
+                claimRouteActivityView.showToast("Route already claimed");
                 System.out.println("Route already claimed");
             }
 

@@ -127,5 +127,9 @@ public class TrainCardDeck {
         }
         return false;
     }
+
+    public int getDiscardPileSize(){
+        return discardPile.getDiscardPile().size();
+    }
 //a function to check if the deck has less than 3 non-wild cards
 }

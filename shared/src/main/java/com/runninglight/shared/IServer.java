@@ -32,5 +32,5 @@ public interface IServer {
 
     void endGame(String gameID);
 
-    void claimRoute(Game game, Player player, Route route);
+    void claimRoute(String gameID, Player player, int routeNumber);
 }

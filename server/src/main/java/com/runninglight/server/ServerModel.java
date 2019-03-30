@@ -3,6 +3,7 @@ package com.runninglight.server;
 import com.runninglight.shared.Cards.DestinationCard;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.Message;
+import com.runninglight.shared.Player;
 import com.runninglight.shared.User;
 import com.runninglight.shared.state.PlayerState;
 
@@ -130,6 +131,11 @@ public class ServerModel {
     public void setTurn(String gameID, PlayerState playerState){
         int gameIndex = getGameIndex(gameID);
         gameList.get(gameIndex).continueGame();//setPlayerState(playerState);
+    }
+
+    public void claimRoute(String gameID, Player player, int routeNumber){
+        Game game = getGameByID(gameID);
+        game.claimRoute(routeNumber, player);
     }
 
     public ArrayList<Game> getGameList() {

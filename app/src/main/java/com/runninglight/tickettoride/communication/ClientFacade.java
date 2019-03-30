@@ -84,8 +84,10 @@ public class ClientFacade implements IClient {
     }
 
     @Override
-    public void claimRoute(Game game, Player player, Route route)
+    public void claimRoute(Game game, int routeNumber, Player player)
     {
-        // Alter model
+        game.updateGameState();
+        model.setCurrentGame(game);
+        model.claimRoute(routeNumber, player);
     }
 }

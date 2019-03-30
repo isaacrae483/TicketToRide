@@ -17,4 +17,16 @@ public class TrainCard {
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == null){
+            return false;
+        }
+        if(!(o instanceof TrainCard)){
+            return false;
+        }
+        TrainCard card = (TrainCard)o;
+        return getCardColor() == card.getCardColor();
+    }
 }

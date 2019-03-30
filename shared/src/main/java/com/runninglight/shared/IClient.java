@@ -23,5 +23,5 @@ public interface IClient {
 
     void endGame(Game game);
 
-    void claimRoute(Game game, Player player, Route route);
+    void claimRoute(Game game, int routeNumber, Player player);
 }

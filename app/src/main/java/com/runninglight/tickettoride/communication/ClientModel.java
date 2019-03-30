@@ -301,14 +301,22 @@ public class ClientModel extends Observable {
         notifyObservers();
     }
 
-    public void claimRoute(int routeNumer){
-        Route temp = currentMap.getAllRoutes().get(routeNumer-1);
-       currentMap.claimRoute(routeNumer,getCurrentPlayer());
+    public void claimRoute(int routeNumber){
+       Route temp = currentMap.getAllRoutes().get(routeNumber-1);
+       currentMap.claimRoute(routeNumber,getCurrentPlayer());
        System.out.println("in clmodel, preparing to create discard list for route: c1: "+temp.getCity1Name() + " c2: "+temp.getCity2Name());
-       ArrayList<TrainCard> discard = currentPlayer.getHand().playTrainCards( temp.getColor().toString(),temp.getLength() );
+       ArrayList<TrainCard> discard = currentPlayer.playTrainCards( temp.getColor().toString(),temp.getLength() );
        System.out.println("about to discard: " + discard.size()+ "to: "+ getCurrentGame().getTrainCardDeck());
-       //TODO: should use the proxy as Train deck dne on client side
-       //getCurrentGame().getTrainCardDeck().discard(discard);
+       setChanged();
+       notifyObservers();
+    }
+
+    public void claimRoute(int routeNumber, Player player){
+        Route temp = currentMap.getAllRoutes().get(routeNumber-1);
+        currentMap.claimRoute(routeNumber, player);
+        System.out.println("in clmodel, preparing to create discard list for route: c1: "+temp.getCity1Name() + " c2: "+temp.getCity2Name());
+
+
         setChanged();
         notifyObservers();
     }

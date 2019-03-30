@@ -100,18 +100,18 @@ public class ClientProxy implements IClient {
     }
 
     @Override
-    public void claimRoute(Game game, Player player, Route route)
+    public void claimRoute(Game game, int routeNumber, Player player)
     {
-        communicator.setCommandForGame(game, getClaimRouteCommand(game, player, route));
+        communicator.setCommandForGame(game, getClaimRouteCommand(game, routeNumber, player));
     }
 
-    private Command getClaimRouteCommand(Game game, Player player, Route route)
+    private Command getClaimRouteCommand(Game game, int routeNumber, Player player)
     {
         return new Command(
                 CLIENT_FACADE,
-                "addCardToHand",
-                new String[] {GAME, PLAYER, ROUTE},
-                new Object[] {game, player, route} );
+                "claimRoute",
+                new String[] {GAME, "int", PLAYER},
+                new Object[] {game, routeNumber, player} );
     }
 
     private Command getAddCardToHandCommand(Game game, User user, TrainCard trainCard)
