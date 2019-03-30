@@ -59,7 +59,6 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
                 Route curr = ClientModel.getInstance().getCurrentMap().getAllRoutes().get(position);
 
                 presenter.claimRoute((int)view.getTag());
-                finish();
             }
         });
     }
@@ -102,6 +101,10 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
     @Override
     public void showToast(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void endActivity(){
+        finish();
     }
 }
 
