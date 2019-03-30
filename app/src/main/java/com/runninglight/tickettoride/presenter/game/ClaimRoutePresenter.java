@@ -1,5 +1,6 @@
 package com.runninglight.tickettoride.presenter.game;
 
+import com.runninglight.shared.Route;
 import com.runninglight.tickettoride.IPresenter.game.IClaimRoutePresenter;
 import com.runninglight.tickettoride.communication.ClientModel;
 import com.runninglight.tickettoride.communication.ServerProxy;
@@ -29,10 +30,21 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
 
     @Override
     public void claimRoute(int routeNumber) {
-        //TODO:Claim route via proxy?
         System.out.println("claiming route: "+ routeNumber);
+        Route temp = ClientModel.getInstance().getCurrentMap().getAllRoutes().get(routeNumber-1);
         //short circuit
-        ClientModel.getInstance().claimRoute(routeNumber);
+        if(ClientModel.getInstance().getCurrentPlayer().getHand().canClaimRoute(temp.getColor().toString(), temp.getLength())){
+            if(temp.getClaimed() == null){
+                ClientModel.getInstance().claimRoute(routeNumber);
+            }
+            else{
+                System.out.println("Route already claimed");
+            }
+
+        }
+        else
+            System.out.println("not enough cards");
+
     }
 
 

@@ -112,7 +112,15 @@ public class Route {
     }
 
     public String toString(){
-        return city1.getName()+ " to " + city2.getName();
+        String string = city1.getName()+ " to " + city2.getName() +
+                " -length: " + length+ " ";
+        if(claimed != null){
+            string += " claimed by: "+ claimed.getName();
+        }
+        else {
+            string += "not claimed";
+        }
+        return string;
     }
 
     public String getCity1Name(){return city1.getName();}

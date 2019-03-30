@@ -72,6 +72,8 @@ public class Map {
                 int length = Integer.parseInt(scanner.next());
                 String type = scanner.next();
                 Route route = new Route(city1, city2, color, length, type);
+                route.setRouteNum(i+1);
+                System.out.println(route.getRouteNum()+" "+ route.toString());
                 allRoutes.add(route);
             }
             System.out.println(allRoutes.toString());
@@ -125,10 +127,9 @@ public class Map {
      * @post the route at routeIndex in allRoutes will be marked as claimed by Player p
      */
     public void claimRoute(int routeIndex, Player p) {
-        System.out.println("in map class,  before claiming route:"+routeIndex+ allRoutes.get(routeIndex).getClaimed());
 
-        allRoutes.get(routeIndex).setClaimed(p);
-        System.out.println("in map class, claiming route:"+routeIndex+ allRoutes.get(routeIndex).getClaimed());
+        allRoutes.get(routeIndex-1).setClaimed(p);
+        System.out.println("in map claiming: " + allRoutes.get(routeIndex-1).toString());
     }
 
     /**
@@ -180,7 +181,6 @@ public class Map {
 
         for(int i=0; i< allRoutes.size(); i++){
             if( (allRoutes.get(i).getCity1Name().equals(cityName) )||( allRoutes.get(i).getCity2Name().equals(cityName)) ) {
-                allRoutes.get(i).setRouteNum(i + 1);
                 routes.add(allRoutes.get(i));
             }
         }

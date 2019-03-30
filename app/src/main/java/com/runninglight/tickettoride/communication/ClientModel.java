@@ -5,11 +5,13 @@ import android.util.Log;
 
 import com.runninglight.shared.Cards.TrainCard;
 import com.runninglight.shared.Cards.DestinationCard;
+import com.runninglight.shared.Cards.TrainCardDeck;
 import com.runninglight.shared.Game;
 import com.runninglight.shared.GameOverAlert;
 import com.runninglight.shared.Map;
 import com.runninglight.shared.Message;
 import com.runninglight.shared.Player;
+import com.runninglight.shared.Route;
 import com.runninglight.shared.User;
 import com.runninglight.shared.state.PlayerState;
 
@@ -32,6 +34,8 @@ public class ClientModel extends Observable {
     private Game currentGame;
 
     private Map currentMap;
+
+    private TrainCardDeck currentTrainCardDeck;
 
     private ArrayList<Game> gameList;
 
@@ -298,7 +302,13 @@ public class ClientModel extends Observable {
     }
 
     public void claimRoute(int routeNumer){
+        Route temp = currentMap.getAllRoutes().get(routeNumer-1);
        currentMap.claimRoute(routeNumer,getCurrentPlayer());
+       System.out.println("in clmodel, preparing to create discard list for route: c1: "+temp.getCity1Name() + " c2: "+temp.getCity2Name());
+       ArrayList<TrainCard> discard = currentPlayer.getHand().playTrainCards( temp.getColor().toString(),temp.getLength() );
+       System.out.println("about to discard: " + discard.size()+ "to: "+ getCurrentGame().getTrainCardDeck());
+       //TODO: should use the proxy as Train deck dne on client side
+       //getCurrentGame().getTrainCardDeck().discard(discard);
         setChanged();
         notifyObservers();
     }

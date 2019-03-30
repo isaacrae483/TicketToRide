@@ -1,6 +1,7 @@
 package com.runninglight.tickettoride.activity.game;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -81,11 +82,22 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
 
             rowView.setTag(items.get(position).getRouteNum());
 
+            String color = "route_"+ items.get(position).getColor().toString().toLowerCase();
+
+            rowView.setBackgroundResource(getID(color));
 
             return rowView;
         }
 
     }
+
+    private int getID(String identifier){
+        Resources resources = getResources();
+        int ID = resources.getIdentifier(identifier,"color",getPackageName());
+        return ID;
+    }
+
+
 
 }
 

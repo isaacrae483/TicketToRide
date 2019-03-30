@@ -97,7 +97,7 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
             Route temp = allRoutes.get(i);
             if(temp.getClaimed() != null){
                 for(int j=1; j<= temp.getLength(); j++){
-                    String routeID ="_"+i+"_"+j;
+                    String routeID ="_"+temp.getRouteNum()+"_"+j;
                     ImageView view = getActivity().findViewById(getID(routeID));  //TODO: check og claim route for stuff ;)
                     if(view != null)
                         view.setBackgroundResource(findColor(temp.getClaimed().getColor()));
@@ -130,7 +130,6 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
     private int getID(String identifier){
         Resources resources = getResources();
         int ID = resources.getIdentifier(identifier,"id",getContext().getPackageName());
-        System.out.println("found id for "+identifier+ " "+ID);
         return ID;
     }
 

@@ -31,6 +31,8 @@ public class Hand {
     }
 
     public ArrayList<TrainCard> playTrainCards(String color, int length){
+
+        System.out.println(color + " length: "+ length);
         ArrayList<TrainCard> cardsToPlay = new ArrayList<>();
         int numCards = 0;
 
@@ -38,7 +40,6 @@ public class Hand {
             if (numCards < length) {
                 if (card.getCardColor().toString().equals(color)) {
                     cardsToPlay.add(new TrainCard(card.getCardColor()));
-                    trainCards.remove(card);
                     ++numCards;
                 }
             }
@@ -47,11 +48,12 @@ public class Hand {
             if (numCards < length) {
                 if (card.getCardColor().toString().equals(WILD.toString())) {
                     cardsToPlay.add(new TrainCard(card.getCardColor()));
-                    trainCards.remove(card);
                     ++numCards;
                 }
             }
         }
+        trainCards.removeAll(cardsToPlay);
+        System.out.println("in hand, remove size: "+ cardsToPlay.size()+ " numCards: "+ numCards+ " length: "+length);
         return cardsToPlay;
     }
 
@@ -66,6 +68,8 @@ public class Hand {
         if (numCards >= length) {
             return true;
         }
+        System.out.println("in hand size: "+trainCards.size()+" numCards: "+ numCards +"of color: "+ color);
+        System.out.println(WILD.toString());
         return false;
     }
 }

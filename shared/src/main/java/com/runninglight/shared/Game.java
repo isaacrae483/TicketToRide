@@ -274,7 +274,6 @@ public class Game {
         return null;
     }
 
-
     /**
      * Changes the current turn to the next player
      *
@@ -757,7 +756,7 @@ public class Game {
      */
     public void removeTrainCardFromPlayer(String playerName, TrainCard card){
         int i = find(playerName);
-        playerList.get(i).removeCardFromHand(card);
+        //playerList.get(i).removeCardFromHand(card);
     }
 
     /**

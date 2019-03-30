@@ -267,7 +267,7 @@ public class Player {
      *                  this.numTrainCards == (original numTrainCards - 1)
      */
     public void removeCardFromHand(TrainCard trainCard){
-        hand.removeTrainCard(trainCard);
+        //hand.removeTrainCard(trainCard);
         numTrainCards--;
     }
 
