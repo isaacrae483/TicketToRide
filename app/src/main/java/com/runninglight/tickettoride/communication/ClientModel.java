@@ -317,6 +317,7 @@ public class ClientModel extends Observable {
         System.out.println("in clmodel, preparing to create discard list for route: c1: "+temp.getCity1Name() + " c2: "+temp.getCity2Name());
 
 
+
         setChanged();
         notifyObservers();
     }

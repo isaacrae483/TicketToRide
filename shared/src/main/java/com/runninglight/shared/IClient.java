@@ -24,4 +24,6 @@ public interface IClient {
     void endGame(Game game);
 
     void claimRoute(Game game, int routeNumber, Player player);
+
+    void addPointsToPlayer(Game game, Player player, int points);
 }

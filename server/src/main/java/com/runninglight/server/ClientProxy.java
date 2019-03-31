@@ -105,6 +105,21 @@ public class ClientProxy implements IClient {
         communicator.setCommandForGame(game, getClaimRouteCommand(game, routeNumber, player));
     }
 
+    @Override
+    public void addPointsToPlayer(Game game, Player player, int points)
+    {
+        communicator.setCommandForGame(game, getAddPointsToPlayerCommand(game, player, points));
+    }
+
+    private Command getAddPointsToPlayerCommand(Game game, Player player, int points)
+    {
+        return new Command(
+                CLIENT_FACADE,
+                "addPointsToPlayer",
+                new String[] {GAME, PLAYER, "int"},
+                new Object[] {game, player, points} );
+    }
+
     private Command getClaimRouteCommand(Game game, int routeNumber, Player player)
     {
         return new Command(

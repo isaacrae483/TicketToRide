@@ -90,4 +90,12 @@ public class ClientFacade implements IClient {
         model.setCurrentGame(game);
         model.claimRoute(routeNumber, player);
     }
+
+    @Override
+    public void addPointsToPlayer(Game game, Player player, int points)
+    {
+        game.updateGameState();
+        model.setCurrentGame(game);
+        model.addPointsToPlayer(player.getName(), points);
+    }
 }
