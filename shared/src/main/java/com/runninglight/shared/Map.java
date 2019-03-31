@@ -193,4 +193,10 @@ public class Map {
 
     public ArrayList<Route> getAllRoutes(){return allRoutes;}
 
+    public Route getRoute(int routId)
+    {
+        for (Route route: allRoutes) if (route.getRouteNum() == routId) return route;
+        return null;
+    }
+
 }

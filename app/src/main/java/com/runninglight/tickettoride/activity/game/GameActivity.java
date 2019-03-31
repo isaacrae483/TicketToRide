@@ -25,12 +25,6 @@ public class GameActivity extends AppCompatActivity implements IGameActivity_Vie
 
     private Fragment mapFragment;
 
-    GameActivity(){
-    }
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

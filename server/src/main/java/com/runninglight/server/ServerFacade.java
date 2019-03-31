@@ -206,5 +206,8 @@ public class ServerFacade implements IServer {
     {
         model.claimRoute(gameID, player, routeNumber);
         proxy.claimRoute(model.getGameByID(gameID), routeNumber, player);
+
+        Message message = new Message("HISTORY", player.getName() + " claimed route: " + model.getGameByID(gameID).getMap().getRoute(routeNumber).getCity1Name() + " to " + model.getGameByID(gameID).getMap().getRoute(routeNumber).getCity2Name());
+        sendMessage(message, model.getGameByID(gameID));
     }
 }
