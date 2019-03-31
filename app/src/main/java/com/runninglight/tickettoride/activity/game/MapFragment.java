@@ -98,14 +98,13 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
             if(temp.getClaimed() != null){
                 for(int j=1; j<= temp.getLength(); j++){
                     String routeID ="_"+temp.getRouteNum()+"_"+j;
-                    ImageView view = getActivity().findViewById(getID(routeID));  //TODO: check og claim route for stuff ;)
+                    ImageView view = getActivity().findViewById(getID(routeID));
                     if(view != null)
                         view.setBackgroundResource(findColor(temp.getClaimed().getColor()));
                 }
             }
 
         }
-//TODO: hook up map to model
     }
 
     private int findColor(PlayerColor color){

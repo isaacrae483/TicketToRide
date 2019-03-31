@@ -33,12 +33,18 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
         Route temp = ClientModel.getInstance().getCurrentMap().getAllRoutes().get(routeNumber - 1);
         if(temp.getColor().toString() =="GREY"){
             claimRouteActivityView.showToast("Route is Grey");
+            claimRouteActivityView.launchGrey(temp.toString());
         }
-        //else{}
+        else{
+
+            //has enough train cars
             if (ClientModel.getInstance().getCurrentPlayer().getTrainCars() >= temp.getLength()) {
+
+                //has enough cards... color+wilds
                 if (ClientModel.getInstance().getCurrentPlayer().getHand().canClaimRoute(temp.getColor().toString(), temp.getLength())) {
+
+                    //route is not claimed
                     if (temp.getClaimed() == null) {
-                        //ClientModel.getInstance().claimRoute(routeNumber);
                         proxy.claimRoute(model.getCurrentGameID(), model.getCurrentPlayer(), routeNumber);
                         claimRouteActivityView.showToast("Claiming route");
                         claimRouteActivityView.endActivity();
@@ -52,6 +58,8 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
             } else {
                 claimRouteActivityView.showToast("Not enough Train cars.");
             }
+        }
+
 
         }
 
