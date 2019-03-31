@@ -687,13 +687,20 @@ public class Game {
         gameStateData[1] = data[1];
     }
 
-    public void claimRoute(int routeNumber, Player player){
+    public void claimRoute(int routeNumber, Player player, String color){
         int playerIndex = find(player.getName());
         Player p = playerList.get(playerIndex);
         Route temp = map.getAllRoutes().get(routeNumber-1);
         map.claimRoute(routeNumber, p);
         System.out.println("in smodel, preparing to create discard list for route: c1: "+temp.getCity1Name() + " c2: "+temp.getCity2Name());
-        ArrayList<TrainCard> discard = p.getHand().playTrainCards( temp.getColor().toString(),temp.getLength() );
+        ArrayList<TrainCard> discard;
+        if(temp.getColor().toString().equals("GREY")){
+           discard = p.getHand().playTrainCards( color,temp.getLength() );
+
+        }else {
+            discard = p.getHand().playTrainCards( temp.getColor().toString(),temp.getLength() );
+
+        }
         //getCurrentGame().getTrainCardDeck().discard(discard);
         System.out.println("***DISCARD SIZE BEFORE: " + trainCardDeck.getDiscardPileSize());
         trainCardDeck.discard(discard);

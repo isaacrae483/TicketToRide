@@ -241,22 +241,22 @@ public class ServerProxy implements IServer {
     }
 
     @Override
-    public void claimRoute(String gameID, Player player, int routeNumber)
+    public void claimRoute(String gameID, Player player, int routeNumber, String color)
     {
-        Results results = communicator.send(getClaimRouteCommand(gameID, player, routeNumber));
+        Results results = communicator.send(getClaimRouteCommand(gameID, player, routeNumber, color));
         if (!results.isSuccess()) {
             System.out.println(results.getErrorInfo());
         }
     }
 
 
-    private Command getClaimRouteCommand(String gameID, Player player, int routeNumber)
+    private Command getClaimRouteCommand(String gameID, Player player, int routeNumber, String color)
     {
         return new Command(
                 SERVER_FACADE,
                 "claimRoute",
-                new String[] {STRING, PLAYER, "int"},
-                new Object[] {gameID, player, routeNumber} );
+                new String[] {STRING, PLAYER, "int", STRING},
+                new Object[] {gameID, player, routeNumber, color} );
     }
 
     private Command getDrawCardFromFaceUpToHandCommand(Game game, User user, TrainCard trainCard, int position)

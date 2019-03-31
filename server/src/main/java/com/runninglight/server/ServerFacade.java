@@ -202,9 +202,9 @@ public class ServerFacade implements IServer {
     }
 
     @Override
-    public void claimRoute(String gameID, Player player, int routeNumber)
+    public void claimRoute(String gameID, Player player, int routeNumber, String color)
     {
-        model.claimRoute(gameID, player, routeNumber);
+        model.claimRoute(gameID, player, routeNumber, color);
         proxy.claimRoute(model.getGameByID(gameID), routeNumber, player);
 
         int length = model.getGameByID(gameID).getMap().getRoute(routeNumber).getLength();

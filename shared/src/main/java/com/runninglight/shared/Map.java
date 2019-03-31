@@ -73,10 +73,8 @@ public class Map {
                 String type = scanner.next();
                 Route route = new Route(city1, city2, color, length, type);
                 route.setRouteNum(i+1);
-                System.out.println(route.getRouteNum()+" "+ route.toString());
                 allRoutes.add(route);
             }
-            System.out.println(allRoutes.toString());
     }
 
     /**

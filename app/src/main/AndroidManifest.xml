@@ -38,6 +38,8 @@
             android:screenOrientation="landscape" />
         <activity android:name=".activity.game.ClaimRouteActivity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".activity.game.ClaimRouteGreyActivity"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

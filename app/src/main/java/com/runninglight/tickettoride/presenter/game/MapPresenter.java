@@ -21,14 +21,7 @@ public class MapPresenter implements IMapPresenter {
 
     @Override
     public void touchMap(int x, int y) {
-        PlayerColor p1 = PlayerColor.RED;
-        PlayerColor p2 = PlayerColor.GREEN;
-        claimRoute(21,p1);
-        claimRoute(50,p2);
-        claimRoute(37,p1);
-        claimRoute(33,p2);
-        claimRoute(20,p1);
-        claimRoute(99,p2);
+
     }
 
     @Override

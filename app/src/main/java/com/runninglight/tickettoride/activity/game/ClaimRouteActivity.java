@@ -1,6 +1,7 @@
 package com.runninglight.tickettoride.activity.game;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.ColorSpace;
 import android.os.Bundle;
@@ -94,91 +95,11 @@ public class ClaimRouteActivity extends AppCompatActivity implements IClaimRoute
 
     }
 
-    private class ClaimGreyRouteAdapter extends ArrayAdapter<Route>{
-
-        private String[] items= new String[]{"PINK", "WHITE", "BLUE", "YELLOW", "ORANGE", "BLACK", "RED", "GREEN"};
-
-        ClaimGreyRouteAdapter(Context context) {
-            super(context, R.layout.row_claim_route);
-        }
-
-        @NonNull
-        public View getView(int position, View view, @NonNull ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(row_claim_route, null, true);
-
-            TextView routeTitle = rowView.findViewById(R.id.claim_route_row_title);
-
-            String rowText = items[position].toLowerCase() +": " + getCardNumber(items[position]);
-
-            routeTitle.setText(rowText);
-
-            rowView.setTag(items[position]);
-
-
-
-            return rowView;
-        }
-
-        //"PINK", "WHITE", "BLUE", "YELLOW", "ORANGE", "BLACK", "RED", "GREEN"
-        public int getCardNumber(String color){
-            TextView temp;
-            switch (color){
-                case "PINK":
-                    temp = findViewById(R.id.num_pink);
-                    return Integer.valueOf(temp.getText().toString());
-
-                case "WHITE":
-                    temp = findViewById(R.id.num_white);
-                    return Integer.valueOf(temp.getText().toString());
-
-                case "BLUE":
-                    temp = findViewById(R.id.num_blue);
-                    return Integer.valueOf(temp.getText().toString());
-
-                case "YELLOW":
-                    temp = findViewById(R.id.num_yellow);
-                    return Integer.valueOf(temp.getText().toString());
-
-                case "ORANGE":
-                    temp = findViewById(R.id.num_orange);
-                    return Integer.valueOf(temp.getText().toString());
-
-                case "BLACK":
-                    temp = findViewById(R.id.num_black);
-                    return Integer.valueOf(temp.getText().toString());
-
-                case "RED":
-                    temp = findViewById(R.id.num_red);
-                    return Integer.valueOf(temp.getText().toString());
-
-                case "GREEN":
-                    temp = findViewById(R.id.num_green);
-                    return Integer.valueOf(temp.getText().toString());
-
-                    default:
-                        return 0;
-
-            }
-
-        }
-
-    }
-
-    public void launchGrey(String route){
-        adapter = new ClaimGreyRouteAdapter(this);
-        routes_lv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        title.setText(route);
-
-        routes_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                showToast(view.getTag().toString());
-
-            }
-        });
+    public void launchGrey(String route, int routeNum){
+        Intent intent = new Intent(this, ClaimRouteGreyActivity.class);
+        intent.putExtra("title",route);
+        intent.putExtra("routeNum", routeNum);
+        startActivity(intent);
     }
 
     private int getID(String identifier){

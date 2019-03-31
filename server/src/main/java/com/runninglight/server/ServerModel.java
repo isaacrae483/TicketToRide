@@ -133,9 +133,9 @@ public class ServerModel {
         gameList.get(gameIndex).continueGame();//setPlayerState(playerState);
     }
 
-    public void claimRoute(String gameID, Player player, int routeNumber){
+    public void claimRoute(String gameID, Player player, int routeNumber,String color){
         Game game = getGameByID(gameID);
-        game.claimRoute(routeNumber, player);
+        game.claimRoute(routeNumber, player, color);
     }
 
     public ArrayList<Game> getGameList() {

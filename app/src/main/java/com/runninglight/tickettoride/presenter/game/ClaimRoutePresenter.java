@@ -31,40 +31,62 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
     public void claimRoute(int routeNumber) {
         System.out.println("claiming route: " + routeNumber);
         Route temp = ClientModel.getInstance().getCurrentMap().getAllRoutes().get(routeNumber - 1);
-        if(temp.getColor().toString() =="GREY"){
-            claimRouteActivityView.showToast("Route is Grey");
-            claimRouteActivityView.launchGrey(temp.toString());
-        }
-        else{
+        //route is not claimed
+        if (temp.getClaimed() == null) {
 
-            //has enough train cars
-            if (ClientModel.getInstance().getCurrentPlayer().getTrainCars() >= temp.getLength()) {
+                //has enough train cars
+                if (ClientModel.getInstance().getCurrentPlayer().getTrainCars() >= temp.getLength()) {
 
-                //has enough cards... color+wilds
-                if (ClientModel.getInstance().getCurrentPlayer().getHand().canClaimRoute(temp.getColor().toString(), temp.getLength())) {
-
-                    //route is not claimed
-                    if (temp.getClaimed() == null) {
-                        proxy.claimRoute(model.getCurrentGameID(), model.getCurrentPlayer(), routeNumber);
-                        claimRouteActivityView.showToast("Claiming route");
+                    //route is grey?
+                    if(temp.getColor().toString() =="GREY"){
+                        claimRouteActivityView.showToast("Route is Grey");
+                        claimRouteActivityView.launchGrey(temp.toStringBasic(),temp.getRouteNum());
                         claimRouteActivityView.endActivity();
-                    } else {
-                        claimRouteActivityView.showToast("Route already claimed");
+                    } else{
+                        //has enough cards... color+wilds
+                        if (ClientModel.getInstance().getCurrentPlayer().getHand().canClaimRoute(temp.getColor().toString(), temp.getLength())) {
+
+
+                            proxy.claimRoute(model.getCurrentGameID(), model.getCurrentPlayer(), routeNumber, null);
+                            claimRouteActivityView.showToast("Claiming route");
+                            claimRouteActivityView.endActivity();
+
+
+                        } else {
+                            claimRouteActivityView.showToast("Not enough cards");
+                        }
                     }
 
-                } else
-                    claimRouteActivityView.showToast("Not enough cards");
+                } else {
+                    claimRouteActivityView.showToast("Not enough Train cars.");
+                }
 
-            } else {
-                claimRouteActivityView.showToast("Not enough Train cars.");
-            }
+
+        }else {
+            claimRouteActivityView.showToast("Route already claimed");
         }
 
 
+
         }
 
+    @Override
+    public void claimGreyRoute(int routeNumber, String color) {
+        //is claimed, enough cars and is grey already checked
+        Route temp = ClientModel.getInstance().getCurrentMap().getAllRoutes().get(routeNumber - 1);
+
+        if (ClientModel.getInstance().getCurrentPlayer().getHand().canClaimRoute(color, temp.getLength())) {
 
 
+            proxy.claimRoute(model.getCurrentGameID(), model.getCurrentPlayer(), routeNumber, color);
+            claimRouteActivityView.showToast("Claiming route");
+            claimRouteActivityView.endActivity();
+
+
+        } else {
+            claimRouteActivityView.showToast("Not enough cards");
+        }
+    }
 
 
 }

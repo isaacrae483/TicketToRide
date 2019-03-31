@@ -158,7 +158,6 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
 
     @Override
     public void onClick(View v) {
-        System.out.println("clicked city: " + v.getTag());
         Intent intent = new Intent(getActivity(), ClaimRouteActivity.class);
         intent.putExtra("title",v.getTag().toString());
         startActivity(intent);

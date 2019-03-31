@@ -123,6 +123,10 @@ public class Route {
         return string;
     }
 
+    public String toStringBasic(){
+        return city1.getName()+ " to " + city2.getName();
+    }
+
     public String getCity1Name(){return city1.getName();}
 
     public String getCity2Name(){return city2.getName();}
