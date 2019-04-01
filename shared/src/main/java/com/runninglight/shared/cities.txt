@@ -26,7 +26,7 @@ Portland
 Raleigh
 SaintLouis
 SaltLakeCity
-SanFransisco
+SanFrancisco
 SantaFe
 SaultStMarie
 Seattle

@@ -2300,7 +2300,7 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="290dp"
             android:visibility="visible"
-            android:tag="SanFransisco"
+            android:tag="SanFrancisco"
             app:srcCompat="@drawable/city" />
 
         <ImageView
