@@ -52,6 +52,7 @@ public class DeckPresenter implements IDeckPresenter, Observer
         model.setHasDrawnTrainCards(true);
         if(trainCard.isWild()){
             trainCardsDrawn = 0;
+            model.setHasDrawnTrainCards(false);
             try {
                 model.nextTurn();
                 proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
