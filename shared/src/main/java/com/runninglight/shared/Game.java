@@ -705,7 +705,6 @@ public class Game {
         System.out.println("***DISCARD SIZE BEFORE: " + trainCardDeck.getDiscardPileSize());
         trainCardDeck.discard(discard);
         System.out.println("***DISCARD SIZE AFTER: " + trainCardDeck.getDiscardPileSize());
-        playerList.set(playerIndex, player);        // Copy over Player from client
     }
 
     /*************************** TEST ********************************/

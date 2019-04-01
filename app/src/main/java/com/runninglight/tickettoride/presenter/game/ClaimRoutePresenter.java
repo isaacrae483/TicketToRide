@@ -46,7 +46,6 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
                         //has enough cards... color+wilds
                         if (ClientModel.getInstance().getCurrentPlayer().getHand().canClaimRoute(temp.getColor().toString(), temp.getLength())) {
 
-
                             proxy.claimRoute(model.getCurrentGameID(), model.getCurrentPlayer(), routeNumber, null);
                             claimRouteActivityView.showToast("Claiming route");
                             claimRouteActivityView.endActivity();
