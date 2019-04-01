@@ -695,13 +695,12 @@ public class Game {
         System.out.println("in smodel, preparing to create discard list for route: c1: "+temp.getCity1Name() + " c2: "+temp.getCity2Name());
         ArrayList<TrainCard> discard;
         if(temp.getColor().toString().equals("GREY")){
-           discard = p.getHand().playTrainCards( color,temp.getLength() );
+           discard = p.playTrainCards( color,temp.getLength() );
 
         }else {
-            discard = p.getHand().playTrainCards( temp.getColor().toString(),temp.getLength() );
+            discard = p.playTrainCards( temp.getColor().toString(),temp.getLength() );
 
         }
-        //getCurrentGame().getTrainCardDeck().discard(discard);
         System.out.println("***DISCARD SIZE BEFORE: " + trainCardDeck.getDiscardPileSize());
         trainCardDeck.discard(discard);
         System.out.println("***DISCARD SIZE AFTER: " + trainCardDeck.getDiscardPileSize());
