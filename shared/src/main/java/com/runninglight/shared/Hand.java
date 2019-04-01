@@ -52,9 +52,15 @@ public class Hand {
                 }
             }
         }
-        trainCards.removeAll(cardsToPlay);
+        removeCards(cardsToPlay);
         System.out.println("in hand, remove size: "+ cardsToPlay.size()+ " numCards: "+ numCards+ " length: "+length);
         return cardsToPlay;
+    }
+
+    private void removeCards(ArrayList<TrainCard> cards){
+        for(TrainCard card : cards){
+            trainCards.remove(card);
+        }
     }
 
     public boolean canClaimRoute(String color, int length) {
