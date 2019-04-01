@@ -48,6 +48,8 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
 
                             proxy.claimRoute(model.getCurrentGameID(), model.getCurrentPlayer(), routeNumber, null);
                             claimRouteActivityView.showToast("Claiming route");
+                            model.nextTurn();
+                            proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
                             claimRouteActivityView.endActivity();
 
 
@@ -79,6 +81,8 @@ public class ClaimRoutePresenter implements IClaimRoutePresenter {
 
             proxy.claimRoute(model.getCurrentGameID(), model.getCurrentPlayer(), routeNumber, color);
             claimRouteActivityView.showToast("Claiming route");
+            model.nextTurn();
+            proxy.setTurn(model.getCurrentGameID(), model.getPlayerState());
             claimRouteActivityView.endActivity();
 
 

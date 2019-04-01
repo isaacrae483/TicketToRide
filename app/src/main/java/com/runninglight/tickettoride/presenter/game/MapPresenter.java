@@ -38,7 +38,23 @@ public class MapPresenter implements IMapPresenter {
     public void demo(){}
 
     @Override
+    public void checkIfMyTurn(){
+        if(model.isMyTurn() && model.initDestCardsPicked()){
+            map_view.enableListeners();
+        }
+        else{
+            map_view.disableListeners();
+        }
+    }
+
+    @Override
     public void update(Observable o, Object arg) {
-    map_view.refresh( ClientModel.getInstance().getCurrentMap().getAllRoutes());
+        map_view.refresh( ClientModel.getInstance().getCurrentMap().getAllRoutes());
+        if(arg instanceof String){
+            checkIfMyTurn();
+        }
+        if(model.hasDrawnTrainCards()){
+            map_view.disableListeners();
+        }
     }
 }

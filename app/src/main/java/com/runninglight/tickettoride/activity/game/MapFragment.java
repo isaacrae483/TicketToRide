@@ -29,7 +29,9 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
 
     private RelativeLayout map;
 
+    private View v;
 
+    private ImageView[] cities;
 
 
     public MapFragment(){}
@@ -46,9 +48,11 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
 
         presenter = new MapPresenter(this);
 
-        View v = inflater.inflate(R.layout.fragment_map, container, false);
+        v = inflater.inflate(R.layout.fragment_map, container, false);
 
-        setListeners(v);
+
+        initCities();
+        presenter.checkIfMyTurn();
 
 
         return v;
@@ -107,6 +111,20 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
         }
     }
 
+    @Override
+    public void enableListeners(){
+        for (ImageView city : cities) {
+            city.setOnClickListener(this);
+        }
+    }
+
+    @Override
+    public void disableListeners(){
+        for (ImageView city : cities) {
+            city.setOnClickListener(null);
+        }
+    }
+
     private int findColor(PlayerColor color){
         switch (color.toString())
         {
@@ -132,10 +150,8 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
         return ID;
     }
 
-
-    private void setListeners(View v){
-
-        ImageView [] cities = {v.findViewById(R.id.city1),v.findViewById(R.id.city2),
+    private void initCities(){
+        cities = new ImageView[]{v.findViewById(R.id.city1),v.findViewById(R.id.city2),
                 v.findViewById(R.id.city3), v.findViewById(R.id.city4), v.findViewById(R.id.city5),
                 v.findViewById(R.id.city6), v.findViewById(R.id.city7), v.findViewById(R.id.city8),
                 v.findViewById(R.id.city9), v.findViewById(R.id.city10), v.findViewById(R.id.city11),
@@ -148,18 +164,13 @@ public class MapFragment extends Fragment implements IMap_View, View.OnClickList
                 v.findViewById(R.id.city30), v.findViewById(R.id.city31), v.findViewById(R.id.city32),
                 v.findViewById(R.id.city33), v.findViewById(R.id.city34), v.findViewById(R.id.city35),
                 v.findViewById(R.id.city36)} ;
-
-        for (ImageView city : cities) {
-            city.setOnClickListener(this);
-        }
-
     }
-
+    
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
         Intent intent = new Intent(getActivity(), ClaimRouteActivity.class);
-        intent.putExtra("title",v.getTag().toString());
+        intent.putExtra("title",view.getTag().toString());
         startActivity(intent);
 
     }

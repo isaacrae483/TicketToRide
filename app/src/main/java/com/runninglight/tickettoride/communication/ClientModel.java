@@ -41,6 +41,8 @@ public class ClientModel extends Observable {
 
     private ArrayList<User> userList;
 
+    private boolean hasDrawnTrainCards = false;
+
     public static ClientModel getInstance(){
         if(instance == null){
             instance = new ClientModel();
@@ -332,4 +334,12 @@ public class ClientModel extends Observable {
     }
 
     public Map getCurrentMap(){return currentMap;}
+
+    public boolean hasDrawnTrainCards() {
+        return hasDrawnTrainCards;
+    }
+
+    public void setHasDrawnTrainCards(boolean hasDrawnTrainCards) {
+        this.hasDrawnTrainCards = hasDrawnTrainCards;
+    }
 }

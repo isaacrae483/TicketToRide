@@ -49,6 +49,7 @@ public class DeckPresenter implements IDeckPresenter, Observer
         Game game = ClientModel.getInstance().getCurrentGame();
         ServerProxy.getInstance().drawCardFromFaceUpToHand(game, user, trainCard, position);
         trainCardsDrawn++;
+        model.setHasDrawnTrainCards(true);
         if(trainCard.isWild()){
             trainCardsDrawn = 0;
             try {
@@ -69,6 +70,7 @@ public class DeckPresenter implements IDeckPresenter, Observer
         Game game = ClientModel.getInstance().getCurrentGame();
         ServerProxy.getInstance().drawCardFromDeckToHand(game, user);
         trainCardsDrawn++;
+        model.setHasDrawnTrainCards(true);
         checkIfTurnOver();
     }
 
@@ -101,14 +103,12 @@ public class DeckPresenter implements IDeckPresenter, Observer
 
     @Override
     public boolean hasDrawnCards(){
-        if(trainCardsDrawn > 0){
-            return true;
-        }
-        return false;
+        return model.hasDrawnTrainCards();
     }
 
     private void checkIfTurnOver(){
         if(trainCardsDrawn == MAX_TRAIN_CARDS_PER_TURN){
+            model.setHasDrawnTrainCards(false);
             trainCardsDrawn = 0;
             try {
                 model.nextTurn();
