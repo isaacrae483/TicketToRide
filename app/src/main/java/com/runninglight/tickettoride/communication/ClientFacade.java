@@ -96,6 +96,7 @@ public class ClientFacade implements IClient {
     {
         game.updateGameState();
         model.setCurrentGame(game);
+        model.getCurrentGame().getPlayer(player.getName()).setPoints(0);
         model.addPointsToPlayer(player.getName(), points);
     }
 }

@@ -217,7 +217,7 @@ public class ServerFacade implements IServer {
         if (length == 6) points = 15;
         System.out.println("Route length: " + length + " route points: " + points);
         model.getGameByID(gameID).addPointsToPlayer(player.getName(), points);
-        proxy.addPointsToPlayer(model.getGameByID(gameID), player, points);
+        proxy.addPointsToPlayer(model.getGameByID(gameID), player, model.getGameByID(gameID).getPlayer(player.getName()).getPoints());
 
         Message message = new Message("HISTORY", player.getName() + " claimed route: " + model.getGameByID(gameID).getMap().getRoute(routeNumber).getCity1Name() + " to " + model.getGameByID(gameID).getMap().getRoute(routeNumber).getCity2Name());
         sendMessage(message, model.getGameByID(gameID));
