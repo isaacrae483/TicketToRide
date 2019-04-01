@@ -110,6 +110,7 @@ public class GameOverActivity extends AppCompatActivity implements IGameOverView
         }
 
         for (Player p : players) {
+            p.destCardPoints();
             p.calculateTotalPoints();
         }
 
@@ -120,7 +121,6 @@ public class GameOverActivity extends AppCompatActivity implements IGameOverView
             ((TextView) views.get(i).get(0)).setText(String.valueOf(i + 1));
             ((TextView) views.get(i).get(1)).setText(players.get(i).getName());
             ((TextView) views.get(i).get(2)).setText(String.valueOf(players.get(i).getPoints()));
-            players.get(i).destCardPoints();
             ((TextView) views.get(i).get(3)).setText(String.valueOf(players.get(i).getDestCardsGained()));
             ((TextView) views.get(i).get(4)).setText(String.valueOf(players.get(i).getDestCardsLost()));
             String mostRoutesPoints = "0";
